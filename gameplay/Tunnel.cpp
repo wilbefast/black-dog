@@ -43,13 +43,9 @@ void Tunnel::update()
 
 void Tunnel::draw()
 {
-  static V2f drawable[N_PTS+2];
-  // draw top height-map
-  build_drawable(above, 0.0f, drawable);
-  draw::line_loop(drawable, N_PTS+2);
-  // draw bottom height-map
-  build_drawable(below, global::viewport.h, drawable);
-  draw::line_loop(drawable, N_PTS+2);
+  draw::height_map(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f), head_i);
+  draw::height_map(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
+                                                                 head_i);
 }
 
 

@@ -20,8 +20,10 @@ namespace draw
 
     /// FUNCTIONS
     void line(V2f start, V2f end, Colour c = Colour(), float thickness = 1.0f);
-    void line_loop(V2f points[], unsigned int n, Colour c = Colour(),
+    void line_loop(V2f points[], unsigned int n_pts, Colour c = Colour(),
                                                   float thickness = 1.0f);
+    void height_map(float height[], unsigned int n_pts, float x_spacing,
+                    V2f base = V2f(0.0f, 0.0f), unsigned int start_i = 0);
     void circle(V2f position, double radius, Colour c = Colour(),
                      bool fill = false);
 };
