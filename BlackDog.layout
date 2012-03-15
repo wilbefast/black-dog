@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Application.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="4711" topLine="185" />
+	</File>
+	<File name="Application.hpp" open="0" top="0" tabpos="6">
+		<Cursor position="68" topLine="0" />
+	</File>
+	<File name="Rect.hpp" open="0" top="0" tabpos="5">
+		<Cursor position="2787" topLine="78" />
+	</File>
+	<File name="Rect.inl" open="0" top="0" tabpos="5">
+		<Cursor position="5112" topLine="272" />
+	</File>
+	<File name="ResourceManager.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="698" topLine="21" />
+	</File>
+	<File name="ResourceManager.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="483" topLine="3" />
+	</File>
+	<File name="V2.hpp" open="0" top="0" tabpos="5">
+		<Cursor position="1545" topLine="48" />
+	</File>
+	<File name="V2.inl" open="0" top="0" tabpos="6">
+		<Cursor position="3779" topLine="187" />
+	</File>
+	<File name="assert.hpp" open="0" top="0" tabpos="4">
+		<Cursor position="1074" topLine="14" />
+	</File>
+	<File name="file.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="221" topLine="0" />
+	</File>
+	<File name="file.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="353" topLine="0" />
+	</File>
+	<File name="game/Tunnel.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="948" topLine="20" />
+	</File>
+	<File name="game/Tunnel.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="329" topLine="9" />
+	</File>
+	<File name="game/TunnelBG.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="502" topLine="7" />
+	</File>
+	<File name="game/TunnelBG.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="214" topLine="0" />
+	</File>
+	<File name="global.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="68" topLine="0" />
+	</File>
+	<File name="global.hpp" open="0" top="0" tabpos="1">
+		<Cursor position="340" topLine="0" />
+	</File>
+	<File name="graphics/Graphic.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="0" topLine="6" />
+	</File>
+	<File name="graphics/Graphic.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="98" topLine="0" />
+	</File>
+	<File name="graphics/Texture.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="2811" topLine="84" />
+	</File>
+	<File name="graphics/Texture.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="518" topLine="5" />
+	</File>
+	<File name="graphics/draw.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="1179" topLine="0" />
+	</File>
+	<File name="graphics/draw.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="593" topLine="9" />
+	</File>
+	<File name="interfaces/Button.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="783" topLine="11" />
+	</File>
+	<File name="interfaces/Button.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="761" topLine="20" />
+	</File>
+	<File name="interfaces/Game.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="469" topLine="4" />
+	</File>
+	<File name="interfaces/Game.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="335" topLine="0" />
+	</File>
+	<File name="interfaces/GameState.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="3946" topLine="132" />
+	</File>
+	<File name="interfaces/GameState.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="495" topLine="22" />
+	</File>
+	<File name="interfaces/Interface.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="2561" topLine="94" />
+	</File>
+	<File name="interfaces/Interface.hpp" open="0" top="0" tabpos="6">
+		<Cursor position="474" topLine="21" />
+	</File>
+	<File name="interfaces/InterfaceState.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="193" topLine="0" />
+	</File>
+	<File name="interfaces/InterfaceState.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="1142" topLine="7" />
+	</File>
+	<File name="interfaces/MainMenu.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="1692" topLine="34" />
+	</File>
+	<File name="interfaces/MainMenu.hpp" open="0" top="0" tabpos="4">
+		<Cursor position="211" topLine="0" />
+	</File>
+	<File name="jni_glue.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="3770" topLine="9" />
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="309" topLine="7" />
+	</File>
+	<File name="numerise.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="709" topLine="0" />
+	</File>
+	<File name="numerise.inl" open="0" top="0" tabpos="0">
+		<Cursor position="176" topLine="0" />
+	</File>
+	<File name="platform.hpp" open="0" top="0" tabpos="6">
+		<Cursor position="1666" topLine="37" />
+	</File>
+	<File name="things/Thing.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="2136" topLine="111" />
+	</File>
+	<File name="things/Thing.hpp" open="0" top="0" tabpos="5">
+		<Cursor position="1465" topLine="44" />
+	</File>
+	<File name="things/elements/AnimatedElement.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1768" topLine="60" />
+	</File>
+	<File name="things/elements/AnimatedElement.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="479" topLine="0" />
+	</File>
+	<File name="things/elements/ColliderElement.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="725" topLine="14" />
+	</File>
+	<File name="things/elements/ColliderElement.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="759" topLine="7" />
+	</File>
+	<File name="things/elements/GraphicElement.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1621" topLine="51" />
+	</File>
+	<File name="things/elements/GraphicElement.hpp" open="0" top="0" tabpos="1">
+		<Cursor position="252" topLine="0" />
+	</File>
+	<File name="things/elements/MovementElement.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2672" topLine="88" />
+	</File>
+	<File name="things/elements/MovementElement.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="248" topLine="0" />
+	</File>
+	<File name="things/elements/ResourceElement.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="745" topLine="17" />
+	</File>
+	<File name="things/elements/ResourceElement.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="447" topLine="1" />
+	</File>
+	<File name="things/elements/ThingElement.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="115" topLine="0" />
+	</File>
+	<File name="things/events/BoundaryEvent.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="113" topLine="4" />
+	</File>
+	<File name="things/events/BoundaryEvent.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="277" topLine="0" />
+	</File>
+	<File name="things/events/CollisionEvent.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="123" topLine="0" />
+	</File>
+	<File name="things/events/CollisionEvent.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="245" topLine="0" />
+	</File>
+	<File name="things/events/ThingEvent.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="177" topLine="0" />
+	</File>
+	<File name="warn.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="25" topLine="0" />
+	</File>
+	<File name="wjd_math.hpp" open="1" top="0" tabpos="4">
+		<Cursor position="242" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="BiotopPort" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/BiotopPort" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/BiotopPort" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DSDL_NO_COMPAT" />
+			<Add directory="/usr/local/include/SDL" />
+			<Add directory="/usr/include/SDL" />
+		</Compiler>
+		<Linker>
+			<Add option="-lSDL_image" />
+			<Add option="-lGL" />
+			<Add option="-lSDL_mixer" />
+			<Add library="/usr/local/lib/libSDL-1.3.so" />
+			<Add directory="/usr/local/lib" />
+		</Linker>
+		<Unit filename="Application.cpp" />
+		<Unit filename="Application.hpp" />
+		<Unit filename="Rect.hpp" />
+		<Unit filename="Rect.inl" />
+		<Unit filename="ResourceManager.cpp" />
+		<Unit filename="ResourceManager.hpp" />
+		<Unit filename="V2.hpp" />
+		<Unit filename="V2.inl" />
+		<Unit filename="assert.hpp" />
+		<Unit filename="file.cpp" />
+		<Unit filename="file.hpp" />
+		<Unit filename="game/Tunnel.cpp" />
+		<Unit filename="game/Tunnel.hpp" />
+		<Unit filename="game/TunnelBG.cpp" />
+		<Unit filename="game/TunnelBG.hpp" />
+		<Unit filename="game/TunnelFG.cpp" />
+		<Unit filename="game/TunnelFG.hpp" />
+		<Unit filename="global.cpp" />
+		<Unit filename="global.hpp" />
+		<Unit filename="graphics/Animation.cpp" />
+		<Unit filename="graphics/Animation.hpp" />
+		<Unit filename="graphics/Graphic.cpp" />
+		<Unit filename="graphics/Graphic.hpp" />
+		<Unit filename="graphics/Texture.cpp" />
+		<Unit filename="graphics/Texture.hpp" />
+		<Unit filename="graphics/draw.cpp" />
+		<Unit filename="graphics/draw.hpp" />
+		<Unit filename="interfaces/Button.cpp" />
+		<Unit filename="interfaces/Button.hpp" />
+		<Unit filename="interfaces/Game.cpp" />
+		<Unit filename="interfaces/Game.hpp" />
+		<Unit filename="interfaces/GameState.cpp" />
+		<Unit filename="interfaces/GameState.hpp" />
+		<Unit filename="interfaces/Interface.cpp" />
+		<Unit filename="interfaces/Interface.hpp" />
+		<Unit filename="interfaces/InterfaceState.cpp" />
+		<Unit filename="interfaces/InterfaceState.hpp" />
+		<Unit filename="interfaces/MainMenu.cpp" />
+		<Unit filename="interfaces/MainMenu.hpp" />
+		<Unit filename="jni_glue.cpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="numerise.hpp" />
+		<Unit filename="numerise.inl" />
+		<Unit filename="platform.hpp" />
+		<Unit filename="things/Thing.cpp" />
+		<Unit filename="things/Thing.hpp" />
+		<Unit filename="things/elements/AnimatedElement.cpp" />
+		<Unit filename="things/elements/AnimatedElement.hpp" />
+		<Unit filename="things/elements/ColliderElement.cpp" />
+		<Unit filename="things/elements/ColliderElement.hpp" />
+		<Unit filename="things/elements/GraphicElement.cpp" />
+		<Unit filename="things/elements/GraphicElement.hpp" />
+		<Unit filename="things/elements/MovementElement.cpp" />
+		<Unit filename="things/elements/MovementElement.hpp" />
+		<Unit filename="things/elements/ResourceElement.cpp" />
+		<Unit filename="things/elements/ResourceElement.hpp" />
+		<Unit filename="things/elements/ThingElement.cpp" />
+		<Unit filename="things/elements/ThingElement.hpp" />
+		<Unit filename="things/events/BoundaryEvent.cpp" />
+		<Unit filename="things/events/BoundaryEvent.hpp" />
+		<Unit filename="things/events/CollisionEvent.cpp" />
+		<Unit filename="things/events/CollisionEvent.hpp" />
+		<Unit filename="things/events/ThingEvent.cpp" />
+		<Unit filename="things/events/ThingEvent.hpp" />
+		<Unit filename="warn.hpp" />
+		<Unit filename="wjd_math.hpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,133 @@
+#include "ColliderElement.hpp"
+
+#include "../../../global.hpp"     // for scaling hitbox
+
+/// METHODS
+
+// constructors, destructors
+
+ColliderElement::ColliderElement(Thing* init_owner, V2f size, V2f offset) :
+ThingElement(init_owner),
+hitbox(size)
+{
+    // Save aspect ratio of requested hitbox
+    double aspect_ratio = hitbox.getRatio();
+
+    // Stretch hitbox based on screen size
+    static V2f normaliser(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
+    V2f screen_ratio = (V2f)global::viewport.getSize() / normaliser;
+    hitbox *= screen_ratio;
+    offset *= screen_ratio;
+    // Maintain aspect ratio (stretch evenly along)
+    hitbox.setRatio(aspect_ratio);
+    // Center correctly
+    hitbox.setPosition(-hitbox.getSize()/2.0f + offset);
+}
+
+// main methods
+
+bool ColliderElement::isColliding(ColliderElement* other, V2i* side) const
+{
+    // Check for collision between the translated hitboxes
+    if(getOffsetBox().doesInter(other->getOffsetBox()))
+    {
+        // if the collision side is requested
+        if(side)
+            (*side) = collisionSide(other);
+
+        // either way return true
+        return true;
+    }
+    else
+        return false;
+}
+
+bool ColliderElement::isOutside(fRect* bounds, V2i* side) const
+{
+    // Check if the entire translated hitbox is outside the boundary
+    if(!bounds->doesInter(getOffsetBox()))
+    {
+        // if the side we've crossed is requested...
+        if(side)
+            (*side) = boundarySide(bounds);
+
+        // either way return true
+        return true;
+    }
+    else
+        return false;
+}
+
+bool ColliderElement::isLeaving(fRect* bounds, V2i* side) const
+{
+    fRect this_box = getOffsetBox();
+
+    // round to nearest integer to compare
+    if ((iRect)(bounds->getInter(this_box)) != (iRect)this_box)
+    {
+        // if the side we've crossed is requested...
+        if(side)
+            (*side) = boundarySide(bounds);
+
+        // either way return true
+        return true;
+    }
+    else
+        return false;
+
+}
+
+bool ColliderElement::doesContain(V2f point) const
+{
+    return getOffsetBox().contains(point);
+}
+
+// accessors
+fRect ColliderElement::getOffsetBox() const
+{
+    return hitbox + owner->getPosition();
+}
+
+V2i ColliderElement::boundarySide(fRect* bounds) const
+{
+    // local variables
+    fRect this_box = getOffsetBox();
+    V2f top_left = this_box.getPosition() - bounds->getPosition();
+    V2f bottom_right = top_left + this_box.getSize() - bounds->getSize();
+
+    // (0,0) by default, meaning a collision on neither side
+    V2i result(0,0);
+
+    // horizontal collision
+    if(top_left.x < 0)
+        result.x = -1;
+    if(bottom_right.x > 0)
+        result.x = 1;
+
+    // vertical collision
+    if(top_left.y < 0)
+        result.y = -1;
+    if(bottom_right.y > 0)
+        result.y = 1;
+
+    // return the result
+    return result;
+}
+
+V2i ColliderElement::collisionSide(ColliderElement* other) const
+{
+    // local variables
+    V2f to_target = other->owner->getPosition() - owner->getPosition();
+
+    // (0,0) by default, meaning a collision on neither side
+    V2i result(0,0);
+    if(abs(to_target.x) - abs(to_target.y) > 0.2)
+        result.x = SIGN(to_target.x);
+    else if(abs(to_target.x) - abs(to_target.y) < -0.2)
+        result.y = SIGN(to_target.y);
+    else
+        result = to_target.sign();
+
+    // return the result
+    return result;
+}
