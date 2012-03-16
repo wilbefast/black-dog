@@ -3,16 +3,17 @@
 #include "../global.hpp"
 #include "../graphics/draw.hpp"
 
+
 /// CREATION AND DESTRUCTION
 
 Tunnel::Tunnel(float base_speed) :
 // 'pseudo-constants'
-MIN_H(global::viewport.h / WINDOW_DEFAULT_H * DEFAULT_MIN_H),
+MIN_H(global::viewport.h * DEFAULT_MIN_H / WINDOW_DEFAULT_H),
 MAX_H(global::viewport.h - MIN_H),
 SEGMENT_L(global::viewport.w / (N_PTS-2)),
 head_i(0),
 // speed depends on screen size
-speed_x(global::viewport.w / WINDOW_DEFAULT_W * base_speed)
+speed_x(global::viewport.w * base_speed / WINDOW_DEFAULT_W)
 {
   // initialise height maps
   for (int i = 0; i < N_PTS; i++)
@@ -43,12 +44,7 @@ void Tunnel::update()
 
 void Tunnel::draw()
 {
-  draw::height_fill(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f), head_i);
-  draw::height_line(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f), head_i);
-  draw::height_fill(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
-                                                                 head_i);
-  draw::height_line(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
-                                                                 head_i);
+  // override me !
 }
 
 

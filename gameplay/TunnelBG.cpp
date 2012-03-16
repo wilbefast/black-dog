@@ -3,6 +3,10 @@
 #include "../global.hpp"
 #include "../wjd_math.hpp"
 
+/// CONSTANTS
+
+draw::Colour TunnelBG::COLOUR_FILL(115, 6, 15);   // dark red
+
 
 /// CONSTRUCTION AND DESTRUCTION
 
@@ -15,6 +19,14 @@ Tunnel(DEFAULT_SPEED)
 }
 
 /// OVERRIDES
+
+void TunnelBG::draw()
+{
+  draw::height_fill(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
+                    head_i, COLOUR_FILL);
+  draw::height_fill(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
+                    head_i, COLOUR_FILL);
+}
 
 void TunnelBG::new_height(unsigned int i)
 {

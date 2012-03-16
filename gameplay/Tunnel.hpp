@@ -33,7 +33,7 @@ public:
   Tunnel(float base_speed);
 	// loop
   void update();
-  void draw();
+  virtual void draw();
 	// query
   bool collision(V2f& position);
 

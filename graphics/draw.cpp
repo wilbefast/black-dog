@@ -171,7 +171,6 @@ void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
 
   // Start up
   glEnableClientState(GL_VERTEX_ARRAY);
-  c.g = c.b = 0;
   glColor4f(c.r, c.g, c.b, c.a);
 
   // Draw points

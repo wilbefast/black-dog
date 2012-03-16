@@ -2,14 +2,19 @@
 
 #include "../global.hpp"
 
+/// CONSTANTS
+
+draw::Colour TunnelFG::COLOUR_FILL(242, 68, 5);  // orange
+draw::Colour TunnelFG::COLOUR_LINE(44, 0, 0);    // very dark red
+
 /// CREATION AND DESTRUCTION
 
 TunnelFG::TunnelFG() :
 Tunnel(DEFAULT_SPEED),
-MIN_GIRTH(global::viewport.h / WINDOW_DEFAULT_H * DEFAULT_MIN_GIRTH),
-BASE_GIRTH(global::viewport.h / 3),
-MAX_DELTA(global::viewport.h / 2),
-middle_y(global::viewport.h / 2),
+MIN_GIRTH(global::viewport.h * DEFAULT_MIN_GIRTH / WINDOW_DEFAULT_H ),
+BASE_GIRTH(global::viewport.h / 3.0f),
+MAX_DELTA(global::viewport.h / 2.0f),
+middle_y(global::viewport.h / 2.0f),
 difficulty(1.0f)
 {
 		// randomise initial values -- must be done AFTER pseudo-constants
@@ -19,6 +24,19 @@ difficulty(1.0f)
 
 
 /// OVERRIDES
+
+void TunnelFG::draw()
+{
+  draw::height_fill(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
+                    head_i, COLOUR_FILL);
+  draw::height_line(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
+                    head_i, COLOUR_LINE);
+
+  draw::height_fill(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
+                    head_i, COLOUR_FILL);
+  draw::height_line(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
+                    head_i, COLOUR_LINE);
+}
 
 void TunnelFG::new_height(unsigned int i)
 {

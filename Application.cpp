@@ -114,7 +114,7 @@ int Application::shutdown()
 
 int Application::startSDL()
 {
-    // Initialize SDL.
+  // Initialize SDL.
 	ASSERT_SDL(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) >= 0,
 		"Initialising SDL video and audio");
 
@@ -123,35 +123,35 @@ int Application::startSDL()
 	window = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_CENTERED,
                            SDL_WINDOWPOS_CENTERED, WINDOW_DEFAULT_W,
                            WINDOW_DEFAULT_H, WINDOW_FLAGS);
-    ASSERT_SDL(window, "Opening SDL application window");
+  ASSERT_SDL(window, "Opening SDL application window");
 
-    // Since the window size can be overriden, check what it is actually
-    SDL_GetWindowSize(window, &global::viewport.w, &global::viewport.h);
+  // Since the window size can be overriden, check what it is actually
+  SDL_GetWindowSize(window, &global::viewport.w, &global::viewport.h);
 
-    // Open mixer
-    //Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
-    ASSERT_MIX(Mix_OpenAudio(SOUND_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
-             MIX_DEFAULT_CHANNELS, SOUND_DEFAULT_CHUNK_SIZE) != -1,
-            "Starting SDL Mixer");
+  // Open mixer
+  //Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
+  ASSERT_MIX(Mix_OpenAudio(SOUND_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
+           MIX_DEFAULT_CHANNELS, SOUND_DEFAULT_CHUNK_SIZE) != -1,
+          "Starting SDL Mixer");
 
-    // Load and play music on loop (-1)
-    //music = Mix_LoadMUS(ASSET_PATH("music.ogg"));
-    //ASSERT_MIX(music, "Loading music file");
-    //Mix_PlayMusic(music, -1);
+  // Load and play music on loop (-1)
+  //music = Mix_LoadMUS(ASSET_PATH("music.ogg"));
+  //ASSERT_MIX(music, "Loading music file");
+  //Mix_PlayMusic(music, -1);
 
-    // Create the OpenGL context for the window we just opened
-    context = SDL_GL_CreateContext(window);
-    SDL_GL_MakeCurrent(window, context);
+  // Create the OpenGL context for the window we just opened
+  context = SDL_GL_CreateContext(window);
+  SDL_GL_MakeCurrent(window, context);
 
-    // Configure SDL/OpenGL interface
-    SDL_GL_SetSwapInterval(1); // 1 = use vertical synchronisation (vsync)
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, GL_V_MAJOR);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, GL_V_MINOR);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+  // Configure SDL/OpenGL interface
+  SDL_GL_SetSwapInterval(1); // 1 = use vertical synchronisation (vsync)
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, GL_V_MAJOR);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, GL_V_MINOR);
+  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    // No problems, return success code!
-    return EXIT_SUCCESS;
+  // No problems, return success code!
+  return EXIT_SUCCESS;
 }
 
 int Application::startGL()

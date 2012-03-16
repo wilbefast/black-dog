@@ -2,6 +2,7 @@
 #define TUNNELFG_HPP_INCLUDED
 
 #include "Tunnel.hpp"
+#include "../graphics/draw.hpp"
 
 // foreground tunnel: subject to difficulty, can be collided with.
 
@@ -10,6 +11,7 @@ class TunnelFG : public Tunnel
 
   /// CONSTANTS
 private:
+  static draw::Colour COLOUR_FILL, COLOUR_LINE;
   static const int DEFAULT_MIN_GIRTH = 96;
   static const int DEFAULT_SPEED = 4;
 
@@ -31,6 +33,8 @@ public:
   TunnelFG();
 
 	/// OVERRIDES
+public:
+  void draw();
 private:
   void new_height(unsigned int i);
 };

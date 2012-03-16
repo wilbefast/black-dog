@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="Application.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="8498" topLine="285" />
+	<File name="Application.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="3328" topLine="113" />
 	</File>
 	<File name="Application.hpp" open="0" top="0" tabpos="6">
-		<Cursor position="1321" topLine="41" />
+		<Cursor position="1321" topLine="0" />
 	</File>
 	<File name="Rect.hpp" open="0" top="0" tabpos="5">
 		<Cursor position="2787" topLine="78" />
@@ -35,13 +35,16 @@
 		<Cursor position="353" topLine="0" />
 	</File>
 	<File name="gameplay/Tunnel.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="936" topLine="36" />
+		<Cursor position="80" topLine="0" />
 	</File>
-	<File name="gameplay/TunnelBG.cpp" open="1" top="0" tabpos="5">
+	<File name="gameplay/TunnelBG.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="gameplay/TunnelBG.hpp" open="1" top="0" tabpos="6">
+	<File name="gameplay/TunnelBG.hpp" open="0" top="0" tabpos="6">
 		<Cursor position="214" topLine="2" />
+	</File>
+	<File name="gameplay/TunnelFG.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="178" topLine="0" />
 	</File>
 	<File name="gameplay/things/Thing.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="127" topLine="0" />
@@ -89,7 +92,7 @@
 		<Cursor position="140" topLine="0" />
 	</File>
 	<File name="global.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="68" topLine="0" />
+		<Cursor position="67" topLine="0" />
 	</File>
 	<File name="global.hpp" open="0" top="0" tabpos="1">
 		<Cursor position="340" topLine="0" />
@@ -106,10 +109,10 @@
 	<File name="graphics/Texture.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="518" topLine="5" />
 	</File>
-	<File name="graphics/draw.cpp" open="1" top="1" tabpos="2">
+	<File name="graphics/draw.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="5101" topLine="144" />
 	</File>
-	<File name="graphics/draw.hpp" open="1" top="0" tabpos="3">
+	<File name="graphics/draw.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="1015" topLine="12" />
 	</File>
 	<File name="jni_glue.cpp" open="0" top="0" tabpos="2">
@@ -125,16 +128,16 @@
 		<Cursor position="176" topLine="0" />
 	</File>
 	<File name="platform.hpp" open="0" top="0" tabpos="6">
-		<Cursor position="1666" topLine="37" />
+		<Cursor position="740" topLine="10" />
 	</File>
 	<File name="scenes/Game.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="372" topLine="5" />
+		<Cursor position="372" topLine="9" />
 	</File>
 	<File name="scenes/Game.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="246" topLine="0" />
 	</File>
-	<File name="scenes/GameState.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="3992" topLine="159" />
+	<File name="scenes/GameState.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="2800" topLine="126" />
 	</File>
 	<File name="scenes/GameState.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="870" topLine="19" />
