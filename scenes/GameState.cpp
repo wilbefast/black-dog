@@ -174,7 +174,7 @@ void GameState::draw()
   parallax.draw();
 
   // Draw the foreground obstacle tunnel
-  obstacle.draw();
+  //obstacle.draw();
 
   // Draw all the game objects
   for(ThingIter i = things.begin(); i!= things.end(); i++)

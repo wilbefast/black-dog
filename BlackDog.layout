@@ -35,7 +35,13 @@
 		<Cursor position="353" topLine="0" />
 	</File>
 	<File name="gameplay/Tunnel.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1143" topLine="40" />
+		<Cursor position="936" topLine="36" />
+	</File>
+	<File name="gameplay/TunnelBG.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="gameplay/TunnelBG.hpp" open="1" top="0" tabpos="6">
+		<Cursor position="214" topLine="2" />
 	</File>
 	<File name="gameplay/things/Thing.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="127" topLine="0" />
@@ -95,16 +101,16 @@
 		<Cursor position="98" topLine="0" />
 	</File>
 	<File name="graphics/Texture.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2811" topLine="84" />
+		<Cursor position="2811" topLine="123" />
 	</File>
 	<File name="graphics/Texture.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="518" topLine="5" />
 	</File>
 	<File name="graphics/draw.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="2519" topLine="39" />
+		<Cursor position="5101" topLine="144" />
 	</File>
 	<File name="graphics/draw.hpp" open="1" top="0" tabpos="3">
-		<Cursor position="676" topLine="12" />
+		<Cursor position="1015" topLine="12" />
 	</File>
 	<File name="jni_glue.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="3770" topLine="9" />
@@ -128,7 +134,7 @@
 		<Cursor position="246" topLine="0" />
 	</File>
 	<File name="scenes/GameState.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="3990" topLine="162" />
+		<Cursor position="3992" topLine="159" />
 	</File>
 	<File name="scenes/GameState.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="870" topLine="19" />

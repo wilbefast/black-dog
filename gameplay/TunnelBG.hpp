@@ -9,7 +9,7 @@ class TunnelBG : public Tunnel
 {
   /// CONSTANTS
 private:
-  static const int DEFAULT_SPEED = 2;
+  static const int DEFAULT_SPEED = 1;
   /// METHODS
 public:
   TunnelBG();
