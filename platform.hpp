@@ -3,7 +3,7 @@
 
 #ifdef __ANDROID__
 
-    #include <android/log.h>    // for __android_log_print
+  #include <android/log.h>    // for __android_log_print
 	#include <GLES/gl.h>    	//OpenGL ES rather than OpenGL
 
 	#define WINDOW_FLAGS WINDOW_DEFAULT_FLAGS|SDL_WINDOW_BORDERLESS

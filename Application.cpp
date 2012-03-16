@@ -80,32 +80,34 @@ int Application::run()
 
 int Application::shutdown()
 {
-    // Check if not initialised
-    if(!initialised)
-    {
-        LOG_W("Application shutdown", "Application already unloaded!");
-        return EXIT_SUCCESS;
-    }
+  // Check if not initialised
+  if(!initialised)
+  {
+      LOG_W("Application shutdown", "Application already unloaded!");
+      return EXIT_SUCCESS;
+  }
 
-    // Close down the current scene
-    scene->shutdown();
-    delete scene;
+  // Close down the current scene
+  scene->shutdown();
+  delete scene;
 
-    // Destory application display and control structures
-    SDL_GL_MakeCurrent(NULL, NULL);
-    SDL_GL_DeleteContext(context);
-	SDL_DestroyWindow(window);
+  // Destory application display and control structures
+  SDL_GL_MakeCurrent(NULL, NULL);
+  SDL_GL_DeleteContext(context);
+  SDL_DestroyWindow(window);
 
-    // Stop and then free music
-    Mix_HaltMusic();
+  // Stop and then free music
+  Mix_HaltMusic();
 	Mix_FreeMusic(music);
 
 	// Shut down SDL
-    Mix_CloseAudio();
+	LOG_I("SDL Mixer shutdown", "Pending...");
+  Mix_CloseAudio();
+  LOG_I("SDL Mixer shutdown", "Okay");
 	SDL_Quit();
 
 	// Flag uninitialised and signal success
-    initialised = false;
+  initialised = false;
 	return EXIT_SUCCESS;
 }
 
@@ -135,20 +137,20 @@ int Application::startSDL()
           "Starting SDL Mixer");
 
   // Load and play music on loop (-1)
-  //music = Mix_LoadMUS(ASSET_PATH("music.ogg"));
-  //ASSERT_MIX(music, "Loading music file");
-  //Mix_PlayMusic(music, -1);
+  ASSERT(io::read_music(ASSET_PATH("music.ogg"), &music) != EXIT_FAILURE,
+          "Loading music");
+  ASSERT_MIX(music = Mix_LoadMUS(ASSET_PATH("music.ogg")), "Loading music");
+  ASSERT_MIX(Mix_PlayMusic(music, -1) != -1, "Setting music to loop");
 
   // Create the OpenGL context for the window we just opened
   context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, context);
 
   // Configure SDL/OpenGL interface
-  SDL_GL_SetSwapInterval(1); // 1 = use vertical synchronisation (vsync)
+  ASSERT_SDL(SDL_GL_SetSwapInterval(1) != -1, "Activating SDL V-sync");
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, GL_V_MAJOR);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, GL_V_MINOR);
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
   // No problems, return success code!
   return EXIT_SUCCESS;

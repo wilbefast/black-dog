@@ -8786,7 +8786,7 @@
 	"tinyxml.h"
 	<windows.h>
 
-1331934592 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/Application.cpp
+1331940460 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -8801,7 +8801,7 @@
 	"platform.hpp"
 	"scenes/Scene.hpp"
 
-1331489830 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/platform.hpp
+1331938701 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/platform.hpp
 	<android/log.h>
 	<GLES/gl.h>
 	<windows.h>
@@ -8860,8 +8860,10 @@
 	"SDL.h"
 	"platform.hpp"
 
-1331492569 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/file.hpp
+1331939078 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/file.hpp
 	"platform.hpp"
+	"SDL.h"
+	"SDL_mixer.h"
 
 1305426296 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/tinyxml/tinyxml.h
 	<ctype.h>
@@ -8915,9 +8917,8 @@
 1320149980 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/warn.hpp
 	"platform.hpp"
 
-1331492608 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/file.cpp
+1331940471 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/file.cpp
 	"file.hpp"
-	"SDL.h"
 	"assert.hpp"
 	"warn.hpp"
 
@@ -9144,7 +9145,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1331936001 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/gameplay/TunnelFG.cpp
+1331936377 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Linux/gameplay/TunnelFG.cpp
 	"TunnelFG.hpp"
 	"../global.hpp"
 
