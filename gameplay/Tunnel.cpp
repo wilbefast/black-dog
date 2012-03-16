@@ -45,6 +45,8 @@ void Tunnel::draw()
 {
   draw::height_fill(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f), head_i);
   draw::height_line(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f), head_i);
+  draw::height_fill(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
+                                                                 head_i);
   draw::height_line(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
                                                                  head_i);
 }

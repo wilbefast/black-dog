@@ -6,7 +6,7 @@
 
 void draw::line(V2f start, V2f end, Colour c, float thickness)
 {
-    // Specify points to draw
+    // Specify coordinates to draw
     GLfloat points[4]  = { (GLfloat)start.x, (GLfloat)start.y,
                             (GLfloat)end.x,  (GLfloat)end.y};
 
@@ -29,7 +29,7 @@ void draw::line(V2f start, V2f end, Colour c, float thickness)
 
 void draw::line_loop(V2f points[], unsigned int n_pts, Colour c, float thickness)
 {
-    // Specify points to draw
+    // Specify coordinates to draw
     GLfloat* loop = new GLfloat[2*n_pts];
     for(unsigned int i = 0; i < n_pts; i++)
     {
@@ -57,7 +57,7 @@ void draw::line_loop(V2f points[], unsigned int n_pts, Colour c, float thickness
 void draw::height_line(float height[], unsigned int n_pts, float x_spacing,
                       V2f base, unsigned int head_i, Colour c, float thickness)
 {
-  // Specify points to draw
+  // Specify coordinates to draw
   GLfloat* result = new GLfloat[n_pts*2];
   // result i keeps track of position in result array
   int r_i = 0;
@@ -98,8 +98,13 @@ void draw::height_line(float height[], unsigned int n_pts, float x_spacing,
 void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
                       V2f base, unsigned int head_i, Colour c)
 {
-  // Specify points to draw
-  GLfloat* result = new GLfloat[18*n_pts];
+  // are we drawing the roof or the floor?
+  bool roof = base.y < height[head_i];
+
+  // Specify the coordinates to draw
+  // we'll need 1 quad and 1 triangle per point (except the last point)
+  // in total that's 3 triangles, 18 vertices per point (except the last point)
+  GLfloat* result = new GLfloat[18*(n_pts-1)];
   // result i keeps track of position in result array
   int r_i = 0;
   // x keeps track of the position on the screen
@@ -111,7 +116,8 @@ void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
     unsigned int next_i = (i+1)%n_pts;
     unsigned int lower_i, higher_i;
     float next_x = x+x_spacing, x_of_higher, x_of_lower;
-    if(height[i] < height[next_i])
+    bool descending = (height[i] < height[next_i]);
+    if((roof && descending) || (!roof && !descending) )
     {
       lower_i = i;
       x_of_lower = x;
@@ -171,7 +177,7 @@ void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
   // Draw points
   glVertexPointer(2, GL_FLOAT, 0, result);
   // Unfortunately there is no way we can use FAN or STRIP here or I would !
-  glDrawArrays(GL_TRIANGLES, 0, 9*n_pts);
+  glDrawArrays(GL_TRIANGLES, 0, 9*(n_pts-1));
 
   // Shut down
   glColor4f(1, 1, 1, 1);
@@ -184,7 +190,7 @@ void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
 
 void draw::circle(V2f position, double radius, Colour c, bool fill)
 {
-    // Specify points to draw
+    // Specify coordinates to draw
     GLfloat polygon[2*CIRCLE_N_SEGMENTS];
 
     for(int i = 0; i < CIRCLE_N_SEGMENTS; i++)
