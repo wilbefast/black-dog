@@ -9322,22 +9322,22 @@
 	"SceneState.hpp"
 	<stdlib.h>
 
-1331934592 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.cpp
+1331990092 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
 	"platform.hpp"
 	"assert.hpp"
 	"file.hpp"
+	"AudioManager.hpp"
 	"scenes/MainMenu.hpp"
 
-1331821049 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.hpp
+1331945167 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.hpp
 	"SDL.h"
-	"SDL_mixer.h"
 	"platform.hpp"
 	"scenes/Scene.hpp"
 
-1331489830 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/platform.hpp
+1331938701 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/platform.hpp
 	<android/log.h>
 	<GLES/gl.h>
 	<windows.h>
@@ -9389,14 +9389,14 @@
 	"Button.hpp"
 	"../V2.hpp"
 
-1331489885 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/global.hpp
+1331990129 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/global.hpp
 	"Rect.hpp"
 
 1321911782 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/assert.hpp
 	"SDL.h"
 	"platform.hpp"
 
-1331492569 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/file.hpp
+1331988811 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/file.hpp
 	"platform.hpp"
 
 1331821049 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/MainMenu.hpp
@@ -9421,21 +9421,22 @@
 	"../../scenes/GameState.hpp"
 	"events/ThingEvent.hpp"
 
-1331820889 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/GameState.hpp
+1331988301 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/GameState.hpp
 	"SceneState.hpp"
 	"../gameplay/TunnelBG.hpp"
 	"../gameplay/TunnelFG.hpp"
 	"../gameplay/things/Thing.hpp"
-	"../ResourceManager.hpp"
 
-1331931143 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelBG.hpp
+1331935983 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelBG.hpp
 	"Tunnel.hpp"
+	"../graphics/draw.hpp"
 
-1331755239 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/Tunnel.hpp
+1331935090 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/Tunnel.hpp
 	"../V2.hpp"
 
-1331752535 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelFG.hpp
+1331935994 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelFG.hpp
 	"Tunnel.hpp"
+	"../graphics/draw.hpp"
 
 1331820721 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/things/events/ThingEvent.hpp
 	<iostream>
@@ -9445,28 +9446,26 @@
 1320149980 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/warn.hpp
 	"platform.hpp"
 
-1331492608 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/file.cpp
+1331988825 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/file.cpp
 	"file.hpp"
 	"SDL.h"
 	"assert.hpp"
 	"warn.hpp"
 
-1331934611 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/Tunnel.cpp
+1331935110 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/Tunnel.cpp
 	"Tunnel.hpp"
 	"../global.hpp"
 	"../graphics/draw.hpp"
-	<stdio.h>
-	"../platform.hpp"
 
-1331915259 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/graphics/draw.hpp
+1331936282 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/graphics/draw.hpp
 	"../V2.hpp"
 
-1331760660 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelBG.cpp
+1331936329 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelBG.cpp
 	"TunnelBG.hpp"
 	"../global.hpp"
 	"../wjd_math.hpp"
 
-1331750184 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelFG.cpp
+1331936377 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/gameplay/TunnelFG.cpp
 	"TunnelFG.hpp"
 	"../global.hpp"
 
@@ -9570,13 +9569,13 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1331931097 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/graphics/draw.cpp
+1331942842 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/graphics/draw.cpp
 	"draw.hpp"
 	"../platform.hpp"
 	"../wjd_math.hpp"
 	<iostream>
 
-1327336636 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/main.cpp
+1331986863 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/main.cpp
 	<stdlib.h>
 	<iostream>
 	"assert.hpp"
@@ -9597,7 +9596,7 @@
 1331820889 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/Game.hpp
 	"Scene.hpp"
 
-1331933279 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/GameState.cpp
+1331988331 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/GameState.cpp
 	"GameState.hpp"
 	"../warn.hpp"
 	"../assert.hpp"
@@ -9631,4 +9630,12 @@
 	<jni.h>
 	"SDL_config.h"
 	"SDL_stdinc.h"
+
+1331990275 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.cpp
+	"AudioManager.hpp"
+	"assert.hpp"
+
+1331991196 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.hpp
+	"SDL.h"
+	"SDL_mixer.h"
 

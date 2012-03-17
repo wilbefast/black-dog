@@ -18,7 +18,6 @@ GameState::GameState() :
 parallax(),
 obstacle(),
 things(),
-resources(),
 level_bounds(global::viewport)
 {
 
@@ -89,21 +88,12 @@ Thing* GameState::getHero()
     return (*(things.begin()));
 }
 
-ResourceManager* GameState::getResources()
-{
-    return resources;
-}
-
 /// OVERRIDES SCENE STATE
 
 int GameState::startup()
 {
     // Set the position of the mouse to the centre of the screen
     input.last_touch = global::viewport.getSize()/2;
-
-    // Load external ressources
-    resources = new ResourceManager();
-    ASSERT(resources->load() == EXIT_SUCCESS, "Loading game resources");
 
     // All clear!
     return EXIT_SUCCESS;
@@ -114,10 +104,6 @@ int GameState::shutdown()
     // Destroy all game objects
     for(ThingIter i = things.begin(); i!= things.end(); i++)
         delete (*i);
-
-    // Destroy all game resources
-    resources->unload();
-    delete resources;
 
     // All clear!
     return EXIT_SUCCESS;

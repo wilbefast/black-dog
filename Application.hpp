@@ -2,7 +2,6 @@
 #define APPLICATION_HPP_INCLUDED
 
 #include "SDL.h"
-#include "SDL_mixer.h"  // Mix_Music
 
 #include "platform.hpp"
 #include "scenes/Scene.hpp"
@@ -26,15 +25,13 @@ class Application
     private:
     // We might need to force cleanup upon destruction
     bool initialised;
-	// Window and Renderer
-	SDL_Window* window;
-	SDL_GLContext context;
-	// Timing
+    // Window and OpenGL context
+    SDL_Window* window;
+    SDL_GLContext context;
+    // Timing
     int this_tick, next_tick;
     // Object containing all the game-related data
     Scene* scene;
-    // Music
-    Mix_Music *music;
 
     ///CONSTRUCTOR & DESTRUCTOR
     public:

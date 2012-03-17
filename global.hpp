@@ -7,8 +7,6 @@
 #define WINDOW_DEFAULT_W 640    // size used by Desktop version
 #define WINDOW_DEFAULT_H 360
 #define MAX_FPS 30
-#define SOUND_DEFAULT_FREQUENCY 44100   // 48000 ?
-#define SOUND_DEFAULT_CHUNK_SIZE 1024
 #define APP_NAME "Black Dog"
 
 namespace global

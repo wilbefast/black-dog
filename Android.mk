@@ -21,6 +21,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	global.cpp						\
 	Application.cpp						\
 	ResourceManager.cpp					\
+	AudioManager.cpp					\
 	graphics/draw.cpp					\
 	graphics/Texture.cpp					\
 	graphics/Graphic.cpp					\

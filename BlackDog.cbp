@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="BiotopPort" />
+		<Option title="BlackDog" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/BiotopPort" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/BlackDog" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/BiotopPort" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/BlackDog" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -43,6 +43,8 @@
 		</Linker>
 		<Unit filename="Application.cpp" />
 		<Unit filename="Application.hpp" />
+		<Unit filename="AudioManager.cpp" />
+		<Unit filename="AudioManager.hpp" />
 		<Unit filename="Rect.hpp" />
 		<Unit filename="Rect.inl" />
 		<Unit filename="ResourceManager.cpp" />

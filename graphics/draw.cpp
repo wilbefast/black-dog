@@ -184,7 +184,7 @@ void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
   glLoadIdentity();
 
   /// Remember to free the memory allocated !
-  //delete result;
+  delete result;
 }
 
 void draw::circle(V2f position, double radius, Colour c, bool fill)

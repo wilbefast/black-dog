@@ -1,5 +1,7 @@
 #include "file.hpp"
 
+#include "SDL.h"                // for SDL_RWops
+
 #include "assert.hpp"
 #include "warn.hpp"
 
@@ -27,22 +29,6 @@ int io::read_text(const char* source_file, char** destination)
 
     // Success!
     return EXIT_SUCCESS;
-}
-
-int io::read_music(const char* source_file, Mix_Music** music)
-{
-  // Attempt to open the music file
-  SDL_RWops* binary_file;
-  binary_file = SDL_RWFromFile(source_file, "rb"); // read binary
-  ASSERT(binary_file, "Opening music file using SDL_RWops");
-
-  // Attempt to read the file contents as music
-  ASSERT_MIX((*music) = Mix_LoadMUS_RW(binary_file),
-              "Extracting music from SDL_RWops structure");
-
-  // Success !
-  SDL_RWclose(binary_file);
-  return EXIT_SUCCESS;
 }
 
 /*int io::read_xml(const char* file_name, TiXmlDocument* doc)

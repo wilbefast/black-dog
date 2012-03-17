@@ -2,21 +2,21 @@
 
 #include "SDL_image.h" //IMG_Load
 
-
 #include "global.hpp"   // needed for application defaults
 #include "platform.hpp" // needed for LOG
 #include "assert.hpp"   // needed for platform specific ASSERT macros
 #include "file.hpp"     // needed for ASSET_PATH macro
 
-#include "scenes/MainMenu.hpp"
+#include "AudioManager.hpp"     // resource subsystem (singleton)
+
+#include "scenes/MainMenu.hpp"  // initial scene
 
 /// CONSTRUCTOR & DESTRUCTOR (public)
 
 Application::Application() :
 initialised(false),
 this_tick(0),
-next_tick(0),
-music(NULL)
+next_tick(0)
 {
     scene = new MainMenu();
 }
@@ -45,8 +45,18 @@ int Application::startup()
     // Set up OpenGL/GLES "propre"
     ASSERT(startGL() == EXIT_SUCCESS, "Starting OpenGL/GLES");
 
-    // Load the game objects
-    ASSERT(scene->startup() == EXIT_SUCCESS, "Loading Scene");
+    // Start up resource subsystems
+    ASSERT(AudioManager::getInstance()->startup()
+          == EXIT_SUCCESS, "Starting Audio Manager");
+
+    // Load the initial music track
+    ASSERT(AudioManager::getInstance()->load_music(ASSET_PATH("music.ogg"))
+          == EXIT_SUCCESS, "Loading initial music track");
+    ASSERT(AudioManager::getInstance()->play_music(true)
+          == EXIT_SUCCESS, "Setting initial music track to loop");
+
+    // Load the initial scene
+    ASSERT(scene->startup() == EXIT_SUCCESS, "Loading initial Scene");
 
     // Initialisation successful!
     initialised = true;
@@ -91,19 +101,15 @@ int Application::shutdown()
   scene->shutdown();
   delete scene;
 
+  // Shut down subsystems
+  AudioManager::getInstance()->shutdown();
+
   // Destory application display and control structures
   SDL_GL_MakeCurrent(NULL, NULL);
   SDL_GL_DeleteContext(context);
   SDL_DestroyWindow(window);
 
-  // Stop and then free music
-  Mix_HaltMusic();
-	Mix_FreeMusic(music);
-
 	// Shut down SDL
-	LOG_I("SDL Mixer shutdown", "Pending...");
-  Mix_CloseAudio();
-  LOG_I("SDL Mixer shutdown", "Okay");
 	SDL_Quit();
 
 	// Flag uninitialised and signal success
@@ -130,18 +136,6 @@ int Application::startSDL()
   // Since the window size can be overriden, check what it is actually
   SDL_GetWindowSize(window, &global::viewport.w, &global::viewport.h);
 
-  // Open mixer
-  //Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
-  ASSERT_MIX(Mix_OpenAudio(SOUND_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
-           MIX_DEFAULT_CHANNELS, SOUND_DEFAULT_CHUNK_SIZE) != -1,
-          "Starting SDL Mixer");
-
-  // Load and play music on loop (-1)
-  ASSERT(io::read_music(ASSET_PATH("music.ogg"), &music) != EXIT_FAILURE,
-          "Loading music");
-  ASSERT_MIX(music = Mix_LoadMUS(ASSET_PATH("music.ogg")), "Loading music");
-  ASSERT_MIX(Mix_PlayMusic(music, -1) != -1, "Setting music to loop");
-
   // Create the OpenGL context for the window we just opened
   context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, context);
@@ -161,6 +155,7 @@ int Application::startGL()
     glClearColor(0, 0, 0, 255);     // Black background by default
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glViewport(0, 0, global::viewport.w, global::viewport.h);

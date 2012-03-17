@@ -9,7 +9,6 @@ class GameState;
 #include "../gameplay/TunnelFG.hpp"
 
 #include "../gameplay/things/Thing.hpp"
-#include "../ResourceManager.hpp"
 
 class GameState : public SceneState
 {
@@ -19,8 +18,6 @@ class GameState : public SceneState
     TunnelBG parallax;
     TunnelFG obstacle;
     ThingList things;
-    // External resources
-    ResourceManager* resources;
     // Level boundary
     fRect level_bounds;
 
@@ -35,7 +32,6 @@ class GameState : public SceneState
     void addThing(Thing*);
     void deleteThing(ThingIter* i);
     Thing* getHero();
-    ResourceManager* getResources();
     // Overrides SceneState
     int startup();
     int shutdown();
