@@ -17,7 +17,7 @@
 	#define GL_V_MINOR 0
 	#define glOrtho(a,b,c,d,e,f) glOrthof(a,b,c,d,e,f) // Renaming hack
 
-    #define ASSET_PATH_PATH "" // use a bit of SDL RWops "magic" ;)
+    #define ASSET_PATH "" // use a bit of SDL RWops "magic" ;)
     #define BUFFER_XML 1
 
 	#define LOG_I(what, why) \
@@ -49,7 +49,7 @@
 	#define KEY_MENU SDLK_ENTER
 	#define KEY_BACK SDLK_SPACE
 
-    #define ASSET_PATH_PATH "./assets/"
+    #define ASSET_PATH "./assets/"
     #define BUFFER_XML 1
 
 	#define LOG(level, what, why) \

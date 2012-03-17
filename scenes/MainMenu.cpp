@@ -12,7 +12,7 @@
 
 MainMenu::MainMenu() :
 Scene(),
-texture_file(ASSET_PATH("main_menu.png")),
+texture_file(GET_ASSET("main_menu.png")),
 texture(),
 title_src(0.0f, 0.0f, 0.0f, 0.0f),
 title_dest(0.0f, 0.0f, 0.0f, 0.0f)

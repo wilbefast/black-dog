@@ -47,8 +47,6 @@
 		<Unit filename="AudioManager.hpp" />
 		<Unit filename="Rect.hpp" />
 		<Unit filename="Rect.inl" />
-		<Unit filename="ResourceManager.cpp" />
-		<Unit filename="ResourceManager.hpp" />
 		<Unit filename="V2.hpp" />
 		<Unit filename="V2.inl" />
 		<Unit filename="assert.hpp" />

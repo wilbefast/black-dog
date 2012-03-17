@@ -50,10 +50,14 @@ int Application::startup()
           == EXIT_SUCCESS, "Starting Audio Manager");
 
     // Load the initial music track
-    ASSERT(AudioManager::getInstance()->load_music(ASSET_PATH("music.ogg"))
+    ASSERT(AudioManager::getInstance()->load_music(GET_ASSET("music.ogg"))
           == EXIT_SUCCESS, "Loading initial music track");
     ASSERT(AudioManager::getInstance()->play_music(true)
           == EXIT_SUCCESS, "Setting initial music track to loop");
+
+    // Load a test sound file
+    //ASSERT(AudioManager::getInstance()->load_sound(GET_ASSET("sound.wav"), "snd_cloth")
+     //     == EXIT_SUCCESS, "Loading test sound file");
 
     // Load the initial scene
     ASSERT(scene->startup() == EXIT_SUCCESS, "Loading initial Scene");
@@ -123,7 +127,7 @@ int Application::shutdown()
 int Application::startSDL()
 {
   // Initialize SDL.
-	ASSERT_SDL(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) >= 0,
+	ASSERT_SDL(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) >= 0,
 		"Initialising SDL video and audio");
 
 	// Open the window where we will draw. NB: Android will override the

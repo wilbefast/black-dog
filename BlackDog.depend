@@ -9322,7 +9322,7 @@
 	"SceneState.hpp"
 	<stdlib.h>
 
-1331990092 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.cpp
+1331996268 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -9332,12 +9332,12 @@
 	"AudioManager.hpp"
 	"scenes/MainMenu.hpp"
 
-1331945167 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.hpp
+1331994477 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/Application.hpp
 	"SDL.h"
 	"platform.hpp"
 	"scenes/Scene.hpp"
 
-1331938701 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/platform.hpp
+1331993485 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/platform.hpp
 	<android/log.h>
 	<GLES/gl.h>
 	<windows.h>
@@ -9396,7 +9396,7 @@
 	"SDL.h"
 	"platform.hpp"
 
-1331988811 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/file.hpp
+1331993521 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/file.hpp
 	"platform.hpp"
 
 1331821049 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/MainMenu.hpp
@@ -9607,7 +9607,7 @@
 	"../gameplay/things/events/CollisionEvent.hpp"
 	"../gameplay/things/events/BoundaryEvent.hpp"
 
-1331821049 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/MainMenu.cpp
+1331993521 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/scenes/MainMenu.cpp
 	"MainMenu.hpp"
 	"../global.hpp"
 	"../warn.hpp"
@@ -9631,11 +9631,14 @@
 	"SDL_config.h"
 	"SDL_stdinc.h"
 
-1331992263 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.cpp
+1331995198 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.cpp
 	"AudioManager.hpp"
 	"assert.hpp"
+	"warn.hpp"
 
-1331992610 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.hpp
+1331995075 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
+	<map>
+	"numerise.hpp"
 

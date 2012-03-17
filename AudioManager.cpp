@@ -1,6 +1,7 @@
 #include "AudioManager.hpp"
 
 #include "assert.hpp"
+#include "warn.hpp"
 
 /// SINGLETON
 
@@ -17,7 +18,8 @@ AudioManager* AudioManager::getInstance()
 
 AudioManager::AudioManager() :
 music(NULL),
-music_file(NULL)
+music_file(NULL),
+sounds()
 {
 }
 
@@ -104,4 +106,37 @@ void AudioManager::unload_music()
     //SDL_RWclose(music_file);
     music_file = NULL;
   }
+}
+
+
+/// SOUND
+
+int AudioManager::load_sound(const char* source_file, const char* name)
+{
+  // load wave file
+  Mix_Chunk* sound = Mix_LoadWAV(source_file);
+  // check that the sound was loaded successfully
+  ASSERT_MIX(sound, "Loading sound file");
+  // save under requested name
+  str_id hash = numerise(name);
+  sounds[hash];
+
+  // All clear !
+  return EXIT_SUCCESS;
+}
+
+int AudioManager::play_sound(const char* name)
+{
+  // search for the resource
+  str_id hash = numerise(name);
+  SoundI i = sounds.find(hash);
+  // make sure that it is found
+  if(i == sounds.end())
+    WARN_RTN("AudioManager::play_sound", "invalid identifier", EXIT_FAILURE);
+  // attempt to play the sound if it is
+  if(Mix_PlayChannel(-1, (*i).second, 0) == -1)
+    WARN_RTN("AudioManager::play_sound", Mix_GetError(), EXIT_FAILURE);
+
+  // All clear !
+  return EXIT_SUCCESS;
 }

@@ -5,7 +5,7 @@
 //#include "tinyxml/tinyxml.h"
 
 
-#define ASSET_PATH(x) ASSET_PATH_PATH x
+#define GET_ASSET(x) ASSET_PATH x
 
 namespace io
 {
