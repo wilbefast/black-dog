@@ -9631,11 +9631,11 @@
 	"SDL_config.h"
 	"SDL_stdinc.h"
 
-1331990275 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.cpp
+1331992263 source:/home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.cpp
 	"AudioManager.hpp"
 	"assert.hpp"
 
-1331991196 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.hpp
+1331992610 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
 

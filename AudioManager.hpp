@@ -4,11 +4,14 @@
 #include "SDL.h"                // must be included before SDL_mixer !
 #include "SDL_mixer.h"          // Mix_Music
 
-#define SOUND_DEFAULT_FREQUENCY 44100   // 48000 ?
-#define SOUND_DEFAULT_CHUNK_SIZE 2400   // 1024 ?
-
 class AudioManager
 {
+  /// CONSTANTS
+private:
+  static const int DEFAULT_FREQUENCY = 22050;     // 48000 ? 44100 ? 22050 ?
+  static const int DEFAULT_CHUNK_SIZE = 4096;     // 1024 ?
+
+
   /// SINGLETON
 private:
   static AudioManager* instance;
@@ -20,6 +23,8 @@ private:
   // music
   Mix_Music* music;
   SDL_RWops* music_file;
+  // sound
+  Mix_Chunk* sound;
 
   /// METHODS
 private:
@@ -32,6 +37,7 @@ public:
   // music
   int load_music(const char* source_file);
   int play_music(bool loop);
+  void stop_music();
   void unload_music();
 };
 
