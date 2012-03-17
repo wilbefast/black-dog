@@ -2,28 +2,22 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Application.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="1119" topLine="0" />
+		<Cursor position="2958" topLine="101" />
 	</File>
-	<File name="Application.hpp" open="1" top="0" tabpos="5">
-		<Cursor position="487" topLine="0" />
+	<File name="Application.hpp" open="0" top="0" tabpos="5">
+		<Cursor position="1030" topLine="42" />
 	</File>
-	<File name="AudioManager.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1985" topLine="48" />
+	<File name="AudioManager.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2399" topLine="83" />
 	</File>
-	<File name="AudioManager.hpp" open="1" top="1" tabpos="2">
-		<Cursor position="287" topLine="3" />
+	<File name="AudioManager.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="731" topLine="21" />
 	</File>
 	<File name="Rect.hpp" open="0" top="0" tabpos="5">
 		<Cursor position="2787" topLine="78" />
 	</File>
 	<File name="Rect.inl" open="0" top="0" tabpos="5">
 		<Cursor position="5112" topLine="272" />
-	</File>
-	<File name="ResourceManager.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="878" topLine="3" />
-	</File>
-	<File name="ResourceManager.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="120" topLine="0" />
 	</File>
 	<File name="V2.hpp" open="0" top="0" tabpos="5">
 		<Cursor position="1905" topLine="51" />
@@ -37,8 +31,8 @@
 	<File name="file.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="113" topLine="0" />
 	</File>
-	<File name="file.hpp" open="1" top="0" tabpos="3">
-		<Cursor position="116" topLine="0" />
+	<File name="file.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="170" topLine="0" />
 	</File>
 	<File name="gameplay/Tunnel.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="80" topLine="0" />
@@ -100,7 +94,7 @@
 	<File name="global.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="67" topLine="0" />
 	</File>
-	<File name="global.hpp" open="1" top="0" tabpos="6">
+	<File name="global.hpp" open="0" top="0" tabpos="6">
 		<Cursor position="256" topLine="0" />
 	</File>
 	<File name="graphics/Graphic.cpp" open="0" top="0" tabpos="5">
@@ -125,7 +119,7 @@
 		<Cursor position="3770" topLine="9" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="169" topLine="7" />
+		<Cursor position="563" topLine="20" />
 	</File>
 	<File name="numerise.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="709" topLine="0" />
@@ -134,7 +128,7 @@
 		<Cursor position="176" topLine="0" />
 	</File>
 	<File name="platform.hpp" open="0" top="0" tabpos="6">
-		<Cursor position="740" topLine="10" />
+		<Cursor position="663" topLine="47" />
 	</File>
 	<File name="scenes/Game.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="372" topLine="9" />
@@ -149,7 +143,7 @@
 		<Cursor position="718" topLine="26" />
 	</File>
 	<File name="scenes/MainMenu.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2730" topLine="71" />
+		<Cursor position="256" topLine="14" />
 	</File>
 	<File name="scenes/MainMenu.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="450" topLine="3" />

@@ -2,6 +2,7 @@
 #define TUNNEL_HPP_INCLUDED
 
 #include "../V2.hpp"
+#include "../graphics/HeightMesh.hpp"
 
 class Tunnel
 {
@@ -13,6 +14,8 @@ protected:
 	/// ATTRIBUTES
 protected:
 	// 'pseudo-constants' as these will be set based on window size
+	const float BASE_ABOVE;
+	const float BASE_BELOW;
   const float MIN_H;
 	const float MAX_H;
   // the segment length is the distance between two points
@@ -22,10 +25,11 @@ protected:
 	// height maps themselves (circular buffers)
 	float above[N_PTS];
   float below[N_PTS];
-
 	// horizontal offset of the tunnel (for smooth looping of buffers)
   float offset_x;
   float speed_x;
+  // cache for drawing meshes
+  HeightMesh mesh_above, mesh_below;
 
 	/** METHODS **/
 public:

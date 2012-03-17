@@ -9,8 +9,8 @@ SDL_PATH := ../SDL
 LOCAL_C_INCLUDES := 						\
 	$(LOCAL_PATH)/$(SDL_PATH)/include 		\
 	$(LOCAL_PATH)/../SDL_image 				\
-	$(LOCAL_PATH)/../SDL_mixer 
-	
+	$(LOCAL_PATH)/../SDL_mixer
+
 LOCAL_CFLAGS := \
 	-DSDL_NO_COMPAT
 
@@ -25,6 +25,8 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	graphics/Texture.cpp					\
 	graphics/Graphic.cpp					\
 	graphics/Animation.cpp					\
+	graphics/Mesh2D.cpp       \
+	graphics/HeightMesh.cpp   \
 	scenes/Game.cpp						\
 	scenes/Scene.cpp					\
 	scenes/MainMenu.cpp					\
@@ -44,7 +46,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
 	gameplay/things/events/CollisionEvent.cpp		\
 	gameplay/things/events/BoundaryEvent.cpp		\
 	gameplay/things/events/ThingEvent.cpp
-					
+
 
 LOCAL_SHARED_LIBRARIES := SDL SDL_image SDL_mixer
 

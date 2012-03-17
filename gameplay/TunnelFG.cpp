@@ -20,6 +20,10 @@ difficulty(1.0f)
 		// randomise initial values -- must be done AFTER pseudo-constants
 		for (int i = 0; i < N_PTS; i++)
 			new_height(i);
+
+    // generate initial meshes (triangulate polygons defined by height maps)
+    mesh_above.bake(above);
+    //mesh_below.bake(below, head_i, SEGMENT_L, global::viewport.h);
 }
 
 
@@ -27,15 +31,16 @@ difficulty(1.0f)
 
 void TunnelFG::draw()
 {
-  draw::height_fill(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
-                    head_i, COLOUR_FILL);
+  mesh_above.draw(offset_x, COLOUR_FILL);
+  //draw::height_fill(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
+    //                head_i, COLOUR_FILL);
   draw::height_line(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
                     head_i, COLOUR_LINE);
 
-  draw::height_fill(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
+  /*draw::height_fill(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
                     head_i, COLOUR_FILL);
   draw::height_line(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
-                    head_i, COLOUR_LINE);
+                    head_i, COLOUR_LINE);*/
 }
 
 void TunnelFG::new_height(unsigned int i)

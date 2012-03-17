@@ -84,6 +84,10 @@
 		<Unit filename="graphics/Animation.hpp" />
 		<Unit filename="graphics/Graphic.cpp" />
 		<Unit filename="graphics/Graphic.hpp" />
+		<Unit filename="graphics/HeightMesh.cpp" />
+		<Unit filename="graphics/HeightMesh.hpp" />
+		<Unit filename="graphics/Mesh2D.cpp" />
+		<Unit filename="graphics/Mesh2D.hpp" />
 		<Unit filename="graphics/Texture.cpp" />
 		<Unit filename="graphics/Texture.hpp" />
 		<Unit filename="graphics/draw.cpp" />

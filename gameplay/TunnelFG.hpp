@@ -27,7 +27,6 @@ private:
   float middle_y;
 	// the current difficulty in [0, 1]
   float difficulty;
-
   /// METHODS
 public:
   TunnelFG();
