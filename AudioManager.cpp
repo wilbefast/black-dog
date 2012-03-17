@@ -17,6 +17,7 @@ AudioManager* AudioManager::getInstance()
 /// CREATION & DESTRUCTION
 
 AudioManager::AudioManager() :
+started(false),
 music(NULL),
 music_file(NULL),
 sounds()
@@ -25,17 +26,28 @@ sounds()
 
 int AudioManager::startup()
 {
+  if(started)
+    WARN_RTN("AudioManager::startup","already started!", EXIT_SUCCESS);
+
   //Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
   ASSERT_MIX(Mix_OpenAudio(DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
            MIX_DEFAULT_CHANNELS, DEFAULT_CHUNK_SIZE) != -1,
           "Starting SDL Mixer");
 
   // All good!
+  started = true;
   return EXIT_SUCCESS;
 }
 
 int AudioManager::shutdown()
 {
+  if(!started)
+    WARN_RTN("AudioManager::shutdown","already shutdown!", EXIT_SUCCESS);
+
+  // Clean up the sound
+  for(SoundI i = sounds.begin(); i != sounds.end(); i++)
+    Mix_FreeChunk((*i).second);
+
   // Clean up the music
   unload_music();
 
@@ -45,13 +57,13 @@ int AudioManager::shutdown()
   LOG_I("SDL Mixer shutdown", "Okay");
 
   // All good!
+  started = false;
   return EXIT_SUCCESS;
 }
 
 
 AudioManager::~AudioManager()
 {
-  shutdown();
 }
 
 /// MUSIC
@@ -103,7 +115,7 @@ void AudioManager::unload_music()
   // Close music stream
   if(music_file)
   {
-    //SDL_RWclose(music_file);
+    SDL_RWclose(music_file);
     music_file = NULL;
   }
 }

@@ -25,6 +25,7 @@ public:
 
   /// ATTRIBUTES
 private:
+  bool started;
   // music
   Mix_Music* music;
   SDL_RWops* music_file;
