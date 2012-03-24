@@ -1,7 +1,7 @@
 #include "AudioManager.hpp"
 
-#include "assert.hpp"
-#include "warn.hpp"
+#include "../assert.hpp"
+#include "../warn.hpp"
 
 /// SINGLETON
 
@@ -64,6 +64,8 @@ int AudioManager::shutdown()
 
 AudioManager::~AudioManager()
 {
+  if(started)
+    shutdown();
 }
 
 /// MUSIC
@@ -72,14 +74,13 @@ int AudioManager::load_music(const char* source_file)
 {
   // Attempt to open the music file
   music_file = SDL_RWFromFile(source_file, "rb"); // read binary
-  ASSERT(music_file, "Opening music file using SDL_RWops");
+  ASSERT(music_file, source_file);
 
   // Attempt to read the file contents as music
   ASSERT_MIX(music = Mix_LoadMUS_RW(music_file),
               "Extracting music from SDL_RWops structure");
-  ASSERT_MIX(Mix_PlayMusic(music, -1) != -1, "Setting music to loop");
 
-  /// NB - file is NOT closed as music data must be stream
+  /// NB - file is NOT closed as music data must be streamed
 
   // Success !
   return EXIT_SUCCESS;
@@ -127,12 +128,12 @@ void AudioManager::unload_music()
 int AudioManager::load_sound(const char* source_file, const char* name)
 {
   // load wave file
-  Mix_Chunk* sound = Mix_LoadWAV(source_file);
+  Mix_Chunk* new_sound = Mix_LoadWAV(source_file);
   // check that the sound was loaded successfully
-  ASSERT_MIX(sound, "Loading sound file");
+  ASSERT_MIX(new_sound, source_file);
   // save under requested name
   str_id hash = numerise(name);
-  sounds[hash];
+  sounds[hash] = new_sound;
 
   // All clear !
   return EXIT_SUCCESS;
@@ -145,7 +146,7 @@ int AudioManager::play_sound(const char* name)
   SoundI i = sounds.find(hash);
   // make sure that it is found
   if(i == sounds.end())
-    WARN_RTN("AudioManager::play_sound", "invalid identifier", EXIT_FAILURE);
+    WARN_RTN("AudioManager::play_sound invalid identifier", name, EXIT_FAILURE);
   // attempt to play the sound if it is
   if(Mix_PlayChannel(-1, (*i).second, 0) == -1)
     WARN_RTN("AudioManager::play_sound", Mix_GetError(), EXIT_FAILURE);

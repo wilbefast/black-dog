@@ -3,7 +3,7 @@
 
 //#include "numerise.hpp"     // str_id
 #include "Button.hpp"
-#include "../V2.hpp"
+#include "../math/V2.hpp"
 
 class SceneState
 {

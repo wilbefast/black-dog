@@ -1,7 +1,7 @@
 #ifndef GRAPHICS_HPP_INCLUDED
 #define GRAPHICS_HPP_INCLUDED
 
-#include "../V2.hpp"
+#include "../math/V2.hpp"
 
 #define CIRCLE_N_SEGMENTS 12
 

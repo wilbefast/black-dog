@@ -1,7 +1,7 @@
 #ifndef TUNNEL_HPP_INCLUDED
 #define TUNNEL_HPP_INCLUDED
 
-#include "../V2.hpp"
+#include "../math/V2.hpp"
 #include "../graphics/HeightMesh.hpp"
 
 class Tunnel
@@ -47,7 +47,6 @@ protected:
 	virtual void new_height(unsigned int i);
 	float index_to_x(unsigned int i);
 	float x_to_height(float x, float hmap[]);
-  void build_drawable(float h_map[], float base_y, V2f result[]);
 };
 
 #endif // TUNNEL_HPP_INCLUDED

@@ -2,8 +2,8 @@
 #define BOUNDARYEVENT_HPP_INCLUDED
 
 #include "ThingEvent.hpp"
-#include "../../../V2.hpp"
-#include "../../../Rect.hpp"
+#include "../../../math/V2.hpp"
+#include "../../../math/Rect.hpp"
 
 class Thing;
 

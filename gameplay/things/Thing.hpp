@@ -1,8 +1,8 @@
 #ifndef THING_HPP_INCLUDED
 #define THING_HPP_INCLUDED
 
-#include "../../numerise.hpp"
-#include "../../V2.hpp"
+#include "../../resources/numerise.hpp"
+#include "../../math/V2.hpp"
 #include "../../graphics/Texture.hpp"
 
 #include <list>
@@ -19,23 +19,13 @@ class ColliderElement;
 
 class Thing
 {
-    /// NESTING
-    public:
-    enum update_result
-    {
-        CONTINUE,
-        LOSE_LEVEL,
-        WIN_LEVEL,
-        DELETE_ME
-    };
-
     /// ATTRIBUTES
-    private:
+private:
     // hashed name of the type of this Thing
     str_id type;
     // does this Thing need to be cleaned up at the end of its update?
     bool dead;
-    protected:
+protected:
     // main attributes
     V2f position;
     ColliderElement* body;
@@ -43,7 +33,7 @@ class Thing
     EventList events;
 
     /// METHODS
-    public:
+public:
     // constructors, destructors
     Thing(V2f init_position, const char* type_name);
     Thing(V2f init_position, str_id init_type);
@@ -68,7 +58,7 @@ class Thing
     virtual int update(GameState*);
 
     /// SUBROUTINES
-    protected:
+protected:
     void consumeEvent(EventIter* i);
 };
 

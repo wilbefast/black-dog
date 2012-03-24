@@ -41,25 +41,22 @@
 			<Add library="/usr/local/lib/libSDL-1.3.so" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
+		<Unit filename="Android.mk" />
 		<Unit filename="Application.cpp" />
 		<Unit filename="Application.hpp" />
-		<Unit filename="AudioManager.cpp" />
-		<Unit filename="AudioManager.hpp" />
-		<Unit filename="Rect.hpp" />
-		<Unit filename="Rect.inl" />
-		<Unit filename="V2.hpp" />
-		<Unit filename="V2.inl" />
 		<Unit filename="assert.hpp" />
-		<Unit filename="file.cpp" />
-		<Unit filename="file.hpp" />
 		<Unit filename="gameplay/Tunnel.cpp" />
 		<Unit filename="gameplay/Tunnel.hpp" />
 		<Unit filename="gameplay/TunnelBG.cpp" />
 		<Unit filename="gameplay/TunnelBG.hpp" />
 		<Unit filename="gameplay/TunnelFG.cpp" />
 		<Unit filename="gameplay/TunnelFG.hpp" />
+		<Unit filename="gameplay/things/AngelThing.hpp" />
+		<Unit filename="gameplay/things/CloakThing.hpp" />
+		<Unit filename="gameplay/things/FeatherThing.hpp" />
 		<Unit filename="gameplay/things/Thing.cpp" />
 		<Unit filename="gameplay/things/Thing.hpp" />
+		<Unit filename="gameplay/things/WeightThing.hpp" />
 		<Unit filename="gameplay/things/elements/AnimatedElement.cpp" />
 		<Unit filename="gameplay/things/elements/AnimatedElement.hpp" />
 		<Unit filename="gameplay/things/elements/ColliderElement.cpp" />
@@ -94,9 +91,22 @@
 		<Unit filename="graphics/draw.hpp" />
 		<Unit filename="jni_glue.cpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="numerise.hpp" />
-		<Unit filename="numerise.inl" />
+		<Unit filename="math/Rect.hpp" />
+		<Unit filename="math/Rect.inl" />
+		<Unit filename="math/V2.hpp" />
+		<Unit filename="math/V2.inl" />
+		<Unit filename="math/wjd_math.hpp" />
 		<Unit filename="platform.hpp" />
+		<Unit filename="resources/AudioManager.cpp" />
+		<Unit filename="resources/AudioManager.hpp" />
+		<Unit filename="resources/GraphicsManager.cpp" />
+		<Unit filename="resources/GraphicsManager.hpp" />
+		<Unit filename="resources/file.cpp" />
+		<Unit filename="resources/file.hpp" />
+		<Unit filename="resources/numerise.hpp" />
+		<Unit filename="resources/numerise.inl" />
+		<Unit filename="scenes/BlackDogState.cpp" />
+		<Unit filename="scenes/BlackDogState.hpp" />
 		<Unit filename="scenes/Button.cpp" />
 		<Unit filename="scenes/Button.hpp" />
 		<Unit filename="scenes/Game.cpp" />
@@ -110,7 +120,6 @@
 		<Unit filename="scenes/SceneState.cpp" />
 		<Unit filename="scenes/SceneState.hpp" />
 		<Unit filename="warn.hpp" />
-		<Unit filename="wjd_math.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

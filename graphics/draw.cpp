@@ -1,6 +1,6 @@
 #include "draw.hpp"
-#include "../platform.hpp"      // for OpenGL/GLES functions
-#include "../wjd_math.hpp"      // for trigonometry
+#include "../platform.hpp"            // for OpenGL/GLES functions
+#include "../math/wjd_math.hpp"       // for trigonometry
 
 #include <iostream>
 

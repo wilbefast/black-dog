@@ -4,7 +4,7 @@
 class ColliderElement;
 
 #include "ThingElement.hpp"
-#include "../../../Rect.hpp"
+#include "../../../math/Rect.hpp"
 
 class ColliderElement : public ThingElement
 {

@@ -1,6 +1,6 @@
 #include "Thing.hpp"
 
-#include "../../numerise.hpp"                          // for hash function
+#include "../../resources/numerise.hpp"                          // for hash function
 
 #include "../../assert.hpp"
 #include "../../warn.hpp"
@@ -105,9 +105,9 @@ int Thing::update(GameState* context)
 
     // should still be called at end of update, even if overridden
     if(dead)
-        return DELETE_ME;
+        return GameState::DELETE_ME;
     else
-        return CONTINUE;
+        return GameState::CONTINUE;
 }
 
 bool Thing::isColliding(Thing* other, V2i* side)

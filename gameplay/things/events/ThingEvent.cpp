@@ -1,4 +1,4 @@
-#include "../../../numerise.hpp"
+#include "../../../resources/numerise.hpp"
 #include "ThingEvent.hpp"
 
 using namespace std;

@@ -12,17 +12,26 @@ class GameState;
 
 class GameState : public SceneState
 {
+    /// NESTING
+public:
+    // FIXME -- add an "Updatable" interface class
+    enum update_result
+    {
+        CONTINUE,
+        LOSE_LEVEL,
+        WIN_LEVEL,
+        DELETE_ME
+    };
+
     /// ATTRIBUTES
-    public:
+private:
     // Game objects
-    TunnelBG parallax;
-    TunnelFG obstacle;
     ThingList things;
     // Level boundary
     fRect level_bounds;
 
     /// METHODS
-    public:
+public:
     // Constructors, destructors
     GameState();
     ~GameState();
@@ -35,12 +44,8 @@ class GameState : public SceneState
     // Overrides SceneState
     int startup();
     int shutdown();
-    int update();
-    void draw();
-
-    /// METHOD SUBROUTINES
-    private:
-    int load_things();
+    virtual int update();
+    virtual void draw();
 };
 
 #endif // GAMESTATE_HPP_INCLUDED

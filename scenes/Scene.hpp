@@ -2,7 +2,7 @@
 #define SCENE_HPP_INCLUDED
 
 #include "../graphics/Texture.hpp"
-#include "../V2.hpp"
+#include "../math/V2.hpp"
 
 #include "Button.hpp"
 #include "SceneState.hpp"
@@ -39,8 +39,8 @@ class Scene
     virtual void draw();    // pure virtual
     virtual int update(Scene** next);  // pure virtual
     // Manual creation and destruction
-    virtual int startup();  // pure virtual
-    virtual int shutdown(); // pure virtual
+    virtual int startup();
+    virtual int shutdown();
     // Return to previous scene
     virtual Scene* previous();
     // Accessors

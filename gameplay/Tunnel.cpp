@@ -94,23 +94,3 @@ float Tunnel::x_to_height(float x, float hmap[])
 
   return dx * slope + base;
 }
-
-void Tunnel::build_drawable(float h_map[], float base_y, V2f result[])
-{
-  // result should be an array N_PTS+2 (start and end) in size
-  // result i keeps track of position in result array
-  int r_i = 0;
-  // move to top-left or bottom-right respectively
-  result[r_i++] = V2f(offset_x, base_y);
-  // x keeps track of the position on the screen
-  float x = offset_x;
-  // i keeps track of the position in the height-map (circular array)
-  for(unsigned int i = (head_i+1)%N_PTS; i != head_i; i = (i+1)%N_PTS)
-  {
-    result[r_i++] = V2f(x, h_map[i]);
-    x += SEGMENT_L;
-  }
-  // close off the polygon
-  result[r_i++] = V2f(x, h_map[head_i]);
-  result[r_i] = V2f(x, base_y);
-}

@@ -2,8 +2,8 @@
 #define TEXTURE_HPP_INCLUDED
 
 #include "../platform.hpp"     // Needed for GLuint
-#include "../V2.hpp"           // Needed for V2i
-#include "../Rect.hpp"         // Needed for iRect
+#include "../math/V2.hpp"           // Needed for V2i
+#include "../math/Rect.hpp"         // Needed for iRect
 
 class Texture
 {

@@ -2,9 +2,9 @@
 #include <iostream>
 
 #include "assert.hpp"
-#include "Application.hpp"
+#include "BlackDogApplication.hpp"
 
-#include "Rect.hpp"
+#include "math/Rect.hpp"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
     srand(time(NULL));
 
     // Load up the application
-    Application application;
+    BlackDogApplication application;
     ASSERT_SDL(application.startup() == EXIT_SUCCESS, "Starting up application");
 
     // Run the application until an exit condition is encountered

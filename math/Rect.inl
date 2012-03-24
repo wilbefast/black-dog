@@ -315,8 +315,20 @@ Rect<T> Rect<T>::getInter(Rect<T> const& other) const
 template <typename T>
 void Rect<T>::centreWithin(Rect<T> const& container)
 {
-    x = container.x + container.w/2 - w/2;
-    y = container.y + container.h/2 - h/2;
+  if(w > container.w)
+  {
+    h *= container.w/w;
+    w = container.w;
+  }
+
+  if(h > container.h)
+  {
+    w *= container.h/h;
+    h = container.h;
+  }
+
+  x = container.x + container.w/2 - w/2;
+  y = container.y + container.h/2 - h/2;
 }
 
 template <typename T>

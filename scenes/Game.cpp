@@ -1,13 +1,14 @@
 #include "Game.hpp"
 
-#include "../file.hpp"          // ASSET_PATH
-#include "../assert.hpp"        // ASSET_PATH
-#include "MainMenu.hpp"         // previous
-#include "GameState.hpp"
+#include "../resources/file.hpp"           // ASSET_PATH
+#include "../assert.hpp"            // ASSERT
+#include "MainMenu.hpp"             // previous scene
+
+#include "BlackDogState.hpp"
 
 
 Game::Game() :
-Scene(new GameState())
+Scene(new BlackDogState())
 {
 }
 

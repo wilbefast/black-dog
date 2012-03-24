@@ -1,7 +1,7 @@
 #ifndef FILE_HPP_INCLUDED
 #define FILE_HPP_INCLUDED
 
-#include "platform.hpp"         // ASSET_PATH_PATH, BUFFER_XML
+#include "../platform.hpp"         // ASSET_PATH_PATH, BUFFER_XML
 //#include "tinyxml/tinyxml.h"
 
 

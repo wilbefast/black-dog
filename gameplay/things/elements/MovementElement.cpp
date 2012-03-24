@@ -1,8 +1,8 @@
 #include "MovementElement.hpp"
 
 #include "../events/ThingEvent.hpp"
-#include "../../../wjd_math.hpp"           // for SQR
-#include "../../../global.hpp"             // for DEFAULT_WINDOW_W/H
+#include "../../../math/wjd_math.hpp"           // for SQR
+#include "../../../global.hpp"                  // for DEFAULT_WINDOW_W/H
 
 #include <iostream>
 

@@ -10,15 +10,16 @@ class MainMenu : public Scene
     /// METHODS
     public:
     // Graphical elements
-    const char* texture_file;
-    Texture texture;
+    Texture* texture;
     fRect title_src, title_dest;
     // Constructors, destructors
     MainMenu();
     ~MainMenu();
     int startup();
+    int shutdown();
     // Executed each frame
     int update(Scene** next);
+    void draw();
     // Back to previous scene
     Scene* previous();
 

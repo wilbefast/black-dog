@@ -1,12 +1,15 @@
 #include "HeightMesh.hpp"
 
+#include "../warn.hpp"
+
 /// CONSTRUCTION, DESTRUCTION
 
 HeightMesh::HeightMesh(unsigned int _n_segments, float _spacing_x, float _base_y):
 Mesh2D(3*(_n_segments-1)),
 n_segments(_n_segments),
 spacing_x(_spacing_x),
-base_y(_base_y)
+base_y(_base_y),
+roof(true)        // we'll know after the first bake
 {
   // we'll need 1 quad and 1 triangle per point (except the last point)
   // in total that's 3 triangles, 18 vertices per point (except the last point)
@@ -15,7 +18,9 @@ base_y(_base_y)
 void HeightMesh::bake(float height[])
 {
   // are we drawing the roof or the floor?
-  bool roof = base_y < height[0];
+  WARN_IF(base_y == height[0], "HeightMesh::bake",
+                              "height map value equal to base height!");
+  roof = (base_y < height[0]);
 
   // "vertex index" keeps track of position in vertices array
   int v_i = 0;
@@ -28,19 +33,9 @@ void HeightMesh::bake(float height[])
     // we triangulate the segment between the current index and the next one
     unsigned int next_i = (i+1)%n_segments;
     V2f current(x, height[i]), next(x + spacing_x, height[next_i]);
-    // at times we'll access these two points by height rather than index
+    // we'll access these two points by height rather than index
     V2f higher, lower;
-    bool descending = (height[i] < height[next_i]);
-    if((roof && descending) || (!roof && !descending))
-    {
-      higher = next;
-      lower = current;
-    }
-    else
-    {
-      higher = current;
-      lower = next;
-    }
+    sortHeight(current, next, lower, higher);
 
     /// PERFORM THE TRIANGULATION OF THE SEGMENT BASED ON THIS PRETREATMENT
     triangulateSegment(lower, higher, v_i);
@@ -61,20 +56,43 @@ void HeightMesh::add(float new_height)
     // translate x coordinates (ever second value) to the left
     if(!(i%2))
       vertices[i-18] -= spacing_x;
-
-    // triangulate the new segment
-    int v_i = n_vertices*2 - 18;
-
-    V2f higher(vertices[v_i-2], vertices[v_i-1]);
-    V2f lower(vertices[v_i-6], vertices[v_i-5]);
-    triangulateSegment(lower, higher, v_i);
   }
+
+  // triangulate the new segment
+  int v_i = n_vertices*2 - 18;
+
+  /** Remember: the last 6 coordinate pairs are arrayed as follows
+  (where 1 = last, 2 = second last, 3 = third last)
+
+             2--3                       3--2
+  case 1.    | /       OR     case 2.    \ |
+             1                             1
+
+  As a result the previous height is that of the last or 3rd last pair **/
+
+  // figure out which of these two situations we are in
+  V2f current, next;
+  if(vertices[v_i-4] < vertices[v_i-6])
+    current = V2f(vertices[v_i-6], vertices[v_i-5]); // case 1 = third last
+  else
+    current = V2f(vertices[v_i-2], vertices[v_i-1]); // case 2 = last
+
+  // we finally know the x coordinate of the new vertex
+  next = V2f(current.x + spacing_x, new_height);
+
+  // we'll access these two points by height rather than index
+  V2f higher, lower;
+  sortHeight(current, next, lower, higher);
+
+  /// PERFORM THE TRIANGULATION OF THE SEGMENT BASED ON THIS PRETREATMENT
+  triangulateSegment(lower, higher, v_i);
 }
 
 
 /// SUBROUTINES
 
-void HeightMesh::triangulateSegment(V2f& lower, V2f& higher, int &v_i)
+void HeightMesh::triangulateSegment(const V2f& lower, const V2f& higher,
+                                    int &v_i)
 {
     /** QUAD, triangle 1
 
@@ -132,4 +150,20 @@ void HeightMesh::triangulateSegment(V2f& lower, V2f& higher, int &v_i)
     // triangle 3, point 3
     vertices[v_i++] = higher.x;           // x
     vertices[v_i++] = higher.y;           // y
+}
+
+void HeightMesh::sortHeight(const V2f& start, const V2f& end, V2f& lower,
+                            V2f& higher)
+{
+    bool descending = (start.y < end.y);  // remember: y = 0 at the *top*
+    if((roof && descending) || (!roof && !descending))
+    {
+      higher = end;
+      lower = start;
+    }
+    else
+    {
+      higher = start;
+      lower = end;
+    }
 }

@@ -3,11 +3,12 @@
 #include "../warn.hpp"
 #include "../assert.hpp"            // for platform specific ASSERT macros
 #include "../global.hpp"
-#include "../numerise.hpp"
-#include "../file.hpp"              // for loading assets
-#include "../platform.hpp"          // for ASSET_PATH
 
-//#include "../tinyxml/tinyxml.h"            // for loading game objects
+#include "../resources/numerise.hpp"
+#include "../resources/file.hpp"              // for loading assets
+
+#include "../platform.hpp"             // for ASSET_PATH
+//#include "../tinyxml/tinyxml.h"      // for loading game objects
 
 #include "../gameplay/things/events/CollisionEvent.hpp" // for generating events
 #include "../gameplay/things/events/BoundaryEvent.hpp"  // for generating events
@@ -15,8 +16,6 @@
 /// CONSTRUCTORS, DESTRUCTORS
 
 GameState::GameState() :
-parallax(),
-obstacle(),
 things(),
 level_bounds(global::viewport)
 {
@@ -111,12 +110,6 @@ int GameState::shutdown()
 
 int GameState::update()
 {
-  // Update background parallax tunnel
-  parallax.update();
-
-  // Update forground obstacle tunnel
-  obstacle.update();
-
   // For each game object
   for(ThingIter i = things.begin(); i!= things.end(); )
   {
@@ -126,15 +119,15 @@ int GameState::update()
       // Delete the object if nessecary
       switch(update_result)
       {
-          case Thing::DELETE_ME:
+          case DELETE_ME:
               deleteThing(&i);
               continue;
 
-          case Thing::LOSE_LEVEL:
-              return EXIT_FAILURE;    /// FIXME
+          case LOSE_LEVEL:
+              return EXIT_FAILURE;
 
-          case Thing::WIN_LEVEL:
-              return EXIT_FAILURE;    /// FIXME
+          case WIN_LEVEL:
+              return EXIT_FAILURE;
       }
 
       /// Check for collisions between this object and subsequent ones
@@ -156,88 +149,7 @@ int GameState::update()
 
 void GameState::draw()
 {
-  // Draw the background parallax tunnel
-  parallax.draw();
-
-  // Draw the foreground obstacle tunnel
-  obstacle.draw();
-
   // Draw all the game objects
   for(ThingIter i = things.begin(); i!= things.end(); i++)
       (*i)->draw();
 }
-
-/// SUBROUTINES
-
-/*
-int GameState::load_things()
-{
-    // Generate world XML file name based on number
-    char file_name[32];
-    WARN_IF((sprintf(file_name, "%sworld_%d.xml", ASSET_PATH_PATH, world_number) < 0),
-            "Game::load_things", "Buffer too small to create formatted string");
-
-    // Create the Tiny XML document
-    TiXmlDocument doc;
-    ASSERT(io::read_xml(file_name, &doc) == EXIT_SUCCESS, "Reading World XML");
-
-    // Create local variables for searching document tree
-    TiXmlHandle doc_handle(&doc);
-    TiXmlElement* element;
-
-    // Get a handle on the root world element
-    element = doc_handle.FirstChildElement("World").Element();
-    TiXmlHandle wld_handle = TiXmlHandle(element);
-
-    /// FIND THE REQUESTED LEVEL WITHIN THE FILE
-    element = wld_handle.FirstChild("Level").Element();
-    while(element)
-    {
-        // get this element's 'number' attribute
-        int n = 0;
-        WARN_IF(element->QueryIntAttribute("number", &n) != TIXML_SUCCESS,
-                "Game::load_things", "Level with no number attribute");
-
-        // stop if it's the right one
-        if(n == (int)level_number)
-            break;
-        // otherwise continue
-        element = element->NextSiblingElement();
-    }
-    // make sure that the level was found
-    ASSERT(element, "Finding level in world file");
-
-    /// LOAD THE GAME OBJECTS FROM THE LEVEL TAG
-    // create the hero (always the first element in the list)
-    Thing* hero = resources->instantiate("hero",
-                    (V2f)global::viewport.getSize() * V2f(0.5, 0.9));
-
-    addThing(hero);
-    // create other object
-    element = element->FirstChildElement("Object");
-    while(element)
-    {
-        // get normalised position
-        V2f position;
-        element->QueryDoubleAttribute("x", &position.x);
-        element->QueryDoubleAttribute("y", &position.y);
-        // convert it to a position within the current playing field
-        position *= (V2f)global::viewport.getSize();
-        // get type
-        const char* type = element->Attribute("type");
-        // create object
-        Thing* new_thing = resources->instantiate(type, position);
-        if(new_thing)
-            addThing(new_thing);
-
-        else
-            WARN("Game::load_things","skipped unknown type");
-
-        // continue to the next element
-        element = element->NextSiblingElement();
-    }
-
-    // all good
-    return EXIT_SUCCESS;
-}
-*/

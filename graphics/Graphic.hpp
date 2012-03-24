@@ -2,7 +2,7 @@
 #define GRAPHIC_HPP_INCLUDED
 
 #include "Texture.hpp"
-#include "../Rect.hpp"
+#include "../math/Rect.hpp"
 
 class Graphic
 {

@@ -4,7 +4,7 @@
 #include "../warn.hpp"
 #include "../assert.hpp"
 #include "../platform.hpp"
-#include "../file.hpp"
+#include "../resources/GraphicsManager.hpp"
 
 #include "Game.hpp"
 
@@ -12,8 +12,6 @@
 
 MainMenu::MainMenu() :
 Scene(),
-texture_file(GET_ASSET("main_menu.png")),
-texture(),
 title_src(0.0f, 0.0f, 0.0f, 0.0f),
 title_dest(0.0f, 0.0f, 0.0f, 0.0f)
 {
@@ -28,15 +26,15 @@ int MainMenu::startup()
     // pass up hierarchy
     ASSERT(Scene::startup() == EXIT_SUCCESS, "MainMenu generic startup");
 
-    // load the texture
-    ASSERT(texture.load(texture_file) == EXIT_SUCCESS,
-              "MainMenu loading texture");
+    // get the texture from the resource manager
+    texture = GraphicsManager::getInstance()->get_texture("menus");
 
     /// 1. TITLE IMAGE (TOP THIRD)
     // set the area of the screen to use (the top third)
     fRect top_third = fRect(global::viewport) / V2f(1,3);
     // set the area of texture to draw
     title_src = fRect(0, 0, 320, 150);
+    title_dest = global::viewport;
     // maintain aspect ratio
     title_dest.setRatio(title_src.getRatio());
     // centre the title image within the top area of the screen
@@ -57,13 +55,22 @@ int MainMenu::startup()
     fRect exit_src = play_src + V2f(0, play_src.h);
     fRect options_src(0, exit_src.y + exit_src.h, 256, 70);
     // add the buttons to the scene
-    buttons.push_back(new Button("play", texture, top_ninths, play_src));
-    buttons.push_back(new Button("options", texture, mid_ninths, options_src));
-    buttons.push_back(new Button("exit", texture, low_ninths, exit_src));
+    buttons.push_back(new Button("play", *texture, top_ninths, play_src));
+    buttons.push_back(new Button("options", *texture, mid_ninths, options_src));
+    buttons.push_back(new Button("exit", *texture, low_ninths, exit_src));
 
     /// 3. ALL CLEAR!
     return EXIT_SUCCESS;
 }
+
+int MainMenu::shutdown()
+{
+  // all clear
+  return EXIT_SUCCESS;
+}
+
+
+/// LOOP
 
 int MainMenu::update(Scene** next)
 {
@@ -90,6 +97,15 @@ int MainMenu::update(Scene** next)
     else
         // keep same scene
         return Scene::NO_CHANGE;
+}
+
+void MainMenu::draw()
+{
+  // draw title
+  texture->draw(&title_src, &title_dest);
+
+  // draw buttons
+  Scene::draw();
 }
 
 Scene* MainMenu::previous()

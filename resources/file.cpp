@@ -2,8 +2,8 @@
 
 #include "SDL.h"                // for SDL_RWops
 
-#include "assert.hpp"
-#include "warn.hpp"
+#include "../assert.hpp"
+#include "../warn.hpp"
 
 using namespace io;
 

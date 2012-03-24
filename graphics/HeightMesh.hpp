@@ -9,6 +9,7 @@ class HeightMesh : public Mesh2D
 private:
   unsigned int n_segments;
   float spacing_x, base_y;
+  bool roof;
   /// METHODS
 public:
   // construction, destruction
@@ -17,7 +18,8 @@ public:
   void add(float new_height);
 private:
   // subroutines
-  void triangulateSegment(V2f& lower, V2f& higher, int &v_i);
+  void triangulateSegment(const V2f& lower, const V2f& higher, int &v_i);
+  void sortHeight(const V2f& a, const V2f& b, V2f& lower, V2f& higher);
 };
 
 #endif // HEIGHTMESH_HPP_INCLUDED

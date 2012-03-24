@@ -1,7 +1,7 @@
 #include "TunnelBG.hpp"
 
 #include "../global.hpp"
-#include "../wjd_math.hpp"
+#include "../math/wjd_math.hpp"
 
 /// CONSTANTS
 
@@ -16,25 +16,23 @@ Tunnel(DEFAULT_SPEED)
     // randomise initial values
 		for (int i = 0; i < N_PTS; i++)
 			new_height(i);
+
+    // generate initial meshes (triangulate polygons defined by height maps)
+    mesh_above.bake(above);
+    mesh_below.bake(below);
 }
 
 /// OVERRIDES
 
 void TunnelBG::draw()
 {
-  draw::height_fill(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
-                    head_i, COLOUR_FILL);
-  draw::height_fill(below, N_PTS, SEGMENT_L, V2f(offset_x, global::viewport.h),
-                    head_i, COLOUR_FILL);
+  mesh_above.draw(offset_x, COLOUR_FILL);
+  mesh_below.draw(offset_x, COLOUR_FILL);
 }
 
 void TunnelBG::new_height(unsigned int i)
 {
   float middle_h = global::viewport.h/2;
   above[i] = RAND_BETWEEN(MIN_H, middle_h);
-  if(above[i] > middle_h)
-    cout << "squeal!" << endl;
   below[i] = RAND_BETWEEN(middle_h, MAX_H);
-  if(below[i] < middle_h)
-    cout << "squeal!" << endl;
 }

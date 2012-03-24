@@ -2,8 +2,8 @@
 #define BUTTON_HPP_INCLUDED
 
 #include "../graphics/Texture.hpp"
-#include "../Rect.hpp"
-#include "../numerise.hpp"
+#include "../math/Rect.hpp"
+#include "../resources/numerise.hpp"
 
 class Button;
 

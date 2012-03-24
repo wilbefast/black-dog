@@ -22,8 +22,8 @@ int Texture::load(const char* filepath)
     GLenum format = (GLenum) NULL;
 
     // Load the image using SDL_image
-	SDL_Surface* surface = IMG_Load(filepath);
-	ASSERT_SDL(surface, "Opening image file");
+    SDL_Surface* surface = IMG_Load(filepath);
+    ASSERT_SDL(surface, "Opening image file");
 
     // Make sure the image length and width are powers of 2
     WARN_IF(!ISPWR2(surface->w), "Checking image width", "Not a 2^n");

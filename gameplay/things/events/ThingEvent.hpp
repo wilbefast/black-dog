@@ -4,7 +4,7 @@
 #include <iostream>     // for std::ostream
 #include <list>
 
-#include "../../../numerise.hpp"
+#include "../../../resources/numerise.hpp"
 
 class ThingEvent;
 

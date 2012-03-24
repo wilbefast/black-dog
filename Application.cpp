@@ -5,20 +5,19 @@
 #include "global.hpp"   // needed for application defaults
 #include "platform.hpp" // needed for LOG
 #include "assert.hpp"   // needed for platform specific ASSERT macros
-#include "file.hpp"     // needed for ASSET_PATH macro
 
-#include "AudioManager.hpp"     // resource subsystem (singleton)
-
-#include "scenes/MainMenu.hpp"  // initial scene
+#include "resources/file.hpp"              // needed for ASSET_PATH macro
+#include "resources/AudioManager.hpp"      // resource subsystem (singleton)
+#include "resources/GraphicsManager.hpp"   // resource subsystem (singleton)
 
 /// CONSTRUCTOR & DESTRUCTOR (public)
 
-Application::Application() :
+Application::Application(Scene* first_scene) :
 initialised(false),
 this_tick(0),
-next_tick(0)
+next_tick(0),
+scene(first_scene)
 {
-    scene = new MainMenu();
 }
 
 Application::~Application()
@@ -46,18 +45,12 @@ int Application::startup()
     ASSERT(startGL() == EXIT_SUCCESS, "Starting OpenGL/GLES");
 
     // Start up resource subsystems
+    ASSERT(GraphicsManager::getInstance()->startup()
+      == EXIT_SUCCESS, "Starting Graphics Manager");
+    // Start the Audio Manager
     ASSERT(AudioManager::getInstance()->startup()
-          == EXIT_SUCCESS, "Starting Audio Manager");
-
-    // Load the initial music track
-    ASSERT(AudioManager::getInstance()->load_music(GET_ASSET("music.ogg"))
-          == EXIT_SUCCESS, "Loading initial music track");
-    ASSERT(AudioManager::getInstance()->play_music(true)
-          == EXIT_SUCCESS, "Setting initial music track to loop");
-
-    // Load a test sound file
-    //ASSERT(AudioManager::getInstance()->load_sound(GET_ASSET("sound.wav"), "snd_cloth")
-     //     == EXIT_SUCCESS, "Loading test sound file");
+      == EXIT_SUCCESS, "Starting Audio Manager");
+    ASSERT(loadResources() == EXIT_SUCCESS, "Loading resources");
 
     // Load the initial scene
     ASSERT(scene->startup() == EXIT_SUCCESS, "Loading initial Scene");
@@ -107,6 +100,7 @@ int Application::shutdown()
 
   // Shut down subsystems
   AudioManager::getInstance()->shutdown();
+  GraphicsManager::getInstance()->shutdown();
 
   // Destory application display and control structures
   SDL_GL_MakeCurrent(NULL, NULL);
@@ -309,6 +303,14 @@ int Application::setScene(Scene* new_scene)
     return Application::CONTINUE;
 }
 
+
+/// OVERRIDEN
+
+int Application::loadResources()
+{
+    // override me !
+   return EXIT_SUCCESS;
+}
 
 /// CLASS NAMESPACE FUNCTIONS
 
