@@ -19,21 +19,38 @@ Application(new MainMenu())
 
 int BlackDogApplication::loadResources()
 {
-  // Start the graphics (textures and animations) manager
-  ASSERT(GraphicsManager::getInstance()->startup()
-        == EXIT_SUCCESS, "Starting Graphics Manager");
-  // Load graphic resources
+  /// 1. Load textures
   ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("menus.png"), "menus")
       == EXIT_SUCCESS, "Loading menu graphics texture");
   ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("sprites.png"), "sprites")
       == EXIT_SUCCESS, "Loading gameplay sprite-sheet texture");
 
-  // Load and play the music track
+
+  /// 2. Create animations
+  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+                                            iRect(0, 0, 64, 64), 4, "wraith")
+      == EXIT_SUCCESS, "Creating 'wraith' animation");
+  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+                                            iRect(0, 64, 64, 64), 4, "weights")
+      == EXIT_SUCCESS, "Creating 'weights' animation");
+  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+                                      iRect(0, 128, 64, 64), 4, "angel")
+      == EXIT_SUCCESS, "Creating 'angel' animation");
+  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+                                    iRect(256, 128, 64, 64), 4, "cloak")
+    == EXIT_SUCCESS, "Creating 'angel' animation");
+
+
+  /// 3. Load and play the music track
   ASSERT(AudioManager::getInstance()->load_music(GET_ASSET("music.ogg"))
         == EXIT_SUCCESS, "Loading initial music track");
   ASSERT(AudioManager::getInstance()->play_music(true)
         == EXIT_SUCCESS, "Setting initial music track to loop");
 
-  // No problems, return success code!
+
+  /// 4. Load sound files
+
+
+  /// 5. No problems, return success code!
   return EXIT_SUCCESS;
 }

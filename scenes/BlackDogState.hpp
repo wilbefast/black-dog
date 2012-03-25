@@ -5,10 +5,15 @@
 
 class BlackDogState : public GameState
 {
+  /// CONSTANTS
+private:
+
+  /// ATTRIBUTES
 private:
   TunnelBG parallax;
   TunnelFG obstacle;
 
+  /// METHODS
 public:
   // Creation, destruction
   BlackDogState();

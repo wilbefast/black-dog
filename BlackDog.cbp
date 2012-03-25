@@ -44,6 +44,8 @@
 		<Unit filename="Android.mk" />
 		<Unit filename="Application.cpp" />
 		<Unit filename="Application.hpp" />
+		<Unit filename="BlackDogApplication.cpp" />
+		<Unit filename="BlackDogApplication.hpp" />
 		<Unit filename="assert.hpp" />
 		<Unit filename="gameplay/Tunnel.cpp" />
 		<Unit filename="gameplay/Tunnel.hpp" />
@@ -51,6 +53,7 @@
 		<Unit filename="gameplay/TunnelBG.hpp" />
 		<Unit filename="gameplay/TunnelFG.cpp" />
 		<Unit filename="gameplay/TunnelFG.hpp" />
+		<Unit filename="gameplay/things/AngelThing.cpp" />
 		<Unit filename="gameplay/things/AngelThing.hpp" />
 		<Unit filename="gameplay/things/CloakThing.hpp" />
 		<Unit filename="gameplay/things/FeatherThing.hpp" />

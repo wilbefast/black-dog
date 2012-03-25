@@ -9656,7 +9656,7 @@
 1332022263 /home/william/Desktop/Programming_link/SDL/BLACK_DOG/Black_DogNDK/jni/src/graphics/HeightMesh.hpp
 	"Mesh2D.hpp"
 
-1332614528 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/Application.cpp
+1332699819 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -9723,7 +9723,7 @@
 	"Button.hpp"
 	"../math/V2.hpp"
 
-1332593617 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/global.hpp
+1332699744 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/global.hpp
 	"math/Rect.hpp"
 
 1321911782 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/assert.hpp
@@ -9808,7 +9808,7 @@
 	"../../scenes/GameState.hpp"
 	"events/ThingEvent.hpp"
 
-1332591652 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/GameState.hpp
+1332698699 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/GameState.hpp
 	"SceneState.hpp"
 	"../gameplay/TunnelBG.hpp"
 	"../gameplay/TunnelFG.hpp"
@@ -9826,16 +9826,16 @@
 1321995198 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/ThingElement.hpp
 	"../Thing.hpp"
 
-1331820889 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/AnimatedElement.cpp
+1332699236 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/AnimatedElement.cpp
 	<stdlib.h>
 	"AnimatedElement.hpp"
 	"../events/ThingEvent.hpp"
 
-1331820773 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/AnimatedElement.hpp
+1332699255 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/AnimatedElement.hpp
 	"GraphicElement.hpp"
 	"../../../graphics/Animation.hpp"
 
-1331820767 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/GraphicElement.hpp
+1332699140 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/GraphicElement.hpp
 	"ThingElement.hpp"
 	"../../../graphics/Graphic.hpp"
 
@@ -9850,7 +9850,7 @@
 	"ColliderElement.hpp"
 	"../../../global.hpp"
 
-1331820889 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/GraphicElement.cpp
+1332699814 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/GraphicElement.cpp
 	"GraphicElement.hpp"
 	"../../../global.hpp"
 
@@ -9981,10 +9981,12 @@
 	"SceneState.hpp"
 	<stdlib.h>
 
-1332591584 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/BlackDogState.cpp
+1332700091 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/BlackDogState.cpp
 	"BlackDogState.hpp"
+	"../gameplay/things/AngelThing.hpp"
+	"../global.hpp"
 
-1332591082 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/BlackDogState.hpp
+1332700046 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/BlackDogState.hpp
 	"GameState.hpp"
 
 1332592698 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/GraphicsManager.cpp
@@ -10067,7 +10069,7 @@
 	<map>
 	"numerise.hpp"
 
-1332611675 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/GraphicsManager.hpp
+1332622356 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/GraphicsManager.hpp
 	<map>
 	"numerise.hpp"
 	"../graphics/Texture.hpp"
@@ -10078,7 +10080,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1332612842 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/GraphicsManager.cpp
+1332622612 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/GraphicsManager.cpp
 	"GraphicsManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
@@ -10089,7 +10091,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1332614669 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
+1332622179 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
@@ -10099,4 +10101,15 @@
 
 1332614673 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.hpp
 	"Application.hpp"
+
+1332699960 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.cpp
+	"AngelThing.hpp"
+	"../../resources/GraphicsManager.hpp"
+
+1332699869 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.hpp
+	"Thing.hpp"
+	"../../graphics/Animation.hpp"
+	"elements/AnimatedElement.hpp"
+	"elements/MovementElement.hpp"
+	"elements/ResourceElement.hpp"
 

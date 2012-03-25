@@ -3,9 +3,11 @@
 
 // Constructors, destructors
 
-GraphicElement::GraphicElement(Thing* init_owner) :
+GraphicElement::GraphicElement(Thing* init_owner, V2f size, V2f _offset) :
 ThingElement(init_owner),
 sprite(NULL),
+destination(size),
+offset(_offset),
 angle(0)
 {
 }

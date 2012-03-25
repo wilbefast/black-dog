@@ -91,3 +91,38 @@ Texture* GraphicsManager::get_texture(const char* name)
   // return the texture we recovered
   return (*i).second;
 }
+
+
+/// ANIMATIONS
+
+int GraphicsManager::create_animation(const char* texture_name,
+                          iRect frame, int n_frames, const char* animation_name)
+{
+  // attempt to retrieve the desired texture
+  Texture* animation_texture = get_texture(texture_name);
+  ASSERT(animation_texture, "Looking for animation source texture");
+
+  // create animation
+  Animation* new_animation = new Animation();
+  new_animation->init(animation_texture, frame, n_frames);
+
+  // save under requested name
+  str_id hash = numerise(animation_name);
+  animations[hash] = new_animation;
+
+  // All clear !
+  return EXIT_SUCCESS;
+}
+
+Animation* GraphicsManager::get_animation(const char* name)
+{
+  // search for the resource
+  str_id hash = numerise(name);
+  AnimationI i = animations.find(hash);
+  // make sure that it is found
+  if(i == animations.end())
+    WARN_RTN("GraphicsManager::get_animation invalid identifier", name, NULL);
+
+  // return the animation we recovered
+  return (*i).second;
+}

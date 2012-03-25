@@ -16,7 +16,7 @@ class GraphicElement : public ThingElement
     /// METHODS
     public:
     // contructors, destructors
-    GraphicElement(Thing* init_owner);
+    GraphicElement(Thing* init_owner, V2f size, V2f _offset = V2f(0.0f, 0.0f));
     ~GraphicElement();
     // accessors
     void setAngle(float new_angle);
