@@ -1,0 +1,128 @@
+10
+
+dir
+10120
+svn+ssh://slantinga@dev.ivi.tv/var/repos/ivi/branches/player/2052-android-htc-video-test/jni/freetype/src
+svn+ssh://slantinga@dev.ivi.tv/var/repos/ivi
+
+
+
+2011-01-04T16:54:52.065590Z
+10100
+mcannon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8a5fb79e-450c-4f0c-8295-f5a9a4f147d3
+
+truetype
+dir
+
+pfr
+dir
+
+type42
+dir
+
+bdf
+dir
+
+pshinter
+dir
+
+gxvalid
+dir
+
+cff
+dir
+
+cid
+dir
+
+psaux
+dir
+
+raster
+dir
+
+otvalid
+dir
+
+type1
+dir
+
+cache
+dir
+
+psnames
+dir
+
+winfonts
+dir
+
+Jamfile
+file
+
+
+
+
+2011-01-04T18:58:05.000000Z
+d6db803dc8261ba9f3d158e7ff70ff01
+2011-01-04T16:54:52.065590Z
+10100
+mcannon
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+783
+
+pcf
+dir
+
+gzip
+dir
+
+smooth
+dir
+
+base
+dir
+
+sfnt
+dir
+
+autofit
+dir
+
+lzw
+dir
+

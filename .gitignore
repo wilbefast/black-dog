@@ -1,0 +1,4 @@
+# compiled units
+libs/**
+bin/**
+obj/**

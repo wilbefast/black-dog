@@ -1,0 +1,12 @@
+
+This is a test of the SDL libraries on the Android platform.
+
+It currently has working versions of the SDL, SDL_image, SDL_mixer, and SDL_ttf libraries.
+
+Your sources go into jni/src, and you should edit jni/src/Android.mk to include them.
+
+It is currently set up to build the aliens demo, and you should run data.sh to push the data to the device, before you run it.
+
+You build with ndk-build, and install to the device with: ant install
+
+For a full README, see README.android in the SDL source archive.
