@@ -72,6 +72,8 @@
 		<Unit filename="gameplay/things/elements/ResourceElement.hpp" />
 		<Unit filename="gameplay/things/elements/ThingElement.cpp" />
 		<Unit filename="gameplay/things/elements/ThingElement.hpp" />
+		<Unit filename="gameplay/things/elements/TimerElement.cpp" />
+		<Unit filename="gameplay/things/elements/TimerElement.hpp" />
 		<Unit filename="gameplay/things/events/BoundaryEvent.cpp" />
 		<Unit filename="gameplay/things/events/BoundaryEvent.hpp" />
 		<Unit filename="gameplay/things/events/CollisionEvent.cpp" />

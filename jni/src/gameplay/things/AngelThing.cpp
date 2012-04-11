@@ -36,17 +36,17 @@ bool AngelThing::State::operator==(const AngelThing::State& other) const
 
 AngelThing::AngelThing(V2i _position) :
 Thing(_position, "angel"),
-FLAPPING(0.2f, DEFAULT_THRUST),
-GLIDING(0.05f, 0.7f),
-FALLING(0.1f, 8.0f),
-STUNNED(0.1f, 4.0f),
+FLAPPING(0.2f, 0.2f),
+GLIDING(0.1f, 0.7f),
+FALLING(0.3f, 10.0f),
+STUNNED(0.3f, 5.0f),
 DEAD(1.0f, 0.0f),
 THRUST(DEFAULT_THRUST * global::stretch.y),
 DANGER_THRESHOLD(0.0f), /// FIXME
 DEATH_THRESHOLD(0.0f), /// FIXME
 state(&FALLING),
 graphic(this, V2f(SPRITE_DEFAULT_W, SPRITE_DEFAULT_H)),
-movement(this, AngelThing::FALLING.speed_max),
+movement(this, THRUST),
 feathers(this, INIT_FEATHERS),
 stun_timer(this, STR_UNSTUN),
 feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL)
@@ -81,6 +81,8 @@ int AngelThing::update(GameState* context)
 
   // move based on input and physics
   movement.update(context);
+  if(movement.getSpeed().y > state->speed_max)
+    movement.setSpeed(V2f(0.0f, state->speed_max));
 
   // decrement timers
   if(stun_timer.ticking())
@@ -163,7 +165,6 @@ void AngelThing::setState(State& new_state)
 
   // overwrite the previous start at the very end!
   state = &new_state;
-  movement.setSpeedMax(new_state.speed_max);
 }
 
 int AngelThing::treatEvent(ThingEvent* event)
