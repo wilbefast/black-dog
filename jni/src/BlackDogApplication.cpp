@@ -28,7 +28,7 @@ int BlackDogApplication::loadResources()
 
   /// 2. Create animations
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
-                                            iRect(0, 0, 64, 64), 4, "wraith")
+                                            iRect(0, 1, 64, 64), 4, "wraith")
       == EXIT_SUCCESS, "Creating 'wraith' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
                                             iRect(0, 64, 64, 64), 4, "weights")

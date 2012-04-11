@@ -10,8 +10,8 @@
 unsigned int AngelThing::State::next_id = 0;
 
 AngelThing::State::State(float _gravity, float _speed_max) :
-gravity(_gravity*global::stretch.y),
-speed_max(_speed_max*global::stretch.y),
+gravity(_gravity*global::scale.y),
+speed_max(_speed_max*global::scale.y),
 id(State::next_id)
 {
   AngelThing::State::next_id++;
@@ -41,7 +41,7 @@ GLIDING(0.1f, 0.7f),
 FALLING(0.3f, 10.0f),
 STUNNED(0.3f, 5.0f),
 DEAD(1.0f, 0.0f),
-THRUST(DEFAULT_THRUST * global::stretch.y),
+THRUST(DEFAULT_THRUST * global::scale.y),
 DANGER_THRESHOLD(0.0f), /// FIXME
 DEATH_THRESHOLD(0.0f), /// FIXME
 state(&FALLING),

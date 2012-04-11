@@ -4,4 +4,4 @@ using namespace std;
 
 iRect global::viewport;
 
-V2f global::stretch;
+V2f global::scale;

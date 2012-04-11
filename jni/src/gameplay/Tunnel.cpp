@@ -10,13 +10,13 @@ Tunnel::Tunnel(float base_speed) :
 // 'pseudo-constants'
 BASE_ABOVE(0.0f),
 BASE_BELOW(global::viewport.h),
-MIN_H(BASE_ABOVE + global::viewport.h * DEFAULT_MIN_H / WINDOW_DEFAULT_H),
+MIN_H(BASE_ABOVE + DEFAULT_MIN_H*global::scale.y),
 MAX_H(BASE_BELOW - MIN_H),
 SEGMENT_L(global::viewport.w / (N_PTS-2)),
 head_i(0),
 offset_x(0),
 // speed depends on screen size
-speed_x(global::viewport.w * base_speed / WINDOW_DEFAULT_W),
+speed_x(base_speed*global::scale.y),
 // polygon triangles cache
 mesh_above(N_PTS, SEGMENT_L, BASE_ABOVE),
 mesh_below(N_PTS, SEGMENT_L, BASE_BELOW)

@@ -11,7 +11,7 @@ class TunnelBG : public Tunnel
   /// CONSTANTS
 private:
   static draw::Colour COLOUR_FILL;
-  static const int DEFAULT_SPEED = 2;
+  static const int DEFAULT_SPEED = 1;
   /// METHODS
 public:
   TunnelBG();

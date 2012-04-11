@@ -13,7 +13,7 @@
 namespace global
 {
     extern iRect viewport;
-    extern V2f stretch;
+    extern V2f scale;
 };
 
 

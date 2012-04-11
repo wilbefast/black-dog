@@ -13,7 +13,7 @@ class TunnelFG : public Tunnel
 private:
   static draw::Colour COLOUR_FILL, COLOUR_LINE;
   static const int DEFAULT_MIN_GIRTH = 96;
-  static const int DEFAULT_SPEED = 4;
+  static const int DEFAULT_SPEED = 3;
 
 	/// ATTRIBUTES
 private:

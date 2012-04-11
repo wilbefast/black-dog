@@ -133,11 +133,11 @@ int Application::startSDL()
 
   // Since the window size can be overriden, check what it is actually
   SDL_GetWindowSize(window, &global::viewport.w, &global::viewport.h);
-  global::stretch = V2f(global::viewport.w / (float)WINDOW_DEFAULT_W,
+  global::scale = V2f(global::viewport.w / (float)WINDOW_DEFAULT_W,
                         global::viewport.h / (float)WINDOW_DEFAULT_H);
   char buffer[16];
-  sprintf(buffer, "(%.2f, %.2f)", global::stretch.x, global::stretch.y);
-  LOG_I("Window scaling", buffer);
+  sprintf(buffer, "(%.2f, %.2f)", global::scale.x, global::scale.y);
+  LOG_I("Window scale", buffer);
 
   // Create the OpenGL context for the window we just opened
   context = SDL_GL_CreateContext(window);
