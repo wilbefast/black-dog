@@ -24,7 +24,7 @@ class MovementElement : public ThingElement
     public:
     // constructors, destructors
     MovementElement(Thing* init_owner, float init_speed_max,
-                    float init_friction = 0,
+                    float init_friction = 1,
                     float init_speed_min = DEFAULT_SPEED_MIN);
     ~MovementElement();
     // main methods
@@ -35,11 +35,13 @@ class MovementElement : public ThingElement
     void add_speedScalar(float speed);
     void bounce(V2i collision_side);
     int update(GameState* context);
-    // accessors
-    V2f getSpeed() const;
+    // modification
     void setSpeed_scalar(float new_speed_scalar);
     void setSpeed(V2f new_speed);
     void addSpeed(V2f force);
+    void setSpeedMax(float _max_speed);
+    // query
+    V2f getSpeed() const;
     V2f getPrevPos() const;
     float getSpeed_scalar() const;
     float getAngle() const;

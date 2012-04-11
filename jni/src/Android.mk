@@ -15,37 +15,41 @@ LOCAL_CFLAGS := \
 	-DSDL_NO_COMPAT
 
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
-	main.cpp						\
-	jni_glue.cpp						\
-	file.cpp						\
-	global.cpp						\
-	Application.cpp						\
-	AudioManager.cpp					\
-	graphics/draw.cpp					\
-	graphics/Texture.cpp					\
-	graphics/Graphic.cpp					\
-	graphics/Animation.cpp					\
-	graphics/Mesh2D.cpp       \
-	graphics/HeightMesh.cpp   \
-	scenes/Game.cpp						\
-	scenes/Scene.cpp					\
-	scenes/MainMenu.cpp					\
-	scenes/Button.cpp					\
-	scenes/SceneState.cpp					\
-	scenes/GameState.cpp					\
-	gameplay/Tunnel.cpp					\
-	gameplay/TunnelFG.cpp					\
-	gameplay/TunnelBG.cpp					\
-	gameplay/things/Thing.cpp				\
-	gameplay/things/elements/ThingElement.cpp		\
-	gameplay/things/elements/ColliderElement.cpp		\
-	gameplay/things/elements/GraphicElement.cpp		\
-	gameplay/things/elements/AnimatedElement.cpp		\
-	gameplay/things/elements/MovementElement.cpp		\
-	gameplay/things/elements/ResourceElement.cpp		\
-	gameplay/things/events/CollisionEvent.cpp		\
-	gameplay/things/events/BoundaryEvent.cpp		\
-	gameplay/things/events/ThingEvent.cpp
+  gameplay/things/elements/AnimatedElement.cpp		            \
+  gameplay/things/elements/ColliderElement.cpp		            \
+  gameplay/things/elements/GraphicElement.cpp		              \
+  gameplay/things/elements/MovementElement.cpp		            \
+  gameplay/things/elements/ResourceElement.cpp		            \
+	gameplay/things/elements/ThingElement.cpp		                \
+  gameplay/things/events/BoundaryEvent.cpp		                \
+	gameplay/things/events/CollisionEvent.cpp		                \
+	gameplay/things/events/ThingEvent.cpp                       \
+  gameplay/things/AngelThing.cpp				                      \
+  gameplay/things/Thing.cpp				                            \
+  gameplay/Tunnel.cpp					                                \
+  gameplay/TunnelBG.cpp					                              \
+	gameplay/TunnelFG.cpp					                              \
+  graphics/Animation.cpp					                            \
+  graphics/Graphic.cpp					                              \
+  graphics/HeightMesh.cpp                                     \
+  graphics/Mesh2D.cpp                                         \
+  graphics/Texture.cpp					                              \
+	graphics/draw.cpp					                                  \
+	resources/AudioManager.cpp						                      \
+	resources/GraphicsManager.cpp						                    \
+  resources/file.cpp						                              \
+	scenes/BlackDogState.cpp                                    \
+	scenes/Button.cpp                                           \
+	scenes/Game.cpp						                                  \
+  scenes/GameState.cpp					                              \
+	scenes/MainMenu.cpp					                                \
+	scenes/Scene.cpp					                                  \
+	scenes/SceneState.cpp					                              \
+  Application.cpp                                             \
+  BlackDogApplication.cpp                                     \
+  global.cpp                                                  \
+  jni_glue.cpp                                                \
+  main.cpp
 
 
 LOCAL_SHARED_LIBRARIES := SDL SDL_image SDL_mixer

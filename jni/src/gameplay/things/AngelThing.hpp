@@ -8,6 +8,7 @@
 #include "elements/AnimatedElement.hpp"
 #include "elements/MovementElement.hpp"
 #include "elements/ResourceElement.hpp"
+#include "elements/TimerElement.hpp"
 
 class AngelThing : public Thing
 {
@@ -16,11 +17,15 @@ public:
   class State
   {
   private:
+    // constants
+    // class namespace variables
     static unsigned int next_id;
   public:
-    const float gravity, max_speed;
+    // attributes
+    const float gravity, speed_max;
     const unsigned int id;
-    State(float _gravity, float _max_speed);
+    // methods
+    State(float _gravity, float _speed_max);
     bool operator==(const State& other) const;
   };
 
@@ -34,25 +39,28 @@ private:
   static const int STUN_DURATION = 20;
   static const int SPRITE_DEFAULT_W = 64;
   static const int SPRITE_DEFAULT_H = 64;
-  // G++ won't compile if these are const: clearly I suck at programming :'(
-  static State FLAPPING;
-  static State GLIDING;
-  static State FALLING;
-  static State STUNNED;
-  static State DEAD;
-  // pseudo-constants: depend on the size of the screen so initialised
-  static float THRUST;
-  static float DANGER_THRESHOLD;
-  static float DEATH_THRESHOLD;
+  static const int HITBOX_DEFAULT_W = 8;
+  static const int HITBOX_DEFAULT_H = 16;
+
 
 
   /// ATTRIBUTES
 private:
-  State& state;
+  State FLAPPING;
+  State GLIDING;
+  State FALLING;
+  State STUNNED;
+  State DEAD;
+  // pseudo-constants: depend on the size of the screen so initialised
+  const float THRUST;
+  const float DANGER_THRESHOLD;
+  const float DEATH_THRESHOLD;
+  // true attrbiutes
+  State* state;
   AnimatedElement graphic;
-  //MovementElement movement;
+  MovementElement movement;
   ResourceElement feathers;
-
+  TimerElement stun_timer, feather_timer;
 
   /// METHODS
 public:
@@ -61,6 +69,12 @@ public:
   // overrides
   void draw();
   int update(GameState* context);
+
+  /// SUBROUTINES
+private:
+  void setState(AngelThing::State& new_state);
+  int treatEvent(ThingEvent* event);
+  int treatInput(GameState* context);
 };
 
 #endif // ANGELTHING_HPP_INCLUDED

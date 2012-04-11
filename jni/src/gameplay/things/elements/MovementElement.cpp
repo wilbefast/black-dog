@@ -10,7 +10,7 @@ using namespace std;
 
 // Constants
 
-const float MovementElement::DEFAULT_SPEED_MIN = 0.6;
+const float MovementElement::DEFAULT_SPEED_MIN = 0.06;
 
 // Constructors, destructors
 
@@ -27,7 +27,8 @@ speed_min(init_speed_min),
 friction(init_friction)
 {
     // Scale speed to view size
-    float default_diagonal = sqrt((float)(SQR(WINDOW_DEFAULT_W) + SQR(WINDOW_DEFAULT_H)));
+    float default_diagonal = sqrt((float)(SQR(WINDOW_DEFAULT_W)
+                              + SQR(WINDOW_DEFAULT_H)));
     float view_diagonal = global::viewport.getSize().getNorm();
     speed_max *= view_diagonal/default_diagonal;
     speed_min *= view_diagonal/default_diagonal;
@@ -91,7 +92,7 @@ void MovementElement::bounce(V2i collision_side)
     setSpeed((V2f)collision_side*speed);
 }
 
-// Accessors
+// Modification
 
 void MovementElement::setSpeed_scalar(float new_speed_scalar)
 {
@@ -121,6 +122,14 @@ void MovementElement::addSpeed(V2f force)
 {
     setSpeed(speed + force);
 }
+
+void MovementElement::setSpeedMax(float _speed_max)
+{
+  speed_max = _speed_max;
+}
+
+
+// Query
 
 V2f MovementElement::getSpeed() const
 {
@@ -155,7 +164,7 @@ int MovementElement::update(GameState* context)
         speed /= (float)friction;
 
     // cap minimum speed, generate event if stopping
-    if(speed && abs(speed.x) < speed_min && abs(speed.y) < speed_min)
+    if(speed && (abs(speed.x) < speed_min) && (abs(speed.y) < speed_min))
     {
         speed.x = speed.y = 0;
         owner->addEvent(new ThingEvent("stopped_moving"));

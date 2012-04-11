@@ -22,6 +22,7 @@ class ThingEvent
     public:
     // constructors, destructors
     ThingEvent(const char* init_type_name);
+    ThingEvent(str_id init_type_name);
     // accessors
     str_id getType();
     bool isType(const char* type_name);

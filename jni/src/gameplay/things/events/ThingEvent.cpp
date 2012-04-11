@@ -6,8 +6,13 @@ using namespace std;
 
 /// CONSTRUCTORS, DESTRUCTORS
 
-ThingEvent::ThingEvent(const char* name) :
-type(numerise(name))
+ThingEvent::ThingEvent(const char* _type) :
+type(numerise(_type))
+{
+}
+
+ThingEvent::ThingEvent(str_id _type) :
+type(_type)
 {
 }
 
