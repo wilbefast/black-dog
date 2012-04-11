@@ -10209,7 +10209,7 @@
 	"Texture.hpp"
 	"../math/Rect.hpp"
 
-1332622179 source:/home/william/Desktop/BLACK_DOG_link/jni/src/BlackDogApplication.cpp
+1334134337 source:/home/william/Desktop/BLACK_DOG_link/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
@@ -10260,7 +10260,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1334131633 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
+1334131971 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../resources/GraphicsManager.hpp"

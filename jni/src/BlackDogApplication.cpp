@@ -44,8 +44,8 @@ int BlackDogApplication::loadResources()
   /// 3. Load and play the music track
   ASSERT(AudioManager::getInstance()->load_music(GET_ASSET("music.ogg"))
         == EXIT_SUCCESS, "Loading initial music track");
-  ASSERT(AudioManager::getInstance()->play_music(true)
-        == EXIT_SUCCESS, "Setting initial music track to loop");
+  //ASSERT(AudioManager::getInstance()->play_music(true)
+    //    == EXIT_SUCCESS, "Setting initial music track to loop");
 
 
   /// 4. Load sound files
