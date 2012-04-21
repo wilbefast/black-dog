@@ -31,7 +31,8 @@ int MainMenu::startup()
 
     /// 1. TITLE IMAGE (TOP THIRD)
     // set the area of the screen to use (the top third)
-    fRect top_third = fRect(global::viewport) / V2f(1,3);
+    fRect top_third =
+      fRect(0.0f, 0.0f, WINDOW_DEFAULT_W, WINDOW_DEFAULT_H / 3.0f);
     // set the area of texture to draw
     title_src = fRect(0, 0, 320, 150);
     title_dest = global::viewport;
@@ -42,7 +43,8 @@ int MainMenu::startup()
 
     /// 2. BUTTONS (BUTTON SIX NINTHS)
     // set the area of the screen to use (bottom two top thirds)
-    fRect bottom_thirds = squashRect(global::viewport, V2f(0, top_third.h));
+    V2f bink(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
+    fRect bottom_thirds = squashRect(bink, V2f(0, top_third.h));
     fRect top_ninths = bottom_thirds / V2f(1,3);
     fRect mid_ninths = top_ninths + V2f(0, top_ninths.h);
     fRect low_ninths = mid_ninths + V2f(0, mid_ninths.h);
