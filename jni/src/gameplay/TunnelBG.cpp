@@ -1,6 +1,5 @@
 #include "TunnelBG.hpp"
 
-#include "../global.hpp"
 #include "../math/wjd_math.hpp"
 
 /// CONSTANTS
@@ -32,6 +31,6 @@ void TunnelBG::draw()
 
 void TunnelBG::new_height(unsigned int i)
 {
-  above[i] = RAND_BETWEEN(MIN_H, WINDOW_DEFAULT_H/2);
-  below[i] = RAND_BETWEEN(WINDOW_DEFAULT_H/2, MAX_H);
+  above[i] = RAND_BETWEEN(MIN_H, (MIN_H+MAX_H)/2);
+  below[i] = RAND_BETWEEN((MIN_H+MAX_H)/2, MAX_H);
 }

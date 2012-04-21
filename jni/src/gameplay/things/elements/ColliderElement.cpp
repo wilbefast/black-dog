@@ -1,7 +1,5 @@
 #include "ColliderElement.hpp"
 
-#include "../../../global.hpp"     // for scaling hitbox
-
 /// METHODS
 
 // constructors, destructors

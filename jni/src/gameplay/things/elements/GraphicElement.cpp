@@ -1,5 +1,4 @@
 #include "GraphicElement.hpp"
-#include "../../../global.hpp"               // for scaling images
 
 // Constructors, destructors
 

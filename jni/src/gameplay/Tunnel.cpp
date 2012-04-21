@@ -1,6 +1,5 @@
 #include "Tunnel.hpp"
 
-#include "../global.hpp"
 #include "../graphics/draw.hpp"
 
 /// CREATION AND DESTRUCTION

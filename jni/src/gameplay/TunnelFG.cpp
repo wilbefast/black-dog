@@ -1,7 +1,5 @@
 #include "TunnelFG.hpp"
 
-#include "../global.hpp"
-
 /// CONSTANTS
 
 draw::Colour TunnelFG::COLOUR_FILL(242, 68, 5);  // orange
