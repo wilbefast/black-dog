@@ -43,8 +43,8 @@ int MainMenu::startup()
 
     /// 2. BUTTONS (BUTTON SIX NINTHS)
     // set the area of the screen to use (bottom two top thirds)
-    V2f bink(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
-    fRect bottom_thirds = squashRect(bink, V2f(0, top_third.h));
+    fRect bottom_thirds =
+      squashRect(V2f(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H), V2f(0, top_third.h));
     fRect top_ninths = bottom_thirds / V2f(1,3);
     fRect mid_ninths = top_ninths + V2f(0, top_ninths.h);
     fRect low_ninths = mid_ninths + V2f(0, mid_ninths.h);

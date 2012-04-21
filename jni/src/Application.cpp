@@ -263,7 +263,7 @@ int Application::treatEvents()
                 break;
 
             case SDL_MOUSEMOTION:
-                cursor = V2i(event.motion.x, event.motion.y);
+                cursor = V2f(event.motion.x, event.motion.y) / global::scale;
                 break;
             #endif  // USE_MOUSE
 
