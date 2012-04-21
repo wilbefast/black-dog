@@ -3,11 +3,6 @@
 #include "../global.hpp"
 #include "../graphics/draw.hpp"
 
-/// CONSTANTS
-
-const float Tunnel::SEGMENT_L = WINDOW_DEFAULT_W / (N_PTS-2);
-
-
 /// CREATION AND DESTRUCTION
 
 Tunnel::Tunnel(float _speed_x) :

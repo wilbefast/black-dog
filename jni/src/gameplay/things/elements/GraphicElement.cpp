@@ -64,10 +64,6 @@ void GraphicElement::centreFrame()
     // Use the full frame size
     V2f frame_size = sprite->getFrame().getSize();
 
-    // Stretch it to be the correct size relative to the screen
-    static V2f normaliser(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
-    frame_size *= (V2f)global::viewport.getSize() / normaliser;
-
     // Centre it
     offset = -frame_size/2.0f;
     destination = fRect(owner->getPosition() + offset, frame_size);

@@ -10,7 +10,7 @@ GameState(),
 parallax(),
 obstacle()
 {
-  addThing(new AngelThing(V2i(global::viewport.w/4, global::viewport.h/2)));
+  addThing(new AngelThing(V2i(WINDOW_DEFAULT_W/4, WINDOW_DEFAULT_W/2)));
 }
 
 /// OVERRIDES GAMESTATE

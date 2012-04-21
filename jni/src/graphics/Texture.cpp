@@ -96,8 +96,10 @@ void Texture::draw(const fRect* src_ptr, const fRect* dst_ptr, float angle)
         //dst = dst_ptr->getInter(global::viewport); // reacts badly with rotations
 
     // Set up position, rotation, colour
-    glTranslatef(dst.x + dst.w/2, dst.y + dst.h/2, 0.0);
+    glTranslatef(global::scale.x*(dst.x + dst.w/2),
+                  global::scale.y*(dst.y + dst.h/2), 0.0);
     glRotatef(angle, 0.0, 0.0, 1.0);
+    glScalef(global::scale.x, global::scale.y, 0.0f);
     //glColor4f(255.0, 255.0, 255.0, 255.0); // reacts badly with Android
 
     // Bind the texture to which subsequent calls refer to

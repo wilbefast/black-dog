@@ -1,4 +1,5 @@
 #include "draw.hpp"
+#include "../global.hpp"              // for scale
 #include "../platform.hpp"            // for OpenGL/GLES functions
 #include "../math/wjd_math.hpp"       // for trigonometry
 
@@ -15,6 +16,7 @@ void draw::line(V2f start, V2f end, Colour c, float thickness)
     glLineWidth(thickness);
     glColor4f(c.r, c.g, c.b, c.a);
     glEnable(GL_LINE_SMOOTH);
+    glScalef(global::scale.x, global::scale.y, 0.0f);
 
     // Draw points
     glVertexPointer(2, GL_FLOAT, 0, points);
@@ -42,6 +44,7 @@ void draw::line_loop(V2f points[], unsigned int n_pts, Colour c, float thickness
     glLineWidth(thickness);
     glColor4f(c.r, c.g, c.b, c.a);
     glEnable(GL_LINE_SMOOTH);
+    glScalef(global::scale.x, global::scale.y, 0.0f);
 
     // Draw points
     glVertexPointer(2, GL_FLOAT, 0, loop);
@@ -80,6 +83,7 @@ void draw::height_line(float height[], unsigned int n_pts, float x_spacing,
   glLineWidth(thickness);
   glColor4f(c.r, c.g, c.b, c.a);
   glEnable(GL_LINE_SMOOTH);
+  glScalef(global::scale.x, global::scale.y, 0.0f);
 
   // Draw points
   glVertexPointer(2, GL_FLOAT, 0, vertices);

@@ -10,16 +10,6 @@ ColliderElement::ColliderElement(Thing* init_owner, V2f size, V2f offset) :
 ThingElement(init_owner),
 hitbox(size)
 {
-    // Save aspect ratio of requested hitbox
-    double aspect_ratio = hitbox.getRatio();
-
-    // Stretch hitbox based on screen size
-    static V2f normaliser(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
-    V2f screen_ratio = (V2f)global::viewport.getSize() / normaliser;
-    hitbox *= screen_ratio;
-    offset *= screen_ratio;
-    // Maintain aspect ratio (stretch evenly along)
-    hitbox.setRatio(aspect_ratio);
     // Center correctly
     hitbox.setPosition(-hitbox.getSize()/2.0f + offset);
 }

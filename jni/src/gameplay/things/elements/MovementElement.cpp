@@ -26,13 +26,6 @@ speed_max(init_speed_max),
 speed_min(init_speed_min),
 friction(init_friction)
 {
-    // Scale speed to view size
-    float default_diagonal = sqrt((float)(SQR(WINDOW_DEFAULT_W)
-                              + SQR(WINDOW_DEFAULT_H)));
-    float view_diagonal = global::viewport.getSize().getNorm();
-    speed_max *= view_diagonal/default_diagonal;
-    speed_min *= view_diagonal/default_diagonal;
-
 }
 
 MovementElement::~MovementElement()

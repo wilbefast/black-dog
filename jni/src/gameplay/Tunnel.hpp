@@ -15,7 +15,7 @@ protected:
   static const int MIN_H = 24;
 	static const int MAX_H = WINDOW_DEFAULT_H - MIN_H;
   // the segment length is the distance between two points
-	static const float SEGMENT_L;
+	static const int SEGMENT_L = WINDOW_DEFAULT_W / (N_PTS-2);
 
   /// ATTRIBUTES
 	// index of start of height maps

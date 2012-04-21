@@ -12,17 +12,15 @@ class TunnelFG : public Tunnel
   /// CONSTANTS
 private:
   static draw::Colour COLOUR_FILL, COLOUR_LINE;
-  static const int DEFAULT_MIN_GIRTH = 96;
+  // girth is the vertical size of the tunnel
+  static const int BASE_GIRTH = WINDOW_DEFAULT_H / 3;
+  static const int MIN_GIRTH = 96;
   static const int DEFAULT_SPEED = 3;
+	// maximum vertical change between two points
+	static const float MAX_DELTA = WINDOW_DEFAULT_H / 2;
 
 	/// ATTRIBUTES
 private:
-	// 'pseudo-constants' as these will be set based on window size
-	// girth is the vertical size of the tunnel
-	const float MIN_GIRTH;
-	const float BASE_GIRTH;
-	// maximum vertical change between two points
-	const float MAX_DELTA;
 	// height of the middle of the tunnel
   float middle_y;
 	// the current difficulty in [0, 1]

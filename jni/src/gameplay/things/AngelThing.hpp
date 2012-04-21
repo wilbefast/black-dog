@@ -32,17 +32,17 @@ public:
   /// CONSTANTS
 private:
   // true constants
-  static const float DEFAULT_THRUST = 6.0f;
-  static const float FRICTION = 0.2f;
+  static const float THRUST;
+  static const float FRICTION;
   static const int INIT_FEATHERS = 8;
   static const int FEATHER_INTERVAL = 45;
   static const int STUN_DURATION = 20;
-  static const int SPRITE_DEFAULT_W = 64;
-  static const int SPRITE_DEFAULT_H = 64;
-  static const int HITBOX_DEFAULT_W = 8;
-  static const int HITBOX_DEFAULT_H = 16;
-
-
+  static const int SPRITE_W = 64;
+  static const int SPRITE_H = 64;
+  static const int HITBOX_W = 8;
+  static const int HITBOX_H = 16;
+  static const int DANGER_THRESHOLD = 0; /// FIXME
+  static const int DEATH_THRESHOLD = 0; /// FIXME
 
   /// ATTRIBUTES
 private:
@@ -51,10 +51,6 @@ private:
   State FALLING;
   State STUNNED;
   State DEAD;
-  // pseudo-constants: depend on the size of the screen so initialised
-  const float THRUST;
-  const float DANGER_THRESHOLD;
-  const float DEATH_THRESHOLD;
   // true attrbiutes
   State* state;
   AnimatedElement graphic;

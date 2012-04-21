@@ -32,7 +32,6 @@ void TunnelBG::draw()
 
 void TunnelBG::new_height(unsigned int i)
 {
-  float middle_h = global::viewport.h/2;
-  above[i] = RAND_BETWEEN(MIN_H, middle_h);
-  below[i] = RAND_BETWEEN(middle_h, MAX_H);
+  above[i] = RAND_BETWEEN(MIN_H, WINDOW_DEFAULT_H/2);
+  below[i] = RAND_BETWEEN(WINDOW_DEFAULT_H/2, MAX_H);
 }
