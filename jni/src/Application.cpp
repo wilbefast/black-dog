@@ -127,17 +127,14 @@ int Application::startSDL()
 	// Open the window where we will draw. NB: Android will override the
 	// specified height and width no matter what they are!
 	window = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_CENTERED,
-                           SDL_WINDOWPOS_CENTERED, WINDOW_DEFAULT_W,
-                           WINDOW_DEFAULT_H, WINDOW_FLAGS);
+                           SDL_WINDOWPOS_CENTERED, WINDOW_DEFAULT_W/2,
+                           WINDOW_DEFAULT_H/2, WINDOW_FLAGS);
   ASSERT_SDL(window, "Opening SDL application window");
 
   // Since the window size can be overriden, check what it is actually
   SDL_GetWindowSize(window, &global::viewport.w, &global::viewport.h);
   global::scale = V2f(global::viewport.w / (float)WINDOW_DEFAULT_W,
                         global::viewport.h / (float)WINDOW_DEFAULT_H);
-  char buffer[16];
-  sprintf(buffer, "(%.2f, %.2f)", global::scale.x, global::scale.y);
-  LOG_I("Window scale", buffer);
 
   // Create the OpenGL context for the window we just opened
   context = SDL_GL_CreateContext(window);

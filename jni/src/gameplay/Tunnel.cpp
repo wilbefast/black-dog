@@ -3,20 +3,18 @@
 #include "../global.hpp"
 #include "../graphics/draw.hpp"
 
+/// CONSTANTS
+
+const float Tunnel::SEGMENT_L = WINDOW_DEFAULT_W / (N_PTS-2);
+
 
 /// CREATION AND DESTRUCTION
 
-Tunnel::Tunnel(float base_speed) :
-// 'pseudo-constants'
-BASE_ABOVE(0.0f),
-BASE_BELOW(global::viewport.h),
-MIN_H(BASE_ABOVE + DEFAULT_MIN_H*global::scale.y),
-MAX_H(BASE_BELOW - MIN_H),
-SEGMENT_L(global::viewport.w / (N_PTS-2)),
+Tunnel::Tunnel(float _speed_x) :
 head_i(0),
 offset_x(0),
 // speed depends on screen size
-speed_x(base_speed*global::scale.y),
+speed_x(_speed_x),
 // polygon triangles cache
 mesh_above(N_PTS, SEGMENT_L, BASE_ABOVE),
 mesh_below(N_PTS, SEGMENT_L, BASE_BELOW)
@@ -38,7 +36,7 @@ void Tunnel::update()
   offset_x -= speed_x;
 
   // lap around left to right if offset is larger than segment length
-  if (offset_x <= -SEGMENT_L)
+  if (offset_x <= -Tunnel::SEGMENT_L)
   {
     offset_x = 0;
     // cycle the circular array pointer

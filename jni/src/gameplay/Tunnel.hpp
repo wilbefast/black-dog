@@ -1,6 +1,7 @@
 #ifndef TUNNEL_HPP_INCLUDED
 #define TUNNEL_HPP_INCLUDED
 
+#include "../global.hpp"              // for WINDOW_DEFAULT_H
 #include "../math/V2.hpp"
 #include "../graphics/HeightMesh.hpp"
 
@@ -8,18 +9,15 @@ class Tunnel
 {
 	/// CONSTANTS
 protected:
-  static const int DEFAULT_MIN_H = 24;
   static const int N_PTS = 12;
-
-	/// ATTRIBUTES
-protected:
-	// 'pseudo-constants' as these will be set based on window size
-	const float BASE_ABOVE;
-	const float BASE_BELOW;
-  const float MIN_H;
-	const float MAX_H;
+	static const int BASE_ABOVE = 0;
+	static const int BASE_BELOW = WINDOW_DEFAULT_H;
+  static const int MIN_H = 24;
+	static const int MAX_H = WINDOW_DEFAULT_H - MIN_H;
   // the segment length is the distance between two points
-	const float SEGMENT_L;
+	static const float SEGMENT_L;
+
+  /// ATTRIBUTES
 	// index of start of height maps
 	unsigned int head_i;
 	// height maps themselves (circular buffers)
@@ -34,7 +32,7 @@ protected:
 	/** METHODS **/
 public:
 	// creation
-  Tunnel(float base_speed);
+  Tunnel(float _speed_x);
 	// loop
   void update();
   virtual void draw();
