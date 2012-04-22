@@ -10113,7 +10113,7 @@
 	"elements/MovementElement.hpp"
 	"elements/ResourceElement.hpp"
 
-1335002437 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1335002615 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -10224,9 +10224,8 @@
 	"Scene.hpp"
 	"Button.hpp"
 
-1335001197 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/Tunnel.cpp
+1335002699 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/Tunnel.cpp
 	"Tunnel.hpp"
-	"../global.hpp"
 	"../graphics/draw.hpp"
 
 1335001203 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/Tunnel.hpp
@@ -10244,18 +10243,16 @@
 1332593351 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/draw.hpp
 	"../math/V2.hpp"
 
-1335001085 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/TunnelBG.cpp
+1335002754 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/TunnelBG.cpp
 	"TunnelBG.hpp"
-	"../global.hpp"
 	"../math/wjd_math.hpp"
 
 1334135623 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/TunnelBG.hpp
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1335001226 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/TunnelFG.cpp
+1335002776 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/TunnelFG.cpp
 	"TunnelFG.hpp"
-	"../global.hpp"
 
 1335001279 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/TunnelFG.hpp
 	"Tunnel.hpp"
@@ -10331,19 +10328,16 @@
 	"AnimatedElement.hpp"
 	"../events/ThingEvent.hpp"
 
-1335001828 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ColliderElement.cpp
+1335002821 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ColliderElement.cpp
 	"ColliderElement.hpp"
-	"../../../global.hpp"
 
-1335001884 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/GraphicElement.cpp
+1335002822 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/GraphicElement.cpp
 	"GraphicElement.hpp"
-	"../../../global.hpp"
 
-1335001807 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/MovementElement.cpp
+1335002822 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/MovementElement.cpp
 	"MovementElement.hpp"
 	"../events/ThingEvent.hpp"
 	"../../../math/wjd_math.hpp"
-	"../../../global.hpp"
 	<iostream>
 
 1323001654 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ResourceElement.cpp
@@ -10381,7 +10375,7 @@
 1322236510 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Graphic.cpp
 	"Graphic.hpp"
 
-1332080748 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/HeightMesh.cpp
+1335088010 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/HeightMesh.cpp
 	"HeightMesh.hpp"
 	"../warn.hpp"
 

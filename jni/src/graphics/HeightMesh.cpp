@@ -5,14 +5,14 @@
 /// CONSTRUCTION, DESTRUCTION
 
 HeightMesh::HeightMesh(unsigned int _n_segments, float _spacing_x, float _base_y):
-Mesh2D(3*(_n_segments-1)),
+Mesh2D(2*(_n_segments-1)),
 n_segments(_n_segments),
 spacing_x(_spacing_x),
 base_y(_base_y),
 roof(true)        // we'll know after the first bake
 {
-  // we'll need 1 quad and 1 triangle per point (except the last point)
-  // in total that's 3 triangles, 18 vertices per point (except the last point)
+  /* Each segment is a trapezoid so requires 2 triangles or 6 vertices, so
+  12 coordinates in total. */
 }
 
 void HeightMesh::bake(float height[])
@@ -47,33 +47,38 @@ void HeightMesh::bake(float height[])
 
 void HeightMesh::add(float new_height)
 {
-  // over-write the leftmost segment = 3 triangles = 9 vertices = 18 coordinates
-  for(unsigned int i = 18; i < n_vertices*2; i++)
+  // over-write the leftmost segment = 2 triangles = 6 vertices = 12 coordinates
+  for(unsigned int i = 12; i < n_vertices*2; i++)
   {
-    // squash the oldest 3 triangles
-    vertices[i-18] = vertices[i];
+    // squash the oldest 2 triangles
+    vertices[i-12] = vertices[i];
 
     // translate x coordinates (ever second value) to the left
     if(!(i%2))
-      vertices[i-18] -= spacing_x;
+      vertices[i-12] -= spacing_x;
   }
 
   // triangulate the new segment
-  int v_i = n_vertices*2 - 18;
+  int v_i = n_vertices*2 - 12;
 
   /** Remember: the last 6 coordinate pairs are arrayed as follows
   (where 1 = last, 2 = second last, 3 = third last)
 
-             2--3                       3--2
-  case 1.    | /       OR     case 2.    \ |
-             1                             1
 
-  As a result the previous height is that of the last or 3rd last pair **/
+             3                             3
+   case 1.   |\        OR      case 2.    /|
+             | \                         / |
+             |  2 <--                   2  |
+             | /                         \ |
+             1                             1 <--
+
+  As a result the previous height (leftmost) is that of either the last or
+  the 2nd last pair **/
 
   // figure out which of these two situations we are in
   V2f current, next;
-  if(vertices[v_i-4] < vertices[v_i-6])
-    current = V2f(vertices[v_i-6], vertices[v_i-5]); // case 1 = third last
+  if(vertices[v_i-4] > vertices[v_i-6]) // 3 to the left of 2
+    current = V2f(vertices[v_i-4], vertices[v_i-3]); // case 1 = second last
   else
     current = V2f(vertices[v_i-2], vertices[v_i-1]); // case 2 = last
 
@@ -94,12 +99,12 @@ void HeightMesh::add(float new_height)
 void HeightMesh::triangulateSegment(const V2f& lower, const V2f& higher,
                                     int &v_i)
 {
-    /** QUAD, triangle 1
+    /** Triangle 1
 
             1--2               2--1
-      1 ->  | /.      OR       .\ |  <- 1
-            |/ .               . \|
-            3...               ...3
+      1 ->  .\ |      OR       | /.  <- 1
+            . \|               |/ .
+            .  3               3  .
             . .                 . .
             .                     .
     **/
@@ -110,44 +115,25 @@ void HeightMesh::triangulateSegment(const V2f& lower, const V2f& higher,
     vertices[v_i++] = lower.x;            // x
     vertices[v_i++] = base_y;             // y
     // triangle 1, point 3
-    vertices[v_i++] = higher.x;           // x
-    vertices[v_i++] = lower.y;            // y
-
-    /** QUAD, triangle 2
-
-            ...1               1...
-      2 ->  . /|      OR       |\ .  <- 2
-            ./ |               | \.
-            2--3               3--2
-            . .                 . .
-            .                     .
-    **/
-    // triangle 2, point 1
-    vertices[v_i++] = lower.x;            // x
-    vertices[v_i++] = base_y;             // y
-    // triangle 2, point 2
-    vertices[v_i++] = higher.x;           // x
-    vertices[v_i++] = lower.y;            // y
-    // triangle 2, point 3
     vertices[v_i++] = lower.x;            // x
     vertices[v_i++] = lower.y;            // y
 
-     /** BOTTOM, triangle 3
+    /** Triangle 2
 
-            ....               ....
-            . ..      OR       .. .
-            .. .               . ..
-            2--1               1--2
-      3 ->  | /                 \ |  <- 3
+            1...               ...1
+      2 ->  |\ .      OR       . /|  <- 2
+            | \.               ./ |
+            |  2               2  |
+            | /                 \ |
             3                     3
     **/
-    // triangle 3, point 1
+    // triangle 2, point 1
+    vertices[v_i++] = higher.x;           // x
+    vertices[v_i++] = base_y;             // y
+    // triangle 2, point 2
     vertices[v_i++] = lower.x;            // x
     vertices[v_i++] = lower.y;            // y
-    // triangle 3, point 2
-    vertices[v_i++] = higher.x;           // x
-    vertices[v_i++] = lower.y;            // y
-    // triangle 3, point 3
+    // triangle 2, point 3
     vertices[v_i++] = higher.x;           // x
     vertices[v_i++] = higher.y;           // y
 }
