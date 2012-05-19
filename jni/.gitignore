@@ -1,13 +1,13 @@
 # ignore heavy libraries : you can find and download these yourself
 # on their own!
-./SDL/
-./SDL_image/
-./SDL_mixer/
-./SDL_net/
-./SDL_ttf/
-./freetype/
-./jpeg/
-./mikmod/
-./png/
-./tremor/
+SDL/**
+SDL_image/**
+SDL_mixer/**
+SDL_net/**
+SDL_ttf/**
+freetype/**
+jpeg/**
+mikmod/**
+png/**
+tremor/**
 
