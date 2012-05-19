@@ -5,9 +5,6 @@
 
 class GameState;
 
-#include "../gameplay/TunnelBG.hpp"
-#include "../gameplay/TunnelFG.hpp"
-
 #include "../gameplay/things/Thing.hpp"
 
 class GameState : public SceneState

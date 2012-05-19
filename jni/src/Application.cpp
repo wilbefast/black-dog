@@ -127,8 +127,8 @@ int Application::startSDL()
 	// Open the window where we will draw. NB: Android will override the
 	// specified height and width no matter what they are!
 	window = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_CENTERED,
-                           SDL_WINDOWPOS_CENTERED, WINDOW_DEFAULT_W/2,
-                           WINDOW_DEFAULT_H/2, WINDOW_FLAGS);
+                           SDL_WINDOWPOS_CENTERED, WINDOW_DEFAULT_W,
+                           WINDOW_DEFAULT_H, WINDOW_FLAGS);
   ASSERT_SDL(window, "Opening SDL application window");
 
   // Since the window size can be overriden, check what it is actually
@@ -318,10 +318,12 @@ int Application::loadResources()
 
 V2i Application::normaliseTouch(SDL_TouchID device_id, V2i touch)
 {
-    // There's only 1 touch device: memorise it's resolution upon initial call
+    // There's only 1 touch device: memorise itss resolution upon initial call
     static V2i device_resolution = V2i(SDL_GetTouch(device_id)->xres,
                                        SDL_GetTouch(device_id)->yres);
 
+   static V2i default_window_size = V2i(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
+
     // Normalise the touch position
-    return touch * global::viewport.getSize() / device_resolution;
+    return touch * default_window_size / device_resolution;
 }

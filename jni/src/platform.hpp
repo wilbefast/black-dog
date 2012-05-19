@@ -43,8 +43,8 @@
 
 	#define WINDOW_FLAGS WINDOW_DEFAULT_FLAGS
 
-    #define USE_TOUCH 0
-    #define USE_MOUSE 1
+  #define USE_TOUCH 0
+  #define USE_MOUSE 1
 	#define KEY_EXIT SDLK_ESCAPE
 	#define KEY_MENU SDLK_ENTER
 	#define KEY_BACK SDLK_SPACE

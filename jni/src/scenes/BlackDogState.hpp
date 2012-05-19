@@ -3,6 +3,9 @@
 
 #include "GameState.hpp"
 
+#include "../gameplay/TunnelBG.hpp"
+#include "../gameplay/TunnelFG.hpp"
+
 class BlackDogState : public GameState
 {
   /// CONSTANTS

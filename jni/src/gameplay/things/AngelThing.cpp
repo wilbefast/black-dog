@@ -116,7 +116,7 @@ void AngelThing::setState(State& new_state)
 
     case FLAPPING_ID:
       // play_snd("flap.wav");
-      movement.setSpeed(V2f(0.0f, -THRUST));
+      movement.setSpeed(V2f(0.0f, -movement.getSpeed().y/state->speed_max * THRUST - 3));
       feather_timer.set(FEATHER_INTERVAL);
       /*
       // drop a feather unless victory has occured
