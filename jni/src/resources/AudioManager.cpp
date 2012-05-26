@@ -81,7 +81,7 @@ int AudioManager::load_music(const char* source_file)
   #ifdef __ANDROID__
 
     // we'll externalise the music file to the SD card ...
-    /*SDL_RWops* out = SDL_RWFromFile("/sdcard/data/music.ogg", "wb");
+    SDL_RWops* out = SDL_RWFromFile("/sdcard/data/music.ogg", "wb"); /// THIS WILL WRITE TO THE APK
     ASSERT(out, "Opening file to export music from APK to filesystem");
 
     char buffer[io::MAX_BLOCKS];
@@ -92,32 +92,12 @@ int AudioManager::load_music(const char* source_file)
       SDL_RWseek(music_file, SEEK_CUR, read_amount*io::BLOCK_SIZE);
       read_amount = SDL_RWread(music_file, buffer, 1, io::MAX_BLOCKS);
     }
-    SDL_RWclose(out);*/
+    SDL_RWclose(out);
     SDL_RWclose(music_file);
 
-    /*FILE* file;
-    file = fopen("/sdcard/data/bink.txt", "rb");
-    ASSERT(file, "opening file");
-
-
-    char buffer[30];
-    int read_amount = fread(buffer, 8, 30, file);
-
-
-    char bb[20];
-    sprintf(bb, "read %d", read_amount);
-    LOG_I(bb, buffer);
-
-    fclose(file);*/
-
-    SDL_RWops *rw;
-    rw = SDL_RWFromFile("/sdcard/data/music.ogg", "rb");
-    ASSERT(rw, "testing testing 1, 2, 3");
-    SDL_RWclose(rw);
-
-
-    ASSERT_MIX(music = Mix_LoadMUS("/sdcard/data/music.ogg"),
-            "Loading music from filesystem");
+    // now we can safely load the music file from the filesystem
+    //ASSERT_MIX(music = Mix_LoadMUS("/sdcard/data/music.ogg"),
+      //      "Loading music from filesystem");
 
   #else // desktop platforms
 

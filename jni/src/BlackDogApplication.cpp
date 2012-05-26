@@ -49,6 +49,9 @@ int BlackDogApplication::loadResources()
 
 
   /// 4. Load sound files
+  ASSERT(AudioManager::getInstance()->
+    load_sound(GET_ASSET("chain_snap.wav"), "chain_snap") == EXIT_SUCCESS,
+    "Loading 'chain_snap' sound");
 
 
   /// 5. No problems, return success code!

@@ -9976,8 +9976,9 @@
 	"SceneState.hpp"
 	<stdlib.h>
 
-1337449611 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/BlackDogState.cpp
+1338048157 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/scenes/BlackDogState.cpp
 	"BlackDogState.hpp"
+	"../resources/AudioManager.hpp"
 	"../gameplay/things/AngelThing.hpp"
 	"../global.hpp"
 
@@ -10072,7 +10073,7 @@
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1337980545 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
+1338050274 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
@@ -10090,7 +10091,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1337981507 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
+1338050308 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
@@ -10496,4 +10497,16 @@
 	"TimerElement.hpp"
 
 1337449499 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/platform.cpp
+
+1338048376 /usr/local/include/SDL/SDL_mixer.h
+	"SDL_types.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1322928873 /usr/local/include/SDL/SDL_types.h
+	"SDL_stdinc.h"
 

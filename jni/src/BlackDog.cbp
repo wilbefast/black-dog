@@ -37,8 +37,8 @@
 		<Linker>
 			<Add option="-lSDL_image" />
 			<Add option="-lGL" />
-			<Add option="-lSDL_mixer" />
 			<Add library="/usr/local/lib/libSDL-1.3.so" />
+			<Add library="/usr/local/lib/libSDL_mixer.so" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
 		<Unit filename="Android.mk" />

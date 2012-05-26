@@ -1,5 +1,8 @@
 #include "BlackDogState.hpp"
 
+
+#include "../resources/AudioManager.hpp" // testing sound (remove this)
+
 #include "../gameplay/things/AngelThing.hpp"
 #include "../global.hpp"                          // for viewport
 
@@ -29,6 +32,10 @@ int BlackDogState::update()
 
   // Update forground obstacle tunnel
   obstacle.update();
+
+  /** TEST SOUND **/
+  if(input.clicking && !input.clicking_previous)
+    AudioManager::getInstance()->play_sound("chain_snap");
 
   // All clear
   return EXIT_SUCCESS;

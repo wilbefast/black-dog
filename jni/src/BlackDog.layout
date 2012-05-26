@@ -10,8 +10,8 @@
 	<File name="Application.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="772" topLine="6" />
 	</File>
-	<File name="BlackDogApplication.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="1844" topLine="31" />
+	<File name="BlackDogApplication.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1728" topLine="34" />
 	</File>
 	<File name="BlackDogApplication.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="210" topLine="0" />
@@ -128,7 +128,7 @@
 		<Cursor position="64" topLine="0" />
 	</File>
 	<File name="resources/AudioManager.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="2724" topLine="97" />
+		<Cursor position="2397" topLine="78" />
 	</File>
 	<File name="resources/AudioManager.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="21" />
@@ -139,17 +139,17 @@
 	<File name="resources/GraphicsManager.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="993" topLine="30" />
 	</File>
-	<File name="resources/file.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="979" topLine="31" />
+	<File name="resources/file.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="979" topLine="30" />
 	</File>
-	<File name="resources/file.hpp" open="1" top="0" tabpos="3">
+	<File name="resources/file.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="293" topLine="0" />
 	</File>
 	<File name="resources/numerise.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1728" topLine="6" />
 	</File>
-	<File name="scenes/BlackDogState.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="29" topLine="0" />
+	<File name="scenes/BlackDogState.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="102" topLine="27" />
 	</File>
 	<File name="scenes/BlackDogState.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="170" topLine="2" />
@@ -160,11 +160,11 @@
 	<File name="scenes/Game.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="43" topLine="0" />
 	</File>
-	<File name="scenes/GameState.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2170" topLine="0" />
+	<File name="scenes/GameState.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="2170" topLine="120" />
 	</File>
 	<File name="scenes/GameState.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="108" topLine="0" />
+		<Cursor position="108" topLine="2" />
 	</File>
 	<File name="scenes/MainMenu.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="781" topLine="30" />
@@ -175,7 +175,7 @@
 	<File name="scenes/Scene.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="109" topLine="0" />
 	</File>
-	<File name="scenes/SceneState.hpp" open="0" top="0" tabpos="0">
+	<File name="scenes/SceneState.hpp" open="1" top="0" tabpos="5">
 		<Cursor position="146" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
