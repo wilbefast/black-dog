@@ -10072,10 +10072,12 @@
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1332611844 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
+1337980545 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
+	"../math/wjd_math.hpp"
+	"file.hpp"
 
 1332622612 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/GraphicsManager.cpp
 	"GraphicsManager.hpp"
@@ -10088,7 +10090,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1334135764 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
+1337981507 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"

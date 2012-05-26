@@ -2,6 +2,8 @@
 
 #include "../assert.hpp"
 #include "../warn.hpp"
+#include "../math/wjd_math.hpp"
+#include "file.hpp" // for io::MAX_BLOCKS
 
 /// SINGLETON
 
@@ -74,13 +76,60 @@ int AudioManager::load_music(const char* source_file)
 {
   // Attempt to open the music file
   music_file = SDL_RWFromFile(source_file, "rb"); // read binary
-  ASSERT(music_file, source_file);
+  ASSERT(music_file, source_file); // print the name of the file being opened
 
-  // Attempt to read the file contents as music
-  ASSERT_MIX(music = Mix_LoadMUS_RW(music_file),
-              "Extracting music from SDL_RWops structure");
+  #ifdef __ANDROID__
+
+    // we'll externalise the music file to the SD card ...
+    /*SDL_RWops* out = SDL_RWFromFile("/sdcard/data/music.ogg", "wb");
+    ASSERT(out, "Opening file to export music from APK to filesystem");
+
+    char buffer[io::MAX_BLOCKS];
+    int read_amount = SDL_RWread(music_file, buffer, 1, io::MAX_BLOCKS);
+    while(read_amount > 0)
+    {
+      SDL_RWwrite(out, buffer, 1, read_amount);
+      SDL_RWseek(music_file, SEEK_CUR, read_amount*io::BLOCK_SIZE);
+      read_amount = SDL_RWread(music_file, buffer, 1, io::MAX_BLOCKS);
+    }
+    SDL_RWclose(out);*/
+    SDL_RWclose(music_file);
+
+    /*FILE* file;
+    file = fopen("/sdcard/data/bink.txt", "rb");
+    ASSERT(file, "opening file");
+
+
+    char buffer[30];
+    int read_amount = fread(buffer, 8, 30, file);
+
+
+    char bb[20];
+    sprintf(bb, "read %d", read_amount);
+    LOG_I(bb, buffer);
+
+    fclose(file);*/
+
+    SDL_RWops *rw;
+    rw = SDL_RWFromFile("/sdcard/data/music.ogg", "rb");
+    ASSERT(rw, "testing testing 1, 2, 3");
+    SDL_RWclose(rw);
+
+
+    ASSERT_MIX(music = Mix_LoadMUS("/sdcard/data/music.ogg"),
+            "Loading music from filesystem");
+
+  #else // desktop platforms
+
+    // Attempt to read the file contents as music
+    ASSERT_MIX(music = Mix_LoadMUS_RW(music_file),
+                "Extracting music from SDL_RWops structure");
+
+  #endif //ifdef __ANDROID__
 
   /// NB - file is NOT closed as music data must be streamed
+
+
 
   // Success !
   return EXIT_SUCCESS;
