@@ -79,36 +79,37 @@ int AudioManager::load_music(const char* source_file)
   ASSERT(music_file, source_file); // print the name of the file being opened
 
   #ifdef __ANDROID__
+    // initialise RWops structure from file in SD card
+    FILE* sdcard = fopen("/sdcard/data/music.ogg", "wb");
+    ASSERT(sdcard, "Opening file to export music from APK to filesystem");
+    SDL_RWops* sdcard_rw = SDL_RWFromFP(sdcard, SDL_TRUE); // autoclose
+    ASSERT(sdcard_rw, "Creating SDL_RWops structure from file pointer");
 
-    // we'll externalise the music file to the SD card ...
-    SDL_RWops* out = SDL_RWFromFile("/sdcard/data/music.ogg", "wb"); /// THIS WILL WRITE TO THE APK
-    ASSERT(out, "Opening file to export music from APK to filesystem");
-
+    // externalise music data from APK assets folder to the SD card
     char buffer[io::MAX_BLOCKS];
     int read_amount = SDL_RWread(music_file, buffer, 1, io::MAX_BLOCKS);
     while(read_amount > 0)
     {
-      SDL_RWwrite(out, buffer, 1, read_amount);
+      SDL_RWwrite(sdcard_rw, buffer, 1, read_amount);
       SDL_RWseek(music_file, SEEK_CUR, read_amount*io::BLOCK_SIZE);
       read_amount = SDL_RWread(music_file, buffer, 1, io::MAX_BLOCKS);
     }
-    SDL_RWclose(out);
     SDL_RWclose(music_file);
+    SDL_RWclose(sdcard_rw);
 
-    // now we can safely load the music file from the filesystem
-    //ASSERT_MIX(music = Mix_LoadMUS("/sdcard/data/music.ogg"),
-      //      "Loading music from filesystem");
-
-  #else // desktop platforms
-
-    // Attempt to read the file contents as music
-    ASSERT_MIX(music = Mix_LoadMUS_RW(music_file),
-                "Extracting music from SDL_RWops structure");
+    // load the music from the filesystem, not the archive
+    sdcard = fopen("/sdcard/data/music.ogg", "rb");
+    ASSERT(sdcard, "Opening file to import music from filesystem");
+    music_file = SDL_RWFromFP(sdcard, SDL_TRUE); // autoclose
+    ASSERT(music_file, "Creating SDL_RWops structure from file pointer");
 
   #endif //ifdef __ANDROID__
 
-  /// NB - file is NOT closed as music data must be streamed
+  // Attempt to read the file contents as music
+  ASSERT_MIX(music = Mix_LoadMUS_RW(music_file),
+              "Extracting music from SDL_RWops structure");
 
+  /// NB - file is NOT closed as music data must be streamed
 
 
   // Success !
@@ -136,18 +137,18 @@ void AudioManager::unload_music()
 {
   // Stop and then free music
   stop_music();
-  if(music)
-  {
-    Mix_FreeMusic(music);
-    music = NULL;
-  }
 
   // Close music stream
   if(music_file)
   {
-    //SDL_RWclose(music_file);
-    /// FIXME
+    SDL_RWclose(music_file);
     music_file = NULL;
+  }
+
+  if(music)
+  {
+    Mix_FreeMusic(music);
+    music = NULL;
   }
 }
 

@@ -9925,7 +9925,7 @@
 	"SDL_config.h"
 	"SDL_stdinc.h"
 
-1332614656 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/main.cpp
+1338372375 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/main.cpp
 	<stdlib.h>
 	<iostream>
 	"assert.hpp"
@@ -10073,7 +10073,7 @@
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1338050274 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
+1338372104 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
@@ -10091,7 +10091,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1338050308 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
+1338366935 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
