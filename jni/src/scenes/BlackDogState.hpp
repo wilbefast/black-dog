@@ -23,6 +23,8 @@ public:
   // Overrides GameState
   int update();
   void draw();
+  // query
+  const TunnelFG* getObstacle() const;
 };
 
 #endif // BLACKDOGSTATE_HPP_INCLUDED

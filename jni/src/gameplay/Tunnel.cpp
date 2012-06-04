@@ -51,10 +51,34 @@ void Tunnel::draw()
 
 /// QUERY
 
-bool Tunnel::collision(V2f& position)
+int Tunnel::collidingPoint(V2f position) const
 {
-  return (x_to_height(position.x, above) > position.y
-      || x_to_height(position.x, below) < position.y);
+  if (x_to_height(position.x, above) > position.y)
+    // collision above
+    return -1;
+
+  else if(x_to_height(position.x, below) < position.y)
+    // collision below
+    return 1;
+
+  else
+    // no collision
+    return 0;
+}
+
+int Tunnel::collidingRect(fRect hitbox) const
+{
+  if(collidingPoint(V2f(hitbox.x + hitbox.w/2, hitbox.y)))
+    // collision above
+    return -1;
+
+  else if(collidingPoint(V2f(hitbox.x + hitbox.w/2, hitbox.y + hitbox.h)))
+    // collision below
+    return 1;
+
+  else
+    // no collision
+    return 0;
 }
 
 
@@ -65,13 +89,13 @@ void Tunnel::new_height(unsigned int i)
   // override me!
 }
 
-float Tunnel::index_to_x(unsigned int i)
+float Tunnel::index_to_x(unsigned int i) const
 {
   int index_diff = (head_i < i) ? i - head_i : N_PTS - head_i + i;
   return (index_diff - 1) * SEGMENT_L + offset_x;
 }
 
-float Tunnel::x_to_height(float x, float hmap[])
+float Tunnel::x_to_height(float x, const float hmap[]) const
 {
   // array index of point before x
   int start_i = ((int) ((x - offset_x) / SEGMENT_L) + 1 + head_i) % N_PTS,

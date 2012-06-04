@@ -141,7 +141,7 @@ void AudioManager::unload_music()
   // Close music stream
   if(music_file)
   {
-    SDL_RWclose(music_file);
+    //SDL_RWclose(music_file);
     music_file = NULL;
   }
 

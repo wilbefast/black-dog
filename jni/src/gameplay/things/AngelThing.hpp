@@ -71,6 +71,7 @@ private:
   void setState(AngelThing::State& new_state);
   int treatEvent(ThingEvent* event);
   int treatInput(GameState* context);
+  int checkCollision(GameState* context);
 };
 
 #endif // ANGELTHING_HPP_INCLUDED

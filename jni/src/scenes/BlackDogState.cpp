@@ -1,8 +1,5 @@
 #include "BlackDogState.hpp"
 
-
-#include "../resources/AudioManager.hpp" // testing sound (remove this)
-
 #include "../gameplay/things/AngelThing.hpp"
 #include "../global.hpp"                          // for viewport
 
@@ -13,7 +10,7 @@ GameState(),
 parallax(),
 obstacle()
 {
-  addThing(new AngelThing(V2i(WINDOW_DEFAULT_W/4, WINDOW_DEFAULT_W/2)));
+  addThing(new AngelThing(V2i(WINDOW_DEFAULT_W/4, WINDOW_DEFAULT_H/2)));
 }
 
 /// OVERRIDES GAMESTATE
@@ -33,10 +30,6 @@ int BlackDogState::update()
   // Update forground obstacle tunnel
   obstacle.update();
 
-  /** TEST SOUND **/
-  if(input.clicking && !input.clicking_previous)
-    AudioManager::getInstance()->play_sound("chain_snap");
-
   // All clear
   return EXIT_SUCCESS;
 }
@@ -51,4 +44,11 @@ void BlackDogState::draw()
 
   // Draw dynamic game objects
   GameState::draw();
+}
+
+/// QUERY
+
+const TunnelFG* BlackDogState::getObstacle() const
+{
+  return &obstacle;
 }

@@ -3,6 +3,7 @@
 
 #include "../global.hpp"              // for WINDOW_DEFAULT_H
 #include "../math/V2.hpp"
+#include "../math/Rect.hpp"
 #include "../graphics/HeightMesh.hpp"
 
 class Tunnel
@@ -37,14 +38,15 @@ public:
   void update();
   virtual void draw();
 	// query
-  bool collision(V2f& position);
+  int collidingPoint(V2f position) const;
+  int collidingRect(fRect hitbox) const;
 
 
 	/** SUB-ROUTINES **/
 protected:
 	virtual void new_height(unsigned int i);
-	float index_to_x(unsigned int i);
-	float x_to_height(float x, float hmap[]);
+	float index_to_x(unsigned int i) const;
+	float x_to_height(float x, const float hmap[]) const;
 };
 
 #endif // TUNNEL_HPP_INCLUDED

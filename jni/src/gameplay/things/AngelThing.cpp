@@ -1,8 +1,10 @@
 #include "AngelThing.hpp"
 
 #include "../../global.hpp"
+#include "../../resources/AudioManager.hpp"
 #include "../../resources/GraphicsManager.hpp"
 #include "elements/ColliderElement.hpp"
+#include "../../scenes/BlackDogState.hpp"
 
 /// CONSTANTS
 
@@ -91,6 +93,9 @@ int AngelThing::update(GameState* context)
   if(feather_timer.ticking())
     feather_timer.decrement();
 
+  // check for death
+  checkCollision(context);
+
   // animate the sprite
   graphic.update(context);
 
@@ -115,8 +120,8 @@ void AngelThing::setState(State& new_state)
     break;
 
     case FLAPPING_ID:
-      // play_snd("flap.wav");
-      movement.setSpeed(V2f(0.0f, -movement.getSpeed().y/state->speed_max * THRUST - 3));
+      AudioManager::getInstance()->play_sound("flap");
+      movement.setSpeed(V2f(0.0f, -state->speed_max*THRUST));
       feather_timer.set(FEATHER_INTERVAL);
       /*
       // drop a feather unless victory has occured
@@ -200,7 +205,7 @@ int AngelThing::treatInput(GameState* context)
   {
       switch(state->id)
       {
-        case (FALLING_ID):
+        case FALLING_ID: /// FIXME -- ids change each time instance is created!!!!
           if(feathers.anyLeft())
             setState(FLAPPING);
           else
@@ -231,6 +236,33 @@ int AngelThing::treatInput(GameState* context)
         setState(FALLING);
       break;
     }
+  }
+
+  // nothing to report
+  return GameState::CONTINUE;
+}
+
+int AngelThing::checkCollision(GameState* context)
+{
+  const TunnelFG* obstactle = ((BlackDogState*)context)->getObstacle();
+  fRect hitbox = body->getOffsetBox();
+
+
+  int collision = obstactle->collidingRect(hitbox);
+  if(collision)
+  {
+    // snap out of contact
+    int snap = 32;	// max snap amount
+    while(collision && snap > 0)
+    {
+      hitbox += V2f(1, 2*collision);
+      snap--;
+      collision = obstactle->collidingRect(hitbox);
+    }
+    // bounce away
+    movement.setSpeed(V2f(-5.0f, (collision < 0) ? 2 : -7));
+    // set for stun (teehee)
+    setState(STUNNED);
   }
 
   // nothing to report
