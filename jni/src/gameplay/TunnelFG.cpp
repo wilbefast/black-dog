@@ -10,7 +10,7 @@ draw::Colour TunnelFG::COLOUR_LINE(44, 0, 0);    // very dark red
 TunnelFG::TunnelFG() :
 Tunnel(DEFAULT_SPEED),
 middle_y(WINDOW_DEFAULT_H / 2),
-difficulty(0.0f)
+difficulty(0.2f)
 {
 		// randomise initial values -- must be done AFTER pseudo-constants
 		for (int i = 0; i < N_PTS; i++)

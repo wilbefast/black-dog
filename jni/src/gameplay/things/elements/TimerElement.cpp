@@ -5,11 +5,12 @@ ThingElement(_owner),
 name(numerise(_name)),
 remaining_time(init_time < 0 ? 0 : init_time)
 {
+  cout << "timer " << _name << " created with code " << name << endl;
 }
 
 bool TimerElement::ticking() const
 {
-  return remaining_time;
+  return (remaining_time >= 0);
 }
 
 void TimerElement::set(unsigned int time)
@@ -23,5 +24,8 @@ void TimerElement::decrement()
   if(remaining_time)
     remaining_time--;
   else
+  {
     owner->addEvent(new ThingEvent(name));
+    remaining_time = -1;
+  }
 }

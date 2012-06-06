@@ -31,7 +31,7 @@ public:
 
   /// CONSTANTS
 private:
-  // true constants
+  // numeric constants
   static const float THRUST;
   static const float FRICTION;
   static const int INIT_FEATHERS = 8;
@@ -41,18 +41,16 @@ private:
   static const int SPRITE_H = 64;
   static const int HITBOX_W = 8;
   static const int HITBOX_H = 16;
-  static const int DANGER_THRESHOLD = 0; /// FIXME
-  static const int DEATH_THRESHOLD = 0; /// FIXME
+  static const int DEATH_THRESHOLD = 64;
+  static const int DANGER_THRESHOLD = DEATH_THRESHOLD*2;
+  static const int MAX_SNAP = 32;
+  // states
+  static const State FLAPPING, GLIDING, FALLING, STUNNED, DEAD;
 
   /// ATTRIBUTES
 private:
-  State FLAPPING;
-  State GLIDING;
-  State FALLING;
-  State STUNNED;
-  State DEAD;
   // true attrbiutes
-  State* state;
+  State const* state;
   AnimatedElement graphic;
   MovementElement movement;
   ResourceElement feathers;
@@ -68,7 +66,7 @@ public:
 
   /// SUBROUTINES
 private:
-  void setState(AngelThing::State& new_state);
+  void setState(AngelThing::State const& new_state);
   int treatEvent(ThingEvent* event);
   int treatInput(GameState* context);
   int checkCollision(GameState* context);
@@ -80,29 +78,6 @@ private:
 
 function Player(init_x, init_y)
 {
-    // ATTRIBUTES (PRIVATE)
-    var body = new AnimationCanvas(Player.anim_body, Player.SIZE, 0.2),
-	weights = new AnimationCanvas(Player.anim_weights, [64, 64], 0.2),
-    	wings = [ new AnimationCanvas(Player.anim_wings[0], [64, 64], 0.1),
-               		new AnimationCanvas(Player.anim_wings[1], [64, 64], 0.1) ],
-        black_dog = new AnimationCanvas(Player.anim_black_dog, [80,128], 0.2);
-    	// player character position
-    	pos = [init_x , init_y ],
-    	pos_prev = [pos[0], pos[1]],
-    	// gameplay state of character
-    	state = Player.EState.GLIDE,
-    	rise = false,
-    	// physical state
-    	speed = [ 0.0, 0.0 ] ,
-    	droppingFeather = 0,
-    	feathers_left = Player.INIT_FEATHERS,
-    	// feather recovery interval
-    	feather_timer = Player.FEATHER_INTERVAL,
-    	victory = false,
-        stun_timer = -1,
-        draw_weights = true;
-    // needed for wings to line up: include offset in constructor maybe?
-    weights.setOffset([0, Player.SIZE[1]/2]);
 
     /// METHODS (PUBLIC)
 

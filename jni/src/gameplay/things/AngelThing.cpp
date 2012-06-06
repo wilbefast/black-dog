@@ -11,6 +11,12 @@
 const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
 
+const AngelThing::State AngelThing::FLAPPING(0.2f, 0.2f),
+                        AngelThing::GLIDING(0.1f, 0.7f),
+                        AngelThing::FALLING(0.3f, 10.0f),
+                        AngelThing::STUNNED(0.3f, 5.0f),
+                        AngelThing::DEAD(1.0f, 0.0f);
+
 /// PLAYER STATES
 
 unsigned int AngelThing::State::next_id = 0;
@@ -34,22 +40,11 @@ bool AngelThing::State::operator==(const AngelThing::State& other) const
 #define STR_UNSTUN "unstun"
 #define STR_REFEATHER "refeather"
 
-#define FLAPPING_ID 0
-#define GLIDING_ID 1
-#define FALLING_ID 2
-#define STUNNED_ID 3
-#define DEAD_ID 4
-
 AngelThing::AngelThing(V2i _position) :
 Thing(_position, "angel"),
-FLAPPING(0.2f, 0.2f),
-GLIDING(0.1f, 0.7f),
-FALLING(0.3f, 10.0f),
-STUNNED(0.3f, 5.0f),
-DEAD(1.0f, 0.0f),
 state(&FALLING),
 graphic(this, V2f(SPRITE_W, SPRITE_H)),
-movement(this, THRUST),
+movement(this, THRUST), // max speed is also THRUST speed
 feathers(this, INIT_FEATHERS),
 stun_timer(this, STR_UNSTUN),
 feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL)
@@ -72,20 +67,25 @@ void AngelThing::draw()
 
 int AngelThing::update(GameState* context)
 {
-  // treat events
-  for(EventIter i = events.begin(); i != events.end(); i++)
-    treatEvent(*i);
+  // collect the result at each step of the way, check for interruptions
+  int result = GameState::CONTINUE;
 
   // treat input
-  treatInput(context);
+  result = treatInput(context);
+  if(result != GameState::CONTINUE)
+    return result;
 
   // apply physics
   movement.addSpeed(V2f(0.0f, state->gravity));
 
   // move based on input and physics
   movement.update(context);
-  if(movement.getSpeed().y > state->speed_max)
-    movement.setSpeed(V2f(0.0f, state->speed_max));
+  V2f speed = movement.getSpeed();
+  if(speed.y > state->speed_max)
+  {
+    speed.y = state->speed_max;
+    movement.setSpeed(speed);
+  }
 
   // decrement timers
   if(stun_timer.ticking())
@@ -94,10 +94,19 @@ int AngelThing::update(GameState* context)
     feather_timer.decrement();
 
   // check for death
-  checkCollision(context);
+  result = checkCollision(context);
+  if(result != GameState::CONTINUE)
+    return result;
 
   // animate the sprite
   graphic.update(context);
+
+  // treat events last of all, as they will be cleared by Thing::update
+  for(EventIter i = events.begin();
+      result == GameState::CONTINUE && i != events.end(); i++)
+    result = treatEvent(*i);
+  if(result != GameState::CONTINUE)
+    return result;
 
   // nothing interrupted execution, so continue looping
   return Thing::update(context);
@@ -106,20 +115,21 @@ int AngelThing::update(GameState* context)
 
 /// SUBROUTINES
 
-void AngelThing::setState(State& new_state)
+void AngelThing::setState(State const& new_state)
 {
-  switch(new_state.id)
-  {
-    case FALLING_ID:
-      /*
-      if(wings[0].getSpeed() == 0.0)
-		    wings[i].setSubimage(0.0);
-		  else
-		    wings[i].stopNext(0);
-      */
-    break;
 
-    case FLAPPING_ID:
+  if(new_state == FALLING)
+  {
+    /*
+    if(wings[0].getSpeed() == 0.0)
+      wings[i].setSubimage(0.0);
+    else
+      wings[i].stopNext(0);
+    */
+  }
+
+  else if(new_state == FLAPPING)
+  {
       AudioManager::getInstance()->play_sound("flap");
       movement.setSpeed(V2f(0.0f, -state->speed_max*THRUST));
       feather_timer.set(FEATHER_INTERVAL);
@@ -131,16 +141,18 @@ void AngelThing::setState(State& new_state)
           wings[i].setSubimage(0.0);
           wings[i].setSpeed(0.2);
       */
-    break;
+  }
 
-    case GLIDING_ID:
+  else if(new_state == GLIDING)
+  {
     /*
       wings[i].setSpeed(0.0);
       wings[i].setSubimage(6.0);
     */
-    break;
+  }
 
-    case STUNNED_ID:
+  else if(new_state == STUNNED)
+  {
       stun_timer.set(STUN_DURATION);
       feather_timer.set(FEATHER_INTERVAL);
       /*
@@ -152,9 +164,10 @@ void AngelThing::setState(State& new_state)
           play_snd("scream.wav");
         }
       */
-    break;
+  }
 
-    case DEAD_ID:
+  else if(new_state == DEAD)
+  {
     /*
       draw_weights = false;
       play_snd("swallow.wav");
@@ -163,10 +176,6 @@ void AngelThing::setState(State& new_state)
 		  wings[i].setSubimage(3.0);
 		  wings[i].setSpeed(0.0);
     */
-    break;
-
-    default:
-    break;
   }
 
   // overwrite the previous start at the very end!
@@ -203,21 +212,20 @@ int AngelThing::treatInput(GameState* context)
   // pressing this step
   if(input->clicking)
   {
-      switch(state->id)
-      {
-        case FALLING_ID: /// FIXME -- ids change each time instance is created!!!!
-          if(feathers.anyLeft())
-            setState(FLAPPING);
-          else
-            setState(GLIDING);
-        break;
+    if(state == &FALLING)
+    {
+      if(feathers.tryWithdraw())
+        setState(FLAPPING);
+      else
+        setState(GLIDING);
+    }
 
-        case FLAPPING_ID:
-          // if moving downwards
-          if(movement.getSpeed().y > 0.0f)
-            setState(GLIDING);
-        break;
-      }
+    else if(state == &FLAPPING)
+    {
+      // if moving downwards
+      if(movement.getSpeed().y > 0.0f)
+        setState(GLIDING);
+    }
   }
 
   // not pressing this step
@@ -229,13 +237,8 @@ int AngelThing::treatInput(GameState* context)
       movement.addSpeed(V2f(0.0f, FRICTION));
 
     // if moving downwards
-    else switch(state->id)
-    {
-      case GLIDING_ID:
-      case FLAPPING_ID:
-        setState(FALLING);
-      break;
-    }
+    else if(state == &GLIDING || state == &FLAPPING)
+      setState(FALLING);
   }
 
   // nothing to report
@@ -244,24 +247,32 @@ int AngelThing::treatInput(GameState* context)
 
 int AngelThing::checkCollision(GameState* context)
 {
+  // local variables
   const TunnelFG* obstactle = ((BlackDogState*)context)->getObstacle();
   fRect hitbox = body->getOffsetBox();
 
+  // check for death (too far to the left of the screen)
+  if(hitbox.x < DEATH_THRESHOLD)
+  {
+    setState(DEAD);
+    return GameState::LOSE_LEVEL;
+  }
 
-  int collision = obstactle->collidingRect(hitbox);
+  // check for collisions with the tunnel
+  int collision = obstactle->collidingRect(hitbox), prev_collision = 0;
   if(collision)
   {
     // snap out of contact
-    int snap = 32;	// max snap amount
-    while(collision && snap > 0)
+    for(int snap_left = MAX_SNAP; snap_left && collision; snap_left--)
     {
-      hitbox += V2f(1, 2*collision);
-      snap--;
+      move(V2f(-1, -collision));
+      hitbox = body->getOffsetBox();
+      prev_collision = collision;
       collision = obstactle->collidingRect(hitbox);
     }
-    // bounce away
-    movement.setSpeed(V2f(-5.0f, (collision < 0) ? 2 : -7));
-    // set for stun (teehee)
+    // update position and speed
+    movement.setSpeed(V2f(-5.0f, (prev_collision < 0) ? 2 : -7));
+    // paralyse for a short duration
     setState(STUNNED);
   }
 

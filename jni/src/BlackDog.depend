@@ -9785,7 +9785,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1338850809 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/TunnelFG.cpp
+1338885602 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/TunnelFG.cpp
 	"TunnelFG.hpp"
 
 1335001279 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/TunnelFG.hpp
@@ -10102,7 +10102,7 @@
 1332614673 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.hpp
 	"Application.hpp"
 
-1338850898 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.cpp
+1339002368 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../resources/AudioManager.hpp"
@@ -10110,7 +10110,7 @@
 	"elements/ColliderElement.hpp"
 	"../../scenes/BlackDogState.hpp"
 
-1338850145 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.hpp
+1339000688 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.hpp
 	"Thing.hpp"
 	"../../graphics/Animation.hpp"
 	"elements/AnimatedElement.hpp"
@@ -10491,11 +10491,11 @@
 1334128998 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.cpp
 	"TimerElement.hpp"
 
-1334129263 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.hpp
+1339001921 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.hpp
 	"ThingElement.hpp"
 	"../../../resources/numerise.hpp"
 
-1334128998 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.cpp
+1339002381 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.cpp
 	"TimerElement.hpp"
 
 1337449499 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/platform.cpp
