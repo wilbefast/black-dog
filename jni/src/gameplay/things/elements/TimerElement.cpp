@@ -5,7 +5,6 @@ ThingElement(_owner),
 name(numerise(_name)),
 remaining_time(init_time < 0 ? 0 : init_time)
 {
-  cout << "timer " << _name << " created with code " << name << endl;
 }
 
 bool TimerElement::ticking() const

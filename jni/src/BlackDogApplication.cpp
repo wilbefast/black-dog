@@ -28,18 +28,17 @@ int BlackDogApplication::loadResources()
 
   /// 2. Create animations
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
-                                            iRect(0, 1, 96, 64), 4, "wraith")
-      == EXIT_SUCCESS, "Creating 'wraith' animation");
+        iRect(0, 1, 96, 64), 6, "wraith_flap") == EXIT_SUCCESS,
+        "Creating wraith_flap animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
-                                            iRect(0, 64, 64, 64), 4, "weights")
-      == EXIT_SUCCESS, "Creating 'weights' animation");
+        iRect(288, 65, 96, 64), 3, "wraith_fall") == EXIT_SUCCESS,
+        "Creating 'wraith_fall' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
-                                      iRect(0, 128, 64, 64), 4, "angel")
-      == EXIT_SUCCESS, "Creating 'angel' animation");
+        iRect(0, 65, 96, 64), 3, "wraith_glide") == EXIT_SUCCESS,
+        "Creating 'wraith_glide' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
-                                    iRect(256, 128, 64, 64), 4, "cloak")
-    == EXIT_SUCCESS, "Creating 'angel' animation");
-
+      iRect(576, 65, 96, 64), 1, "wraith_stun") == EXIT_SUCCESS,
+      "Creating 'wraith_stun' animation");
 
   /// 3. Load and play the music track
   ASSERT(AudioManager::getInstance()->load_music(GET_ASSET("music.ogg"))
@@ -49,11 +48,21 @@ int BlackDogApplication::loadResources()
 
 
   /// 4. Load sound files
-  /*
   ASSERT(AudioManager::getInstance()->
     load_sound(GET_ASSET("chain_snap.wav"), "chain_snap") == EXIT_SUCCESS,
     "Loading 'chain_snap' sound");
-  */
+
+  ASSERT(AudioManager::getInstance()->
+  load_sound(GET_ASSET("flap.wav"), "flap") == EXIT_SUCCESS,
+  "Loading 'flap' sound");
+
+  ASSERT(AudioManager::getInstance()->
+  load_sound(GET_ASSET("scream.wav"), "scream") == EXIT_SUCCESS,
+  "Loading 'scream' sound");
+
+  ASSERT(AudioManager::getInstance()->
+  load_sound(GET_ASSET("swallow.wav"), "swallow") == EXIT_SUCCESS,
+  "Loading 'swallow' sound");
 
 
   /// 5. No problems, return success code!

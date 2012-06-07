@@ -6,6 +6,10 @@
 #include "elements/ColliderElement.hpp"
 #include "../../scenes/BlackDogState.hpp"
 
+#define STR_UNSTUN "unstun"
+#define STR_REFEATHER "refeather"
+#define STR_ANIMATION_END "animation_end"
+
 /// CONSTANTS
 
 const float AngelThing::THRUST = 6.0f;
@@ -39,8 +43,6 @@ bool AngelThing::State::operator==(const AngelThing::State& other) const
 
 /// CONSTRUCTION & DESTRUCTION
 
-#define STR_UNSTUN "unstun"
-#define STR_REFEATHER "refeather"
 
 AngelThing::AngelThing(V2i _position) :
 Thing(_position, "angel"),
@@ -52,8 +54,7 @@ stun_timer(this, STR_UNSTUN),
 feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL)
 {
   // set initial sprite
-  Animation* wraith = GraphicsManager::getInstance()->get_animation("wraith");
-  graphic.setSprite(wraith, 0.1f);
+  graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_fall"), 0.1f);
 
   // angel is collideable
   body = new ColliderElement(this, V2d(V2d(HITBOX_W, HITBOX_H)));
@@ -127,14 +128,9 @@ int AngelThing::update(GameState* context)
 void AngelThing::setState(State const& new_state)
 {
 
-  if(new_state == FALLING)
+  if(new_state == FALLING && state == &GLIDING)
   {
-    /*
-    if(wings[0].getSpeed() == 0.0)
-      wings[i].setSubimage(0.0);
-    else
-      wings[i].stopNext(0);
-    */
+    graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_fall"), 0.1f);
   }
 
   else if(new_state == FLAPPING)
@@ -142,44 +138,27 @@ void AngelThing::setState(State const& new_state)
       AudioManager::getInstance()->play_sound("flap");
       movement.setSpeed(V2f(movement.getSpeed().x, -state->speed_max*THRUST));
       feather_timer.set(FEATHER_INTERVAL);
-      /*
-      // drop a feather unless victory has occured
-      if(!victory)
-		      droppingFeather++;
-        // set animation
-          wings[i].setSubimage(0.0);
-          wings[i].setSpeed(0.2);
-      */
+      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_flap"), 0.1f);
+      graphic.setFrame(0.0f);
   }
 
   else if(new_state == GLIDING)
   {
-    /*
-      wings[i].setSpeed(0.0);
-      wings[i].setSubimage(6.0);
-    */
   }
 
   else if(new_state == STUNNED)
   {
       stun_timer.set(STUN_DURATION);
       feather_timer.set(FEATHER_INTERVAL);
-      /*
-        wings[i].setSubimage(3.0);
-        wings[i].setSpeed(0.0);
-        if(state.id != new_state.id)
-        {
-          droppingFeather += Player.STUN_FEATHERS;
-          play_snd("scream.wav");
-        }
-      */
+      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_stun"), 0.1f);
+      AudioManager::getInstance()->play_sound("scream");
   }
 
   else if(new_state == DEAD)
   {
+    AudioManager::getInstance()->play_sound("swallow");
     /*
       draw_weights = false;
-      play_snd("swallow.wav");
       black_dog.setSubimage(15);
       pos[0] = 48;
 		  wings[i].setSubimage(3.0);
@@ -195,7 +174,8 @@ int AngelThing::treatEvent(ThingEvent* event)
 {
   // local variables
   static str_id UNSTUN = numerise(STR_UNSTUN),
-                REFEATHER = numerise(STR_REFEATHER);
+                REFEATHER = numerise(STR_REFEATHER),
+                ANIMATION_END = numerise(STR_ANIMATION_END);
 
   // stun duration finished event
   if(event->getType() == UNSTUN)
@@ -209,8 +189,17 @@ int AngelThing::treatEvent(ThingEvent* event)
     feather_timer.set(FEATHER_INTERVAL);
   }
 
-    // nothing to report
-    return GameState::CONTINUE;
+  // animation end
+  else if (event->getType() == ANIMATION_END)
+  {
+    if(state == &FALLING)
+      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_fall"), 0.1f);
+    else if (state == &GLIDING)
+      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_glide"), 0.1f);
+  }
+
+  // nothing to report
+  return GameState::CONTINUE;
 }
 
 int AngelThing::treatInput(GameState* context)

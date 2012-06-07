@@ -10074,7 +10074,7 @@
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1339074938 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
+1339077598 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
@@ -10092,7 +10092,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1339075768 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
+1339087316 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
@@ -10103,7 +10103,7 @@
 1332614673 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.hpp
 	"Application.hpp"
 
-1339012837 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.cpp
+1339087245 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../resources/AudioManager.hpp"
@@ -10496,7 +10496,7 @@
 	"ThingElement.hpp"
 	"../../../resources/numerise.hpp"
 
-1339002381 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.cpp
+1339084377 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.cpp
 	"TimerElement.hpp"
 
 1337449499 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/platform.cpp
