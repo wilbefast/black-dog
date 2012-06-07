@@ -32,7 +32,9 @@ public:
   /// CONSTANTS
 private:
   // numeric constants
-  static const float THRUST;
+  static const float THRUST;        // vertical speed of flapping wings
+  static const float SPEED_H_INC;   // horizontal speed towards the right
+  static const float SPEED_H_MAX;
   static const float FRICTION;
   static const int INIT_FEATHERS = 8;
   static const int FEATHER_INTERVAL = 45;
@@ -41,8 +43,8 @@ private:
   static const int SPRITE_H = 64;
   static const int HITBOX_W = 8;
   static const int HITBOX_H = 16;
-  static const int DEATH_THRESHOLD = 64;
-  static const int DANGER_THRESHOLD = DEATH_THRESHOLD*2;
+  static const int DEATH_THRESHOLD = 16;
+  static const int DANGER_THRESHOLD = DEATH_THRESHOLD*4;
   static const int MAX_SNAP = 32;
   // states
   static const State FLAPPING, GLIDING, FALLING, STUNNED, DEAD;

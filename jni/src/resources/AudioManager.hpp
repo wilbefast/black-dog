@@ -29,6 +29,9 @@ private:
   // music
   Mix_Music* music;
   SDL_RWops* music_file;
+  #ifdef __ANDROID__
+    const char* sdcard_file;
+  #endif // #ifdef __ANDROID__
   // sound
   SoundMap sounds;
 

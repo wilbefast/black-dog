@@ -22,13 +22,13 @@ int BlackDogApplication::loadResources()
   /// 1. Load textures
   ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("menus.png"), "menus")
       == EXIT_SUCCESS, "Loading menu graphics texture");
-  ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("sprites.png"), "sprites")
+  ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("sheet.png"), "sprites")
       == EXIT_SUCCESS, "Loading gameplay sprite-sheet texture");
 
 
   /// 2. Create animations
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
-                                            iRect(0, 1, 64, 64), 4, "wraith")
+                                            iRect(0, 1, 96, 64), 4, "wraith")
       == EXIT_SUCCESS, "Creating 'wraith' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
                                             iRect(0, 64, 64, 64), 4, "weights")

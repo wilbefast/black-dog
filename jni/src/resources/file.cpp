@@ -7,11 +7,18 @@
 
 using namespace io;
 
-int io::read_text(const char* source_file, char** destination)
+std::string io::path_to_name(const char* file_path)
+{
+  std::string name(file_path);
+  name = name.substr(name.find_last_of('/'));
+  return name;
+}
+
+int io::read_text(const char* file_path, char** destination)
 {
     // Open the file
     SDL_RWops* file;
-    file = SDL_RWFromFile(source_file, "r");
+    file = SDL_RWFromFile(file_path, "r");
     ASSERT(file, "Opening text file using SDL_RWops");
 
     // Find the length of the file
@@ -31,12 +38,12 @@ int io::read_text(const char* source_file, char** destination)
     return EXIT_SUCCESS;
 }
 
-/*int io::read_xml(const char* file_name, TiXmlDocument* doc)
+/*int io::read_xml(const char* file_path, TiXmlDocument* doc)
 {
     #if BUFFER_XML
         // Open with SDL_RWops, read contents to a buffer
         char* file_contents = NULL;
-        ASSERT(io::read_text(file_name, &file_contents) == EXIT_SUCCESS,
+        ASSERT(io::read_text(file_path, &file_contents) == EXIT_SUCCESS,
                 "Reading XML file to buffer");
 
         // Pass the buffer to the TinyXML document

@@ -10,6 +10,8 @@
 
 const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
+const float AngelThing::SPEED_H_INC = 0.05f;
+const float AngelThing::SPEED_H_MAX = 0.5f;
 
 const AngelThing::State AngelThing::FLAPPING(0.2f, 0.2f),
                         AngelThing::GLIDING(0.1f, 0.7f),
@@ -75,17 +77,24 @@ int AngelThing::update(GameState* context)
   if(result != GameState::CONTINUE)
     return result;
 
-  // apply physics
-  movement.addSpeed(V2f(0.0f, state->gravity));
 
   // move based on input and physics
-  movement.update(context);
-  V2f speed = movement.getSpeed();
+  V2f speed = movement.getSpeed(), position = getPosition();
+  // apply gravity
+  speed += V2f(0.0f, state->gravity);
+  // advance towards the right
+  if(speed.x < 0.0f || position.x > DANGER_THRESHOLD*2)
+    speed.x = (ABS(speed.x) > 0.1f) ? speed.x * 0.9f : 0.0f;
+  else if(!speed.x)
+    speed.x = (speed.x < 0.9f) ? speed.x+0.1f : 1.0f;
+  // apply terminal velocity
   if(speed.y > state->speed_max)
-  {
     speed.y = state->speed_max;
-    movement.setSpeed(speed);
-  }
+  if(speed.x > SPEED_H_MAX)
+    speed.x = SPEED_H_MAX;
+  // update position
+  movement.setSpeed(speed);
+  movement.update(context);
 
   // decrement timers
   if(stun_timer.ticking())
@@ -131,7 +140,7 @@ void AngelThing::setState(State const& new_state)
   else if(new_state == FLAPPING)
   {
       AudioManager::getInstance()->play_sound("flap");
-      movement.setSpeed(V2f(0.0f, -state->speed_max*THRUST));
+      movement.setSpeed(V2f(movement.getSpeed().x, -state->speed_max*THRUST));
       feather_timer.set(FEATHER_INTERVAL);
       /*
       // drop a feather unless victory has occured
@@ -214,7 +223,7 @@ int AngelThing::treatInput(GameState* context)
   {
     if(state == &FALLING)
     {
-      if(feathers.tryWithdraw())
+      if(!input->clicking_previous && feathers.tryWithdraw())
         setState(FLAPPING);
       else
         setState(GLIDING);

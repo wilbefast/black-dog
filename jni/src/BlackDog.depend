@@ -9926,7 +9926,7 @@
 	"SDL_config.h"
 	"SDL_stdinc.h"
 
-1338372375 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/main.cpp
+1339004627 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/main.cpp
 	<stdlib.h>
 	<iostream>
 	"assert.hpp"
@@ -10058,10 +10058,11 @@
 
 1320008324 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/numerise.inl
 
-1332593284 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/file.hpp
+1339074780 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/file.hpp
+	<string>
 	"../platform.hpp"
 
-1331996542 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.hpp
+1339075357 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
 	<map>
@@ -10073,7 +10074,7 @@
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1338846377 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
+1339074938 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
@@ -10085,13 +10086,13 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1332593451 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/file.cpp
+1339074983 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/resources/file.cpp
 	"file.hpp"
 	"SDL.h"
 	"../assert.hpp"
 	"../warn.hpp"
 
-1338846338 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
+1339075768 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
@@ -10102,7 +10103,7 @@
 1332614673 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/BlackDogApplication.hpp
 	"Application.hpp"
 
-1339002368 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.cpp
+1339012837 source:/home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../resources/AudioManager.hpp"
@@ -10110,7 +10111,7 @@
 	"elements/ColliderElement.hpp"
 	"../../scenes/BlackDogState.hpp"
 
-1339000688 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.hpp
+1339012697 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/AngelThing.hpp
 	"Thing.hpp"
 	"../../graphics/Animation.hpp"
 	"elements/AnimatedElement.hpp"

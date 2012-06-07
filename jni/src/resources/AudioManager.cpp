@@ -22,6 +22,9 @@ AudioManager::AudioManager() :
 started(false),
 music(NULL),
 music_file(NULL),
+#ifdef __ANDROID__
+  sdcard_file(NULL),
+#endif // #ifdef __ANDROID__
 sounds()
 {
 }
@@ -79,8 +82,13 @@ int AudioManager::load_music(const char* source_file)
   ASSERT(music_file, source_file); // print the name of the file being opened
 
   #ifdef __ANDROID__
+    // get the name of the file and prefix it with "/sdcard/"
+    /// FIXME -- why doesn't append work on Android?
+    //sdcard_file = (string("/sdcard/").append(source_file)).c_str();
+    sdcard_file = "/sdcard/music.ogg";
+
     // initialise RWops structure from file in SD card
-    FILE* sdcard = fopen("/sdcard/data/music.ogg", "wb");
+    FILE* sdcard = fopen(sdcard_file, "wb");
     ASSERT(sdcard, "Opening file to export music from APK to filesystem");
     SDL_RWops* sdcard_rw = SDL_RWFromFP(sdcard, SDL_TRUE); // autoclose
     ASSERT(sdcard_rw, "Creating SDL_RWops structure from file pointer");
@@ -98,7 +106,7 @@ int AudioManager::load_music(const char* source_file)
     SDL_RWclose(sdcard_rw);
 
     // load the music from the filesystem, not the archive
-    sdcard = fopen("/sdcard/data/music.ogg", "rb");
+    sdcard = fopen(sdcard_file, "rb");
     ASSERT(sdcard, "Opening file to import music from filesystem");
     music_file = SDL_RWFromFP(sdcard, SDL_TRUE); // autoclose
     ASSERT(music_file, "Creating SDL_RWops structure from file pointer");
@@ -150,6 +158,15 @@ void AudioManager::unload_music()
     Mix_FreeMusic(music);
     music = NULL;
   }
+
+  #ifdef __ANDROID__
+  if(sdcard_file)
+  {
+    remove(sdcard_file);
+    //free((char*)sdcard_file);
+    sdcard_file = NULL;
+  }
+  #endif //ifdef __ANDROID__
 }
 
 
