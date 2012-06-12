@@ -5,6 +5,28 @@
 
 #include <iostream>
 
+void draw::rectangle(fRect rect, Colour c)
+{
+  // Specify coordinates to draw
+  GLfloat points[8] = { rect.x, rect.y,
+                      rect.x, rect.y+rect.h,
+                      rect.x+rect.w, rect.y,
+                      rect.x+rect.w, rect.y+rect.h };
+
+  // Start up
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glColor4f(c.r, c.g, c.b, c.a);
+
+  // Draw points
+  glVertexPointer(2, GL_FLOAT, 0, points);
+  glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+  // Shut down
+  glColor4f(1, 1, 1, 1);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glLoadIdentity();
+}
+
 void draw::line(V2f start, V2f end, Colour c, float thickness)
 {
     // Specify coordinates to draw

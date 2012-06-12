@@ -11,7 +11,8 @@ texture(init_texture),
 destination(init_destination),
 source_off(init_source),
 source_on(init_source + V2u(init_source.w,0)),
-pressed(false)
+pressed(false),
+hovered(false)
 {
     correctAspect(init_source, init_destination);
 }
@@ -42,7 +43,7 @@ Button::~Button()
 
 void Button::draw()
 {
-    if(pressed)
+    if(pressed || hovered)
         texture.draw(&source_on, &destination);
     else
         texture.draw(&source_off, &destination);
@@ -59,7 +60,8 @@ bool Button::press(V2f position, bool clicking)
 {
     // switch off button if not touching, otherwise turn or or off based on
     // position on touch.
-    return (pressed = (clicking && contains(position)));
+    hovered = contains(position);
+    return (pressed = (clicking && hovered));
 }
 
 str_id Button::getTag() const

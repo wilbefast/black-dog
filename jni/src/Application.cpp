@@ -152,7 +152,7 @@ int Application::startSDL()
 
 int Application::startGL()
 {
-    glClearColor(0, 0, 0, 255);     // Black background by default
+    glClearColor(0, 0, 0, 1);     // Black background by default
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);

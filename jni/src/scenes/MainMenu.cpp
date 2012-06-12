@@ -1,5 +1,6 @@
 #include "MainMenu.hpp"
 
+#include "../graphics/draw.hpp" // for draw::rectangle
 #include "../global.hpp"
 #include "../warn.hpp"
 #include "../assert.hpp"
@@ -34,7 +35,7 @@ int MainMenu::startup()
     fRect top_third =
       fRect(0.0f, 0.0f, WINDOW_DEFAULT_W, WINDOW_DEFAULT_H / 3.0f);
     // set the area of texture to draw
-    title_src = fRect(0, 0, 320, 150);
+    title_src = fRect(0, 0, 512, 128);
     title_dest = global::viewport;
     // maintain aspect ratio
     title_dest.setRatio(title_src.getRatio());
@@ -50,12 +51,12 @@ int MainMenu::startup()
     fRect low_ninths = mid_ninths + V2f(0, mid_ninths.h);
     // the top and bottom buttons are smaller than the middle one
     top_ninths.stretch_centered(0.7);
-    mid_ninths.stretch_centered(0.8);
+    mid_ninths.stretch_centered(1.2);
     low_ninths.stretch_centered(0.7);
     // set the area of texture to draw (on top of eachother)
-    fRect play_src(0, title_src.h, 160, 70);
+    fRect play_src(0, title_src.h, 256, 128);
     fRect exit_src = play_src + V2f(0, play_src.h);
-    fRect options_src(0, exit_src.y + exit_src.h, 256, 70);
+    fRect options_src = exit_src + V2f(0, exit_src.h);
     // add the buttons to the scene
     buttons.push_back(new Button("play", *texture, top_ninths, play_src));
     buttons.push_back(new Button("options", *texture, mid_ninths, options_src));
@@ -103,6 +104,9 @@ int MainMenu::update(Scene** next)
 
 void MainMenu::draw()
 {
+  // Draw the background colour
+  draw::rectangle(global::viewport, draw::Colour(242, 68, 5));
+
   // draw title
   texture->draw(&title_src, &title_dest);
 

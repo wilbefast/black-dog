@@ -1,6 +1,7 @@
 #ifndef GRAPHICS_HPP_INCLUDED
 #define GRAPHICS_HPP_INCLUDED
 
+#include "../math/Rect.hpp"
 #include "../math/V2.hpp"
 
 #define CIRCLE_N_SEGMENTS 12
@@ -23,6 +24,7 @@ namespace draw
     };
 
     /// FUNCTIONS
+    void rectangle(fRect rect, Colour c = Colour());
     void line(V2f start, V2f end, Colour c = Colour(), float thickness = 1.0f);
     void line_loop(V2f points[], unsigned int n_pts, Colour c = Colour(),
                                                   float thickness = 1.0f);

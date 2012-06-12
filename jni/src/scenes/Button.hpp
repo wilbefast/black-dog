@@ -21,7 +21,7 @@ class Button
     fRect destination;
     fRect source_off;
     fRect source_on;
-    bool pressed;
+    bool pressed, hovered;
 
     /// METHODS
     public:

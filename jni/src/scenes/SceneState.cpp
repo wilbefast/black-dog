@@ -43,13 +43,14 @@ SceneState::Input* SceneState::getInput()
     return &input;
 }
 
-void SceneState::setCursor(V2u new_last_touch, bool new_clicking)
+void SceneState::setCursor(V2u new_cursor_position, bool new_clicking)
 {
     // save the previous state
     input.clicking_previous = input.clicking;
     // set to the new state
+    input.last_hover = new_cursor_position;
     if((input.clicking = new_clicking))
-        input.last_touch = new_last_touch;
+        input.last_touch = new_cursor_position;
 }
 
 str_id SceneState::releasedOnButton()

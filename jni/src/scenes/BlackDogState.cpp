@@ -36,6 +36,9 @@ int BlackDogState::update()
 
 void BlackDogState::draw()
 {
+  // Draw the background colour
+  draw::rectangle(global::viewport, draw::Colour(36, 6, 15));
+
   // Draw the background parallax tunnel
   parallax.draw();
 

@@ -119,6 +119,9 @@ int AudioManager::load_music(const char* source_file)
 
   /// NB - file is NOT closed as music data must be streamed
 
+  /// NB (bis) - the RWops structure 'music_file' will be freed automatically
+  /// when 'music' is closed.
+
 
   // Success !
   return EXIT_SUCCESS;
@@ -149,7 +152,9 @@ void AudioManager::unload_music()
   // Close music stream
   if(music_file)
   {
-    //SDL_RWclose(music_file);
+    if(!music)
+      // this is closed automatically by Mix_FreeMusic
+      SDL_RWclose(music_file);
     music_file = NULL;
   }
 

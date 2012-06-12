@@ -35,7 +35,7 @@ int Scene::update(Scene** next)
 
     // Update buttons based on touch position
     for(ButtonIter i = buttons.begin(); i != buttons.end(); i++)
-        if((*i)->press(state->input.last_touch, state->input.clicking))
+        if((*i)->press(state->input.last_hover, state->input.clicking))
         {
             // Save the first button we're touching and break
             state->input.last_button = (*i);

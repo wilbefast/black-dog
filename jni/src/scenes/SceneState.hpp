@@ -13,7 +13,7 @@ class SceneState
     {
         public:
         // attributes
-        V2u last_touch;
+        V2u last_touch, last_hover;
         bool clicking, clicking_previous;
         Button* last_button;
         // constructor
@@ -48,7 +48,7 @@ class SceneState
     virtual void draw();
     // Accessors
     Input* getInput();
-    void setCursor(V2u new_last_touch, bool new_clicking);
+    void setCursor(V2u new_cursor_position, bool new_clicking);
     str_id releasedOnButton();
     bool newClick() const;
 };

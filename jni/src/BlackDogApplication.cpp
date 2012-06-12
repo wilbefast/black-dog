@@ -37,7 +37,7 @@ int BlackDogApplication::loadResources()
         iRect(0, 65, 96, 64), 3, "wraith_glide") == EXIT_SUCCESS,
         "Creating 'wraith_glide' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
-      iRect(576, 65, 96, 64), 1, "wraith_stun") == EXIT_SUCCESS,
+      iRect(576, 65, 96, 64), 3, "wraith_stun") == EXIT_SUCCESS,
       "Creating 'wraith_stun' animation");
 
   /// 3. Load and play the music track
