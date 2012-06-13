@@ -7,7 +7,7 @@
 
 DogThing::DogThing(V2i _position) :
 Thing(_position, "dog"),
-graphic(this)
+graphic(this, V2f(0,0), V2f(1, 0), GraphicElement::CENTER_Y) // don't center horizontally
 {
   // set initial sprite
   graphic.setSprite(GraphicsManager::getInstance()->
@@ -21,7 +21,7 @@ graphic(this)
 int DogThing::update(GameState* context)
 {
   // mirror the hero's vertical position
-  //position.y = context->getHero()->getPosition().y;
+  position.y = context->getHero()->getPosition().y;
 
   // animate the sprite
   graphic.update(context);

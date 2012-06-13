@@ -5,8 +5,9 @@
 
 // Constructors, destructors
 
-AnimatedElement::AnimatedElement(Thing* init_owner, V2f size, V2f offset) :
-GraphicElement(init_owner, size, offset),
+AnimatedElement::AnimatedElement(Thing* init_owner, V2f size, V2f offset,
+                                char flags) :
+GraphicElement(init_owner, size, offset, flags),
 frame_current(0),
 frame_speed(0)
 {
@@ -28,7 +29,7 @@ bool AnimatedElement::setSprite(Animation* new_sprite, float new_speed)
   // NB - speed is not reset if sprite is the same!
   frame_current = 0;
   frame_speed = new_speed;
-  centreFrame();
+  resetDestination();
 
   // Graphic was indeed changed
   return true;

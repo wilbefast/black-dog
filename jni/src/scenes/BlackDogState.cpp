@@ -14,7 +14,7 @@ obstacle()
   // add the player character
   addThing(new AngelThing(V2i(WINDOW_DEFAULT_W/4, WINDOW_DEFAULT_H/2)));
   // add the dog
-  //addThing(new DogThing(V2i(WINDOW_DEFAULT_W/2, WINDOW_DEFAULT_H/2)));
+  addThing(new DogThing(V2i(0, WINDOW_DEFAULT_H/2)));
 }
 
 /// OVERRIDES GAMESTATE

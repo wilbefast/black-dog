@@ -15,7 +15,8 @@ class AnimatedElement : public GraphicElement
     public:
     // contructors, destructors
     AnimatedElement(Thing* init_owner, V2f size = V2f(0.0f, 0.0f),
-                                      V2f offset = V2f(0.0f, 0.0f));
+                                      V2f offset = V2f(0.0f, 0.0f),
+                                      char flags = CENTER_X|CENTER_Y);
     ~AnimatedElement();
     // accessors
     void setFrame(float new_frame);

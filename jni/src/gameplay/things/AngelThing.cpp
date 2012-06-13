@@ -50,7 +50,7 @@ bool AngelThing::State::operator==(const AngelThing::State& other) const
 AngelThing::AngelThing(V2i _position) :
 Thing(_position, "angel"),
 state(&FALLING),
-graphic(this),
+graphic(this, V2f(96, 48)),
 movement(this, THRUST), // max speed is also THRUST speed
 feathers(this, INIT_FEATHERS),
 stun_timer(this, STR_UNSTUN),
@@ -58,7 +58,7 @@ feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL)
 {
   // set initial sprite
   graphic.setSprite(GraphicsManager::getInstance()->
-                    get_animation("dog_spawn"), 0.1f);
+                    get_animation("wraith_fall"), 0.1f);
 
   // angel is collideable
   body = new ColliderElement(this, V2d(V2d(HITBOX_W, HITBOX_H)));
@@ -75,7 +75,7 @@ void AngelThing::draw()
 int AngelThing::update(GameState* context)
 {
   // collect the result at each step of the way, check for interruptions
-  /*int result = GameState::CONTINUE;
+  int result = GameState::CONTINUE;
 
   // treat input
   result = treatInput(context);
@@ -110,17 +110,17 @@ int AngelThing::update(GameState* context)
   // check for death
   result = checkCollision(context);
   if(result != GameState::CONTINUE)
-    return result;*/
+    return result;
 
   // animate the sprite
   graphic.update(context);
 
   // treat events last of all, as they will be cleared by Thing::update
-  /*for(EventIter i = events.begin();
+  for(EventIter i = events.begin();
       result == GameState::CONTINUE && i != events.end(); i++)
     result = treatEvent(*i);
   if(result != GameState::CONTINUE)
-    return result;*/
+    return result;
 
   // nothing interrupted execution, so continue looping
   return Thing::update(context);
