@@ -12,8 +12,11 @@ private:
 
   /// METHODS
 public:
+  // creation, destruction
+  DogThing(V2i _position);
   // overrides Thing
   int update(GameState*);
+  void draw();
 };
 
 #endif // DOGTHING_HPP_INCLUDED

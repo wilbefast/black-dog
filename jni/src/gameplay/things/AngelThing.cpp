@@ -12,6 +12,9 @@
 
 /// CONSTANTS
 
+// resource caching
+
+// numeric values
 const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
 const float AngelThing::SPEED_H_INC = 0.05f;
@@ -47,14 +50,15 @@ bool AngelThing::State::operator==(const AngelThing::State& other) const
 AngelThing::AngelThing(V2i _position) :
 Thing(_position, "angel"),
 state(&FALLING),
-graphic(this, V2f(SPRITE_W, SPRITE_H)),
+graphic(this),
 movement(this, THRUST), // max speed is also THRUST speed
 feathers(this, INIT_FEATHERS),
 stun_timer(this, STR_UNSTUN),
 feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL)
 {
   // set initial sprite
-  graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_fall"), 0.1f);
+  graphic.setSprite(GraphicsManager::getInstance()->
+                    get_animation("dog_spawn"), 0.1f);
 
   // angel is collideable
   body = new ColliderElement(this, V2d(V2d(HITBOX_W, HITBOX_H)));
@@ -71,7 +75,7 @@ void AngelThing::draw()
 int AngelThing::update(GameState* context)
 {
   // collect the result at each step of the way, check for interruptions
-  int result = GameState::CONTINUE;
+  /*int result = GameState::CONTINUE;
 
   // treat input
   result = treatInput(context);
@@ -106,17 +110,17 @@ int AngelThing::update(GameState* context)
   // check for death
   result = checkCollision(context);
   if(result != GameState::CONTINUE)
-    return result;
+    return result;*/
 
   // animate the sprite
   graphic.update(context);
 
   // treat events last of all, as they will be cleared by Thing::update
-  for(EventIter i = events.begin();
+  /*for(EventIter i = events.begin();
       result == GameState::CONTINUE && i != events.end(); i++)
     result = treatEvent(*i);
   if(result != GameState::CONTINUE)
-    return result;
+    return result;*/
 
   // nothing interrupted execution, so continue looping
   return Thing::update(context);
@@ -132,6 +136,7 @@ void AngelThing::setState(State const& new_state)
     *wraith_fall = GraphicsManager::getInstance()->get_animation("wraith_fall"),
     *wraith_flap = GraphicsManager::getInstance()->get_animation("wraith_flap"),
     *wraith_stun = GraphicsManager::getInstance()->get_animation("wraith_stun");
+
 
   // FALL
   if(new_state == FALLING && state == &GLIDING)
@@ -166,6 +171,11 @@ void AngelThing::setState(State const& new_state)
 
 int AngelThing::treatEvent(ThingEvent* event)
 {
+  // cache animations used by this Thing
+  static Animation
+    *wraith_fall = GraphicsManager::getInstance()->get_animation("wraith_fall"),
+    *wraith_glide = GraphicsManager::getInstance()->get_animation("wraith_glide");
+
   // local variables
   static str_id UNSTUN = numerise(STR_UNSTUN),
                 REFEATHER = numerise(STR_REFEATHER),
@@ -187,9 +197,9 @@ int AngelThing::treatEvent(ThingEvent* event)
   else if (event->getType() == ANIMATION_END)
   {
     if(state == &FALLING)
-      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_fall"), 0.1f);
+      graphic.setSprite(wraith_fall, 0.1f);
     else if (state == &GLIDING)
-      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_glide"), 0.1f);
+      graphic.setSprite(wraith_glide, 0.1f);
   }
 
   // nothing to report

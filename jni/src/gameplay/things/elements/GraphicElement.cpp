@@ -2,11 +2,12 @@
 
 // Constructors, destructors
 
-GraphicElement::GraphicElement(Thing* init_owner, V2f size, V2f _offset) :
+GraphicElement::GraphicElement(Thing* init_owner, V2f _size, V2f _offset) :
 ThingElement(init_owner),
 sprite(NULL),
 destination(size),
 offset(_offset),
+size(_size),
 angle(0)
 {
 }
@@ -31,6 +32,8 @@ bool GraphicElement::setSprite(Graphic* new_sprite)
 
     // Reset everything only if a new Graphic has been selected
     sprite = new_sprite;
+    if(!size)
+      size = sprite->getFrame().getSize();
     centreFrame();
 
     // Graphic was indeed changed
@@ -60,14 +63,11 @@ void GraphicElement::draw()
 
 void GraphicElement::centreFrame()
 {
-    // Use the full frame size
-    V2f frame_size = sprite->getFrame().getSize();
-
     // Centre it
-    offset = -frame_size/2.0f;
-    destination = fRect(owner->getPosition() + offset, frame_size);
+    offset = -size/2.0f;
 
+    destination = fRect(owner->getPosition() + offset, size);
     // Maintain aspect ratio (stretch evenly along)
-    destination.setRatio(sprite->getFrame().getRatio());
+    destination.setRatio(((fRect)sprite->getFrame()).getRatio());
 }
 

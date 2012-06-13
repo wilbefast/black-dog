@@ -1,6 +1,7 @@
 #include "BlackDogState.hpp"
 
 #include "../gameplay/things/AngelThing.hpp"
+#include "../gameplay/things/DogThing.hpp"
 #include "../global.hpp"                          // for viewport
 
 /// CREATION, DESTRUCTION
@@ -10,7 +11,10 @@ GameState(),
 parallax(),
 obstacle()
 {
+  // add the player character
   addThing(new AngelThing(V2i(WINDOW_DEFAULT_W/4, WINDOW_DEFAULT_H/2)));
+  // add the dog
+  //addThing(new DogThing(V2i(WINDOW_DEFAULT_W/2, WINDOW_DEFAULT_H/2)));
 }
 
 /// OVERRIDES GAMESTATE

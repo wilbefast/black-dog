@@ -21,44 +21,43 @@ AnimatedElement::~AnimatedElement()
 
 bool AnimatedElement::setSprite(Animation* new_sprite, float new_speed)
 {
-    // Standard setting operation
-    if(!GraphicElement::setSprite(new_sprite))
-        return false;
+  // Standard setting operation
+  if(!GraphicElement::setSprite(new_sprite))
+      return false;
 
-    // NB - speed is not reset if sprite is the same!
-    frame_current = 0;
-    frame_speed = new_speed;
-    centreFrame();
+  // NB - speed is not reset if sprite is the same!
+  frame_current = 0;
+  frame_speed = new_speed;
+  centreFrame();
 
-    // Graphic was indeed changed
-    return true;
+  // Graphic was indeed changed
+  return true;
 }
 
 void AnimatedElement::setFrame(float new_frame)
 {
-    frame_current = new_frame;
-    loopAnim();
+  frame_current = new_frame;
+  loopAnim();
 }
 
 void AnimatedElement::setRandFrame()
 {
-    // pick random frame
-    frame_current = rand() % ((Animation*)sprite)->getNumFrames();
+  // pick random frame
+  frame_current = rand() % ((Animation*)sprite)->getNumFrames();
 }
 
 void AnimatedElement::loopAnim()
 {
-    // Detect if we're over the maximum number of frames
-    int frame_number = ((Animation*)sprite)->getNumFrames();
+  // Detect if we're over the maximum number of frames
+  int frame_number = ((Animation*)sprite)->getNumFrames();
 
-    if(frame_current >= frame_number)
-    {
-        // Loop animation
-        frame_current -= frame_number;
-        // Signal animation end
-        owner->addEvent(new ThingEvent("animation_end"));
-    }
-
+  if(frame_current >= frame_number)
+  {
+      // Loop animation
+      frame_current -= frame_number;
+      // Signal animation end
+      owner->addEvent(new ThingEvent("animation_end"));
+  }
 }
 
 int AnimatedElement::update(GameState* context)

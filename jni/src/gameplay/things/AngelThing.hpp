@@ -39,8 +39,6 @@ private:
   static const int INIT_FEATHERS = 8;
   static const int FEATHER_INTERVAL = 45;
   static const int STUN_DURATION = 20;
-  static const int SPRITE_W = 32;
-  static const int SPRITE_H = 24;
   static const int HITBOX_W = 8;
   static const int HITBOX_H = 16;
   static const int DEATH_THRESHOLD = 16;

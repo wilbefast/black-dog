@@ -17,6 +17,8 @@ void Animation::init(Texture* init_texture, iRect init_frame, int number_frames)
     // partition strip into frames
     strip = iRect(frame.x, frame.y, frame.w*number_frames, frame.h);
     numFrames = floor((double)strip.w/frame.w);
+
+    cout << "anim: strip="<<strip<<", numFrames="<<numFrames<<endl;
 }
 
 // Accessors
