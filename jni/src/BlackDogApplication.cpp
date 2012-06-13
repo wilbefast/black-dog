@@ -19,26 +19,45 @@ Application(new MainMenu())
 
 int BlackDogApplication::loadResources()
 {
+  /*
+    NB - newer versions of Arrogance Engine features automatic resources loading
+    based on XML descriptor files.
+  */
+
+
   /// 1. Load textures
   ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("menus.png"), "menus")
       == EXIT_SUCCESS, "Loading menu graphics texture");
-  ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("sheet.png"), "sprites")
+  ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("wraith.png"), "wraith")
       == EXIT_SUCCESS, "Loading gameplay sprite-sheet texture");
+  ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("dog.png"), "dog")
+    == EXIT_SUCCESS, "Loading gameplay sprite-sheet texture");
 
 
   /// 2. Create animations
-  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+  ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
         iRect(0, 1, 96, 64), 6, "wraith_flap") == EXIT_SUCCESS,
         "Creating wraith_flap animation");
-  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+  ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
         iRect(288, 65, 96, 64), 3, "wraith_fall") == EXIT_SUCCESS,
         "Creating 'wraith_fall' animation");
-  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+  ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
         iRect(0, 65, 96, 64), 3, "wraith_glide") == EXIT_SUCCESS,
         "Creating 'wraith_glide' animation");
-  ASSERT(GraphicsManager::getInstance()->create_animation("sprites",
+  ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
       iRect(576, 65, 96, 64), 3, "wraith_stun") == EXIT_SUCCESS,
       "Creating 'wraith_stun' animation");
+
+  ASSERT(GraphicsManager::getInstance()->create_animation("dog",
+    iRect(0, 0, 70, 128), 10, "dog_spawn") == EXIT_SUCCESS,
+    "Creating 'dog_spawn' animation");
+  ASSERT(GraphicsManager::getInstance()->create_animation("dog",
+    iRect(0, 70, 70, 128), 5, "dog_idle") == EXIT_SUCCESS,
+    "Creating 'dog_idle' animation");
+  ASSERT(GraphicsManager::getInstance()->create_animation("dog",
+    iRect(350, 70, 70, 128), 1, "dob_bite") == EXIT_SUCCESS,
+    "Creating 'dob_bite' animation");
+
 
   /// 3. Load and play the music track
   ASSERT(AudioManager::getInstance()->load_music(GET_ASSET("music.ogg"))

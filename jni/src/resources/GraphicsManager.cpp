@@ -81,12 +81,20 @@ int GraphicsManager::load_texture(const char* source_file, const char* name)
 
 Texture* GraphicsManager::get_texture(const char* name)
 {
+  Texture* result = get_texture(numerise(name));
+  if(!result)
+    WARN("GraphicsManager::get_texture invalid identifier", name);
+
+  return result;
+}
+
+Texture* GraphicsManager::get_texture(str_id id)
+{
   // search for the resource
-  str_id hash = numerise(name);
-  TextureI i = textures.find(hash);
+  TextureI i = textures.find(id);
   // make sure that it is found
   if(i == textures.end())
-    WARN_RTN("GraphicsManager::get_texture invalid identifier", name, NULL);
+    return NULL;
 
   // return the texture we recovered
   return (*i).second;
@@ -116,12 +124,20 @@ int GraphicsManager::create_animation(const char* texture_name,
 
 Animation* GraphicsManager::get_animation(const char* name)
 {
+  Animation* result = get_animation(numerise(name));
+  if(!result)
+    WARN("GraphicsManager::get_animation invalid identifier", name);
+
+  return result;
+}
+
+Animation* GraphicsManager::get_animation(str_id id)
+{
   // search for the resource
-  str_id hash = numerise(name);
-  AnimationI i = animations.find(hash);
+  AnimationI i = animations.find(id);
   // make sure that it is found
   if(i == animations.end())
-    WARN_RTN("GraphicsManager::get_animation invalid identifier", name, NULL);
+    return NULL;
 
   // return the animation we recovered
   return (*i).second;

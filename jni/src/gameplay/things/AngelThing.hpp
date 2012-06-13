@@ -51,7 +51,6 @@ private:
 
   /// ATTRIBUTES
 private:
-  // true attrbiutes
   State const* state;
   AnimatedElement graphic;
   MovementElement movement;

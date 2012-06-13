@@ -127,44 +127,38 @@ int AngelThing::update(GameState* context)
 
 void AngelThing::setState(State const& new_state)
 {
+  // cache animations used by this Thing
+  static Animation
+    *wraith_fall = GraphicsManager::getInstance()->get_animation("wraith_fall"),
+    *wraith_flap = GraphicsManager::getInstance()->get_animation("wraith_flap"),
+    *wraith_stun = GraphicsManager::getInstance()->get_animation("wraith_stun");
 
+  // FALL
   if(new_state == FALLING && state == &GLIDING)
-  {
-    graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_fall"), 0.1f);
-  }
+    graphic.setSprite(wraith_fall, 0.1f);
 
+  // FLAP
   else if(new_state == FLAPPING)
   {
       AudioManager::getInstance()->play_sound("flap");
       movement.setSpeed(V2f(movement.getSpeed().x, -state->speed_max*THRUST));
       feather_timer.set(FEATHER_INTERVAL);
-      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_flap"), 0.1f);
+      graphic.setSprite(wraith_flap, 0.1f);
       graphic.setFrame(0.0f);
   }
 
-  else if(new_state == GLIDING)
-  {
-  }
-
+  // STUNNED
   else if(new_state == STUNNED)
   {
       stun_timer.set(STUN_DURATION);
       feather_timer.set(FEATHER_INTERVAL);
-      graphic.setSprite(GraphicsManager::getInstance()->get_animation("wraith_stun"), 0.1f);
+      graphic.setSprite(wraith_stun, 0.1f);
       AudioManager::getInstance()->play_sound("scream");
   }
 
+  // DEAD
   else if(new_state == DEAD)
-  {
     AudioManager::getInstance()->play_sound("swallow");
-    /*
-      draw_weights = false;
-      black_dog.setSubimage(15);
-      pos[0] = 48;
-		  wings[i].setSubimage(3.0);
-		  wings[i].setSpeed(0.0);
-    */
-  }
 
   // overwrite the previous start at the very end!
   state = &new_state;

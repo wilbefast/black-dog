@@ -51,6 +51,7 @@ public:
   // sound
   int load_sound(const char* source_file, const char* name);
   int play_sound(const char* name);
+  int play_sound(str_id id);
 };
 
 #endif // AUDIOMANAGER_HPP_INCLUDED

@@ -193,12 +193,20 @@ int AudioManager::load_sound(const char* source_file, const char* name)
 
 int AudioManager::play_sound(const char* name)
 {
+  // hash the string to find the resource
+  if(play_sound(numerise(name)) == EXIT_FAILURE)
+    WARN_RTN("AudioManager::play_sound invalid identifier", name, EXIT_FAILURE);
+
+  return EXIT_SUCCESS;
+}
+
+int AudioManager::play_sound(str_id id)
+{
   // search for the resource
-  str_id hash = numerise(name);
-  SoundI i = sounds.find(hash);
+  SoundI i = sounds.find(id);
   // make sure that it is found
   if(i == sounds.end())
-    WARN_RTN("AudioManager::play_sound invalid identifier", name, EXIT_FAILURE);
+    return EXIT_FAILURE;
   // attempt to play the sound if it is
   if(Mix_PlayChannel(-1, (*i).second, 0) == -1)
     WARN_RTN("AudioManager::play_sound", Mix_GetError(), EXIT_FAILURE);

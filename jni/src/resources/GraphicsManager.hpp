@@ -40,10 +40,12 @@ public:
   // textures
   int load_texture(const char* source_file, const char* name);
   Texture* get_texture(const char* name);
+  Texture* get_texture(str_id id);
   // animations
   int create_animation(const char* texture_name,
                       iRect frame, int n_frames, const char* name);
   Animation* get_animation(const char* name);
+  Animation* get_animation(str_id id);
 };
 
 #endif // GRAPHICSMANAGER_HPP_INCLUDED

@@ -56,6 +56,8 @@
 		<Unit filename="gameplay/things/AngelThing.cpp" />
 		<Unit filename="gameplay/things/AngelThing.hpp" />
 		<Unit filename="gameplay/things/CloakThing.hpp" />
+		<Unit filename="gameplay/things/DogThing.cpp" />
+		<Unit filename="gameplay/things/DogThing.hpp" />
 		<Unit filename="gameplay/things/FeatherThing.hpp" />
 		<Unit filename="gameplay/things/Thing.cpp" />
 		<Unit filename="gameplay/things/Thing.hpp" />
