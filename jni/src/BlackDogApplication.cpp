@@ -36,26 +36,26 @@ int BlackDogApplication::loadResources()
 
   /// 2. Create animations
   ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
-        iRect(0, 1, 96, 64), 6, "wraith_flap") == EXIT_SUCCESS,
+        iRect(1, 0, 96, 64), 6, "wraith_flap") == EXIT_SUCCESS,
         "Creating wraith_flap animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
-        iRect(288, 65, 96, 64), 3, "wraith_fall") == EXIT_SUCCESS,
+        iRect(289, 64, 96, 64), 3, "wraith_fall") == EXIT_SUCCESS,
         "Creating 'wraith_fall' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
-        iRect(0, 65, 96, 64), 3, "wraith_glide") == EXIT_SUCCESS,
+        iRect(1, 64, 96, 64), 3, "wraith_glide") == EXIT_SUCCESS,
         "Creating 'wraith_glide' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
-      iRect(576, 65, 96, 64), 3, "wraith_stun") == EXIT_SUCCESS,
+      iRect(577, 64, 96, 64), 3, "wraith_stun") == EXIT_SUCCESS,
       "Creating 'wraith_stun' animation");
 
   ASSERT(GraphicsManager::getInstance()->create_animation("dog",
     iRect(0, 0, 70, 128), 10, "dog_spawn") == EXIT_SUCCESS,
     "Creating 'dog_spawn' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("dog",
-    iRect(0, 70, 70, 128), 5, "dog_idle") == EXIT_SUCCESS,
+    iRect(0, 128, 70, 128), 5, "dog_idle") == EXIT_SUCCESS,
     "Creating 'dog_idle' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("dog",
-    iRect(350, 70, 70, 128), 1, "dob_bite") == EXIT_SUCCESS,
+    iRect(350, 128, 70, 128), 1, "dog_bite") == EXIT_SUCCESS,
     "Creating 'dob_bite' animation");
 
 
@@ -82,6 +82,10 @@ int BlackDogApplication::loadResources()
   ASSERT(AudioManager::getInstance()->
   load_sound(GET_ASSET("swallow.wav"), "swallow") == EXIT_SUCCESS,
   "Loading 'swallow' sound");
+
+  ASSERT(AudioManager::getInstance()->
+  load_sound(GET_ASSET("slime.wav"), "slime") == EXIT_SUCCESS,
+  "Loading 'slime' sound");
 
 
   /// 5. No problems, return success code!

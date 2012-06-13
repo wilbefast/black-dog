@@ -43,9 +43,8 @@ private:
   static const int SPRITE_H = 54;
   static const int HITBOX_W = 8;
   static const int HITBOX_H = 16;
-  static const int DEATH_THRESHOLD = 16;
-  static const int DANGER_THRESHOLD = DEATH_THRESHOLD*4;
   static const int MAX_SNAP = 32;
+  static const int MAX_X = 256;
   // states
   static const State FLAPPING, GLIDING, FALLING, STUNNED, DEAD;
 
@@ -64,6 +63,8 @@ public:
   // overrides
   void draw();
   int update(GameState* context);
+  // query
+  V2f getPrevPosition() const;
 
   /// SUBROUTINES
 private:

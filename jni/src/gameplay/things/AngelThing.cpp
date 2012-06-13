@@ -9,6 +9,7 @@
 #define STR_UNSTUN "unstun"
 #define STR_REFEATHER "refeather"
 #define STR_ANIMATION_END "animation_end"
+#define STR_DEATH "death"
 
 /// CONSTANTS
 
@@ -88,7 +89,7 @@ int AngelThing::update(GameState* context)
   // apply gravity
   speed += V2f(0.0f, state->gravity);
   // advance towards the right
-  if(speed.x < 0.0f || position.x > DANGER_THRESHOLD*2)
+  if(speed.x < 0.0f || position.x > MAX_X)
     speed.x = (ABS(speed.x) > 0.1f) ? speed.x * 0.9f : 0.0f;
   else if(!speed.x)
     speed.x = (speed.x < 0.9f) ? speed.x+0.1f : 1.0f;
@@ -124,6 +125,13 @@ int AngelThing::update(GameState* context)
 
   // nothing interrupted execution, so continue looping
   return Thing::update(context);
+}
+
+/// QUERY
+
+V2f AngelThing::getPrevPosition() const
+{
+  return movement.getPrevPos();
 }
 
 
@@ -179,7 +187,8 @@ int AngelThing::treatEvent(ThingEvent* event)
   // local variables
   static str_id UNSTUN = numerise(STR_UNSTUN),
                 REFEATHER = numerise(STR_REFEATHER),
-                ANIMATION_END = numerise(STR_ANIMATION_END);
+                ANIMATION_END = numerise(STR_ANIMATION_END),
+                DEATH = numerise(STR_DEATH);
 
   // stun duration finished event
   if(event->getType() == UNSTUN)
@@ -200,6 +209,13 @@ int AngelThing::treatEvent(ThingEvent* event)
       graphic.setSprite(wraith_fall, 0.1f);
     else if (state == &GLIDING)
       graphic.setSprite(wraith_glide, 0.1f);
+  }
+
+  // death
+  else if (event->getType() == DEATH)
+  {
+    setState(DEAD);
+    return GameState::LOSE_LEVEL;
   }
 
   // nothing to report
@@ -252,13 +268,6 @@ int AngelThing::checkCollision(GameState* context)
   // local variables
   const TunnelFG* obstactle = ((BlackDogState*)context)->getObstacle();
   fRect hitbox = body->getOffsetBox();
-
-  // check for death (too far to the left of the screen)
-  if(hitbox.x < DEATH_THRESHOLD)
-  {
-    setState(DEAD);
-    return GameState::LOSE_LEVEL;
-  }
 
   // check for collisions with the tunnel
   int collision = obstactle->collidingRect(hitbox), prev_collision = 0;

@@ -48,21 +48,25 @@ bool GraphicElement::setSprite(Graphic* new_sprite)
 
 int GraphicElement::update(GameState* context)
 {
-    // Move destination rectangle to position of object
-    destination.setPosition(owner->getPosition() + offset);
+  // Move destination rectangle to position of object
+  destination.setPosition(owner->getPosition() + offset);
 
-    // No interruption
-    return SceneState::CONTINUE;
+  // No interruption
+  return SceneState::CONTINUE;
 }
 
 void GraphicElement::draw()
 {
-    // Get the source rectangle by cutting out the appropriate frame
-    static fRect source;
-    source = sprite->getFrame();
+  // Break immediately if nothing has been initialised
+  if(!sprite)
+    return;
 
-    // Draw the graphic
-    sprite->getTexture()->draw(&source, &destination, angle);
+  // Get the source rectangle by cutting out the appropriate frame
+  static fRect source;
+  source = sprite->getFrame();
+
+  // Draw the graphic
+  sprite->getTexture()->draw(&source, &destination, angle);
 }
 
 // Subroutines

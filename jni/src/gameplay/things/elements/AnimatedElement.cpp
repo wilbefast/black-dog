@@ -24,11 +24,12 @@ bool AnimatedElement::setSprite(Animation* new_sprite, float new_speed)
 {
   // Standard setting operation
   if(!GraphicElement::setSprite(new_sprite))
-      return false;
+      ;
+      //return false;
+      // NB - removed as speed is not reset if sprite is the same!
 
-  // NB - speed is not reset if sprite is the same!
-  frame_current = 0;
   frame_speed = new_speed;
+  frame_current = (new_speed >= 0) ? 0 : ((Animation*)sprite)->getNumFrames()-1;
   resetDestination();
 
   // Graphic was indeed changed
@@ -49,13 +50,17 @@ void AnimatedElement::setRandFrame()
 
 void AnimatedElement::loopAnim()
 {
+  // Break immediately if nothing has been initialised
+  if(!sprite)
+    return;
+
   // Detect if we're over the maximum number of frames
   int frame_number = ((Animation*)sprite)->getNumFrames();
 
-  if(frame_current >= frame_number)
+  if(frame_current >= frame_number || frame_current < 0)
   {
       // Loop animation
-      frame_current -= frame_number;
+      frame_current += (frame_current < 0) ? frame_number : -frame_number;
       // Signal animation end
       owner->addEvent(new ThingEvent("animation_end"));
   }
@@ -76,10 +81,14 @@ int AnimatedElement::update(GameState* context)
 
 void AnimatedElement::draw()
 {
-    // Get the source rectangle by cutting out the appropriate frame
-    static fRect source;
-    source = ((Animation*)sprite)->getFrame(frame_current);
+  // Break immediately if nothing has been initialised
+  if(!sprite)
+    return;
 
-    // Draw the graphic
-    sprite->getTexture()->draw(&source, &destination, angle);
+  // Get the source rectangle by cutting out the appropriate frame
+  static fRect source;
+  source = ((Animation*)sprite)->getFrame(frame_current);
+
+  // Draw the graphic
+  sprite->getTexture()->draw(&source, &destination, angle);
 }
