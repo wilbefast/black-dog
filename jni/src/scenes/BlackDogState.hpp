@@ -25,6 +25,11 @@ public:
   void draw();
   // query
   const TunnelFG* getObstacle() const;
+
+  /// SUBROUTINES
+private:
+  void draw_feather_ui();
+  void draw_progress_ui();
 };
 
 #endif // BLACKDOGSTATE_HPP_INCLUDED

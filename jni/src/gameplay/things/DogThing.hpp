@@ -9,7 +9,7 @@ class DogThing : public Thing
 private:
   static const int DEATH_THRESHOLD = 32;
   static const int DANGER_THRESHOLD = DEATH_THRESHOLD*4;
-  static const int SAFETY_THRESHOLD = DANGER_THRESHOLD*1.5f;
+  static const int SAFETY_THRESHOLD = DANGER_THRESHOLD*1.1f;
 
   /// NESTING
 private:

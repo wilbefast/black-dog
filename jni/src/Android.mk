@@ -26,6 +26,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   gameplay/things/events/CollisionEvent.cpp		                \
   gameplay/things/events/ThingEvent.cpp                       \
   gameplay/things/AngelThing.cpp				                      \
+  gameplay/things/DogThing.cpp				                      \
   gameplay/things/Thing.cpp				                            \
   gameplay/Tunnel.cpp					                                \
   gameplay/TunnelBG.cpp					                              \

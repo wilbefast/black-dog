@@ -30,21 +30,21 @@ public:
   };
 
   /// CONSTANTS
-private:
+public:
   // numeric constants
   static const float THRUST;        // vertical speed of flapping wings
   static const float SPEED_H_INC;   // horizontal speed towards the right
   static const float SPEED_H_MAX;
   static const float FRICTION;
-  static const int INIT_FEATHERS = 8;
-  static const int FEATHER_INTERVAL = 45;
+  static const int MAX_FEATHERS = 8;
+  static const int FEATHER_INTERVAL = 52;
   static const int STUN_DURATION = 20;
   static const int SPRITE_W = 112;
   static const int SPRITE_H = 54;
   static const int HITBOX_W = 8;
   static const int HITBOX_H = 16;
   static const int MAX_SNAP = 32;
-  static const int MAX_X = 256;
+  //static const int MAX_X = 256;
   // states
   static const State FLAPPING, GLIDING, FALLING, STUNNED, DEAD;
 
@@ -55,6 +55,7 @@ private:
   MovementElement movement;
   ResourceElement feathers;
   TimerElement stun_timer, feather_timer;
+  float furthest_x;
 
   /// METHODS
 public:
@@ -65,6 +66,8 @@ public:
   int update(GameState* context);
   // query
   V2f getPrevPosition() const;
+  int countFeathers() const;
+  float getFurthestX() const;
 
   /// SUBROUTINES
 private:
@@ -75,386 +78,3 @@ private:
 };
 
 #endif // ANGELTHING_HPP_INCLUDED
-
-/*
-
-function Player(init_x, init_y)
-{
-
-    /// METHODS (PUBLIC)
-
-    this.drawWeights = function(b) { draw_weights = b; }
-
-    this.setVictory = function()
-    {
-	play_snd("cloth.wav");
-    	victory = true;
-    	body = new AnimationCanvas(Player.anim_body_end, [64, 64], 0.2);
-    }
-
-    this.countFeathersLeft = function() { return feathers_left; }
-
-    this.makeWeight = function()
-    {
-    	return new Weight([pos[0], pos[1]+Player.SIZE[1]/3 ]);
-    }
-
-    this.makeCloak = function()
-    {
-    	return new Cloak([pos[0], pos[1] ]);
-    }
-
-    this.makeFeather = function()
-    {
-    	if(feathers_left)
-    	{
-    		droppingFeather --;
-    	 	feathers_left -= 1;
-    	 	var x = pos[0]-16 + Math.random()*droppingFeather*32;
-    	 	var y = pos[1]-16 + Math.random()*droppingFeather*16;
-
-    		return new Feather([x, y]);
-    	}
-    	else
-    		droppingFeather = 0;
-    }
-
-    // is the angel going up (true) or down (false)?
-    this.setRise = function(new_rise) { rise = new_rise; }
-
-    this.draw = function()
-    {
-        // draw body between wings
-        wings[1].draw(pos);
-        body.draw(pos);
-	if(draw_weights)
-	  weights.draw(pos);
-        wings[0].draw(pos);
-
-	// draw the black dog
-        if(pos[0] < Player.DANGER_ZONE || black_dog.getSpeed() != 0.0)
-		black_dog.draw([35, pos[1]]);
-    }
-
-    this.update = function(tunnel)
-    {
-        // un-stun after a certain duration
-        if(stun_timer == 0)
-        {
-            setState(Player.EState.FALL);
-            stun_timer = -1;
-
-        }
-        else if(stun_timer > 0)
-            stun_timer -= 1;
-
-
-    	// deal with input and physics
-        control();
-        move();
-
-	// check for death
-        if(pos[0] < Player.DEATH_ZONE)
-	{
-	    setState(Player.EState.DIE);
-	    return Player.EUpdateRes.DEATH;
-	}
-        // otherwise deal with other stuff
-
-	//animate both wings
-        for(i=0; i<2; i++)
-            wings[i].animate();
-        body.animate();
-	weights.animate();
-
-	// animate the black dog!
-	animateDog();
-
-        // recover feathers over time
-        regenerate();
-
-        // check for collisions
-	var coltop = isCollidingTop(tunnel),
-	    colbot = isCollidingBottom(tunnel);
-        if(!victory && (coltop || colbot))
-        {
-        	var delta = coltop ? -1 : 1;
-		// snap out of contact
-		var snap = 32;	// max snap amount
-		while(isColliding(tunnel) && snap > 0)
-		{
-		  pos[0] -= 1;
-		  pos[1] -= 2*delta;
-		  snap--;
-		}
-		// bounce away
-		speed[0] = -5;
-		speed[1] = (delta < 0) ? 2 : -7;
-		// set for stun (teehee)
-		setState(Player.EState.STUN);
-
-        }
-
-        // if we need to drop a feather let the game know
-        if(droppingFeather > 0)
-        	return Player.EUpdateRes.FEATHER;
-
-	// other return the standard return code
-        return Player.EUpdateRes.CONTINUE;
-    }
-
-    /// METHODS (PRIVATE)
-
-    function isCollidingBottom(tunnel)
-    {
-      return !tunnel.contains(pos[0], pos[1] + Player.SIZE[1]/8);
-    }
-
-    function isCollidingTop(tunnel)
-    {
-      return !tunnel.contains(pos[0], pos[1] - Player.SIZE[1]/8);
-
-    }
-
-    function isColliding(tunnel)
-    {
-      return (isCollidingTop(tunnel) || isCollidingBottom(tunnel));
-    }
-
-    function setState(new_state)
-    {
-      // undo all "stop next"s for animations
-      for(i=0; i<2; i++)
-	wings[i].stopNext(-1);
-
-
-        switch(new_state.id)
-        {
-            case Player.EState.FALL.id:
-		for(i=0; i<2; i++)
-		{
-		  if(wings[0].getSpeed() == 0.0)
-		    wings[i].setSubimage(0.0);
-		  else
-		    wings[i].stopNext(0);
-		}
-                break;
-
-
-
-            case Player.EState.FLAP.id:
-		// boost upwards
-		play_snd("flap.wav");
-		speed[1] = -Player.THRUST;
-		// reset feather regeneration timer
-		feather_timer = Player.FEATHER_INTERVAL;
-
-		// drop a feather unless victory has occured
-		if(!victory)
-		      droppingFeather++;
-		// set animation
-                for(i=0; i<2; i++)
-                {
-		    wings[i].setSubimage(0.0);
-                    wings[i].setSpeed(0.2);
-                }
-                break;
-
-
-            case Player.EState.GLIDE.id:
-                for(i=0; i<2; i++)
-                {
-                    wings[i].setSpeed(0.0);
-                    wings[i].setSubimage(6.0);
-                }
-                break;
-
-
-            case Player.EState.STUN.id:
-		stun_timer = Player.STUN_DURATION;
-		feather_timer = Player.FEATHER_INTERVAL;
-		for(i=0; i<2; i++)
-		  {
-		    wings[i].setSubimage(3.0);
-		    wings[i].setSpeed(0.0);
-		  }
-		if(state.id != new_state.id)
-		{
-		  droppingFeather += Player.STUN_FEATHERS;
-		  play_snd("scream.wav");
-		}
-		break;
-
-	    case Player.EState.DIE.id:
-	      draw_weights = false;
-	      play_snd("swallow.wav");
-	      black_dog.setSubimage(15);
-	      pos[0] = 48;
-	      for(i=0; i<2; i++)
-	      {
-		  wings[i].setSubimage(3.0);
-		  wings[i].setSpeed(0.0);
-	      }
-	      break;
-
-            default:
-                break;
-        }
-
-        // overwrite the previous start at the very end!
-        state = new_state;
-    }
-
-    function control()
-    {
-        switch(state.id)
-        {
-            case Player.EState.FALL.id:
-		// try to rise up from fall
-                if(rise)
-                {
-                    // check if feathers remain
-                    if(feathers_left > 0)
-                        // flap wings if possible
-                        setState(Player.EState.FLAP);
-                    else
-			// otherwise assume glide
-                        setState(Player.EState.GLIDE);
-                }
-
-            case Player.EState.GLIDE.id:
-		// glide turns to fall if mouse is released
-                if(!rise)
-                    setState(Player.EState.FALL);
-
-
-                break;
-
-            case Player.EState.FLAP.id:
-            	// if falling currently
-                if(speed[1] > 0.0)
-                {
-		    // flap turn to glide if holding down click/touch
-                    if(rise)
-                        setState(Player.EState.GLIDE);
-		    // if released it turns into a fall
-                    else
-                        setState(Player.EState.FALL);
-                }
-                // if rising currently and not trying to rise higher
-                else if(!rise)
-                    // dampened upward speed (smaller boosts for short clicks)
-                    speed[1] += Player.FRICTION;
-                break;
-
-            default:
-                break;
-
-        }
-    }
-
-
-    function animateDog()
-    {
-	// local variables
-        var breath_start = 11, breath_end = 14,
-		sub = black_dog.getSubimage();
-
-	// if not, check for danger: show dog if in the "dange'ah' zo'own'!"
-	if(pos[0] < Player.DANGER_ZONE && !victory)
-	{
-	    // play spawn sound
-	    if(pos_prev[0] >= Player.DANGER_ZONE)
-	      play_snd("slime.wav");
-
-	    // we want the dog to breath in and out when it arrives
-	    if(sub <= breath_start+0.6)
-		black_dog.setSpeed(0.2);
-
-	    else if(sub >= breath_end+0.4)
-	    {
-		black_dog.setSpeed(-0.2);
-		black_dog.stopNext(0);
-	    }
-	}
-
-	// if not,hide the dog, as the danger has passed
-	else
-	{
-	  if(!victory && pos_prev[0] < Player.DANGER_ZONE)
-	      play_snd("slime.wav");
-
-	  if (black_dog.getSpeed() > 0.0)
-	  {
-	      black_dog.setSpeed(-0.2);
-	      black_dog.stopNext(0);
-	  }
-	}
-
-	// finally: do your thing!
-	black_dog.animate();
-    }
-
-    function move()
-    {
-      // save previous position
-      for(i=0; i<2; i++) pos_prev[i] = pos[i];
-
-        // accelerate to terminal velocity
-        speed[1] += state.gravity;
-
-        // technically horizontal speed is not actually used... for now
-        if(speed[1] > state.max_speed)
-            speed[1] = state.max_speed;
-        // move forward normally
-        if(!victory)
-	{
-		pos[1] += speed[1];
-	    	pos[0] += speed[0];
-	    	if(speed[0] < 0 || pos[0] > canvas.width/3)
-	    		speed[0] = (Math.abs(speed[0]) > 0.1) ? speed[0]*0.9 : 0.0;
-	    	else if(speed[0] == 0.0)
-	    		speed[0] = (speed[0] < 0.9) ? speed[0]+0.1 : 1.0;
-	}
-	// fixed movement for end game
-        else
-        {
-		// move away from dog
-		if(pos[0] < canvas.width/4)
-			pos[0] += 1;
-
-		// move to center of screen vertically
-        	var delta = pos[1] - canvas.height/2;
-        	if(Math.abs(delta) < 8)
-        		return;
-
-        	var side = (delta > 0) ? -1 : 1;
-        	pos[1] += side;
-
-
-
-
-        }
-
-    }
-
-
-    function regenerate()
-    {
-    	// recover feathers
-        if(feathers_left != Player.INIT_FEATHERS)
-        {
-	        if(feather_timer == 0)
-	        {
-	        	feather_timer = Player.FEATHER_INTERVAL;
-	        	feathers_left++;
-	        }
-	        else
-	        	feather_timer--;
-        }
-    }
-
-
-}
-
-*/

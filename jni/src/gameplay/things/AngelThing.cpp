@@ -53,9 +53,10 @@ Thing(_position, "angel"),
 state(&FALLING),
 graphic(this, V2f(96, 48)),
 movement(this, THRUST), // max speed is also THRUST speed
-feathers(this, INIT_FEATHERS),
+feathers(this, MAX_FEATHERS),
 stun_timer(this, STR_UNSTUN),
-feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL)
+feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL),
+furthest_x(_position.x)
 {
   // set initial sprite
   graphic.setSprite(GraphicsManager::getInstance()->
@@ -83,13 +84,12 @@ int AngelThing::update(GameState* context)
   if(result != GameState::CONTINUE)
     return result;
 
-
   // move based on input and physics
   V2f speed = movement.getSpeed(), position = getPosition();
   // apply gravity
   speed += V2f(0.0f, state->gravity);
   // advance towards the right
-  if(speed.x < 0.0f || position.x > MAX_X)
+  if(speed.x < 0.0f) // || position.x > MAX_X)
     speed.x = (ABS(speed.x) > 0.1f) ? speed.x * 0.9f : 0.0f;
   else if(!speed.x)
     speed.x = (speed.x < 0.9f) ? speed.x+0.1f : 1.0f;
@@ -101,6 +101,9 @@ int AngelThing::update(GameState* context)
   // update position
   movement.setSpeed(speed);
   movement.update(context);
+  // update best progress so far
+  if(position.x > furthest_x)
+    furthest_x = position.x;
 
   // decrement timers
   if(stun_timer.ticking())
@@ -132,6 +135,16 @@ int AngelThing::update(GameState* context)
 V2f AngelThing::getPrevPosition() const
 {
   return movement.getPrevPos();
+}
+
+int AngelThing::countFeathers() const
+{
+  return feathers.getBalance();
+}
+
+float AngelThing::getFurthestX() const
+{
+  return furthest_x;
 }
 
 

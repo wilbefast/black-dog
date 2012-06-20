@@ -9,16 +9,23 @@ draw::Colour TunnelFG::COLOUR_LINE(44, 0, 0);    // very dark red
 
 TunnelFG::TunnelFG() :
 Tunnel(DEFAULT_SPEED),
-middle_y(WINDOW_DEFAULT_H / 2),
 difficulty(0.2f)
 {
-		// randomise initial values -- must be done AFTER pseudo-constants
-		for (int i = 0; i < N_PTS; i++)
-			new_height(i);
+  // randomise initial values
+  for (int i = 0; i < N_PTS; i++)
+  {
+    middle_y[i] = WINDOW_DEFAULT_H / 2;
+    new_height(i);
+  }
 
-    // generate initial meshes (triangulate polygons defined by height maps)
-    mesh_above.bake(above);
-    mesh_below.bake(below);
+  // generate initial meshes (triangulate polygons defined by height maps)
+  mesh_above.bake(above);
+  mesh_below.bake(below);
+}
+
+float TunnelFG::x_to_middle(float x)
+{
+  return x_to_height(x, middle_y);
 }
 
 
@@ -48,9 +55,9 @@ void TunnelFG::new_height(unsigned int i)
   float girth = (float) MAX(MIN_GIRTH, BASE_GIRTH * (1.0 - difficulty));
 
   // change middle
-  lower = MAX(MIN_H + girth/2, middle_y - delta);
-  upper = MIN(MAX_H - girth/2, middle_y + delta);
-  middle_y = RAND_BETWEEN(lower, upper);
+  lower = MAX(MIN_H + girth/2, middle_y[i] - delta);
+  upper = MIN(MAX_H - girth/2, middle_y[i] + delta);
+  middle_y[i] = RAND_BETWEEN(lower, upper);
 
   // avoid sharp changes!
   int prev_i = (i == 0) ? (N_PTS - 1) : i - 1;
@@ -58,11 +65,11 @@ void TunnelFG::new_height(unsigned int i)
 
   // change top
   lower = MAX(MIN_H, prev_above - delta);
-  upper = MIN(prev_above + delta, middle_y - girth / 2);
+  upper = MIN(prev_above + delta, middle_y[i] - girth / 2);
   above[i] = RAND_BETWEEN(lower, upper);
 
   // change bottom
-  lower = MAX(middle_y + girth / 2, prev_below - delta);
+  lower = MAX(middle_y[i] + girth / 2, prev_below - delta);
   upper = MIN(MAX_H, prev_below + delta);
   below[i] = RAND_BETWEEN(lower, upper);
 }

@@ -22,12 +22,13 @@ private:
 	/// ATTRIBUTES
 private:
 	// height of the middle of the tunnel
-  float middle_y;
+  float middle_y[N_PTS];
 	// the current difficulty in [0, 1]
   float difficulty;
   /// METHODS
 public:
   TunnelFG();
+  float x_to_middle(float x);
 
 	/// OVERRIDES
 public:
