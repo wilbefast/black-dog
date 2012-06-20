@@ -7,7 +7,7 @@
 
 DogThing::DogThing(V2i _position) :
 Thing(_position, "dog"),
-graphic(this, V2f(0,0), V2f(0, 0), GraphicElement::CENTER_Y), // don't center horizontally
+graphic(this, V2f(0,0), V2f(0, 0), GraphicIncarnation::CENTER_Y), // don't center horizontally
 state(OFFSCREEN)
 {
 }

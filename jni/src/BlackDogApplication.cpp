@@ -51,6 +51,10 @@ int BlackDogApplication::loadResources()
       iRect(928, 0, 32, 32), 2, "feather_ui") == EXIT_SUCCESS,
       "Creating 'feather_ui' animation");
 
+  ASSERT(GraphicsManager::getInstance()->create_animation("wraith",
+    iRect(864, 64, 32, 32), 3, "pixie") == EXIT_SUCCESS,
+    "Creating 'pixie' animation");
+
   ASSERT(GraphicsManager::getInstance()->create_animation("dog",
     iRect(0, 0, 70, 128), 10, "dog_spawn") == EXIT_SUCCESS,
     "Creating 'dog_spawn' animation");

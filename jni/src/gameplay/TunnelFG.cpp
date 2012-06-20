@@ -23,7 +23,7 @@ difficulty(BASE_DIFFICULTY)
   mesh_below.bake(below);
 }
 
-float TunnelFG::x_to_middle(float x)
+float TunnelFG::x_to_middle(float x) const
 {
   return x_to_height(x, middle_y);
 }

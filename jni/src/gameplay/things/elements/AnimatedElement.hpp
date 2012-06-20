@@ -1,35 +1,25 @@
 #ifndef ANIMATEDELEMENT_HPP_INCLUDED
 #define ANIMATEDELEMENT_HPP_INCLUDED
 
-#include "GraphicElement.hpp"
-#include "../../../graphics/Animation.hpp"
+#include "ThingElement.hpp"
+#include "../../../graphics/AnimationIncarnation.hpp"
 
-class AnimatedElement : public GraphicElement
+class AnimatedElement : public ThingElement, public AnimationIncarnation
 {
-    /// ATTRIBUTES
-    private:
-    float frame_current;
-    float frame_speed;
+  /// METHODS
+public:
+  // contructors, destructors
+  AnimatedElement(Thing* init_owner, V2f size = V2f(0.0f, 0.0f),
+                                    V2f offset = V2f(0.0f, 0.0f),
+                                    char flags = CENTER_X|CENTER_Y);
+  ~AnimatedElement();
 
-    /// METHODS
-    public:
-    // contructors, destructors
-    AnimatedElement(Thing* init_owner, V2f size = V2f(0.0f, 0.0f),
-                                      V2f offset = V2f(0.0f, 0.0f),
-                                      char flags = CENTER_X|CENTER_Y);
-    ~AnimatedElement();
-    // accessors
-    void setFrame(float new_frame);
-    void setRandFrame();
-    bool setSprite(Animation* new_sprite, float new_speed = 0);
-    // overrides
-    int update(GameState* context);     // ThingElement
-    void draw();                        // ThingElement
+  // overrides
+  int update(GameState* context);     // ThingElement
+  void draw();                        // ThingElement
 
-    /// SUBROUTINES
-    private:
-    void loopAnim();
-
+protected:
+  void animEnd();                     // AnimationIncarnation
 };
 
 #endif // ANIMATEDELEMENT_HPP_INCLUDED

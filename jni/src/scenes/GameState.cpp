@@ -133,7 +133,7 @@ int GameState::update()
       /// Check for collisions between this object and subsequent ones
       ThingIter j = i;
       // Unfortunately we can't write "j = i+1"
-      for(j++; j!= things.end(); j++)
+      for(j++; j != things.end(); j++)
           CollisionEvent::generate((*i), (*j));
 
       /// Generate out of or intersect bounds events for the current object

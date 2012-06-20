@@ -31,7 +31,7 @@ private:
 public:
   TunnelFG();
   // query
-  float x_to_middle(float x);
+  float x_to_middle(float x) const;
   // modification
   void setDifficulty(float _difficulty);
 

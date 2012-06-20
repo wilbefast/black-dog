@@ -4,6 +4,7 @@
 
 #include "../gameplay/things/AngelThing.hpp"
 #include "../gameplay/things/DogThing.hpp"
+#include "../gameplay/things/PixieThing.hpp"
 #include "../global.hpp"                          // for viewport
 
 /// CREATION, DESTRUCTION
@@ -18,6 +19,8 @@ player_progress(STARTING_PROGRESS)
   addThing(new AngelThing(V2i(player_progress, WINDOW_DEFAULT_H/2)));
   // add the dog
   addThing(new DogThing(V2i(0, WINDOW_DEFAULT_H/2)));
+  // add the progress-mesure pixie
+  addThing(new PixieThing(V2i()));
 }
 
 /// OVERRIDES GAMESTATE
@@ -96,27 +99,5 @@ void BlackDogState::draw_feather_ui()
 
 void BlackDogState::draw_progress_ui()
 {
-  // constants
-  static const int SIZE = 32, LEAD = 32;
-  static Animation* pixie
-    = GraphicsManager::getInstance()->get_animation("feather_ui");
 
-  // cache
-  float desired_x = player_progress + LEAD;
-  V2f desired(desired_x, obstacle.x_to_middle(desired_x));
-
-  // static variables remain between executions of the function
-  static float current_y = desired.y;
-
-  /// Note to self: create "animation canvas" class as in HTML 5 version.
-  /// The "AnimationElement" does this already but must be attached to a Thing.
-
-
-
-
-    fRect dest(desired.x, current_y, 32, 32), src = pixie->getFrame(0);
-    pixie->getTexture()->draw(&src, &dest);
-
-  // move gradually towards the desired position, not all at once
-  current_y = (9*current_y + 1*desired.y) / 10.0f;
 }
