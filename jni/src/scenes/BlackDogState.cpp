@@ -11,10 +11,11 @@
 BlackDogState::BlackDogState() :
 GameState(),
 parallax(),
-obstacle()
+obstacle(),
+player_progress(STARTING_PROGRESS)
 {
   // add the player character
-  addThing(new AngelThing(V2i(WINDOW_DEFAULT_W/4, WINDOW_DEFAULT_H/2)));
+  addThing(new AngelThing(V2i(player_progress, WINDOW_DEFAULT_H/2)));
   // add the dog
   addThing(new DogThing(V2i(0, WINDOW_DEFAULT_H/2)));
 }
@@ -29,6 +30,11 @@ int BlackDogState::update()
   result = GameState::update();
   if(result != CONTINUE)
     return result;
+
+  // Update difficulty based on player progress
+  player_progress = ((AngelThing*)getHero())->getFurthestX();
+  if(player_progress > PROGRESS_THRESHOLD)
+    obstacle.setDifficulty(player_progress / (WINDOW_DEFAULT_W * 0.8f));
 
   // Update background parallax tunnel
   parallax.update();
@@ -96,7 +102,7 @@ void BlackDogState::draw_progress_ui()
     = GraphicsManager::getInstance()->get_animation("feather_ui");
 
   // cache
-  float desired_x = ((AngelThing*)getHero())->getFurthestX() + LEAD;
+  float desired_x = player_progress + LEAD;
   V2f desired(desired_x, obstacle.x_to_middle(desired_x));
 
   // static variables remain between executions of the function

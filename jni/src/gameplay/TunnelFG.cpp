@@ -9,7 +9,7 @@ draw::Colour TunnelFG::COLOUR_LINE(44, 0, 0);    // very dark red
 
 TunnelFG::TunnelFG() :
 Tunnel(DEFAULT_SPEED),
-difficulty(0.2f)
+difficulty(BASE_DIFFICULTY)
 {
   // randomise initial values
   for (int i = 0; i < N_PTS; i++)
@@ -26,6 +26,12 @@ difficulty(0.2f)
 float TunnelFG::x_to_middle(float x)
 {
   return x_to_height(x, middle_y);
+}
+
+void TunnelFG::setDifficulty(float _difficulty)
+{
+  if(_difficulty > BASE_DIFFICULTY && _difficulty <= 1.0f)
+    difficulty = _difficulty;
 }
 
 

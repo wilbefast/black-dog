@@ -10,11 +10,15 @@ class BlackDogState : public GameState
 {
   /// CONSTANTS
 private:
+  static const int STARTING_PROGRESS = WINDOW_DEFAULT_W * 0.15f;
+  static const int PROGRESS_THRESHOLD = WINDOW_DEFAULT_W * 0.25f;
+  static const float PROGRESS_MAX = WINDOW_DEFAULT_W * 0.8f;
 
   /// ATTRIBUTES
 private:
   TunnelBG parallax;
   TunnelFG obstacle;
+  float player_progress;
 
   /// METHODS
 public:
