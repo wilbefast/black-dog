@@ -27,12 +27,16 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   gameplay/things/events/ThingEvent.cpp                       \
   gameplay/things/AngelThing.cpp				                      \
   gameplay/things/DogThing.cpp				                      \
+  gameplay/things/PixieThing.cpp				                            \
+  gameplay/things/FallingThing.cpp				                            \
   gameplay/things/Thing.cpp				                            \
   gameplay/Tunnel.cpp					                                \
   gameplay/TunnelBG.cpp					                              \
   gameplay/TunnelFG.cpp					                              \
   graphics/Animation.cpp					                            \
+  graphics/AnimationIncarnation.cpp					                  \
   graphics/Graphic.cpp					                              \
+  graphics/GraphicIncarnation.cpp					                    \
   graphics/HeightMesh.cpp                                     \
   graphics/Mesh2D.cpp                                         \
   graphics/Texture.cpp					                              \

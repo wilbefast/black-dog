@@ -15,7 +15,7 @@ state(OFFSCREEN)
 
 /// OVERRIDES THING
 
-int DogThing::update(GameState* context)
+int DogThing::update(GameState* context, float delta)
 {
   // local variables
   V2f hero_position = context->getHero()->getPosition();
@@ -40,7 +40,7 @@ int DogThing::update(GameState* context)
     setState(LEAVE);
 
   // animate the sprite
-  graphic.update(context);
+  graphic.update(context, delta);
 
   // treat events last of all, as they will be cleared by Thing::update
   for(EventIter i = events.begin();
@@ -50,7 +50,7 @@ int DogThing::update(GameState* context)
     return result;
 
   // nothing interrupted execution, so continue looping
-  return Thing::update(context);
+  return Thing::update(context, delta);
 }
 
 void DogThing::draw()

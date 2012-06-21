@@ -37,7 +37,7 @@ class Scene
     virtual ~Scene();
     // Executed each frame
     virtual void draw();    // pure virtual
-    virtual int update(Scene** next);  // pure virtual
+    virtual int update(Scene** next, float delta);  // pure virtual
     // Manual creation and destruction
     virtual int startup();
     virtual int shutdown();

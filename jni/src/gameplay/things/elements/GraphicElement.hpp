@@ -14,7 +14,7 @@ public:
                                     char _flags = CENTER_X|CENTER_Y);
   ~GraphicElement();
   // overrides
-  virtual int update(GameState* context);     // ThingElement
+  virtual int update(GameState* context, float delta);     // ThingElement
   virtual void draw();                        // ThingElement
 };
 

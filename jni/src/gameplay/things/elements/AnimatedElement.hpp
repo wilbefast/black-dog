@@ -15,8 +15,8 @@ public:
   ~AnimatedElement();
 
   // overrides
-  int update(GameState* context);     // ThingElement
-  void draw();                        // ThingElement
+  int update(GameState* context, float delta);     // ThingElement
+  void draw();                                    // ThingElement
 
 protected:
   void animEnd();                     // AnimationIncarnation

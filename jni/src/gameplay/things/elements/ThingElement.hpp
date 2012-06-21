@@ -17,7 +17,7 @@ class ThingElement
     ThingElement(Thing* init_owner);
     virtual ~ThingElement();
     // overriden
-    virtual int update(GameState* context);
+    virtual int update(GameState* context, float delta);
     virtual void draw();
 
 };

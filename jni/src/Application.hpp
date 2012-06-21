@@ -29,7 +29,7 @@ private:
     SDL_Window* window;
     SDL_GLContext context;
     // Timing
-    int this_tick, next_tick;
+    int this_tick, next_tick, missed_ticks;
     // Object containing all the game-related data
     Scene* scene;
 

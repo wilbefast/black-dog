@@ -35,7 +35,7 @@ public:
 	// creation
   Tunnel(float _speed_x);
 	// loop
-  void update();
+  void update(float delta);
   virtual void draw();
 	// query
   int collidingPoint(V2f position) const;

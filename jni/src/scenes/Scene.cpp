@@ -28,7 +28,7 @@ Scene::~Scene()
     state->draw();
  }
 
-int Scene::update(Scene** next)
+int Scene::update(Scene** next, float delta)
  {
     // Either continue (value of next is ignored) or go back to previous
     (*next) = previous();
@@ -43,7 +43,7 @@ int Scene::update(Scene** next)
         }
 
     // update anything dynamic, go back to previous scene if nessecary
-    if(state->update() == SceneState::EXIT)
+    if(state->update(delta) == SceneState::EXIT)
         return Scene::CHANGE;
 
     //continue

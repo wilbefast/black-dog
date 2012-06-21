@@ -18,7 +18,7 @@ class MainMenu : public Scene
     int startup();
     int shutdown();
     // Executed each frame
-    int update(Scene** next);
+    int update(Scene** next, float delta);
     void draw();
     // Back to previous scene
     Scene* previous();

@@ -75,10 +75,10 @@ int MainMenu::shutdown()
 
 /// LOOP
 
-int MainMenu::update(Scene** next)
+int MainMenu::update(Scene** next, float delta)
 {
     // Pass up hierarchy
-    Scene::update(next);
+    Scene::update(next, delta);
 
     // Move to the next screen on click
     str_id button_tag;

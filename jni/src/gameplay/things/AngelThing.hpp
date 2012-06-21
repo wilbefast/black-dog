@@ -33,8 +33,12 @@ public:
 public:
   // numeric constants
   static const float THRUST;        // vertical speed of flapping wings
+  static const float BOUNCE_BACK;
+  static const float BOUNCE_DOWN;
+  static const float BOUNCE_UP;
   static const float SPEED_H_INC;   // horizontal speed towards the right
   static const float SPEED_H_MAX;
+  static const float SPEED_H_ORB;
   static const float FRICTION;
   static const int MAX_FEATHERS = 8;
   static const int FEATHER_INTERVAL = 52;
@@ -44,7 +48,7 @@ public:
   static const int HITBOX_W = 8;
   static const int HITBOX_H = 16;
   static const int MAX_SNAP = 32;
-  //static const int MAX_X = 256;
+  static const int MAX_X = 196;
   // states
   static const State FLAPPING, GLIDING, FALLING, STUNNED, DEAD;
 
@@ -63,7 +67,7 @@ public:
   AngelThing(V2i _position);
   // overrides
   void draw();
-  int update(GameState* context);
+  int update(GameState* context, float delta);
   // query
   V2f getPrevPosition() const;
   int countFeathers() const;
@@ -71,8 +75,8 @@ public:
 
   /// SUBROUTINES
 private:
-  void setState(AngelThing::State const& new_state);
-  int treatEvent(ThingEvent* event);
+  void setState(AngelThing::State const& new_state, GameState* context);
+  int treatEvent(ThingEvent* event, GameState* context);
   int treatInput(GameState* context);
   int checkCollision(GameState* context);
 };

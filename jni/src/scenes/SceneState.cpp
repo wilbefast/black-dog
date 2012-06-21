@@ -26,7 +26,7 @@ int SceneState::shutdown()
 
 /// UPDATE AND DRAW
 
-int SceneState::update()
+int SceneState::update(float delta)
 {
     // Nothing to report
     return EXIT_SUCCESS;

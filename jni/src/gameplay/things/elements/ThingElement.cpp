@@ -13,7 +13,7 @@ ThingElement::~ThingElement()
 
 /// OVERRIDDEN
 
-int ThingElement::update(GameState* context)
+int ThingElement::update(GameState* context, float delta)
 {
     // overridden if updates
     return SceneState::CONTINUE;

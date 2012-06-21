@@ -18,8 +18,6 @@ private:
   static const int DEFAULT_SPEED = 3;
 	// maximum vertical change between two points
 	static const float MAX_DELTA = WINDOW_DEFAULT_H / 2;
-	// starting complexity of the tunnel
-	static const float BASE_DIFFICULTY = 0.1f;
 
 	/// ATTRIBUTES
 private:
@@ -29,7 +27,7 @@ private:
   float difficulty;
   /// METHODS
 public:
-  TunnelFG();
+  TunnelFG(float start_difficulty = 0.0f);
   // query
   float x_to_middle(float x) const;
   // modification

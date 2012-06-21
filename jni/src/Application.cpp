@@ -16,6 +16,7 @@ Application::Application(Scene* first_scene) :
 initialised(false),
 this_tick(0),
 next_tick(0),
+missed_ticks(0),
 scene(first_scene)
 {
 }
@@ -63,26 +64,27 @@ int Application::startup()
 // Perform a single application step, return exit flag if encountered
 int Application::run()
 {
-    // Update current scene, switch to the next scene if
-    // need be (in which case we break from the loop and restart).
-    Scene* next = NULL;
-    if(scene->update(&next) != Scene::NO_CHANGE)
-        return setScene(next);
+  // Update current scene, switch to the next scene if
+  // need be (in which case we break from the loop and restart).
+  Scene* next = NULL;
+  if(scene->update(&next, 1.0f + missed_ticks/MAX_FPS) != Scene::NO_CHANGE)
+    return setScene(next);
+  missed_ticks = 0;
 
-    // Redraw everything, game objects included
-    draw();
+  // Redraw everything, game objects included
+  draw();
 
-    // Regulate the number of frames per second, pausing if nessecary
-    wait();
+  // Regulate the number of frames per second, pausing if nessecary
+  wait();
 
-    // Treat input events, check for exit conditions.
-    int flag = treatEvents();
-    if(flag == Application::BACK)
-        // Attempt to return to previous Inteface - if impossible, return EXIT
-        return setScene(scene->previous());
-    else
-        // Pass on either EXIT or CONTINUE code
-        return flag;
+  // Treat input events, check for exit conditions.
+  int flag = treatEvents();
+  if(flag == Application::BACK)
+    // Attempt to return to previous Inteface - if impossible, return EXIT
+    return setScene(scene->previous());
+  else
+    // Pass on either EXIT or CONTINUE code
+    return flag;
 }
 
 int Application::shutdown()
@@ -152,23 +154,23 @@ int Application::startSDL()
 
 int Application::startGL()
 {
-    glClearColor(0, 0, 0, 1);     // Black background by default
-    glEnable(GL_TEXTURE_2D);
-    glEnable(GL_BLEND);
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glClearColor(0, 0, 0, 1);     // Black background by default
+  glEnable(GL_TEXTURE_2D);
+  glEnable(GL_BLEND);
+  glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glViewport(0, 0, global::viewport.w, global::viewport.h);
-    glMatrixMode(GL_PROJECTION);
-    glOrtho(0, global::viewport.w, global::viewport.h, 0, -1, 1);
-            //NB - I'm using a macro to change this to "glOrthof" for GLES1.1
-    glMatrixMode(GL_MODELVIEW);
+  glViewport(0, 0, global::viewport.w, global::viewport.h);
+  glMatrixMode(GL_PROJECTION);
+  glOrtho(0, global::viewport.w, global::viewport.h, 0, -1, 1);
+          //NB - I'm using a macro to change this to "glOrthof" for GLES1.1
+  glMatrixMode(GL_MODELVIEW);
 
-    // Always start with a clean slate ;)
-    glLoadIdentity();
+  // Always start with a clean slate ;)
+  glLoadIdentity();
 
-    // No problems, return success code!
-    return EXIT_SUCCESS;
+  // No problems, return success code!
+  return EXIT_SUCCESS;
 }
 
 void Application::draw()
@@ -186,14 +188,19 @@ void Application::draw()
 // Regulate the number of frames per second, pausing only if need be
 void Application::wait()
 {
-    // Get the current time-stamp
-    this_tick = SDL_GetTicks();
+  // Get the current time-stamp
+  this_tick = SDL_GetTicks();
 
-    // If it's not yet time for the next update, wait a will
+  // If it's not yet time for the next update, wait a will
 	if (this_tick < next_tick )
+	{
 		SDL_Delay(next_tick - this_tick);
+		missed_ticks = 0;
+	}
+  else
+    missed_ticks = this_tick - next_tick;
 
-    // Calculate when the next update should be
+  // Calculate when the next update should be
 	next_tick = this_tick + (1000/MAX_FPS);
 }
 

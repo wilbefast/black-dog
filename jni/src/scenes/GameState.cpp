@@ -100,47 +100,47 @@ int GameState::startup()
 
 int GameState::shutdown()
 {
-    // Destroy all game objects
-    for(ThingIter i = things.begin(); i!= things.end(); i++)
-        delete (*i);
+  // Destroy all game objects
+  for(ThingIter i = things.begin(); i!= things.end(); i++)
+      delete (*i);
 
-    // All clear!
-    return EXIT_SUCCESS;
+  // All clear!
+  return EXIT_SUCCESS;
 }
 
-int GameState::update()
+int GameState::update(float delta)
 {
   // For each game object
   for(ThingIter i = things.begin(); i!= things.end(); )
   {
-      // Update the object
-      int update_result = (*i)->update(this);
+    // Update the object
+    int update_result = (*i)->update(this, delta);
 
-      // Delete the object if nessecary
-      switch(update_result)
-      {
-          case DELETE_ME:
-              deleteThing(&i);
-              continue;
+    // Delete the object if nessecary
+    switch(update_result)
+    {
+      case DELETE_ME:
+        deleteThing(&i);
+        continue;
 
-          case LOSE_LEVEL:
-              return EXIT_FAILURE;
+      case LOSE_LEVEL:
+        return EXIT_FAILURE;
 
-          case WIN_LEVEL:
-              return EXIT_FAILURE;
-      }
+      case WIN_LEVEL:
+        return EXIT_FAILURE;
+    }
 
-      /// Check for collisions between this object and subsequent ones
-      ThingIter j = i;
-      // Unfortunately we can't write "j = i+1"
-      for(j++; j != things.end(); j++)
-          CollisionEvent::generate((*i), (*j));
+    /// Check for collisions between this object and subsequent ones
+    ThingIter j = i;
+    // Unfortunately we can't write "j = i+1"
+    for(j++; j != things.end(); j++)
+      CollisionEvent::generate((*i), (*j));
 
-      /// Generate out of or intersect bounds events for the current object
-      BoundaryEvent::generate((*i), &level_bounds);
+    /// Generate out of or intersect bounds events for the current object
+    BoundaryEvent::generate((*i), &level_bounds);
 
-      // manual iteration
-      i++;
+    // manual iteration
+    i++;
   }
 
   // All clear

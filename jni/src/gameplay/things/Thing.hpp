@@ -55,7 +55,7 @@ public:
   // overridden
   virtual void die();
   virtual void draw();
-  virtual int update(GameState*);
+  virtual int update(GameState*, float delta);
 
   /// SUBROUTINES
 protected:

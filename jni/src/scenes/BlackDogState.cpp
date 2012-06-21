@@ -5,6 +5,7 @@
 #include "../gameplay/things/AngelThing.hpp"
 #include "../gameplay/things/DogThing.hpp"
 #include "../gameplay/things/PixieThing.hpp"
+#include "../gameplay/things/FallingThing.hpp"
 #include "../global.hpp"                          // for viewport
 
 /// CREATION, DESTRUCTION
@@ -12,7 +13,7 @@
 BlackDogState::BlackDogState() :
 GameState(),
 parallax(),
-obstacle(),
+obstacle(BASE_DIFFICULTY),
 player_progress(STARTING_PROGRESS)
 {
   // add the player character
@@ -20,17 +21,17 @@ player_progress(STARTING_PROGRESS)
   // add the dog
   addThing(new DogThing(V2i(0, WINDOW_DEFAULT_H/2)));
   // add the progress-mesure pixie
-  addThing(new PixieThing(V2i()));
+  addThing(new PixieThing(V2i(WINDOW_DEFAULT_W/2, WINDOW_DEFAULT_H/2)));
 }
 
 /// OVERRIDES GAMESTATE
 
-int BlackDogState::update()
+int BlackDogState::update(float delta)
 {
   int result;
 
   // Update dynamic game objects
-  result = GameState::update();
+  result = GameState::update(delta);
   if(result != CONTINUE)
     return result;
 
@@ -40,10 +41,10 @@ int BlackDogState::update()
     obstacle.setDifficulty(player_progress / (WINDOW_DEFAULT_W * 0.8f));
 
   // Update background parallax tunnel
-  parallax.update();
+  parallax.update(delta);
 
   // Update forground obstacle tunnel
-  obstacle.update();
+  obstacle.update(delta);
 
   // All clear
   return EXIT_SUCCESS;
@@ -64,7 +65,6 @@ void BlackDogState::draw()
   GameState::draw();
 
   // Draw user interface
-  draw_progress_ui();
   draw_feather_ui();
 }
 
@@ -95,9 +95,4 @@ void BlackDogState::draw_feather_ui()
     src = feather_ui->getFrame(i < n_feathers ? 0 : 1);
     feather_ui->getTexture()->draw(&src, &dest);
   }
-}
-
-void BlackDogState::draw_progress_ui()
-{
-
 }

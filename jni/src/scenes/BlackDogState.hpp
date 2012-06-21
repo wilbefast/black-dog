@@ -13,6 +13,7 @@ private:
   static const int STARTING_PROGRESS = WINDOW_DEFAULT_W * 0.15f;
   static const int PROGRESS_THRESHOLD = WINDOW_DEFAULT_W * 0.25f;
   static const float PROGRESS_MAX = WINDOW_DEFAULT_W * 0.8f;
+  static const float BASE_DIFFICULTY = 0.2f;
 
   /// ATTRIBUTES
 private:
@@ -25,10 +26,12 @@ public:
   // Creation, destruction
   BlackDogState();
   // Overrides GameState
-  int update();
+  int update(float delta);
   void draw();
   // query
   const TunnelFG* getObstacle() const;
+  // modification
+  void setDifficulty(float _difficulty);
 
   /// SUBROUTINES
 private:

@@ -24,10 +24,10 @@ mesh_below(N_PTS, SEGMENT_L, BASE_BELOW)
 
 /// LOOP
 
-void Tunnel::update()
+void Tunnel::update(float delta)
 {
   // move the tunnel along towards the left
-  offset_x -= speed_x;
+  offset_x -= speed_x*delta;
 
   // lap around left to right if offset is larger than segment length
   if (offset_x <= -Tunnel::SEGMENT_L)

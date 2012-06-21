@@ -17,10 +17,10 @@ AnimatedElement::~AnimatedElement()
 }
 
 
-int AnimatedElement::update(GameState* context)
+int AnimatedElement::update(GameState* context, float delta)
 {
   // Animate
-  frame_current += frame_speed;
+  frame_current += frame_speed*delta;
   loopAnim();
 
   // Move destination rectangle to position of object

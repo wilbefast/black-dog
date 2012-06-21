@@ -17,7 +17,7 @@ public:
   TimerElement(Thing* _owner, const char* _name, int init_time = -1);
   bool ticking() const;
   void set(unsigned int time);
-  void decrement();
+  void decrement(float delta);
 };
 
 #endif // TIMERELEMENT_HPP_INCLUDED

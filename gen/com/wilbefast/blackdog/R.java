@@ -11,15 +11,7 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int black_dog=0x7f020000;
-        public static final int body=0x7f020001;
-        public static final int body_end=0x7f020002;
-        public static final int feather=0x7f020003;
-        public static final int icon=0x7f020004;
-        public static final int ui=0x7f020005;
-        public static final int weight_fall=0x7f020006;
-        public static final int weights=0x7f020007;
-        public static final int wings=0x7f020008;
+        public static final int icon=0x7f020000;
     }
     public static final class layout {
         public static final int main=0x7f030000;

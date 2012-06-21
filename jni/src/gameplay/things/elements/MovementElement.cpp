@@ -21,7 +21,7 @@ speed(V2f(0,0)),
 previous_position(owner->getPosition()),
 speed_scalar(0),
 angle(0),
-speed_max(init_speed_max),
+speed_max((init_speed_max >= 0.0f) ? init_speed_max : FLT_MAX),
 speed_min(init_speed_min),
 friction(init_friction)
 {
@@ -145,23 +145,24 @@ float MovementElement::getAngle() const
 
 // Overrides
 
-int MovementElement::update(GameState* context)
+int MovementElement::update(GameState* context, float delta)
 {
-    // move
-    previous_position = owner->getPosition();
-    owner->move(speed);
+  previous_position = owner->getPosition();
 
-    // slow down
-    if(friction)
-        speed /= (float)friction;
+  // move
+  owner->move(speed*delta);
 
-    // cap minimum speed, generate event if stopping
-    if(speed && (abs(speed.x) < speed_min) && (abs(speed.y) < speed_min))
-    {
-        speed.x = speed.y = 0;
-        owner->addEvent(new ThingEvent("stopped_moving"));
-    }
+  // slow down
+  if(friction)
+    speed /= pow(friction, delta);
 
-    // no interruption
-    return SceneState::CONTINUE;
+  // cap minimum speed, generate event if stopping
+  if(speed && (abs(speed.x) < speed_min) && (abs(speed.y) < speed_min))
+  {
+    speed.x = speed.y = 0;
+    owner->addEvent(new ThingEvent("stopped_moving"));
+  }
+
+  // no interruption
+  return SceneState::CONTINUE;
 }

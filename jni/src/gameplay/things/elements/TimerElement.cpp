@@ -17,11 +17,11 @@ void TimerElement::set(unsigned int time)
   remaining_time = time;
 }
 
-void TimerElement::decrement()
+void TimerElement::decrement(float delta)
 {
   // decrement timer
-  if(remaining_time)
-    remaining_time--;
+  if(remaining_time > (int)delta)
+    remaining_time -= (int)delta;
   else
   {
     owner->addEvent(new ThingEvent(name));

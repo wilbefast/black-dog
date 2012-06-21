@@ -1,6 +1,7 @@
 #ifndef MOVEMENTELEMENT_HPP_INCLUDED
 #define MOVEMENTELEMENT_HPP_INCLUDED
 
+#include "float.h"
 #include "ThingElement.hpp"
 #include "../../../scenes/GameState.hpp"
 
@@ -23,7 +24,7 @@ class MovementElement : public ThingElement
     /// METHODS
     public:
     // constructors, destructors
-    MovementElement(Thing* init_owner, float init_speed_max,
+    MovementElement(Thing* init_owner, float init_speed_max = FLT_MAX,
                     float init_friction = 1,
                     float init_speed_min = DEFAULT_SPEED_MIN);
     ~MovementElement();
@@ -34,7 +35,7 @@ class MovementElement : public ThingElement
     void add_moveTowards(V2f target_position, float speed);
     void add_speedScalar(float speed);
     void bounce(V2i collision_side);
-    int update(GameState* context);
+    int update(GameState* context, float delta);
     // modification
     void setSpeed_scalar(float new_speed_scalar);
     void setSpeed(V2f new_speed);

@@ -10,12 +10,12 @@ void BoundaryEvent::generate(Thing* t, fRect* boundary)
 
     // Generate out of bounds event for the Thing
     if(t->isOutside(boundary, &side))
-        t->addEvent(new BoundaryEvent("out_of_bounds", side));
+      t->addEvent(new BoundaryEvent("out_of_bounds", side));
 
     else
     // Generate intersect boundary event for the Thing
     if(t->isLeaving(boundary, &side))
-        t->addEvent(new BoundaryEvent("intersect_bounds", side));
+      t->addEvent(new BoundaryEvent("intersect_bounds", side));
 
 
 }

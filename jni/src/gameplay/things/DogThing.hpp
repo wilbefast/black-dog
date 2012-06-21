@@ -25,7 +25,7 @@ public:
   // creation, destruction
   DogThing(V2i _position);
   // overrides Thing
-  int update(GameState*);
+  int update(GameState*, float delta);
   void draw();
 
   /// SUBROUTINES

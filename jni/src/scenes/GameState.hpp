@@ -41,7 +41,7 @@ public:
     // Overrides SceneState
     int startup();
     int shutdown();
-    virtual int update();
+    virtual int update(float delta);
     virtual void draw();
 };
 

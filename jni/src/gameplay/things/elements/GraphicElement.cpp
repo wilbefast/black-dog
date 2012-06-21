@@ -15,7 +15,7 @@ GraphicElement::~GraphicElement()
 
 /// OVERRIDES
 
-int GraphicElement::update(GameState* context)
+int GraphicElement::update(GameState* context, float delta)
 {
   // Move destination rectangle to position of object
   destination.setPosition(owner->getPosition() + offset);

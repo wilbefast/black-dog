@@ -44,7 +44,7 @@ class SceneState
     virtual int startup();
     virtual int shutdown();
     // Update and draw dynamic objects, if needed
-    virtual int update();
+    virtual int update(float delta);
     virtual void draw();
     // Accessors
     Input* getInput();

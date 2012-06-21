@@ -98,16 +98,16 @@ void Thing::draw()
     // overridden if visible
 }
 
-int Thing::update(GameState* context)
+int Thing::update(GameState* context, float delta)
 {
-    // clear all events from the list
-    deleteEvents();
+  // clear all events from the list
+  deleteEvents();
 
-    // should still be called at end of update, even if overridden
-    if(dead)
-        return GameState::DELETE_ME;
-    else
-        return GameState::CONTINUE;
+  // should still be called at end of update, even if overridden
+  if(dead)
+    return GameState::DELETE_ME;
+  else
+    return GameState::CONTINUE;
 }
 
 bool Thing::isColliding(Thing* other, V2i* side)
