@@ -34,6 +34,9 @@ newer version with the help of the SDL community.
 If anybody figures this out before the end of Summer I'd be very grateful. If 
 not I'll be back to take care of it myself ;)
 
+Here's a link to the version I use, in case you're having trouble:
+http://dl.dropbox.com/u/4522570/jni.tar.gz
+
 COMPILING
 ---------------
 There is a Code::Blocks project for compiling on Linux. Compiling for Android is
