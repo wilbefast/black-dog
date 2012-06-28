@@ -6,6 +6,13 @@ This is a C++/SDL port of http://wilbefast.com/html5/black_dog for Android. I'm
 away over the summer so I've decided to leave the source up for reference, in
 case anybody needs a few pointers where Android NDK development is concerned.
 
+PROJECT
+---------------
+The game logic and Code::Blocks project can be found in jni/src. This is my code
+whereas the rest is, by and large, part of the SDL project. If you want to run
+the game on Windows, Mac or Linux, this is the only part that will be of 
+interest to you.
+
 LIBRARIES
 ---------------
 Download the following libraries and place them in the jni folder:
