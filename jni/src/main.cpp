@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "assert.hpp"
-#include "BlackDogApplication.hpp"
+#include "Application.hpp"
+#include "scenes/MainMenu.hpp"
 
 #include "math/Rect.hpp"
 
@@ -32,7 +33,7 @@ int main(int argc, char* argv[])
     srand(time(NULL));
 
     // Load up the application
-    BlackDogApplication application;
+    Application application(new MainMenu());
     ASSERT_SDL(application.startup() == EXIT_SUCCESS, "Starting up application");
 
     // Run the application until an exit condition is encountered
