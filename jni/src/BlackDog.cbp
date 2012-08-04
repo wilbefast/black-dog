@@ -44,9 +44,11 @@
 		<Unit filename="Android.mk" />
 		<Unit filename="Application.cpp" />
 		<Unit filename="Application.hpp" />
-		<Unit filename="BlackDogApplication.cpp" />
-		<Unit filename="BlackDogApplication.hpp" />
 		<Unit filename="assert.hpp" />
+		<Unit filename="assets/audio.xml" />
+		<Unit filename="assets/credits.txt" />
+		<Unit filename="assets/graphics.xml" />
+		<Unit filename="assets/licence-cc-by-3.txt" />
 		<Unit filename="gameplay/Tunnel.cpp" />
 		<Unit filename="gameplay/Tunnel.hpp" />
 		<Unit filename="gameplay/TunnelBG.cpp" />
@@ -102,6 +104,7 @@
 		<Unit filename="graphics/draw.cpp" />
 		<Unit filename="graphics/draw.hpp" />
 		<Unit filename="jni_glue.cpp" />
+		<Unit filename="licence-gpl-3.0.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="math/Rect.hpp" />
 		<Unit filename="math/Rect.inl" />
@@ -117,6 +120,14 @@
 		<Unit filename="resources/file.hpp" />
 		<Unit filename="resources/numerise.hpp" />
 		<Unit filename="resources/numerise.inl" />
+		<Unit filename="resources/tinyxml/tinystr.cpp" />
+		<Unit filename="resources/tinyxml/tinystr.h" />
+		<Unit filename="resources/tinyxml/tinyxml.cpp" />
+		<Unit filename="resources/tinyxml/tinyxml.h" />
+		<Unit filename="resources/tinyxml/tinyxml_dump.cpp" />
+		<Unit filename="resources/tinyxml/tinyxml_dump.h" />
+		<Unit filename="resources/tinyxml/tinyxmlerror.cpp" />
+		<Unit filename="resources/tinyxml/tinyxmlparser.cpp" />
 		<Unit filename="scenes/BlackDogState.cpp" />
 		<Unit filename="scenes/BlackDogState.hpp" />
 		<Unit filename="scenes/Button.cpp" />
