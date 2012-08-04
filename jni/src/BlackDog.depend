@@ -10207,7 +10207,7 @@
 	"../platform.hpp"
 	"tinyxml/tinyxml.h"
 
-1340887669 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.hpp
+1344073450 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
 	<map>
@@ -10226,7 +10226,7 @@
 	"Texture.hpp"
 	"../math/Rect.hpp"
 
-1344070964 source:/home/william/Desktop/BLACK_DOG_link/jni/src/BlackDogApplication.cpp
+1344073423 source:/home/william/Desktop/BLACK_DOG_link/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
@@ -10433,7 +10433,7 @@
 	"BlackDogApplication.hpp"
 	"math/Rect.hpp"
 
-1340887669 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.cpp
+1344073582 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"

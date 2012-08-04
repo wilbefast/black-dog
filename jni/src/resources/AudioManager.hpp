@@ -58,6 +58,7 @@ private:
   AudioManager();
 public:
   int startup();
+  int load_xml(const char* xml_file);
   int shutdown();
   ~AudioManager();
   // music

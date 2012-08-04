@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<audio>
+	<music name="music" />
+	<sound_list>
+    <sound name="chain_snap" />
+    <sound name="flap" />
+    <sound name="scream" />
+    <sound name="swallow" />
+    <sound name="slime" />
+	</sound_list>
+</audio>

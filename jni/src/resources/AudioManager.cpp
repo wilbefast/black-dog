@@ -56,10 +56,57 @@ int AudioManager::startup()
            MIX_DEFAULT_CHANNELS, DEFAULT_CHUNK_SIZE) != -1,
           "Starting SDL Mixer");
 
+  // load audio
+  ASSERT(load_xml(GET_ASSET("audio.xml")) == EXIT_SUCCESS,
+        "Loading audio assets based on 'audio.xml'");
+
   // All good!
   started = true;
   return EXIT_SUCCESS;
 }
+
+int AudioManager::load_xml(const char* xml_file)
+{
+  // pass string to the TinyXML document
+  TiXmlDocument doc;
+  ASSERT_AUX(io::read_xml(xml_file, &doc) == EXIT_SUCCESS,
+            "Opening audio pack XML file", doc.ErrorDesc());
+
+  // create local variables for searching document tree
+  TiXmlHandle doc_handle(&doc);
+  TiXmlElement* element = NULL;
+
+  // the root is a 'graphics' tag
+  element = doc_handle.FirstChildElement("audio").Element();
+  TiXmlHandle root_handle = TiXmlHandle(element);
+
+  // load music
+
+  // load sound effects
+  element = root_handle.FirstChild("sound_list").FirstChild().Element();
+
+  while(element)
+  {
+    // get the name of the texture and deduce its filename
+    const char* name = element->Attribute("name");
+
+    if(!name)
+      WARN_RTN("AudioManager::load_xml", "malformed sond tag", EXIT_FAILURE);
+    string filename(ASSET_PATH);
+      filename.append(name);
+      filename.append(".wav");
+
+    // load the texture
+    load_sound(filename.c_str(), name);
+
+    // continue to the next sprite
+    element = element->NextSiblingElement();
+  }
+
+  // all good
+  return EXIT_SUCCESS;
+}
+
 
 int AudioManager::shutdown()
 {
