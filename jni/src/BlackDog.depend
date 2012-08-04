@@ -10202,18 +10202,18 @@
 	"SDL.h"
 	"platform.hpp"
 
-1344068077 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/file.hpp
+1344074035 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/file.hpp
 	<string>
 	"../platform.hpp"
 	"tinyxml/tinyxml.h"
 
-1344073450 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.hpp
+1344074280 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
 	<map>
 	"numerise.hpp"
 
-1344068510 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/GraphicsManager.hpp
+1344074296 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/GraphicsManager.hpp
 	<map>
 	"numerise.hpp"
 	"../graphics/Texture.hpp"
@@ -10226,7 +10226,7 @@
 	"Texture.hpp"
 	"../math/Rect.hpp"
 
-1344073423 source:/home/william/Desktop/BLACK_DOG_link/jni/src/BlackDogApplication.cpp
+1344074419 source:/home/william/Desktop/BLACK_DOG_link/jni/src/BlackDogApplication.cpp
 	"BlackDogApplication.hpp"
 	"resources/GraphicsManager.hpp"
 	"resources/AudioManager.hpp"
@@ -10433,21 +10433,21 @@
 	"BlackDogApplication.hpp"
 	"math/Rect.hpp"
 
-1344073582 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.cpp
+1344074405 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
 	"../math/wjd_math.hpp"
 	"file.hpp"
 
-1344071783 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/GraphicsManager.cpp
+1344074311 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/GraphicsManager.cpp
 	"GraphicsManager.hpp"
 	"tinyxml/tinyxml_dump.h"
 	"file.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
 
-1344068007 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/file.cpp
+1344074163 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/file.cpp
 	"file.hpp"
 	"SDL.h"
 	"../assert.hpp"

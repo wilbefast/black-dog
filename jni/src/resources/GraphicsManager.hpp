@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../graphics/Texture.hpp"
 #include "../graphics/Animation.hpp"
 
+#define TEXTURE_FILETYPE "png"
+
 typedef std::map<str_id, Texture*> TextureMap;
 typedef TextureMap::iterator TextureI;
 typedef std::map<str_id, Animation*> AnimationMap;

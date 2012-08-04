@@ -76,27 +76,30 @@ int AudioManager::load_xml(const char* xml_file)
   TiXmlHandle doc_handle(&doc);
   TiXmlElement* element = NULL;
 
-  // the root is a 'graphics' tag
+  // the root is a 'audio' tag
   element = doc_handle.FirstChildElement("audio").Element();
   TiXmlHandle root_handle = TiXmlHandle(element);
 
   // load music
+  element = root_handle.FirstChild("music").Element();
+  const char* name = element->Attribute("name");
+  if(!name)
+    WARN_RTN("AudioManager::load_xml", "malformed music tag", EXIT_FAILURE);
+  string filename = io::name_to_path(name, MUSIC_FILETYPE);
+  ASSERT(load_music(filename.c_str()) == EXIT_SUCCESS, "Loading initial music track");
+  ASSERT(play_music(true) == EXIT_SUCCESS, "Setting initial music track to loop");
 
   // load sound effects
   element = root_handle.FirstChild("sound_list").FirstChild().Element();
-
   while(element)
   {
     // get the name of the texture and deduce its filename
-    const char* name = element->Attribute("name");
-
+    name = element->Attribute("name");
     if(!name)
-      WARN_RTN("AudioManager::load_xml", "malformed sond tag", EXIT_FAILURE);
-    string filename(ASSET_PATH);
-      filename.append(name);
-      filename.append(".wav");
+      WARN_RTN("AudioManager::load_xml", "malformed sound tag", EXIT_FAILURE);
 
     // load the texture
+    string filename = io::name_to_path(name, SOUND_FILETYPE);
     load_sound(filename.c_str(), name);
 
     // continue to the next sprite

@@ -31,6 +31,23 @@ std::string io::path_to_name(const char* file_path)
   return name;
 }
 
+std::string io::name_to_path(const char* name, const char* extension)
+{
+  // ex: name_to_path("music", "ogg") -> "./assets/music.ogg"
+  std::string result(ASSET_PATH);   // => "./assets/"
+  result.append(name);              // => "./assets/music"
+
+  // append the file extension if applicable (NULL by default)
+  if(extension)
+  {
+    result.push_back('.');
+    result.append(extension);
+  }
+
+  // result the result
+  return result;
+}
+
 int io::read_text(const char* file_path, char** destination)
 {
     // Open the file

@@ -32,6 +32,7 @@ namespace io
     const int MAX_BLOCKS =  1024;
 
     std::string path_to_name(const char* filepath);
+    std::string name_to_path(const char* name, const char* extension = NULL);
     int read_text(const char* file_path, char** destination);
     int read_xml(const char* file_path, TiXmlDocument* destination);
 }

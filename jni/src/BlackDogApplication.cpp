@@ -36,34 +36,11 @@ Application(new MainMenu())
 
 int BlackDogApplication::loadResources()
 {
-  /// 3. Load and play the music track
+  /*/// 3. Load and play the music track
   ASSERT(AudioManager::getInstance()->load_music(GET_ASSET("music.ogg"))
         == EXIT_SUCCESS, "Loading initial music track");
   ASSERT(AudioManager::getInstance()->play_music(true)
-        == EXIT_SUCCESS, "Setting initial music track to loop");
-
-
-  /*/// 4. Load sound files
-  ASSERT(AudioManager::getInstance()->
-    load_sound(GET_ASSET("chain_snap.wav"), "chain_snap") == EXIT_SUCCESS,
-    "Loading 'chain_snap' sound");
-
-  ASSERT(AudioManager::getInstance()->
-  load_sound(GET_ASSET("flap.wav"), "flap") == EXIT_SUCCESS,
-  "Loading 'flap' sound");
-
-  ASSERT(AudioManager::getInstance()->
-  load_sound(GET_ASSET("scream.wav"), "scream") == EXIT_SUCCESS,
-  "Loading 'scream' sound");
-
-  ASSERT(AudioManager::getInstance()->
-  load_sound(GET_ASSET("swallow.wav"), "swallow") == EXIT_SUCCESS,
-  "Loading 'swallow' sound");
-
-  ASSERT(AudioManager::getInstance()->
-  load_sound(GET_ASSET("slime.wav"), "slime") == EXIT_SUCCESS,
-  "Loading 'slime' sound");*/
-
+        == EXIT_SUCCESS, "Setting initial music track to loop");*/
 
   /// 5. No problems, return success code!
   return EXIT_SUCCESS;

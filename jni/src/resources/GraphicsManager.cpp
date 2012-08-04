@@ -79,14 +79,11 @@ int GraphicsManager::load_xml(const char* xml_file)
   {
     // get the name of the texture and deduce its filename
     const char* name = element->Attribute("name");
-
     if(!name)
       WARN_RTN("GraphicsManager::load_xml", "malformed texture tag", EXIT_FAILURE);
-    string filename(ASSET_PATH);
-      filename.append(name);
-      filename.append(".png");
 
     // load the texture
+    string filename = io::name_to_path(name, TEXTURE_FILETYPE);
     load_texture(filename.c_str(), name);
 
     // continue to the next sprite

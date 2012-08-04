@@ -24,6 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <map>
 #include "numerise.hpp"         // for str_id
 
+#define SOUND_FILETYPE "wav"
+#define MUSIC_FILETYPE "ogg"
+
 typedef std::map<str_id, Mix_Chunk*> SoundMap;
 typedef SoundMap::iterator SoundI;
 
