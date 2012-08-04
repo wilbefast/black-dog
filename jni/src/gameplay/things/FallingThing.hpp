@@ -27,7 +27,7 @@ class FallingThing : public Thing
 {
   /// CONSTANTS
 private:
-  static const float X_SPEED = 3.0f;
+  static const float X_SPEED;
 
   /// ATTRIBUTES
 private:

@@ -53,6 +53,7 @@ public:
   /// SUBROUTINES
 private:
   void draw_feather_ui();
+  void draw_orb_ui();
   void draw_progress_ui();
 };
 

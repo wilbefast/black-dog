@@ -2,7 +2,6 @@
 <audio>
 	<music name="music" />
 	<sound_list>
-    <sound name="chain_snap" />
     <sound name="flap" />
     <sound name="scream" />
     <sound name="swallow" />

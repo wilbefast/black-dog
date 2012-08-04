@@ -31,6 +31,7 @@ class ResourceElement : public ThingElement
     public:
     ResourceElement(Thing* owner, int init_max, int init_amount = -1);
     bool anyLeft() const;
+    bool isFull() const;
     int getBalance() const;
     bool tryWithdraw(int try_amount = 1);
     int withdrawAll();

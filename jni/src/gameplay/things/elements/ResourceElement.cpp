@@ -29,6 +29,11 @@ bool ResourceElement::anyLeft() const
     return (current_amount > 0);
 }
 
+bool ResourceElement::isFull() const
+{
+  return (current_amount == max_amount);
+}
+
 int ResourceElement::getBalance() const
 {
     return current_amount;

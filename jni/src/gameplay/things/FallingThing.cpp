@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "FallingThing.hpp"
 #include "elements/ColliderElement.hpp"
 
+const float FallingThing::X_SPEED = 3.0f;
+
 /// CREATION, DESTRUCTION
 
 FallingThing::FallingThing(V2i _position, const char* name, Animation* loop,

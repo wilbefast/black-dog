@@ -10277,7 +10277,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1340887607 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
+1344098304 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../resources/AudioManager.hpp"
@@ -10287,7 +10287,7 @@
 	"../../scenes/BlackDogState.hpp"
 	"FallingThing.hpp"
 
-1340887607 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.hpp
+1344098440 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.hpp
 	"Thing.hpp"
 	"../../graphics/Animation.hpp"
 	"elements/AnimatedElement.hpp"
@@ -10295,7 +10295,7 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1340887607 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.hpp
+1344097101 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.hpp
 	"../../resources/numerise.hpp"
 	"../../math/V2.hpp"
 	"../../graphics/Texture.hpp"
@@ -10328,7 +10328,7 @@
 	"ThingElement.hpp"
 	"../../../scenes/GameState.hpp"
 
-1340887613 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ResourceElement.hpp
+1344097312 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ResourceElement.hpp
 	"ThingElement.hpp"
 
 1340887607 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.cpp
@@ -10362,7 +10362,7 @@
 	"../../../math/wjd_math.hpp"
 	<iostream>
 
-1340887613 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ResourceElement.cpp
+1344097303 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ResourceElement.cpp
 	"ResourceElement.hpp"
 
 1340887613 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ThingElement.cpp
@@ -10454,7 +10454,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1340887740 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.cpp
+1344097219 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.cpp
 	"BlackDogState.hpp"
 	"../resources/GraphicsManager.hpp"
 	"../gameplay/things/AngelThing.hpp"
@@ -10463,7 +10463,7 @@
 	"../gameplay/things/FallingThing.hpp"
 	"../global.hpp"
 
-1340887740 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.hpp
+1344092250 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.hpp
 	"GameState.hpp"
 	"../gameplay/TunnelBG.hpp"
 	"../gameplay/TunnelFG.hpp"
@@ -10482,7 +10482,7 @@
 1340887740 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Game.hpp
 	"Scene.hpp"
 
-1340887740 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/GameState.cpp
+1344097071 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/GameState.cpp
 	"GameState.hpp"
 	"../warn.hpp"
 	"../assert.hpp"
@@ -10606,7 +10606,7 @@
 1340887643 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.hpp
 	"Graphic.hpp"
 
-1340887607 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
+1344096723 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 	"elements/MovementElement.hpp"
@@ -10619,7 +10619,7 @@
 1340887607 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.hpp
 	"elements/AnimatedElement.hpp"
 
-1340887607 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.cpp
+1344096760 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.cpp
 	"FallingThing.hpp"
 	"elements/ColliderElement.hpp"
 

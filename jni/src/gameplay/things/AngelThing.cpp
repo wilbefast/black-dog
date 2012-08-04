@@ -46,10 +46,12 @@ const float AngelThing::SPEED_H_INC = 0.01f;
 const float AngelThing::SPEED_H_MAX = 0.1f;
 const float AngelThing::SPEED_H_ORB = 5.0f;
 
+// first number is gravity, second is max speed
 const AngelThing::State AngelThing::FLAPPING(0.2f, 0.2f),
                         AngelThing::GLIDING(0.1f, 0.7f),
                         AngelThing::FALLING(0.3f, 10.0f),
                         AngelThing::STUNNED(0.3f, 5.0f),
+                        AngelThing::BOOSTING(0.0f, 1.0f),
                         AngelThing::DEAD(1.0f, 0.0f);
 
 /// PLAYER STATES
@@ -79,6 +81,7 @@ state(&FALLING),
 graphic(this, V2f(96, 48)),
 movement(this),
 feathers(this, MAX_FEATHERS),
+orbs(this, MAX_ORBS, 0),
 stun_timer(this, STR_UNSTUN),
 feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL),
 furthest_x(_position.x)
@@ -166,6 +169,11 @@ int AngelThing::countFeathers() const
   return feathers.getBalance();
 }
 
+int AngelThing::countOrbs() const
+{
+  return orbs.getBalance();
+}
+
 float AngelThing::getFurthestX() const
 {
   return furthest_x;
@@ -181,6 +189,7 @@ void AngelThing::setState(State const& new_state, GameState* context)
     *wraith_fall = GraphicsManager::getInstance()->get_animation("wraith_fall"),
     *wraith_flap = GraphicsManager::getInstance()->get_animation("wraith_flap"),
     *wraith_stun = GraphicsManager::getInstance()->get_animation("wraith_stun"),
+    *wraith_boost = GraphicsManager::getInstance()->get_animation("wraith_boost"),
     *feather = GraphicsManager::getInstance()->get_animation("feather");
 
 
@@ -205,10 +214,19 @@ void AngelThing::setState(State const& new_state, GameState* context)
   // STUNNED
   else if(new_state == STUNNED)
   {
-      stun_timer.set(STUN_DURATION);
-      feather_timer.set(FEATHER_INTERVAL);
-      graphic.setSprite(wraith_stun, 0.1f);
-      AudioManager::getInstance()->play_sound("scream");
+    stun_timer.set(STUN_DURATION);
+    feather_timer.set(FEATHER_INTERVAL);
+    graphic.setSprite(wraith_stun, 0.1f);
+    AudioManager::getInstance()->play_sound("scream");
+    // all orbs are lost
+    orbs.withdrawAll();
+  }
+
+  // BOOSTING
+  else if(new_state == BOOSTING)
+  {
+    graphic.setSprite(wraith_boost, 0.1f);
+    movement.addSpeed(V2f(SPEED_H_ORB, -movement.getSpeed().y/2));
   }
 
   // DEAD
@@ -252,6 +270,8 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
       graphic.setSprite(wraith_fall, 0.1f);
     else if (state == &GLIDING)
       graphic.setSprite(wraith_glide, 0.1f);
+    else if(state == &BOOSTING)
+      setState(FALLING, context);
   }
 
   // death
@@ -273,8 +293,19 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
     // collide with orb
     if(other->getType() == orb)
     {
+      // consume the orb
       other->die();
-      movement.addSpeed(V2f(SPEED_H_ORB, 0.0f));
+
+      // boost if full
+      if(orbs.isFull())
+      {
+        setState(BOOSTING, context);
+        orbs.withdrawAll();
+      }
+
+      // otherwise add new orb to collection
+      else
+        orbs.deposit();
     }
   }
 
@@ -344,7 +375,8 @@ int AngelThing::checkCollision(GameState* context)
     // update position and speed
     movement.setSpeed(V2f(-BOUNCE_BACK, (prev_collision < 0) ? BOUNCE_DOWN : -BOUNCE_UP));
     // paralyse for a short duration
-    setState(STUNNED, context);
+    if(state != &BOOSTING)
+      setState(STUNNED, context);
   }
 
   // nothing to report

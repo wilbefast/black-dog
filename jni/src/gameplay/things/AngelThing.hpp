@@ -58,7 +58,8 @@ public:
   static const float SPEED_H_ORB;
   static const float FRICTION;
   static const int MAX_FEATHERS = 8;
-  static const int FEATHER_INTERVAL = 52;
+  static const int MAX_ORBS = 4;
+  static const int FEATHER_INTERVAL = 72;
   static const int STUN_DURATION = 20;
   static const int SPRITE_W = 112;
   static const int SPRITE_H = 54;
@@ -67,14 +68,14 @@ public:
   static const int MAX_SNAP = 32;
   static const int MAX_X = 196;
   // states
-  static const State FLAPPING, GLIDING, FALLING, STUNNED, DEAD;
+  static const State FLAPPING, GLIDING, FALLING, STUNNED, BOOSTING, DEAD;
 
   /// ATTRIBUTES
 private:
   State const* state;
   AnimatedElement graphic;
   MovementElement movement;
-  ResourceElement feathers;
+  ResourceElement feathers, orbs;
   TimerElement stun_timer, feather_timer;
   float furthest_x;
 
@@ -88,6 +89,7 @@ public:
   // query
   V2f getPrevPosition() const;
   int countFeathers() const;
+  int countOrbs() const;
   float getFurthestX() const;
 
   /// SUBROUTINES

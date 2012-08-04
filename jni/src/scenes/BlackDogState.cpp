@@ -83,6 +83,7 @@ void BlackDogState::draw()
 
   // Draw user interface
   draw_feather_ui();
+  draw_orb_ui();
 }
 
 /// QUERY
@@ -111,5 +112,26 @@ void BlackDogState::draw_feather_ui()
     // frame 0 is a full feather, 1 is an empty one
     src = feather_ui->getFrame(i < n_feathers ? 0 : 1);
     feather_ui->getTexture()->draw(&src, &dest);
+  }
+}
+
+void BlackDogState::draw_orb_ui()
+{
+  // constants
+  static const int SIZE = 32, SPACING = 2;
+  static Animation* orb_ui
+    = GraphicsManager::getInstance()->get_animation("orb_ui");
+
+  // cache
+  fRect src, dest
+    = fRect(WINDOW_DEFAULT_W-(SIZE+SPACING)*AngelThing::MAX_ORBS, SPACING, SIZE, SIZE);
+  int n_orbs = ((AngelThing*)getHero())->countOrbs();
+
+  // iterate through each feather of total possible storage
+  for(int i = 0; i < AngelThing::MAX_ORBS; i++, dest.x += SIZE+SPACING)
+  {
+    // frame 0 is a full feather, 1 is an empty one
+    src = orb_ui->getFrame(i < n_orbs ? 1 : 0);
+    orb_ui->getTexture()->draw(&src, &dest);
   }
 }
