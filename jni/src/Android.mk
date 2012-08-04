@@ -15,6 +15,11 @@ LOCAL_CFLAGS := \
 	-DSDL_NO_COMPAT
 
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
+  resources/tinyxml/tinystr.cpp \
+  resources/tinyxml/tinyxml.cpp \
+  resources/tinyxml/tinyxml_dump.cpp \
+  resources/tinyxml/tinyxmlerror.cpp \
+  resources/tinyxml/tinyxmlparser.cpp \
   gameplay/things/elements/AnimatedElement.cpp		            \
   gameplay/things/elements/ColliderElement.cpp		            \
   gameplay/things/elements/GraphicElement.cpp		              \
@@ -52,7 +57,6 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   scenes/Scene.cpp					                                  \
   scenes/SceneState.cpp					                              \
   Application.cpp                                             \
-  BlackDogApplication.cpp                                     \
   global.cpp                                                  \
   jni_glue.cpp                                                \
   main.cpp
