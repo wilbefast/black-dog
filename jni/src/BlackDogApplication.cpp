@@ -43,7 +43,7 @@ int BlackDogApplication::loadResources()
 
 
   /// 1. Load textures
-  ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("menus.png"), "menus")
+  /*ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("menus.png"), "menus")
       == EXIT_SUCCESS, "Loading menu graphics texture");
   ASSERT(GraphicsManager::getInstance()->load_texture(GET_ASSET("wraith.png"), "wraith")
       == EXIT_SUCCESS, "Loading gameplay sprite-sheet texture");
@@ -90,7 +90,7 @@ int BlackDogApplication::loadResources()
     "Creating 'dog_idle' animation");
   ASSERT(GraphicsManager::getInstance()->create_animation("dog",
     iRect(350, 128, 70, 128), 1, "dog_bite") == EXIT_SUCCESS,
-    "Creating 'dob_bite' animation");
+    "Creating 'dob_bite' animation");*/
 
 
   /// 3. Load and play the music track

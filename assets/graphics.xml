@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<graphics>
+	<texture_list>
+		<texture name="menus"/>
+		<texture name="wraith"/>
+    <texture name="dog"/>
+	</texture_list>
+	<animation_list>
+    <animation name="wraith_flap" texture="wraith" x="1" y="0" w="96" h="64" n_frames="6" />
+    <animation name="wraith_fall" texture="wraith" x="289" y="64" w="96" h="64" n_frames="3" />
+    <animation name="wraith_glide" texture="wraith" x="1" y="64" w="96" h="64" n_frames="3" />
+    <animation name="wraith_stun" texture="wraith" x="577" y="64" w="96" h="64" n_frames="3" />
+    <animation name="feather" texture="wraith" x="928" y="32" w="16" h="16" n_frames="3" />
+    <animation name="feather_ui" texture="wraith" x="928" y="0" w="32" h="32" n_frames="2" />
+    <animation name="pixie" texture="wraith" x="864" y="64" w="32" h="32" n_frames="3" />
+    <animation name="orb" texture="wraith" x="928" y="48" w="16" h="16" n_frames="3" />
+    <animation name="dog_spawn" texture="dog" x="0" y="0" w="70" h="128" n_frames="10" />
+    <animation name="dog_idle" texture="dog" x="0" y="128" w="70" h="128" n_frames="5" />
+    <animation name="dog_bite" texture="dog" x="350" y="128" w="70" h="128" n_frames="1" />
+	</animation_list>
+</graphics>

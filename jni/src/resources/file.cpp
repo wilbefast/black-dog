@@ -55,7 +55,7 @@ int io::read_text(const char* file_path, char** destination)
     return EXIT_SUCCESS;
 }
 
-/*int io::read_xml(const char* file_path, TiXmlDocument* doc)
+int io::read_xml(const char* file_path, TiXmlDocument* doc)
 {
     #if BUFFER_XML
         // Open with SDL_RWops, read contents to a buffer
@@ -77,4 +77,4 @@ int io::read_text(const char* file_path, char** destination)
 
     // All clear
     return EXIT_SUCCESS;
-}*/
+}

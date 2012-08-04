@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 
 #include "../platform.hpp"         // ASSET_PATH_PATH, BUFFER_XML
-//#include "tinyxml/tinyxml.h"
+#include "tinyxml/tinyxml.h"
 
 
 #define GET_ASSET(x) ASSET_PATH x
@@ -33,7 +33,7 @@ namespace io
 
     std::string path_to_name(const char* filepath);
     int read_text(const char* file_path, char** destination);
-    //int read_xml(const char* file_path, TiXmlDocument* destination);
+    int read_xml(const char* file_path, TiXmlDocument* destination);
 }
 
 

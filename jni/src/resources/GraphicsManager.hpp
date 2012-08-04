@@ -52,6 +52,7 @@ private:
   GraphicsManager();
 public:
   int startup();
+  int load_xml(const char* xml_file);
   int shutdown();
   ~GraphicsManager();
   // textures
