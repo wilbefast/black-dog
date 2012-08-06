@@ -56,9 +56,15 @@ class MovementElement : public ThingElement
     // modification
     void setSpeed_scalar(float new_speed_scalar);
     void setSpeed(V2f new_speed);
+    void setSpeedX(float new_speed);
+    void setSpeedY(float new_speed);
     void addSpeed(V2f force);
+    void addSpeedX(float force);
+    void addSpeedY(float force);
     void setSpeedMax(float _max_speed);
     // query
+    float getSpeedX() const;
+    float getSpeedY() const;
     V2f getSpeed() const;
     V2f getPrevPos() const;
     float getSpeed_scalar() const;

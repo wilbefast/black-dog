@@ -108,6 +108,16 @@ void MovementElement::setSpeed_scalar(float new_speed_scalar)
     setSpeed(speed/(speed.getNorm())*new_speed_scalar);
 }
 
+void MovementElement::setSpeedX(float new_speed)
+{
+  setSpeed(V2f(new_speed, speed.y));
+}
+
+void MovementElement::setSpeedY(float new_speed)
+{
+  setSpeed(V2f(speed.x, new_speed));
+}
+
 void MovementElement::setSpeed(V2f new_speed)
 {
     // Signal if starting to move
@@ -127,6 +137,16 @@ void MovementElement::setSpeed(V2f new_speed)
         angle = speed.getAngle();
 }
 
+void MovementElement::addSpeedX(float force)
+{
+  setSpeed(V2f(speed.x + force, speed.y));
+}
+
+void MovementElement::addSpeedY(float force)
+{
+  setSpeed(V2f(speed.x, speed.y + force));
+}
+
 void MovementElement::addSpeed(V2f force)
 {
     setSpeed(speed + force);
@@ -140,9 +160,21 @@ void MovementElement::setSpeedMax(float _speed_max)
 
 // Query
 
+float MovementElement::getSpeedX() const
+{
+    return speed.x; // copy
+}
+
+
+float MovementElement::getSpeedY() const
+{
+    return speed.y; // copy
+}
+
+
 V2f MovementElement::getSpeed() const
 {
-    return speed;
+    return speed; // copy
 }
 
 V2f MovementElement::getPrevPos() const

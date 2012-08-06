@@ -55,12 +55,14 @@ public:
   static const float BOUNCE_UP;
   static const float SPEED_H_INC;   // horizontal speed towards the right
   static const float SPEED_H_MAX;
-  static const float SPEED_H_ORB;
+  static const float SPEED_H_BOOST;
+  static const float SPEED_V_BOOST;
+  static const float DELTA_V_BOOST;
   static const float FRICTION;
   static const int MAX_FEATHERS = 8;
   static const int MAX_ORBS = 4;
   static const int FEATHER_INTERVAL = 72;
-  static const int ORB_USE_INTERVAL = 36;
+  static const int ORB_USE_INTERVAL = 40;
   static const int ORB_COLLISION_PENALTY = 2;
   static const int STUN_DURATION = 20;
   static const int SPRITE_W = 112;
@@ -75,7 +77,8 @@ public:
   /// ATTRIBUTES
 private:
   State const* state;
-  AnimatedElement graphic;
+  AnimatedElement graphic, buff;
+  bool draw_buff;
   MovementElement movement;
   ResourceElement feathers, orbs;
   TimerElement stun_timer, feather_timer, orb_use_timer;

@@ -60,6 +60,8 @@
 		<Unit filename="gameplay/things/AngelThing.hpp" />
 		<Unit filename="gameplay/things/DogThing.cpp" />
 		<Unit filename="gameplay/things/DogThing.hpp" />
+		<Unit filename="gameplay/things/EffectThing.cpp" />
+		<Unit filename="gameplay/things/EffectThing.hpp" />
 		<Unit filename="gameplay/things/FallingThing.cpp" />
 		<Unit filename="gameplay/things/FallingThing.hpp" />
 		<Unit filename="gameplay/things/PixieThing.cpp" />

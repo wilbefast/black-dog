@@ -23,24 +23,32 @@ using namespace std;
 
 /// CONSTRUCTORS, DESTRUCTORS
 
-ThingEvent::ThingEvent(const char* _type) :
-type(numerise(_type))
+ThingEvent::ThingEvent(const char* _type, void* _sender) :
+type(numerise(_type)),
+sender(_sender)
 {
 }
 
-ThingEvent::ThingEvent(str_id _type) :
-type(_type)
+ThingEvent::ThingEvent(str_id _type, void* _sender) :
+type(_type),
+sender(_sender)
 {
 }
 
 
 /// ACCESSORS
-str_id ThingEvent::getType()
+
+void* ThingEvent::getSender() const
+{
+  return sender;
+}
+
+str_id ThingEvent::getType() const
 {
     return type;
 }
 
-bool ThingEvent::isType(const char* name)
+bool ThingEvent::isType(const char* name) const
 {
     return (type == numerise(name));
 }

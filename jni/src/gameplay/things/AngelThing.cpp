@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../../scenes/BlackDogState.hpp"
 
 #include "FallingThing.hpp"
+#include "EffectThing.hpp"
 
 #define STR_UNSTUN "unstun"
 #define STR_REFEATHER "refeather"
@@ -45,14 +46,16 @@ const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
 const float AngelThing::SPEED_H_INC = 0.01f;
 const float AngelThing::SPEED_H_MAX = 0.1f;
-const float AngelThing::SPEED_H_ORB = 7.0f;
+const float AngelThing::SPEED_H_BOOST = 4.0f;
+const float AngelThing::SPEED_V_BOOST = 2.5f;
+const float AngelThing::DELTA_V_BOOST = 0.2f;
 
 // first number is gravity, second is max speed
 const AngelThing::State AngelThing::FLAPPING(0.2f, 0.2f),
                         AngelThing::GLIDING(0.1f, 0.7f),
                         AngelThing::FALLING(0.3f, 10.0f),
                         AngelThing::STUNNED(0.3f, 5.0f),
-                        AngelThing::BOOSTING(0.0f, 1.0f),
+                        AngelThing::BOOSTING(0.0f, SPEED_V_BOOST),
                         AngelThing::DEAD(1.0f, 0.0f);
 
 /// PLAYER STATES
@@ -80,6 +83,8 @@ AngelThing::AngelThing(V2i _position) :
 Thing(_position, "angel"),
 state(&FALLING),
 graphic(this, V2f(96, 48)),
+buff(this, V2f(16, 16)),
+draw_buff(false),
 movement(this),
 feathers(this, MAX_FEATHERS),
 orbs(this, MAX_ORBS, 0),
@@ -94,6 +99,8 @@ furthest_x(_position.x)
   // set initial sprite
   graphic.setSprite(GraphicsManager::getInstance()->
                     get_animation("wraith_fall"), 0.1f);
+  buff.setSprite(GraphicsManager::getInstance()->
+                    get_animation("orb_consume"), 0.1f);
 
   // angel is collideable
   body = new ColliderElement(this, V2d(V2d(HITBOX_W, HITBOX_H)));
@@ -105,6 +112,10 @@ void AngelThing::draw()
 {
   // draw the sprite
   graphic.draw();
+
+  // draw effects on top
+  if(draw_buff)
+    buff.draw();
 }
 
 int AngelThing::update(GameState* context, float delta)
@@ -152,6 +163,7 @@ int AngelThing::update(GameState* context, float delta)
 
   // animate the sprite
   graphic.update(context, delta);
+  buff.update(context, delta);
 
   // treat events last of all, as they will be cleared by Thing::update
   for(EventIter i = events.begin();
@@ -234,7 +246,7 @@ void AngelThing::setState(State const& new_state, GameState* context)
     static Animation* orb = GraphicsManager::getInstance()->get_animation("orb");
     for(unsigned int i = 0; i < n_lost; i++)
     {
-      V2f spawn_pos(position.x - RAND_BETWEEN(24, 32),
+      V2f spawn_pos(position.x - RAND_BETWEEN(24, 48),
                     position.y + RAND_BETWEEN(-16, 16));
       context->addThing(new FallingThing(spawn_pos, "dead_orb", orb, 0.1f, 0.2f));
     }
@@ -244,7 +256,7 @@ void AngelThing::setState(State const& new_state, GameState* context)
   else if(new_state == BOOSTING)
   {
     graphic.setSprite(wraith_boost, 0.1f);
-    movement.addSpeed(V2f(SPEED_H_ORB, -movement.getSpeed().y*0.8f));
+    movement.addSpeed(V2f(SPEED_H_BOOST, -movement.getSpeed().y*0.8f));
   }
 
   // DEAD
@@ -296,10 +308,20 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
   // animation end
   else if (event->getType() == ANIMATION_END)
   {
-    if(state == &FALLING)
-      graphic.setSprite(wraith_fall, 0.1f);
-    else if (state == &GLIDING)
-      graphic.setSprite(wraith_glide, 0.1f);
+    // main graphic
+    if(event->getSender() == &graphic)
+    {
+      if(state == &FALLING)
+        graphic.setSprite(wraith_fall, 0.1f);
+      else if (state == &GLIDING)
+        graphic.setSprite(wraith_glide, 0.1f);
+    }
+
+    // special effect graphic
+    if(event->getSender() == &buff)
+    {
+      draw_buff = false;
+    }
   }
 
   // death
@@ -319,11 +341,27 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
     static str_id orb = numerise("orb");
 
     // collide with orb
-    if(state != &STUNNED && state != &BOOSTING && other->getType() == orb && !orbs.isFull())
+    if(other->getType() == orb)
     {
-      // consume the orb
-      other->die();
-      orbs.deposit();
+      if (state != &STUNNED)
+      {
+        // create special effect
+        buff.setFrame(0.0f);
+        draw_buff = true; // fixme: visibility attribute on graphic element?
+
+        // consume the orb
+        other->die();
+        orbs.deposit();
+
+        // boost if full
+        if(orbs.isFull() && state != &BOOSTING)
+        {
+          setState(BOOSTING, context);
+          orb_use_timer.set(ORB_USE_INTERVAL);
+
+          feathers.depositMax();
+        }
+      }
     }
   }
 
@@ -339,24 +377,23 @@ int AngelThing::treatInput(GameState* context)
   // pressing this step
   if(input->clicking)
   {
-    if(state == &FALLING)
+    if(state == &BOOSTING)
     {
-      if(!input->clicking_previous)
-      {
-        if(!orbs.isFull() && feathers.tryWithdraw())
-          setState(FLAPPING, context);
-        else if(orbs.isFull())
-        {
-          setState(BOOSTING, context);
-          orbs.tryWithdraw();
-          orb_use_timer.set(ORB_USE_INTERVAL);
-        }
-      }
+      if(movement.getSpeedY() > -SPEED_V_BOOST)
+        movement.addSpeedY(-DELTA_V_BOOST);
+      else
+        movement.setSpeedY(-SPEED_V_BOOST);
+    }
+
+    else if(state == &FALLING)
+    {
+      if(!input->clicking_previous && feathers.tryWithdraw())
+        setState(FLAPPING, context);
       else
         setState(GLIDING, context);
     }
 
-    // not clicking
+    // not falling
     else if(state == &FLAPPING)
     {
       // if moving downwards
@@ -368,11 +405,13 @@ int AngelThing::treatInput(GameState* context)
   // not pressing this step
   else
   {
-    // stop boosting
+    // downward boosting
     if(state == &BOOSTING)
     {
-      setState(FALLING, context);
-      orb_use_timer.unset();
+      if(movement.getSpeedY() < SPEED_V_BOOST)
+        movement.addSpeedY(DELTA_V_BOOST);
+      else
+        movement.setSpeedY(SPEED_V_BOOST);
     }
 
     // if moving upwards
@@ -400,7 +439,7 @@ int AngelThing::checkCollision(GameState* context)
   if(collision)
   {
     // snap out of contact
-    for(int snap_left = MAX_SNAP; snap_left && collision; snap_left--)
+    for(unsigned int snap_left = MAX_SNAP; snap_left && collision; snap_left--)
     {
       move(V2f(-1, -collision));
       hitbox = body->getOffsetBox();

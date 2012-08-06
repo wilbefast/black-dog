@@ -54,5 +54,5 @@ void AnimatedElement::draw()
 
 void AnimatedElement::animEnd()
 {
-  owner->addEvent(new ThingEvent("animation_end"));
+  owner->addEvent(new ThingEvent("animation_end", this));
 }
