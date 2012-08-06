@@ -41,7 +41,7 @@ class SceneState
     enum UpdateResult
     {
         CONTINUE,
-        EXIT,
+        EXIT
     };
 
     /// FRIENDS

@@ -86,7 +86,6 @@ void GameState::killThings(const char* name)
 void GameState::addThing(Thing* t)
 {
     things.push_back(t);
-    cout << "Thing add " << t << " with body " << t->body << endl;
 }
 
 void GameState::deleteThing(ThingIter* i)

@@ -29,6 +29,7 @@ graphic(this),
 movement(this, max_speed)
 {
   graphic.setSprite(loop, loop_speed);
+  graphic.setRandFrame();
   movement.setSpeed(V2f(-X_SPEED, gravity));
   body = new ColliderElement(this, V2d(V2d(32, 32)));
 }

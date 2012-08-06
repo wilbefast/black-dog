@@ -31,7 +31,7 @@ namespace global
 {
     extern iRect viewport;
     extern V2f scale;
-};
+}
 
 
 #endif // GLOBAL_HPP_INCLUDED

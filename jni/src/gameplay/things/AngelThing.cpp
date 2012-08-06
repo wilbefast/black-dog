@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define STR_ANIMATION_END "animation_end"
 #define STR_DEATH "death"
 #define STR_COLLISION "collision"
+#define STR_ORB_USED "orb_used"
 
 /// CONSTANTS
 
@@ -39,12 +40,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // numeric values
 const float AngelThing::BOUNCE_BACK = 5.0f;
 const float AngelThing::BOUNCE_DOWN = 2.0f;
-const float AngelThing::BOUNCE_UP = 8.0f;
+const float AngelThing::BOUNCE_UP = 6.0f;
 const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
 const float AngelThing::SPEED_H_INC = 0.01f;
 const float AngelThing::SPEED_H_MAX = 0.1f;
-const float AngelThing::SPEED_H_ORB = 5.0f;
+const float AngelThing::SPEED_H_ORB = 7.0f;
 
 // first number is gravity, second is max speed
 const AngelThing::State AngelThing::FLAPPING(0.2f, 0.2f),
@@ -84,8 +85,12 @@ feathers(this, MAX_FEATHERS),
 orbs(this, MAX_ORBS, 0),
 stun_timer(this, STR_UNSTUN),
 feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL),
+orb_use_timer(this, STR_ORB_USED, ORB_USE_INTERVAL),
 furthest_x(_position.x)
 {
+  // not using orbs by default
+  orb_use_timer.unset();
+
   // set initial sprite
   graphic.setSprite(GraphicsManager::getInstance()->
                     get_animation("wraith_fall"), 0.1f);
@@ -117,7 +122,7 @@ int AngelThing::update(GameState* context, float delta)
   // apply gravity
   speed += V2f(0.0f, state->gravity);
   // advance towards the right
-  if(speed.x < 0.0f || position.x > MAX_X || speed.x > SPEED_H_MAX)
+  if(speed.x < 0.0f || (position.x > MAX_X && state != &BOOSTING) || speed.x > SPEED_H_MAX)
     speed.x = (ABS(speed.x) > SPEED_H_INC) ? speed.x * 0.9f : 0.0f;
   else
     speed.x = (speed.x < SPEED_H_MAX-SPEED_H_INC) ?
@@ -137,6 +142,8 @@ int AngelThing::update(GameState* context, float delta)
     stun_timer.decrement(delta);
   if(feather_timer.ticking())
     feather_timer.decrement(delta);
+  if(orb_use_timer.ticking())
+    orb_use_timer.decrement(delta);
 
   // check for death
   result = checkCollision(context);
@@ -218,15 +225,26 @@ void AngelThing::setState(State const& new_state, GameState* context)
     feather_timer.set(FEATHER_INTERVAL);
     graphic.setSprite(wraith_stun, 0.1f);
     AudioManager::getInstance()->play_sound("scream");
-    // all orbs are lost
-    orbs.withdrawAll();
+    // some orbs are lost
+    unsigned int n_lost = (orbs.getBalance() >= ORB_COLLISION_PENALTY)
+              ? orbs.tryWithdraw(ORB_COLLISION_PENALTY)
+              : orbs.withdrawAll();
+
+    // create the orbs
+    static Animation* orb = GraphicsManager::getInstance()->get_animation("orb");
+    for(unsigned int i = 0; i < n_lost; i++)
+    {
+      V2f spawn_pos(position.x - RAND_BETWEEN(24, 32),
+                    position.y + RAND_BETWEEN(-16, 16));
+      context->addThing(new FallingThing(spawn_pos, "dead_orb", orb, 0.1f, 0.2f));
+    }
   }
 
   // BOOSTING
   else if(new_state == BOOSTING)
   {
     graphic.setSprite(wraith_boost, 0.1f);
-    movement.addSpeed(V2f(SPEED_H_ORB, -movement.getSpeed().y/2));
+    movement.addSpeed(V2f(SPEED_H_ORB, -movement.getSpeed().y*0.8f));
   }
 
   // DEAD
@@ -249,7 +267,8 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
                 REFEATHER = numerise(STR_REFEATHER),
                 ANIMATION_END = numerise(STR_ANIMATION_END),
                 DEATH = numerise(STR_DEATH),
-                COLLISION = numerise(STR_COLLISION);
+                COLLISION = numerise(STR_COLLISION),
+                ORB_USED = numerise(STR_ORB_USED);
 
   // stun duration finished event
   if(event->getType() == UNSTUN)
@@ -263,6 +282,17 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
     feather_timer.set(FEATHER_INTERVAL);
   }
 
+  // orb consumed by boost event
+  else if (event->getType() == ORB_USED && state == &BOOSTING)
+  {
+    if(!orbs.tryWithdraw())
+      // stop boosting
+      setState(FALLING, context);
+    else
+      // remember to reset the timer
+      orb_use_timer.set(ORB_USE_INTERVAL);
+  }
+
   // animation end
   else if (event->getType() == ANIMATION_END)
   {
@@ -270,8 +300,6 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
       graphic.setSprite(wraith_fall, 0.1f);
     else if (state == &GLIDING)
       graphic.setSprite(wraith_glide, 0.1f);
-    else if(state == &BOOSTING)
-      setState(FALLING, context);
   }
 
   // death
@@ -291,21 +319,11 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
     static str_id orb = numerise("orb");
 
     // collide with orb
-    if(other->getType() == orb)
+    if(state != &STUNNED && state != &BOOSTING && other->getType() == orb && !orbs.isFull())
     {
       // consume the orb
       other->die();
-
-      // boost if full
-      if(orbs.isFull())
-      {
-        setState(BOOSTING, context);
-        orbs.withdrawAll();
-      }
-
-      // otherwise add new orb to collection
-      else
-        orbs.deposit();
+      orbs.deposit();
     }
   }
 
@@ -323,12 +341,22 @@ int AngelThing::treatInput(GameState* context)
   {
     if(state == &FALLING)
     {
-      if(!input->clicking_previous && feathers.tryWithdraw())
-        setState(FLAPPING, context);
+      if(!input->clicking_previous)
+      {
+        if(!orbs.isFull() && feathers.tryWithdraw())
+          setState(FLAPPING, context);
+        else if(orbs.isFull())
+        {
+          setState(BOOSTING, context);
+          orbs.tryWithdraw();
+          orb_use_timer.set(ORB_USE_INTERVAL);
+        }
+      }
       else
         setState(GLIDING, context);
     }
 
+    // not clicking
     else if(state == &FLAPPING)
     {
       // if moving downwards
@@ -340,6 +368,13 @@ int AngelThing::treatInput(GameState* context)
   // not pressing this step
   else
   {
+    // stop boosting
+    if(state == &BOOSTING)
+    {
+      setState(FALLING, context);
+      orb_use_timer.unset();
+    }
+
     // if moving upwards
     if(movement.getSpeed().y < 0.0f)
     // apply dampening: hold down longer to fly higher
@@ -375,8 +410,10 @@ int AngelThing::checkCollision(GameState* context)
     // update position and speed
     movement.setSpeed(V2f(-BOUNCE_BACK, (prev_collision < 0) ? BOUNCE_DOWN : -BOUNCE_UP));
     // paralyse for a short duration
-    if(state != &BOOSTING)
-      setState(STUNNED, context);
+    setState(STUNNED, context);
+    // give feather ONLY if none left
+    if(!feathers.anyLeft())
+      feathers.deposit();
   }
 
   // nothing to report

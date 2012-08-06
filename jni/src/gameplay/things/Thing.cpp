@@ -31,6 +31,7 @@ Thing::Thing(V2f init_position, const char* type_name) :
 type(numerise(type_name)),
 dead(false),
 position(init_position),
+body(NULL),
 events()
 {
 }
@@ -39,6 +40,7 @@ Thing::Thing(V2f init_position, str_id init_type) :
 type(init_type),
 dead(false),
 position(init_position),
+body(NULL),
 events()
 {
 }

@@ -42,9 +42,7 @@ private:
   str_id type;
   // does this Thing need to be cleaned up at the end of its update?
   bool dead;
-//protected:
-/// FIXME
-public:
+protected:
   // main attributes
   V2f position;
   ColliderElement* body;

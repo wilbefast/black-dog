@@ -34,7 +34,7 @@ private:
   static const int MIN_GIRTH = 96;
   static const int DEFAULT_SPEED = 3;
 	// maximum vertical change between two points
-	static const float MAX_DELTA = WINDOW_DEFAULT_H / 2;
+	static const float MAX_DELTA;
 
 	/// ATTRIBUTES
 private:

@@ -39,15 +39,15 @@ int ResourceElement::getBalance() const
     return current_amount;
 }
 
-bool ResourceElement::tryWithdraw(int try_amount)
+int ResourceElement::tryWithdraw(int try_amount)
 {
     if(current_amount >= try_amount)
     {
-        current_amount -= try_amount;
-        return true;    // transaction successfull
+      current_amount -= try_amount;
+      return try_amount;    // transaction successfull
     }
     else
-        return false;   // transaction failed
+      return 0;   // transaction failed
 }
 
 int ResourceElement::withdrawAll()

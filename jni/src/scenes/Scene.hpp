@@ -31,7 +31,7 @@ class Scene
     enum UpdateResult
     {
         NO_CHANGE,
-        CHANGE,
+        CHANGE
     };
 
     /// FUNCTIONS

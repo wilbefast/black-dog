@@ -60,13 +60,15 @@ public:
   static const int MAX_FEATHERS = 8;
   static const int MAX_ORBS = 4;
   static const int FEATHER_INTERVAL = 72;
+  static const int ORB_USE_INTERVAL = 36;
+  static const int ORB_COLLISION_PENALTY = 2;
   static const int STUN_DURATION = 20;
   static const int SPRITE_W = 112;
   static const int SPRITE_H = 54;
   static const int HITBOX_W = 8;
   static const int HITBOX_H = 16;
   static const int MAX_SNAP = 32;
-  static const int MAX_X = 196;
+  static const int MAX_X = 148;
   // states
   static const State FLAPPING, GLIDING, FALLING, STUNNED, BOOSTING, DEAD;
 
@@ -76,7 +78,7 @@ private:
   AnimatedElement graphic;
   MovementElement movement;
   ResourceElement feathers, orbs;
-  TimerElement stun_timer, feather_timer;
+  TimerElement stun_timer, feather_timer, orb_use_timer;
   float furthest_x;
 
   /// METHODS

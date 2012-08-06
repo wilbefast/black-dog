@@ -53,6 +53,6 @@ namespace draw
                 Colour c = Colour());
     void circle(V2f position, double radius, Colour c = Colour(),
                      bool fill = false);
-};
+}
 
 #endif // GRAPHICS_HPP_INCLUDED

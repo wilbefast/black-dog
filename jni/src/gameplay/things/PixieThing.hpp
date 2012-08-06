@@ -28,7 +28,7 @@ class PixieThing : public Thing
 {
   /// CONSTANTS
 private:
-  static const int SIZE = 32, LEAD = 128, ORB_INTERVAL = 200, MAX_X = WINDOW_DEFAULT_W - 32;
+  static const int SIZE = 32, LEAD = 128, ORB_INTERVAL = 100, MAX_X = WINDOW_DEFAULT_W - 32;
 
   /// ATTRIBUTES
 private:

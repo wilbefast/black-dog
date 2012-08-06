@@ -33,7 +33,7 @@ class ResourceElement : public ThingElement
     bool anyLeft() const;
     bool isFull() const;
     int getBalance() const;
-    bool tryWithdraw(int try_amount = 1);
+    int tryWithdraw(int try_amount = 1);
     int withdrawAll();
     void deposit(int add_amount = 1);
     void depositMax();

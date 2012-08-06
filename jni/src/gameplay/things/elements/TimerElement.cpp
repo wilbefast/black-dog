@@ -34,6 +34,11 @@ void TimerElement::set(unsigned int time)
   remaining_time = time;
 }
 
+void TimerElement::unset()
+{
+  remaining_time = -1;
+}
+
 void TimerElement::decrement(float delta)
 {
   // decrement timer

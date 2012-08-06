@@ -34,6 +34,7 @@ public:
   TimerElement(Thing* _owner, const char* _name, int init_time = -1);
   bool ticking() const;
   void set(unsigned int time);
+  void unset();
   void decrement(float delta);
 };
 
