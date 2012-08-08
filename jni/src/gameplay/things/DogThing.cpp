@@ -17,16 +17,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "DogThing.hpp"
 
+#include "MinionThing.hpp"
+
+#include "../../scenes/BlackDogState.hpp"
+
 #include "../../resources/AudioManager.hpp"
 #include "../../resources/GraphicsManager.hpp"
+
+#define STR_UNLEASH_TIMER "unleash_timer"
 
 /// CREATION, DESTRUCTION
 
 DogThing::DogThing(V2i _position) :
 Thing(_position, "dog"),
 graphic(this, V2f(0,0), V2f(0, 0), GraphicIncarnation::CENTER_Y), // don't center horizontally
+unleash_timer(this, STR_UNLEASH_TIMER),
 state(OFFSCREEN)
 {
+  unleash_timer.unset();
 }
 
 
@@ -48,21 +56,31 @@ int DogThing::update(GameState* context, float delta)
     context->getHero()->addEvent(new ThingEvent("death"));
   }
 
-  // warn of danger if too far to the left of the screen
-  else if(hero_position.x < DANGER_THRESHOLD && state == OFFSCREEN)
-    setState(ARRIVE);
+  else if(state == OFFSCREEN)
+  {
+    // warn of danger if too far to the left of the screen
+    if(hero_position.x < DANGER_THRESHOLD
+    // unleash minion dogs if too far to the right of the screen
+    ||(!unleash_timer.ticking() && hero_position.x > UNLEASH_THRESHOLD
+        && !context->countThings("minion")))
+      setState(ARRIVE);
+  }
 
   // stop warning if far enough from the left of the screen
-  else if(hero_position.x >= SAFETY_THRESHOLD && state != LEAVE && state != OFFSCREEN)
+  else if(hero_position.x >= SAFETY_THRESHOLD && state == IDLE)
     setState(LEAVE);
 
   // animate the sprite
   graphic.update(context, delta);
 
+  // update the timer
+  if(unleash_timer.ticking())
+    unleash_timer.decrement(delta);
+
   // treat events last of all, as they will be cleared by Thing::update
   for(EventIter i = events.begin();
       result == GameState::CONTINUE && i != events.end(); i++)
-    result = treatEvent(*i);
+    result = treatEvent(*i, context);
   if(result != GameState::CONTINUE)
     return result;
 
@@ -81,7 +99,7 @@ void DogThing::draw()
 
 /// SUBROUTINES
 
-int DogThing::treatEvent(ThingEvent* event)
+int DogThing::treatEvent(ThingEvent* event, GameState* context)
 {
   static str_id ANIMATION_END = numerise("animation_end");
 
@@ -90,9 +108,15 @@ int DogThing::treatEvent(ThingEvent* event)
     switch(state)
     {
       case ARRIVE:
-        setState(IDLE);
+        if(context->getHero()->getPosition().x < DANGER_THRESHOLD)
+          setState(IDLE);
+        else
+          setState(UNLEASH);
       break;
 
+      case UNLEASH:
+        unleash_timer.set(UNLEASH_INTERVAL);
+        context->addThing(new MinionThing(position));
       case LEAVE:
         setState(OFFSCREEN);
       break;
@@ -114,26 +138,31 @@ void DogThing::setState(State new_state)
   static Animation
     *dog_spawn = GraphicsManager::getInstance()->get_animation("dog_spawn"),
     *dog_idle = GraphicsManager::getInstance()->get_animation("dog_idle"),
-    *dog_bite = GraphicsManager::getInstance()->get_animation("dog_bite");
+    *dog_bite = GraphicsManager::getInstance()->get_animation("dog_bite"),
+    *dog_unleash = GraphicsManager::getInstance()->get_animation("dog_unleash");
 
   switch(new_state)
   {
-    case ARRIVE:
+    case ARRIVE: // dramatic entrance
       AudioManager::getInstance()->play_sound("slime");
       graphic.setSprite(dog_spawn, 0.1f);
     break;
 
-    case LEAVE:
+    case LEAVE: // give up trying to grab player
       AudioManager::getInstance()->play_sound("slime");
       graphic.setSprite(dog_spawn, -0.1f);
     break;
 
-    case EAT:
+    case EAT: // nom nom nom
       graphic.setSprite(dog_bite, 0.0f);
     break;
 
-    case IDLE:
+    case IDLE: // tongue out, try to grab player
       graphic.setSprite(dog_idle, 0.1f);
+    break;
+
+    case UNLEASH: // summon evil doggy minion
+      graphic.setSprite(dog_unleash, 0.1f);
     break;
 
     case OFFSCREEN:

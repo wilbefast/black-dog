@@ -46,6 +46,7 @@ public:
   int update(float delta);
   void draw();
   // query
+  float getProgress() const;
   const TunnelFG* getObstacle() const;
   // modification
   void setDifficulty(float _difficulty);

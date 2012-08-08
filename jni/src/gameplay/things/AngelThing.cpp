@@ -133,7 +133,7 @@ int AngelThing::update(GameState* context, float delta)
   // apply gravity
   speed += V2f(0.0f, state->gravity);
   // advance towards the right
-  if(speed.x < 0.0f || (position.x > MAX_X && state != &BOOSTING) || speed.x > SPEED_H_MAX)
+  if(speed.x < 0.0f || (position.x > furthest_x && state != &BOOSTING) || speed.x > SPEED_H_MAX)
     speed.x = (ABS(speed.x) > SPEED_H_INC) ? speed.x * 0.9f : 0.0f;
   else
     speed.x = (speed.x < SPEED_H_MAX-SPEED_H_INC) ?
@@ -338,7 +338,17 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
     Thing* other = ((CollisionEvent*)event)->getOther();
 
     // cache possible colliders
-    static str_id orb = numerise("orb");
+    static str_id orb = numerise("orb"), minion = numerise("minion"),
+                  imp = numerise("imp");
+
+    // hit by minion
+    if(other->getType() == minion || other->getType() == imp)
+    {
+      setState(STUNNED, context);
+      movement.addSpeedX(-3.0f);
+      movement.setSpeedY(0.0f);
+      other->die();
+    }
 
     // collide with orb
     if(other->getType() == orb)

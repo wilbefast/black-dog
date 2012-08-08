@@ -59,10 +59,10 @@ public:
   static const float SPEED_V_BOOST;
   static const float DELTA_V_BOOST;
   static const float FRICTION;
-  static const int MAX_FEATHERS = 8;
-  static const int MAX_ORBS = 4;
-  static const int FEATHER_INTERVAL = 72;
-  static const int ORB_USE_INTERVAL = 40;
+  static const int MAX_FEATHERS = 5;
+  static const int MAX_ORBS = 5;
+  static const int FEATHER_INTERVAL = 58;
+  static const int ORB_USE_INTERVAL = 38;
   static const int ORB_COLLISION_PENALTY = 2;
   static const int STUN_DURATION = 20;
   static const int SPRITE_W = 112;

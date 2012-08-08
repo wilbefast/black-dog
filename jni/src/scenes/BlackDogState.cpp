@@ -88,6 +88,11 @@ void BlackDogState::draw()
 
 /// QUERY
 
+float BlackDogState::getProgress() const
+{
+  return player_progress;
+}
+
 const TunnelFG* BlackDogState::getObstacle() const
 {
   return &obstacle;

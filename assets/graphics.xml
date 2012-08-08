@@ -20,6 +20,11 @@
     <animation name="pixie" texture="pixie" x="0" y="32" w="32" h="32" n_frames="3" />
     <animation name="dog_spawn" texture="dog" x="0" y="0" w="70" h="128" n_frames="10" />
     <animation name="dog_idle" texture="dog" x="0" y="128" w="70" h="128" n_frames="5" />
+		<animation name="dog_unleash" texture="dog" x="700" y="0" w="70" h="128" n_frames="4" />
     <animation name="dog_bite" texture="dog" x="350" y="128" w="70" h="128" n_frames="1" />
+		<animation name="minion" texture="dog" x="420" y="128" w="64" h="36" n_frames="8" />
+		<animation name="minion_die" texture="dog" x="420" y="164" w="64" h="60" n_frames="4" />
+		<animation name="imp" texture="dog" x="420" y="224" w="32" h="32" n_frames="4" />
+		<animation name="imp_die" texture="dog" x="548" y="224" w="32" h="32" n_frames="4" />
 	</animation_list>
 </graphics>

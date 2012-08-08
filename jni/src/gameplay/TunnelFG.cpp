@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 draw::Colour TunnelFG::COLOUR_FILL(242, 68, 5);  // orange
 draw::Colour TunnelFG::COLOUR_LINE(44, 0, 0);    // very dark red
-const float TunnelFG::MAX_DELTA = WINDOW_DEFAULT_H / 2;
+const float TunnelFG::MAX_DELTA = WINDOW_DEFAULT_H / 2.5f;
 
 /// CREATION AND DESTRUCTION
 

@@ -15,33 +15,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef PIXIETHING_HPP_INCLUDED
-#define PIXIETHING_HPP_INCLUDED
+
+#ifndef EFFECTTHING_HPP_INCLUDED
+#define EFFECTTHING_HPP_INCLUDED
 
 #include "Thing.hpp"
-
 #include "elements/AnimatedElement.hpp"
-#include "elements/TimerElement.hpp"
-#include "../../global.hpp" // for default window size
 
-class PixieThing : public Thing
+class EffectThing : public Thing
 {
-  /// CONSTANTS
-private:
-  static const int SIZE = 32, LEAD = 128, ORB_INTERVAL = 160, MAX_X = WINDOW_DEFAULT_W - 32;
-
   /// ATTRIBUTES
 private:
   AnimatedElement graphic;
-  TimerElement orb_timer;
 
   /// METHODS
 public:
   // creation, destruction
-  PixieThing(V2i _position);
+  EffectThing(V2i _position, Animation* loop, float loop_speed);
   // overrides Thing
   int update(GameState*, float delta);
   void draw();
 };
 
-#endif // PIXIETHING_HPP_INCLUDED
+#endif // EFFECTTHING_HPP_INCLUDED

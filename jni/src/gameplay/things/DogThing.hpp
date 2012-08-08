@@ -18,7 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef DOGTHING_HPP_INCLUDED
 #define DOGTHING_HPP_INCLUDED
 
+#include "../../global.hpp" // for WINDOW_DEFAULT_W
+
 #include "elements/AnimatedElement.hpp"
+#include "elements/TimerElement.hpp"
 
 class DogThing : public Thing
 {
@@ -27,14 +30,17 @@ private:
   static const int DEATH_THRESHOLD = 32;
   static const int DANGER_THRESHOLD = DEATH_THRESHOLD*4;
   static const int SAFETY_THRESHOLD = DANGER_THRESHOLD*1.1f;
+  static const int UNLEASH_THRESHOLD = WINDOW_DEFAULT_W*0.4f;
+  static const int UNLEASH_INTERVAL = 450;
 
   /// NESTING
 private:
-  enum State { OFFSCREEN, ARRIVE, IDLE, EAT, LEAVE };
+  enum State { OFFSCREEN, ARRIVE, IDLE, UNLEASH, EAT, LEAVE };
 
   /// ATTRIBUTES
 private:
   AnimatedElement graphic;
+  TimerElement unleash_timer;
   State state;
 
   /// METHODS
@@ -48,7 +54,7 @@ public:
   /// SUBROUTINES
 private:
   void setState(State new_state);
-  int treatEvent(ThingEvent* event);
+  int treatEvent(ThingEvent* event, GameState* context);
 };
 
 #endif // DOGTHING_HPP_INCLUDED

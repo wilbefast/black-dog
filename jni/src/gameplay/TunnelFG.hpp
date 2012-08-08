@@ -30,8 +30,8 @@ class TunnelFG : public Tunnel
 private:
   static draw::Colour COLOUR_FILL, COLOUR_LINE;
   // girth is the vertical size of the tunnel
-  static const int BASE_GIRTH = WINDOW_DEFAULT_H / 3;
-  static const int MIN_GIRTH = 96;
+  static const int BASE_GIRTH = WINDOW_DEFAULT_H / 2;
+  static const int MIN_GIRTH = 128; //96;
   static const int DEFAULT_SPEED = 3;
 	// maximum vertical change between two points
 	static const float MAX_DELTA;

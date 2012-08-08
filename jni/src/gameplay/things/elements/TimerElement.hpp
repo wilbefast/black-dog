@@ -32,7 +32,10 @@ private:
   /// METHODS
 public:
   TimerElement(Thing* _owner, const char* _name, int init_time = -1);
+  // query
+  int check() const;
   bool ticking() const;
+  // modification
   void set(unsigned int time);
   void unset();
   void decrement(float delta);

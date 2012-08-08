@@ -24,6 +24,11 @@ remaining_time(init_time < 0 ? 0 : init_time)
 {
 }
 
+int TimerElement::check() const
+{
+  return remaining_time;
+}
+
 bool TimerElement::ticking() const
 {
   return (remaining_time >= 0);

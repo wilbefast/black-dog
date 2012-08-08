@@ -64,6 +64,8 @@
 		<Unit filename="gameplay/things/EffectThing.hpp" />
 		<Unit filename="gameplay/things/FallingThing.cpp" />
 		<Unit filename="gameplay/things/FallingThing.hpp" />
+		<Unit filename="gameplay/things/MinionThing.cpp" />
+		<Unit filename="gameplay/things/MinionThing.hpp" />
 		<Unit filename="gameplay/things/PixieThing.cpp" />
 		<Unit filename="gameplay/things/PixieThing.hpp" />
 		<Unit filename="gameplay/things/Thing.cpp" />
