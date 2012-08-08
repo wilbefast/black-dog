@@ -10277,7 +10277,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1344368609 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
+1344461172 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../resources/AudioManager.hpp"
@@ -10600,11 +10600,11 @@
 	<assert.h>
 	<string.h>
 
-1340887643 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/AnimationIncarnation.hpp
+1344456634 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/AnimationIncarnation.hpp
 	"GraphicIncarnation.hpp"
 	"Animation.hpp"
 
-1340887643 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.hpp
+1344456652 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.hpp
 	"Graphic.hpp"
 
 1344096723 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
@@ -10612,7 +10612,7 @@
 	"elements/AnimatedElement.hpp"
 	"elements/MovementElement.hpp"
 
-1344361222 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.cpp
+1344458542 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.cpp
 	"DogThing.hpp"
 	"MinionThing.hpp"
 	"../../scenes/BlackDogState.hpp"
@@ -10624,7 +10624,7 @@
 	"elements/AnimatedElement.hpp"
 	"elements/TimerElement.hpp"
 
-1344275484 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.cpp
+1344460126 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.cpp
 	"FallingThing.hpp"
 	"elements/ColliderElement.hpp"
 
@@ -10641,10 +10641,10 @@
 	"elements/TimerElement.hpp"
 	"../../global.hpp"
 
-1340887642 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/AnimationIncarnation.cpp
+1344456674 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/AnimationIncarnation.cpp
 	"AnimationIncarnation.hpp"
 
-1340887642 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.cpp
+1344457298 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.cpp
 	"GraphicIncarnation.hpp"
 
 1305426296 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/tinyxml/tinystr.cpp
@@ -10671,20 +10671,22 @@
 	"tinyxml.h"
 	<windows.h>
 
-1344281820 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EffectThing.cpp
+1344460499 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EffectThing.cpp
 	"EffectThing.hpp"
 
 1344281815 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EffectThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 
-1344368772 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.cpp
+1344460398 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.cpp
 	"MinionThing.hpp"
 	"FallingThing.hpp"
 	"elements/ColliderElement.hpp"
+	"events/CollisionEvent.hpp"
 	"../../resources/GraphicsManager.hpp"
+	"../../global.hpp"
 
-1344365647 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.hpp
+1344456963 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 	"elements/MovementElement.hpp"

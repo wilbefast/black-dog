@@ -44,10 +44,12 @@ public:
                     V2f _offset = V2f(0.0f, 0.0f),
                     char _flags = CENTER_X|CENTER_Y);
   ~GraphicIncarnation();
+  // query
+  bool isSprite(Graphic* check_sprite) const;
   // accessors
   void setAngle(float new_angle);
   bool setSprite(Graphic* new_sprite);
-  // modificatio
+  // modification
   virtual void setPosition(V2f _position);
   virtual void draw();
 };

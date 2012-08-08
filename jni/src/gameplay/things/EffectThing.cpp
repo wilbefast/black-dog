@@ -32,6 +32,9 @@ graphic(this)
 
 int EffectThing::update(GameState* context, float delta)
 {
+  /// FIXME -- kludge quickfix for "Black Dog" which scrolls right-to-left ;)
+  position.x -= 3.0f;
+
   // animate the sprite
   graphic.update(context, delta);
 

@@ -46,7 +46,7 @@ const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
 const float AngelThing::SPEED_H_INC = 0.01f;
 const float AngelThing::SPEED_H_MAX = 0.1f;
-const float AngelThing::SPEED_H_BOOST = 4.0f;
+const float AngelThing::SPEED_H_BOOST = 8.0f;
 const float AngelThing::SPEED_V_BOOST = 2.5f;
 const float AngelThing::DELTA_V_BOOST = 0.2f;
 
@@ -243,12 +243,12 @@ void AngelThing::setState(State const& new_state, GameState* context)
               : orbs.withdrawAll();
 
     // create the orbs
-    static Animation* orb = GraphicsManager::getInstance()->get_animation("orb");
+    static Animation* orb_die = GraphicsManager::getInstance()->get_animation("orb_die");
     for(unsigned int i = 0; i < n_lost; i++)
     {
       V2f spawn_pos(position.x - RAND_BETWEEN(24, 48),
                     position.y + RAND_BETWEEN(-16, 16));
-      context->addThing(new FallingThing(spawn_pos, "dead_orb", orb, 0.1f, 0.2f));
+      context->addThing(new EffectThing(spawn_pos, orb_die, 0.1f));
     }
   }
 
@@ -341,19 +341,34 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
     static str_id orb = numerise("orb"), minion = numerise("minion"),
                   imp = numerise("imp");
 
-    // hit by minion
-    if(other->getType() == minion || other->getType() == imp)
+
+    // hit by cerberus head
+    if(other->getType() == imp)
     {
-      setState(STUNNED, context);
-      movement.addSpeedX(-3.0f);
-      movement.setSpeedY(0.0f);
+      if(state != &STUNNED && state != &BOOSTING)
+      {
+        setState(STUNNED, context);
+        movement.addSpeedX(-1.0f);
+        movement.setSpeedY(0.0f);
+      }
+      // always kill the other, even if stunned!
       other->die();
+      context->addThing(new EffectThing((V2i)other->getPosition(),
+              GraphicsManager::getInstance()->get_animation("imp_die"), 0.1f));
     }
 
-    // collide with orb
-    if(other->getType() == orb)
+    if(state != &STUNNED)
     {
-      if (state != &STUNNED)
+      // hit by minion
+      if(other->getType() == minion && state != &BOOSTING)
+      {
+        setState(STUNNED, context);
+        movement.addSpeedX(-3.0f);
+        movement.setSpeedY(0.0f);
+      }
+
+      // collide with orb
+      if(other->getType() == orb)
       {
         // create special effect
         buff.setFrame(0.0f);
@@ -371,9 +386,9 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
 
           feathers.depositMax();
         }
-      }
-    }
-  }
+      } // if(other->getType() == orb)
+    } // if(state != &STUNNED)
+  } // if(event->getType() == COLLISION)
 
   // nothing to report
   return GameState::CONTINUE;

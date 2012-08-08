@@ -27,7 +27,6 @@ class MinionThing : public Thing
 {
   /// ATTRIBUTES
 private:
-  bool dying;
   AnimatedElement graphic;
   MovementElement movement;
 

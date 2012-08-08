@@ -34,7 +34,14 @@ GraphicIncarnation::~GraphicIncarnation()
     // NB - the sprite is NOT freed as it may in use elsewhere
 }
 
-// Accessors
+/// QUERY
+
+bool GraphicIncarnation::isSprite(Graphic* check_sprite) const
+{
+  return (sprite == check_sprite);
+}
+
+/// MODIFICATION
 
 void GraphicIncarnation::setAngle(float new_angle)
 {

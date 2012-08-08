@@ -37,11 +37,10 @@ public:
                   V2f offset = V2f(0.0f, 0.0f),
                   char flags = CENTER_X|CENTER_Y);
   ~AnimationIncarnation();
-  // accessors
+  // modification
   void setFrame(float new_frame);
   void setRandFrame();
   bool setSprite(Animation* new_sprite, float new_speed = 0);
-  // modification
   void draw();
 
   /// SUBROUTINES

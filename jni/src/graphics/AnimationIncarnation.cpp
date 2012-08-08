@@ -29,7 +29,7 @@ AnimationIncarnation::~AnimationIncarnation()
 {
 }
 
-// Accessors
+/// MODIFICAITON
 
 bool AnimationIncarnation::setSprite(Animation* new_sprite, float new_speed)
 {

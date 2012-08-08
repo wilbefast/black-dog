@@ -15,15 +15,17 @@
     <animation name="feather_ui" texture="wraith" x="864" y="96" w="32" h="32" n_frames="2" />
 		<animation name="feather" texture="wraith" x="928" y="96" w="16" h="16" n_frames="3" />
     <animation name="orb_ui" texture="pixie" x="0" y="64" w="32" h="32" n_frames="2" />
-		<animation name="orb_consume" texture="pixie" x="0" y="16" w="16" h="16" n_frames="4" />
 		<animation name="orb" texture="pixie" x="0" y="0" w="16" h="16" n_frames="6" />
+		<animation name="orb_consume" texture="pixie" x="0" y="16" w="16" h="16" n_frames="4" />
+		<animation name="orb_die" texture="pixie" x="64" y="16" w="16" h="16" n_frames="4" />
     <animation name="pixie" texture="pixie" x="0" y="32" w="32" h="32" n_frames="3" />
     <animation name="dog_spawn" texture="dog" x="0" y="0" w="70" h="128" n_frames="10" />
     <animation name="dog_idle" texture="dog" x="0" y="128" w="70" h="128" n_frames="5" />
 		<animation name="dog_unleash" texture="dog" x="700" y="0" w="70" h="128" n_frames="4" />
     <animation name="dog_bite" texture="dog" x="350" y="128" w="70" h="128" n_frames="1" />
 		<animation name="minion" texture="dog" x="420" y="128" w="64" h="36" n_frames="8" />
-		<animation name="minion_die" texture="dog" x="420" y="164" w="64" h="60" n_frames="4" />
+		<animation name="minion_impify" texture="dog" x="420" y="164" w="64" h="60" n_frames="4" />
+		<animation name="minion_die" texture="dog" x="676" y="164" w="64" h="60" n_frames="5" />
 		<animation name="imp" texture="dog" x="420" y="224" w="32" h="32" n_frames="4" />
 		<animation name="imp_die" texture="dog" x="548" y="224" w="32" h="32" n_frames="4" />
 	</animation_list>

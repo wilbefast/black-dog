@@ -21,12 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "FallingThing.hpp"
 
 #include "elements/ColliderElement.hpp"
+#include "events/CollisionEvent.hpp"
 
 #include "../../resources/GraphicsManager.hpp"
 
+#include "../../global.hpp" // for WINDOW_DEFAULT_W
+
 MinionThing::MinionThing(V2i _position) :
 Thing(_position, "minion"),
-dying(false),
 graphic(this, V2f(64, 36)),
 movement(this, 2.0f)
 {
@@ -48,8 +50,17 @@ void MinionThing::draw()
 
 int MinionThing::update(GameState* context, float delta)
 {
-  if(!dying)
+  // cache animations
+  static Animation
+    *anim_normal = GraphicsManager::getInstance()->get_animation("minion"),
+    *anim_impify = GraphicsManager::getInstance()->get_animation("minion_impify"),
+    *anim_die = GraphicsManager::getInstance()->get_animation("minion_die"),
+    *anim_imp = GraphicsManager::getInstance()->get_animation("imp");
+
+  // if playing normal animation, state is normal
+  if(graphic.isSprite(anim_normal))
   {
+    // cache hero position
     V2f hero_pos = context->getHero()->getPosition();
 
     // home in on player
@@ -59,12 +70,12 @@ int MinionThing::update(GameState* context, float delta)
       movement.addSpeedY(-0.01f);
 
     // die if past player
-    if(position.x > hero_pos.x + 96.0f)
+    if(position.x > hero_pos.x + 96.0f
+    // die if too far to the right of the screen
+    || position.x > WINDOW_DEFAULT_W - 96.0f)
     {
-      graphic.setSprite(GraphicsManager::getInstance()->
-                    get_animation("minion_die"), 0.1f);
+      graphic.setSprite(anim_impify, 0.1f);
       movement.setSpeed(V2f(1.0f, 0.0f));
-      dying = true;
     }
   }
 
@@ -74,20 +85,39 @@ int MinionThing::update(GameState* context, float delta)
 
   // treat events last of all, as they will be cleared by Thing::update
   static str_id out_of_bounds = numerise("out_of_bounds"),
-                animation_end = numerise("animation_end");
+                animation_end = numerise("animation_end"),
+                collision = numerise("collision");
+
   for(EventIter i = events.begin(); i != events.end(); i++)
   {
-    if(dying && (*i)->getType() == animation_end)
+    // if event is "collision" and colliding with the hero
+    if((*i)->getType() == collision
+    && ((CollisionEvent*)(*i))->getOther() == context->getHero())
     {
-      // create the imps
-      static Animation* imp = GraphicsManager::getInstance()->get_animation("imp");
-      for(unsigned int i = 0; i < 3; i++)
-      {
-        V2f spawn_pos(position.x + RAND_BETWEEN(-4,4), position.y - 16 + 16*i);
-        context->addThing(new FallingThing(spawn_pos, "imp", imp , 0.15f, 0.0f));
-      }
-      die();
+      graphic.setSprite(anim_die, 0.1f);
+      movement.setSpeed(V2f(0.5f, 0.0f));
     }
+
+    // if event is "animation end"
+    else if((*i)->getType() == animation_end)
+    {
+      // if turning into an imp
+      if(graphic.isSprite(anim_impify))
+      {
+        // create the imps
+        for(unsigned int i = 0; i < 3; i++)
+        {
+          V2f spawn_pos(position.x + RAND_BETWEEN(-4,4), position.y - 16 + 16*i);
+          context->addThing(new FallingThing(spawn_pos, "imp", anim_imp , 0.15f, 0.0f));
+        }
+        die();
+      }
+      // if exploding
+      else if(graphic.isSprite(anim_die))
+        die();
+    }
+
+    // if event is "out of bounds"
     else if((*i)->getType() == out_of_bounds)
       die();
   }
