@@ -84,7 +84,7 @@ int Application::run()
   // Update current scene, switch to the next scene if
   // need be (in which case we break from the loop and restart).
   Scene* next = NULL;
-  if(scene->update(&next, missed_ticks/1000.0f * MAX_FPS) != Scene::NO_CHANGE)
+  if(scene->update(&next, 1.0f + missed_ticks/1000.0f * MAX_FPS) != Scene::NO_CHANGE)
     return setScene(next);
   missed_ticks = 0;
 

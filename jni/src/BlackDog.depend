@@ -10128,7 +10128,7 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1344512254 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1344513568 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -10504,7 +10504,7 @@
 	"../resources/GraphicsManager.hpp"
 	"Game.hpp"
 
-1344512293 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Scene.cpp
+1344513553 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Scene.cpp
 	"Scene.hpp"
 	"../global.hpp"
 	"../assert.hpp"
@@ -10514,11 +10514,11 @@
 	"SceneState.hpp"
 	<stdlib.h>
 
-1344358796 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.hpp
+1344513513 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.hpp
 	"ThingElement.hpp"
 	"../../../resources/numerise.hpp"
 
-1344358793 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.cpp
+1344513516 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.cpp
 	"TimerElement.hpp"
 
 1340319075 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.hpp

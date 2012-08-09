@@ -26,17 +26,17 @@ class TimerElement : public ThingElement
   /// ATTRIBUTES
 private:
   str_id name;
-  int remaining_time;
+  float remaining_time; // slow machine may perform, say, 1.3 updates rather than 1
 
 
   /// METHODS
 public:
-  TimerElement(Thing* _owner, const char* _name, int init_time = -1);
+  TimerElement(Thing* _owner, const char* _name, float init_time = -1.0f);
   // query
-  int check() const;
+  float check() const;
   bool ticking() const;
   // modification
-  void set(unsigned int time);
+  void set(float time);
   void unset();
   void decrement(float delta);
 };
