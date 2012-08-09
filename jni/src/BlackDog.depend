@@ -10128,7 +10128,7 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1340887489 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1344512254 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -10277,7 +10277,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1344461172 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
+1344462870 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../resources/AudioManager.hpp"
@@ -10504,7 +10504,7 @@
 	"../resources/GraphicsManager.hpp"
 	"Game.hpp"
 
-1340887740 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Scene.cpp
+1344512293 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Scene.cpp
 	"Scene.hpp"
 	"../global.hpp"
 	"../assert.hpp"

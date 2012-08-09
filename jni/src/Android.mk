@@ -6,35 +6,36 @@ LOCAL_MODULE := main
 
 SDL_PATH := ../SDL
 
-LOCAL_C_INCLUDES := 						\
+LOCAL_C_INCLUDES := 						        \
 	$(LOCAL_PATH)/$(SDL_PATH)/include 		\
-	$(LOCAL_PATH)/../SDL_image 				\
+	$(LOCAL_PATH)/../SDL_image 				    \
 	$(LOCAL_PATH)/../SDL_mixer
 
-LOCAL_CFLAGS := \
+LOCAL_CFLAGS :=                         \
 	-DSDL_NO_COMPAT
 
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
-  resources/tinyxml/tinystr.cpp \
-  resources/tinyxml/tinyxml.cpp \
-  resources/tinyxml/tinyxml_dump.cpp \
-  resources/tinyxml/tinyxmlerror.cpp \
-  resources/tinyxml/tinyxmlparser.cpp \
+  resources/tinyxml/tinystr.cpp                               \
+  resources/tinyxml/tinyxml.cpp                               \
+  resources/tinyxml/tinyxml_dump.cpp                          \
+  resources/tinyxml/tinyxmlerror.cpp                          \
+  resources/tinyxml/tinyxmlparser.cpp                         \
   gameplay/things/elements/AnimatedElement.cpp		            \
   gameplay/things/elements/ColliderElement.cpp		            \
   gameplay/things/elements/GraphicElement.cpp		              \
   gameplay/things/elements/MovementElement.cpp		            \
   gameplay/things/elements/ResourceElement.cpp		            \
   gameplay/things/elements/ThingElement.cpp		                \
-  gameplay/things/elements/TimerElement.cpp						\
+  gameplay/things/elements/TimerElement.cpp						        \
   gameplay/things/events/BoundaryEvent.cpp		                \
   gameplay/things/events/CollisionEvent.cpp		                \
   gameplay/things/events/ThingEvent.cpp                       \
   gameplay/things/AngelThing.cpp				                      \
-  gameplay/things/DogThing.cpp				                      \
-  gameplay/things/PixieThing.cpp				                            \
-  gameplay/things/FallingThing.cpp				                            \
-	gameplay/things/MinionThing.cpp				                            \
+  gameplay/things/DogThing.cpp				                        \
+  gameplay/things/PixieThing.cpp				                      \
+  gameplay/things/FallingThing.cpp				                    \
+	gameplay/things/MinionThing.cpp				                      \
+  gameplay/things/EffectThing.cpp				                      \
   gameplay/things/Thing.cpp				                            \
   gameplay/Tunnel.cpp					                                \
   gameplay/TunnelBG.cpp					                              \

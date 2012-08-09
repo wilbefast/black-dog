@@ -84,7 +84,7 @@ int Application::run()
   // Update current scene, switch to the next scene if
   // need be (in which case we break from the loop and restart).
   Scene* next = NULL;
-  if(scene->update(&next, 1.0f + missed_ticks/MAX_FPS) != Scene::NO_CHANGE)
+  if(scene->update(&next, missed_ticks/1000.0f * MAX_FPS) != Scene::NO_CHANGE)
     return setScene(next);
   missed_ticks = 0;
 
@@ -208,7 +208,7 @@ void Application::wait()
   // Get the current time-stamp
   this_tick = SDL_GetTicks();
 
-  // If it's not yet time for the next update, wait a will
+  // If it's not yet time for the next update, wait a while
 	if (this_tick < next_tick )
 	{
 		SDL_Delay(next_tick - this_tick);
