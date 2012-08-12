@@ -120,7 +120,6 @@
 		<Unit filename="io/ResourceManager.hpp" />
 		<Unit filename="io/file.cpp" />
 		<Unit filename="io/file.hpp" />
-		<Unit filename="io/numerise.inl" />
 		<Unit filename="io/tinyxml/tinystr.cpp" />
 		<Unit filename="io/tinyxml/tinystr.h" />
 		<Unit filename="io/tinyxml/tinyxml.cpp" />
@@ -136,6 +135,7 @@
 		<Unit filename="math/Rect.inl" />
 		<Unit filename="math/V2.hpp" />
 		<Unit filename="math/V2.inl" />
+		<Unit filename="math/numerise.hpp" />
 		<Unit filename="math/numerise.inl" />
 		<Unit filename="math/wjd_math.hpp" />
 		<Unit filename="platform.hpp" />
