@@ -22,10 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class ResourceManager
 {
-  /// ATTRIBUTES
-private:
-  bool started;
-
   /// METHODS
 protected:
   // creation & destruction

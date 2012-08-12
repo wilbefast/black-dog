@@ -22,6 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../math/wjd_math.hpp"
 #include "file.hpp" // for io::MAX_BLOCKS
 
+#include <iostream>
+
+using namespace std;
+
 /// SINGLETON
 
 AudioManager* AudioManager::instance = NULL;
@@ -65,52 +69,6 @@ int AudioManager::startup()
   return EXIT_SUCCESS;
 }
 
-int AudioManager::load_xml(const char* xml_file)
-{
-  // pass string to the TinyXML document
-  TiXmlDocument doc;
-  ASSERT_AUX(io::read_xml(xml_file, &doc) == EXIT_SUCCESS,
-            "Opening audio pack XML file", doc.ErrorDesc());
-
-  // create local variables for searching document tree
-  TiXmlHandle doc_handle(&doc);
-  TiXmlElement* element = NULL;
-
-  // the root is a 'audio' tag
-  element = doc_handle.FirstChildElement().Element();
-  TiXmlHandle root_handle = TiXmlHandle(element);
-
-  // load music
-  element = root_handle.FirstChild("music").Element();
-  const char* name = element->Attribute("name");
-  if(!name)
-    WARN_RTN("AudioManager::load_xml", "malformed music tag", EXIT_FAILURE);
-  string filename = io::name_to_path(name, MUSIC_FILETYPE);
-  ASSERT(load_music(filename.c_str()) == EXIT_SUCCESS, "Loading initial music track");
-  ASSERT(play_music(true) == EXIT_SUCCESS, "Setting initial music track to loop");
-
-  // load sound effects
-  element = root_handle.FirstChild("sound_list").FirstChild().Element();
-  while(element)
-  {
-    // get the name of the texture and deduce its filename
-    name = element->Attribute("name");
-    if(!name)
-      WARN_RTN("AudioManager::load_xml", "malformed sound tag", EXIT_FAILURE);
-
-    // load the texture
-    string filename = io::name_to_path(name, SOUND_FILETYPE);
-    load_sound(filename.c_str(), name);
-
-    // continue to the next sprite
-    element = element->NextSiblingElement();
-  }
-
-  // all good
-  return EXIT_SUCCESS;
-}
-
-
 int AudioManager::shutdown()
 {
   if(!started)
@@ -138,6 +96,55 @@ AudioManager::~AudioManager()
 {
   if(started)
     shutdown();
+}
+
+/// LOADING
+
+int AudioManager::parse_root(TiXmlHandle* root_handle)
+{
+  // load music
+  ASSERT(parse_element(root_handle->FirstChild("music").Element()) == EXIT_SUCCESS,
+              "Parsing music element");
+
+
+  // load sound effects
+  ASSERT(parse_list(root_handle, "sound_list") == EXIT_SUCCESS,
+              "Parsing list of sound effects");
+
+  // all clear!
+  return EXIT_SUCCESS;
+}
+
+int AudioManager::parse_element(TiXmlElement* element)
+{
+  // music element
+  if(!strcmp(element->Value(), "music"))
+  {
+    // conver the name attribute to a file name
+    const char* name = element->Attribute("name");
+    if(!name)
+      WARN_RTN("AudioManager::load_xml", "malformed music tag", EXIT_FAILURE);
+    string filename = io::name_to_path(name, MUSIC_FILETYPE);
+    // load and play music from the specified file
+    ASSERT(load_music(filename.c_str()) == EXIT_SUCCESS, "Loading initial music track");
+    ASSERT(play_music(true) == EXIT_SUCCESS, "Setting initial music track to loop");
+  }
+
+  // sound element
+  else if(!strcmp(element->Value(), "sound"))
+  {
+    // get the name of the texture and deduce its filename
+    const char* name = element->Attribute("name");
+    if(!name)
+      WARN_RTN("AudioManager::load_xml", "malformed sound tag", EXIT_FAILURE);
+
+    // load the texture
+    string filename = io::name_to_path(name, SOUND_FILETYPE);
+    load_sound(filename.c_str(), name);
+  }
+
+  // all clear!
+  return EXIT_SUCCESS;
 }
 
 /// MUSIC
