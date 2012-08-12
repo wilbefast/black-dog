@@ -15,29 +15,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef RESOURCEELEMENT_HPP_INCLUDED
-#define RESOURCEELEMENT_HPP_INCLUDED
+// Inline file: a special implementation that is included
 
-#include "ThingElement.hpp"
+using namespace std;
 
-class ResourceElement : public ThingElement
+inline str_id numerise(const char* str)
 {
-    /// ATTRIBUTES
-    private:
-    unsigned int current_amount;
-    unsigned int max_amount;
+    str_id hash = INIT_HASH;
+    unsigned int i = 0;
+    while(str[i])
+    {
+        hash = REHASH(str[i], hash);
+        i++;
+    }
+    return hash;
+}
 
-    /// METHODS
-    public:
-    ResourceElement(Thing* owner, unsigned int init_max,
-                                  unsigned int init_amount = -1);
-    bool anyLeft() const;
-    bool isFull() const;
-    unsigned int getBalance() const;
-    unsigned int tryWithdraw(unsigned int try_amount = 1);
-    unsigned int withdrawAll();
-    void deposit(unsigned int add_amount = 1);
-    void depositMax();
-};
-
-#endif // RESOURCEELEMENT_HPP_INCLUDED

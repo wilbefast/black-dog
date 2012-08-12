@@ -17,7 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "ResourceElement.hpp"
 
-ResourceElement::ResourceElement(Thing* owner, int init_max, int init_amount) :
+ResourceElement::ResourceElement(Thing* owner, unsigned int init_max,
+                                              unsigned int init_amount) :
 ThingElement(owner),
 current_amount((init_amount < 0) ? init_max : init_amount),
 max_amount(init_max)
@@ -34,12 +35,12 @@ bool ResourceElement::isFull() const
   return (current_amount == max_amount);
 }
 
-int ResourceElement::getBalance() const
+unsigned int ResourceElement::getBalance() const
 {
     return current_amount;
 }
 
-int ResourceElement::tryWithdraw(int try_amount)
+unsigned int ResourceElement::tryWithdraw(unsigned int try_amount)
 {
     if(current_amount >= try_amount)
     {
@@ -47,17 +48,19 @@ int ResourceElement::tryWithdraw(int try_amount)
       return try_amount;    // transaction successfull
     }
     else
-      return 0;   // transaction failed
+    {
+      return withdrawAll();   // transaction failed
+    }
 }
 
-int ResourceElement::withdrawAll()
+unsigned int ResourceElement::withdrawAll()
 {
     int withdraw_amount = current_amount;
     current_amount = 0;
     return withdraw_amount;
 }
 
-void ResourceElement::deposit(int add_amount)
+void ResourceElement::deposit(unsigned int add_amount)
 {
     current_amount = min(current_amount+add_amount, max_amount);
 }

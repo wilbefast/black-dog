@@ -60,12 +60,12 @@ void TunnelFG::draw()
   // draw the roof of the cavern
   mesh_above.draw(offset_x, COLOUR_FILL);
   draw::height_line(above, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
-                    head_i, COLOUR_LINE);
+                    head_i, COLOUR_LINE, 1.7f);
 
   // draw the floor
   mesh_below.draw(offset_x, COLOUR_FILL);
   draw::height_line(below, N_PTS, SEGMENT_L, V2f(offset_x, 0.0f),
-                    head_i, COLOUR_LINE);
+                    head_i, COLOUR_LINE, 1.7f);
 }
 
 void TunnelFG::new_height(unsigned int i)

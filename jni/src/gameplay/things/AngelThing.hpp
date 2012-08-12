@@ -63,7 +63,9 @@ public:
   static const int MAX_ORBS = 5;
   static const int FEATHER_INTERVAL = 58;
   static const int ORB_USE_INTERVAL = 38;
-  static const int ORB_COLLISION_PENALTY = 2;
+  static const int ORB_PENALTY_WALL = 2;
+  static const int ORB_PENALTY_MINION = 3;
+  static const int ORB_PENALTY_IMP = 1;
   static const int STUN_DURATION = 20;
   static const int SPRITE_W = 112;
   static const int SPRITE_H = 54;
@@ -103,6 +105,7 @@ private:
   int treatEvent(ThingEvent* event, GameState* context);
   int treatInput(GameState* context);
   int checkCollision(GameState* context);
+  void tryDropOrbs(unsigned int n_lost, GameState* context);
 };
 
 #endif // ANGELTHING_HPP_INCLUDED

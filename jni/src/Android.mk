@@ -20,6 +20,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   io/tinyxml/tinyxml_dump.cpp                                 \
   io/tinyxml/tinyxmlerror.cpp                                 \
   io/tinyxml/tinyxmlparser.cpp                                \
+  io/ResourceManager.cpp                                      \
   io/AudioManager.cpp						                              \
   io/GraphicsManager.cpp						                          \
   io/file.cpp						                                      \
@@ -27,6 +28,8 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   gameplay/things/elements/ColliderElement.cpp		            \
   gameplay/things/elements/GraphicElement.cpp		              \
   gameplay/things/elements/MovementElement.cpp		            \
+  gameplay/things/elements/AsymetricalMovementElement.cpp		  \
+  gameplay/things/elements/SymetricalMovementElement.cpp		  \
   gameplay/things/elements/ResourceElement.cpp		            \
   gameplay/things/elements/ThingElement.cpp		                \
   gameplay/things/elements/TimerElement.cpp						        \

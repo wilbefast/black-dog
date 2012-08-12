@@ -237,19 +237,6 @@ void AngelThing::setState(State const& new_state, GameState* context)
     feather_timer.set(FEATHER_INTERVAL);
     graphic.setSprite(wraith_stun, 0.1f);
     AudioManager::getInstance()->play_sound("scream");
-    // some orbs are lost
-    unsigned int n_lost = (orbs.getBalance() >= ORB_COLLISION_PENALTY)
-              ? orbs.tryWithdraw(ORB_COLLISION_PENALTY)
-              : orbs.withdrawAll();
-
-    // create the orbs
-    static Animation* orb_die = GraphicsManager::getInstance()->get_animation("orb_die");
-    for(unsigned int i = 0; i < n_lost; i++)
-    {
-      V2f spawn_pos(position.x - RAND_BETWEEN(24, 48),
-                    position.y + RAND_BETWEEN(-16, 16));
-      context->addThing(new EffectThing(spawn_pos, orb_die, 0.1f));
-    }
   }
 
   // BOOSTING
@@ -350,6 +337,7 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
         setState(STUNNED, context);
         movement.addSpeedX(-1.0f);
         movement.setSpeedY(0.0f);
+        tryDropOrbs(ORB_PENALTY_IMP, context);
       }
       // always kill the other, even if stunned!
       other->die();
@@ -365,6 +353,7 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
         setState(STUNNED, context);
         movement.addSpeedX(-3.0f);
         movement.setSpeedY(0.0f);
+        tryDropOrbs(ORB_PENALTY_MINION, context);
       }
 
       // collide with orb
@@ -475,6 +464,7 @@ int AngelThing::checkCollision(GameState* context)
     movement.setSpeed(V2f(-BOUNCE_BACK, (prev_collision < 0) ? BOUNCE_DOWN : -BOUNCE_UP));
     // paralyse for a short duration
     setState(STUNNED, context);
+    tryDropOrbs(ORB_PENALTY_WALL, context);
     // give feather ONLY if none left
     if(!feathers.anyLeft())
       feathers.deposit();
@@ -482,4 +472,19 @@ int AngelThing::checkCollision(GameState* context)
 
   // nothing to report
   return GameState::CONTINUE;
+}
+
+void AngelThing::tryDropOrbs(unsigned int n_lost, GameState* context)
+{
+  // some orbs are lost
+  n_lost = orbs.tryWithdraw(n_lost);
+
+  // create the orbs
+  static Animation* orb_die = GraphicsManager::getInstance()->get_animation("orb_die");
+  for(unsigned int i = 0; i < n_lost; i++)
+  {
+    V2f spawn_pos(position.x - RAND_BETWEEN(24, 48),
+                  position.y + RAND_BETWEEN(-16, 16));
+    context->addThing(new EffectThing(spawn_pos, orb_die, 0.1f));
+  }
 }
