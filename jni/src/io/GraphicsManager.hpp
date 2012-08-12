@@ -21,6 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <map>
 #include "numerise.hpp"         // for str_id
 
+#include "ResourceManager.hpp"
+
 #include "../graphics/Texture.hpp"
 #include "../graphics/Animation.hpp"
 
@@ -31,7 +33,7 @@ typedef TextureMap::iterator TextureI;
 typedef std::map<str_id, Animation*> AnimationMap;
 typedef AnimationMap::iterator AnimationI;
 
-class GraphicsManager
+class GraphicsManager : public ResourceManager
 {
     /// CONSTANTS
 private:

@@ -77,7 +77,7 @@ int AudioManager::load_xml(const char* xml_file)
   TiXmlElement* element = NULL;
 
   // the root is a 'audio' tag
-  element = doc_handle.FirstChildElement("audio").Element();
+  element = doc_handle.FirstChildElement().Element();
   TiXmlHandle root_handle = TiXmlHandle(element);
 
   // load music

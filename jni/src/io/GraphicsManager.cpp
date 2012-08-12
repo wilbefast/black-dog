@@ -17,7 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "GraphicsManager.hpp"
 
-#include "tinyxml/tinyxml_dump.h"
 #include "file.hpp"
 #include "../assert.hpp"
 #include "../warn.hpp"
@@ -69,7 +68,7 @@ int GraphicsManager::load_xml(const char* xml_file)
   TiXmlElement* element = NULL;
 
   // the root is a 'graphics' tag
-  element = doc_handle.FirstChildElement("graphics").Element();
+  element = doc_handle.FirstChildElement().Element();
   TiXmlHandle root_handle = TiXmlHandle(element);
 
   // load textures
@@ -187,7 +186,8 @@ int GraphicsManager::create_animation(const char* texture_name,
 {
   // attempt to retrieve the desired texture
   Texture* animation_texture = get_texture(texture_name);
-  ASSERT(animation_texture, "Looking for animation source texture");
+  if(!animation_texture)
+    WARN_RTN("Couldn't find animation source texture", texture_name, EXIT_FAILURE);
 
   // create animation
   Animation* new_animation = new Animation();

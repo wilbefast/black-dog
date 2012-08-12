@@ -25,7 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../resources/file.hpp"              // for loading assets
 
 #include "../platform.hpp"             // for ASSET_PATH
-//#include "../tinyxml/tinyxml.h"      // for loading game objects
 
 #include "../gameplay/things/events/CollisionEvent.hpp" // for generating events
 #include "../gameplay/things/events/BoundaryEvent.hpp"  // for generating events

@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Android.mk" open="0" top="0" tabpos="6">
-		<Cursor position="365" topLine="10" />
+		<Cursor position="1639" topLine="31" />
 	</File>
 	<File name="Application.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2844" topLine="77" />
+		<Cursor position="2797" topLine="21" />
 	</File>
 	<File name="Application.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="587" topLine="42" />
@@ -31,13 +31,13 @@
 	<File name="gameplay/TunnelFG.hpp" open="0" top="0" tabpos="1">
 		<Cursor position="1277" topLine="22" />
 	</File>
-	<File name="gameplay/things/AngelThing.cpp" open="1" top="1" tabpos="4">
+	<File name="gameplay/things/AngelThing.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="10243" topLine="375" />
 	</File>
-	<File name="gameplay/things/AngelThing.hpp" open="1" top="0" tabpos="6">
+	<File name="gameplay/things/AngelThing.hpp" open="0" top="0" tabpos="6">
 		<Cursor position="2499" topLine="54" />
 	</File>
-	<File name="gameplay/things/DogThing.cpp" open="1" top="0" tabpos="3">
+	<File name="gameplay/things/DogThing.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1556" topLine="43" />
 	</File>
 	<File name="gameplay/things/DogThing.hpp" open="0" top="0" tabpos="2">
@@ -49,10 +49,10 @@
 	<File name="gameplay/things/EffectThing.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1050" topLine="18" />
 	</File>
-	<File name="gameplay/things/FallingThing.cpp" open="1" top="0" tabpos="5">
+	<File name="gameplay/things/FallingThing.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="1583" topLine="36" />
 	</File>
-	<File name="gameplay/things/MinionThing.cpp" open="1" top="0" tabpos="1">
+	<File name="gameplay/things/MinionThing.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3068" topLine="79" />
 	</File>
 	<File name="gameplay/things/MinionThing.hpp" open="0" top="0" tabpos="0">
@@ -107,10 +107,10 @@
 		<Cursor position="389" topLine="15" />
 	</File>
 	<File name="gameplay/things/elements/TimerElement.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="932" topLine="7" />
+		<Cursor position="1205" topLine="32" />
 	</File>
 	<File name="gameplay/things/elements/TimerElement.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1165" topLine="18" />
+		<Cursor position="1159" topLine="18" />
 	</File>
 	<File name="gameplay/things/events/BoundaryEvent.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="286" topLine="0" />
@@ -181,7 +181,7 @@
 	<File name="graphics/draw.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="2082" topLine="36" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="2">
+	<File name="main.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="995" topLine="22" />
 	</File>
 	<File name="math/Rect.hpp" open="0" top="0" tabpos="0">
@@ -191,7 +191,7 @@
 		<Cursor position="0" topLine="53" />
 	</File>
 	<File name="platform.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="64" topLine="0" />
+		<Cursor position="64" topLine="33" />
 	</File>
 	<File name="resources/AudioManager.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2162" topLine="69" />
@@ -245,7 +245,7 @@
 		<Cursor position="382" topLine="16" />
 	</File>
 	<File name="scenes/Scene.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="445" topLine="26" />
+		<Cursor position="1225" topLine="14" />
 	</File>
 	<File name="scenes/Scene.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1007" topLine="22" />
