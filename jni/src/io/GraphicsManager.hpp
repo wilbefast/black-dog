@@ -56,9 +56,11 @@ private:
   GraphicsManager();
 public:
   int startup();
-  int load_xml(const char* xml_file);
   int shutdown();
   ~GraphicsManager();
+  // loading -- overrides ResourceManager
+  virtual int parse_root(TiXmlHandle* root_handle);
+  virtual int parse_element(TiXmlElement* element);
   // textures
   int load_texture(const char* source_file, const char* name);
   Texture* get_texture(const char* name);

@@ -104,12 +104,12 @@ int AudioManager::parse_root(TiXmlHandle* root_handle)
 {
   // load music
   ASSERT(parse_element(root_handle->FirstChild("music").Element()) == EXIT_SUCCESS,
-              "Parsing music element");
+              "AudioManager parsing music element");
 
 
   // load sound effects
   ASSERT(parse_list(root_handle, "sound_list") == EXIT_SUCCESS,
-              "Parsing list of sound effects");
+              "AudioManager parsing list of sound effects");
 
   // all clear!
   return EXIT_SUCCESS;

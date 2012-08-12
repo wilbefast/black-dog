@@ -56,69 +56,6 @@ int GraphicsManager::startup()
   return EXIT_SUCCESS;
 }
 
-int GraphicsManager::load_xml(const char* xml_file)
-{
-  // pass string to the TinyXML document
-  TiXmlDocument doc;
-  ASSERT_AUX(io::read_xml(xml_file, &doc) == EXIT_SUCCESS,
-            "Opening graphics pack XML file", doc.ErrorDesc());
-
-  // create local variables for searching document tree
-  TiXmlHandle doc_handle(&doc);
-  TiXmlElement* element = NULL;
-
-  // the root is a 'graphics' tag
-  element = doc_handle.FirstChildElement().Element();
-  TiXmlHandle root_handle = TiXmlHandle(element);
-
-  // load textures
-  element = root_handle.FirstChild("texture_list").FirstChild().Element();
-
-  while(element)
-  {
-    // get the name of the texture and deduce its filename
-    const char* name = element->Attribute("name");
-    if(!name)
-      WARN_RTN("GraphicsManager::load_xml", "malformed texture tag", EXIT_FAILURE);
-
-    // load the texture
-    string filename = io::name_to_path(name, TEXTURE_FILETYPE);
-    load_texture(filename.c_str(), name);
-
-    // continue to the next sprite
-    element = element->NextSiblingElement();
-  }
-
-  // load animations
-  element = root_handle.FirstChild("animation_list").FirstChild().Element();
-  while(element)
-  {
-    // strip information from tag
-    const char *name = element->Attribute("name"),
-               *texture = element->Attribute("texture");
-    iRect frame;
-    int n_frames;
-    bool success = (name && texture
-      && (element->QueryIntAttribute("x", &frame.x) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("y", &frame.y) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("w", &frame.w) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("h", &frame.h) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("n_frames", &n_frames) == TIXML_SUCCESS));
-
-    if(!success)
-      WARN_RTN("GraphicsManager::load_xml", "malformed animation tag", EXIT_FAILURE);
-
-    // create the animation
-    create_animation(texture, frame, n_frames, name);
-
-    // continue to the next sprite
-    element = element->NextSiblingElement();
-  }
-
-  // all good
-  return EXIT_SUCCESS;
-}
-
 int GraphicsManager::shutdown()
 {
   if(!started)
@@ -146,6 +83,66 @@ GraphicsManager::~GraphicsManager()
 {
   if(started)
     shutdown();
+}
+
+/// LOADING
+
+int GraphicsManager::parse_root(TiXmlHandle* root_handle)
+{
+  // load textures
+  ASSERT(parse_list(root_handle, "texture_list") == EXIT_SUCCESS,
+              "GraphicsManager parsing list of textures");
+
+  // load animations
+  ASSERT(parse_list(root_handle, "animation_list") == EXIT_SUCCESS,
+              "GraphicsManager parsing list of animations");
+
+  // all clear!
+  return EXIT_SUCCESS;
+}
+
+int GraphicsManager::parse_element(TiXmlElement* element)
+{
+  // texture element
+  if(!strcmp(element->Value(), "texture"))
+  {
+    // get the name of the texture and deduce its filename
+    const char* name = element->Attribute("name");
+    if(!name)
+      WARN_RTN("GraphicsManager::load_xml", "malformed texture tag", EXIT_FAILURE);
+
+    // load the texture
+    string filename = io::name_to_path(name, TEXTURE_FILETYPE);
+    load_texture(filename.c_str(), name);
+
+    // continue to the next sprite
+    element = element->NextSiblingElement();
+  }
+
+  // animation element
+  else if(!strcmp(element->Value(), "animation"))
+  {
+    // strip information from tag
+    const char *name = element->Attribute("name"),
+               *texture = element->Attribute("texture");
+    iRect frame;
+    int n_frames;
+    bool success = (name && texture
+      && (element->QueryIntAttribute("x", &frame.x) == TIXML_SUCCESS)
+      && (element->QueryIntAttribute("y", &frame.y) == TIXML_SUCCESS)
+      && (element->QueryIntAttribute("w", &frame.w) == TIXML_SUCCESS)
+      && (element->QueryIntAttribute("h", &frame.h) == TIXML_SUCCESS)
+      && (element->QueryIntAttribute("n_frames", &n_frames) == TIXML_SUCCESS));
+
+    if(!success)
+      WARN_RTN("GraphicsManager::load_xml", "malformed animation tag", EXIT_FAILURE);
+
+    // create the animation
+    create_animation(texture, frame, n_frames, name);
+  }
+
+  // all clear!
+  return EXIT_SUCCESS;
 }
 
 
