@@ -10128,15 +10128,15 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1344513568 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1344780924 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
 	"platform.hpp"
 	"assert.hpp"
-	"resources/file.hpp"
-	"resources/AudioManager.hpp"
-	"resources/GraphicsManager.hpp"
+	"io/file.hpp"
+	"io/AudioManager.hpp"
+	"io/GraphicsManager.hpp"
 
 1340887489 /home/william/Desktop/BLACK_DOG_link/jni/src/Application.hpp
 	"SDL.h"
@@ -10180,10 +10180,10 @@
 1340887557 /home/william/Desktop/BLACK_DOG_link/jni/src/math/Rect.inl
 	"wjd_math.hpp"
 
-1340887740 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Button.hpp
+1344781076 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Button.hpp
 	"../graphics/Texture.hpp"
 	"../math/Rect.hpp"
-	"../resources/numerise.hpp"
+	"../math/numerise.hpp"
 	<list>
 
 1340887669 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/numerise.hpp
@@ -10277,11 +10277,11 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1344462870 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
+1344780924 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
-	"../../resources/AudioManager.hpp"
-	"../../resources/GraphicsManager.hpp"
+	"../../io/AudioManager.hpp"
+	"../../io/GraphicsManager.hpp"
 	"elements/ColliderElement.hpp"
 	"events/CollisionEvent.hpp"
 	"../../scenes/BlackDogState.hpp"
@@ -10296,8 +10296,8 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1344171274 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.hpp
-	"../../resources/numerise.hpp"
+1344781108 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.hpp
+	"../../math/numerise.hpp"
 	"../../math/V2.hpp"
 	"../../graphics/Texture.hpp"
 	<list>
@@ -10308,10 +10308,10 @@
 	"SceneState.hpp"
 	"../gameplay/things/Thing.hpp"
 
-1344282411 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/events/ThingEvent.hpp
+1344781113 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/events/ThingEvent.hpp
 	<iostream>
 	<list>
-	"../../../resources/numerise.hpp"
+	"../../../math/numerise.hpp"
 
 1344282252 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/AnimatedElement.hpp
 	"ThingElement.hpp"
@@ -10324,7 +10324,7 @@
 1340887613 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ThingElement.hpp
 	"../Thing.hpp"
 
-1344277213 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/MovementElement.hpp
+1344781662 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/MovementElement.hpp
 	"float.h"
 	"ThingElement.hpp"
 	"../../../scenes/GameState.hpp"
@@ -10332,9 +10332,9 @@
 1344275170 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ResourceElement.hpp
 	"ThingElement.hpp"
 
-1344171263 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.cpp
+1344781191 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.cpp
 	"Thing.hpp"
-	"../../resources/numerise.hpp"
+	"../../math/numerise.hpp"
 	"../../assert.hpp"
 	"../../warn.hpp"
 	"elements/ColliderElement.hpp"
@@ -10357,7 +10357,7 @@
 1340887613 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/GraphicElement.cpp
 	"GraphicElement.hpp"
 
-1344277237 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/MovementElement.cpp
+1344781645 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/MovementElement.cpp
 	"MovementElement.hpp"
 	"../events/ThingEvent.hpp"
 	"../../../math/wjd_math.hpp"
@@ -10514,9 +10514,9 @@
 	"SceneState.hpp"
 	<stdlib.h>
 
-1344513513 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.hpp
+1344781118 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.hpp
 	"ThingElement.hpp"
-	"../../../resources/numerise.hpp"
+	"../../../math/numerise.hpp"
 
 1344513516 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.cpp
 	"TimerElement.hpp"
@@ -10607,17 +10607,17 @@
 1344456652 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.hpp
 	"Graphic.hpp"
 
-1344096723 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
+1344781204 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
-	"elements/MovementElement.hpp"
+	"elements/SymetricalMovementElement.hpp"
 
-1344458542 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.cpp
+1344780924 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.cpp
 	"DogThing.hpp"
 	"MinionThing.hpp"
 	"../../scenes/BlackDogState.hpp"
-	"../../resources/AudioManager.hpp"
-	"../../resources/GraphicsManager.hpp"
+	"../../io/AudioManager.hpp"
+	"../../io/GraphicsManager.hpp"
 
 1344362437 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.hpp
 	"../../global.hpp"
@@ -10628,12 +10628,12 @@
 	"FallingThing.hpp"
 	"elements/ColliderElement.hpp"
 
-1340887607 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/PixieThing.cpp
+1344780924 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/PixieThing.cpp
 	"PixieThing.hpp"
 	"AngelThing.hpp"
 	"FallingThing.hpp"
 	"../../scenes/BlackDogState.hpp"
-	"../../resources/GraphicsManager.hpp"
+	"../../io/GraphicsManager.hpp"
 
 1344360605 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/PixieThing.hpp
 	"Thing.hpp"
@@ -10678,20 +10678,20 @@
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 
-1344460398 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.cpp
+1344780924 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.cpp
 	"MinionThing.hpp"
 	"FallingThing.hpp"
 	"elements/ColliderElement.hpp"
 	"events/CollisionEvent.hpp"
-	"../../resources/GraphicsManager.hpp"
+	"../../io/GraphicsManager.hpp"
 	"../../global.hpp"
 
-1344456963 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.hpp
+1344781294 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
-	"elements/MovementElement.hpp"
+	"elements/SymetricalMovementElement.hpp"
 
-1344732160 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.cpp
+1344732556 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
@@ -10699,11 +10699,11 @@
 	"file.hpp"
 	<iostream>
 
-1344731203 /home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.hpp
+1344781092 /home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
 	<map>
-	"numerise.hpp"
+	"../math/numerise.hpp"
 	"ResourceManager.hpp"
 
 1340887669 /home/william/Desktop/BLACK_DOG_link/jni/src/io/numerise.hpp
@@ -10734,15 +10734,15 @@
 	<assert.h>
 	<string.h>
 
-1344730205 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.cpp
+1344732659 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.cpp
 	"GraphicsManager.hpp"
 	"file.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
 
-1344728932 /home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.hpp
+1344781100 /home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.hpp
 	<map>
-	"numerise.hpp"
+	"../math/numerise.hpp"
 	"ResourceManager.hpp"
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
@@ -10782,4 +10782,18 @@
 	<stddef.h>
 	"tinyxml.h"
 	<windows.h>
+
+1340887669 /home/william/Desktop/BLACK_DOG_link/jni/src/math/numerise.hpp
+	"numerise.inl"
+
+1340887685 /home/william/Desktop/BLACK_DOG_link/jni/src/math/numerise.inl
+
+1344781668 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/SymetricalMovementElement.hpp
+	"MovementElement.hpp"
+
+1344781557 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/AsymetricalMovementElement.cpp
+	"AsymetricalMovementElement.hpp"
+
+1344781435 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/AsymetricalMovementElement.hpp
+	"MovementElement.hpp"
 

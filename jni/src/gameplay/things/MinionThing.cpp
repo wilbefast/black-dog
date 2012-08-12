@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "elements/ColliderElement.hpp"
 #include "events/CollisionEvent.hpp"
 
-#include "../../resources/GraphicsManager.hpp"
+#include "../../io/GraphicsManager.hpp"
 
 #include "../../global.hpp" // for WINDOW_DEFAULT_W
 

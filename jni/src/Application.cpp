@@ -23,9 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "platform.hpp" // needed for LOG
 #include "assert.hpp"   // needed for platform specific ASSERT macros
 
-#include "resources/file.hpp"              // needed for ASSET_PATH macro
-#include "resources/AudioManager.hpp"      // resource subsystem (singleton)
-#include "resources/GraphicsManager.hpp"   // resource subsystem (singleton)
+#include "io/file.hpp"              // needed for ASSET_PATH macro
+#include "io/AudioManager.hpp"      // resource subsystem (singleton)
+#include "io/GraphicsManager.hpp"   // resource subsystem (singleton)
 
 /// CONSTRUCTOR & DESTRUCTOR (public)
 

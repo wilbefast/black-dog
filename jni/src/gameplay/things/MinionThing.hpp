@@ -21,14 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Thing.hpp"
 #include "elements/AnimatedElement.hpp"
-#include "elements/MovementElement.hpp"
+#include "elements/SymetricalMovementElement.hpp"
 
 class MinionThing : public Thing
 {
   /// ATTRIBUTES
 private:
   AnimatedElement graphic;
-  MovementElement movement;
+  SymetricalMovementElement movement;
 
   /// METHODS
 public:

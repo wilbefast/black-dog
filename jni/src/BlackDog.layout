@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Android.mk" open="0" top="0" tabpos="6">
-		<Cursor position="1639" topLine="31" />
+		<Cursor position="862" topLine="13" />
 	</File>
 	<File name="Application.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2797" topLine="21" />
@@ -14,7 +14,7 @@
 		<Cursor position="133" topLine="0" />
 	</File>
 	<File name="assets/graphics.xml" open="0" top="0" tabpos="0">
-		<Cursor position="668" topLine="0" />
+		<Cursor position="135" topLine="0" />
 	</File>
 	<File name="gameplay/Tunnel.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2333" topLine="92" />
@@ -88,17 +88,20 @@
 	<File name="gameplay/things/elements/GraphicElement.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="571" topLine="16" />
 	</File>
-	<File name="gameplay/things/elements/MovementElement.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="4215" topLine="150" />
+	<File name="gameplay/things/elements/MovementElement.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="4535" topLine="50" />
 	</File>
-	<File name="gameplay/things/elements/MovementElement.hpp" open="0" top="0" tabpos="7">
-		<Cursor position="2298" topLine="52" />
+	<File name="gameplay/things/elements/MovementElement.hpp" open="1" top="1" tabpos="2">
+		<Cursor position="1304" topLine="27" />
 	</File>
 	<File name="gameplay/things/elements/ResourceElement.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1397" topLine="28" />
 	</File>
 	<File name="gameplay/things/elements/ResourceElement.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1148" topLine="20" />
+	</File>
+	<File name="gameplay/things/elements/SymetricalMovementElement.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="129" topLine="0" />
 	</File>
 	<File name="gameplay/things/elements/ThingElement.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="181" topLine="14" />
@@ -134,7 +137,7 @@
 		<Cursor position="1097" topLine="15" />
 	</File>
 	<File name="graphics/Animation.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="77" topLine="12" />
+		<Cursor position="844" topLine="0" />
 	</File>
 	<File name="graphics/Animation.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="371" topLine="7" />
@@ -181,6 +184,30 @@
 	<File name="graphics/draw.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="2082" topLine="36" />
 	</File>
+	<File name="io/AudioManager.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2860" topLine="107" />
+	</File>
+	<File name="io/AudioManager.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="1812" topLine="57" />
+	</File>
+	<File name="io/GraphicsManager.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2157" topLine="43" />
+	</File>
+	<File name="io/GraphicsManager.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="1754" topLine="45" />
+	</File>
+	<File name="io/ResourceManager.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2008" topLine="60" />
+	</File>
+	<File name="io/ResourceManager.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="1198" topLine="17" />
+	</File>
+	<File name="io/file.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="9" />
+	</File>
+	<File name="io/tinyxml/tinyxml_dump.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1839" topLine="54" />
+	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="995" topLine="22" />
 	</File>
@@ -192,30 +219,6 @@
 	</File>
 	<File name="platform.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="64" topLine="33" />
-	</File>
-	<File name="resources/AudioManager.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="2162" topLine="69" />
-	</File>
-	<File name="resources/AudioManager.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="1033" topLine="12" />
-	</File>
-	<File name="resources/GraphicsManager.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2441" topLine="69" />
-	</File>
-	<File name="resources/GraphicsManager.hpp" open="0" top="0" tabpos="2">
-		<Cursor position="975" topLine="10" />
-	</File>
-	<File name="resources/file.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1349" topLine="28" />
-	</File>
-	<File name="resources/file.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="1183" topLine="14" />
-	</File>
-	<File name="resources/numerise.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1728" topLine="6" />
-	</File>
-	<File name="resources/tinyxml/tinyxml.h" open="0" top="0" tabpos="0">
-		<Cursor position="62019" topLine="1678" />
 	</File>
 	<File name="scenes/BlackDogState.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="3486" topLine="115" />
@@ -233,7 +236,7 @@
 		<Cursor position="43" topLine="4" />
 	</File>
 	<File name="scenes/GameState.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="2422" topLine="75" />
+		<Cursor position="1045" topLine="11" />
 	</File>
 	<File name="scenes/GameState.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="847" topLine="39" />
@@ -254,6 +257,9 @@
 		<Cursor position="308" topLine="9" />
 	</File>
 	<File name="scenes/SceneState.hpp" open="0" top="0" tabpos="5">
-		<Cursor position="1283" topLine="32" />
+		<Cursor position="1126" topLine="26" />
+	</File>
+	<File name="warn.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="14" />
 	</File>
 </CodeBlocks_layout_file>

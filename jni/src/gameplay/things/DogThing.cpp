@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../../scenes/BlackDogState.hpp"
 
-#include "../../resources/AudioManager.hpp"
-#include "../../resources/GraphicsManager.hpp"
+#include "../../io/AudioManager.hpp"
+#include "../../io/GraphicsManager.hpp"
 
 #define STR_UNLEASH_TIMER "unleash_timer"
 

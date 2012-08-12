@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "FallingThing.hpp" // for orbs
 
 #include "../../scenes/BlackDogState.hpp"
-#include "../../resources/GraphicsManager.hpp"
+#include "../../io/GraphicsManager.hpp"
 
 #define STR_ORB_TIMER "orb_timer"
 

@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>     // for std::ostream
 #include <list>
 
-#include "../../../resources/numerise.hpp"
+#include "../../../math/numerise.hpp"
 
 class ThingEvent;
 

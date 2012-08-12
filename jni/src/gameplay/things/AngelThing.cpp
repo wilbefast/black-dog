@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "AngelThing.hpp"
 
 #include "../../global.hpp"
-#include "../../resources/AudioManager.hpp"
-#include "../../resources/GraphicsManager.hpp"
+#include "../../io/AudioManager.hpp"
+#include "../../io/GraphicsManager.hpp"
 #include "elements/ColliderElement.hpp"
 #include "events/CollisionEvent.hpp"
 #include "../../scenes/BlackDogState.hpp"

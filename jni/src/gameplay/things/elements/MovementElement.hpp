@@ -24,51 +24,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class MovementElement : public ThingElement
 {
-    /// CONSTANTS
-    private:
-    static const float DEFAULT_SPEED_MIN;
+  /// CONSTANTS
+protected:
+  static const float DEFAULT_SPEED_MIN;
 
-    /// ATTRIBUTES
-    private:
-    V2f speed;
-    V2f previous_position;
-    float speed_scalar; // scalars stored on speed change for quick access
-    float angle;
-    float speed_max;
-    float speed_min;
-    float friction;
+  /// ATTRIBUTES
+protected:
+  V2f speed;
+  V2f previous_position;
+  // scalars stored on speed change for quick access
+  float speed_scalar;
+  float angle;
 
-    /// METHODS
-    public:
-    // constructors, destructors
-    MovementElement(Thing* init_owner, float init_speed_max = FLT_MAX,
-                    float init_friction = 1,
-                    float init_speed_min = DEFAULT_SPEED_MIN);
-    ~MovementElement();
-    // main methods
-    void springTowards(V2f target_position, float spring_constant);
-    void add_springTowards(V2f target_position, float spring_constant);
-    void moveTowards(V2f target_position, float speed);
-    void add_moveTowards(V2f target_position, float speed);
-    void add_speedScalar(float speed);
-    void bounce(V2i collision_side);
-    int update(GameState* context, float delta);
-    // modification
-    void setSpeed_scalar(float new_speed_scalar);
-    void setSpeed(V2f new_speed);
-    void setSpeedX(float new_speed);
-    void setSpeedY(float new_speed);
-    void addSpeed(V2f force);
-    void addSpeedX(float force);
-    void addSpeedY(float force);
-    void setSpeedMax(float _max_speed);
-    // query
-    float getSpeedX() const;
-    float getSpeedY() const;
-    V2f getSpeed() const;
-    V2f getPrevPos() const;
-    float getSpeed_scalar() const;
-    float getAngle() const;
+  /// METHODS
+public:
+  // constructors, destructors
+  MovementElement(Thing* init_owner);
+  ~MovementElement();
+  // main methods
+  void springTowards(V2f target_position, float spring_constant);
+  void add_springTowards(V2f target_position, float spring_constant);
+  void moveTowards(V2f target_position, float speed);
+  void add_moveTowards(V2f target_position, float speed);
+  void add_speedScalar(float speed);
+  void bounce(V2i collision_side);
+  virtual int update(GameState* context, float delta);
+  // modification
+  virtual void setSpeed(V2f new_speed);
+  void setSpeed_scalar(float new_speed_scalar);
+  void setSpeedX(float new_speed);
+  void setSpeedY(float new_speed);
+  void addSpeed(V2f force);
+  void addSpeedX(float force);
+  void addSpeedY(float force);
+  // query
+  float getSpeedX() const;
+  float getSpeedY() const;
+  V2f getSpeed() const;
+  V2f getPrevPos() const;
+  float getSpeed_scalar() const;
+  float getAngle() const;
 
 };
 

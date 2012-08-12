@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../warn.hpp"
 #include "../assert.hpp"
 #include "../platform.hpp"
-#include "../resources/GraphicsManager.hpp"
+#include "../io/GraphicsManager.hpp"
 
 #include "Game.hpp"
 

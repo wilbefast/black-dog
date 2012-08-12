@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "BlackDogState.hpp"
 
-#include "../resources/GraphicsManager.hpp"
+#include "../io/GraphicsManager.hpp"
 
 #include "../gameplay/things/AngelThing.hpp"
 #include "../gameplay/things/DogThing.hpp"

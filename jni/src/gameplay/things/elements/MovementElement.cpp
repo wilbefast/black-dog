@@ -30,17 +30,12 @@ const float MovementElement::DEFAULT_SPEED_MIN = 0.06;
 
 // Constructors, destructors
 
-MovementElement::MovementElement(Thing* init_owner, float init_speed_max,
-                                     float init_friction,
-                                     float init_speed_min) :
+MovementElement::MovementElement(Thing* init_owner) :
 ThingElement(init_owner),
 speed(V2f(0,0)),
 previous_position(owner->getPosition()),
 speed_scalar(0),
-angle(0),
-speed_max((init_speed_max >= 0.0f) ? init_speed_max : FLT_MAX),
-speed_min(init_speed_min),
-friction(init_friction)
+angle(0)
 {
 }
 
@@ -103,6 +98,21 @@ void MovementElement::bounce(V2i collision_side)
 
 // Modification
 
+void MovementElement::setSpeed(V2f new_speed)
+{
+  // Signal if starting to move
+  if(!speed && new_speed)
+    owner->addEvent(new ThingEvent("started_moving"));
+
+  // Set the new speed
+  speed = new_speed;
+
+  // Cache absolute speed and angle
+  speed_scalar = speed.getNorm();
+  if(speed_scalar > 1)
+    angle = speed.getAngle();
+}
+
 void MovementElement::setSpeed_scalar(float new_speed_scalar)
 {
     setSpeed(speed/(speed.getNorm())*new_speed_scalar);
@@ -116,25 +126,6 @@ void MovementElement::setSpeedX(float new_speed)
 void MovementElement::setSpeedY(float new_speed)
 {
   setSpeed(V2f(speed.x, new_speed));
-}
-
-void MovementElement::setSpeed(V2f new_speed)
-{
-    // Signal if starting to move
-    if(!speed && new_speed)
-        owner->addEvent(new ThingEvent("started_moving"));
-
-    // Set the new speed
-    speed = new_speed;
-
-    // Check terminal velocity
-    speed_scalar = speed.getNorm();
-    if(speed_scalar > speed_max)
-        speed = (speed/speed_scalar)*speed_max; // normalise and remultiply
-
-    // Reset movement angle, used for quick accesses
-    if(speed_scalar > 1)
-        angle = speed.getAngle();
 }
 
 void MovementElement::addSpeedX(float force)
@@ -151,12 +142,6 @@ void MovementElement::addSpeed(V2f force)
 {
     setSpeed(speed + force);
 }
-
-void MovementElement::setSpeedMax(float _speed_max)
-{
-  speed_max = _speed_max;
-}
-
 
 // Query
 
@@ -179,38 +164,28 @@ V2f MovementElement::getSpeed() const
 
 V2f MovementElement::getPrevPos() const
 {
-    return previous_position;
+    return previous_position; // copy
 }
 
 float MovementElement::getSpeed_scalar() const
 {
-    return speed_scalar;
+    return speed_scalar; // copy of cached value
 }
 
 float MovementElement::getAngle() const
 {
-    return angle;
+    return angle; // copy of cached value
 }
 
 // Overrides
 
 int MovementElement::update(GameState* context, float delta)
 {
+  // save previous position and then move
   previous_position = owner->getPosition();
-
-  // move
   owner->move(speed*delta);
 
-  // slow down
-  if(friction)
-    speed /= pow(friction, delta);
-
-  // cap minimum speed, generate event if stopping
-  if(speed && (abs(speed.x) < speed_min) && (abs(speed.y) < speed_min))
-  {
-    speed.x = speed.y = 0;
-    owner->addEvent(new ThingEvent("stopped_moving"));
-  }
+  // overrides insert friction, etc here
 
   // no interruption
   return SceneState::CONTINUE;

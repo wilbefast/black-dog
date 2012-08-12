@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../assert.hpp"            // for platform specific ASSERT macros
 #include "../global.hpp"
 
-#include "../resources/numerise.hpp"
-#include "../resources/file.hpp"              // for loading assets
+#include "../math/numerise.hpp"
+#include "../io/file.hpp"              // for loading assets
 
 #include "../platform.hpp"             // for ASSET_PATH
 

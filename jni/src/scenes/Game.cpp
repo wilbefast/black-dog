@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Game.hpp"
 
-#include "../resources/file.hpp"           // ASSET_PATH
+#include "../io/file.hpp"           // ASSET_PATH
 #include "../assert.hpp"            // ASSERT
 #include "MainMenu.hpp"             // previous scene
 

@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "SDL_mixer.h"          // Mix_Music
 
 #include <map>
-#include "numerise.hpp"         // for str_id
+#include "../math/numerise.hpp"         // for str_id
 
 #include "ResourceManager.hpp"
 
