@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "elements/ColliderElement.hpp"
 #include "events/CollisionEvent.hpp"
 
+#include "../../io/AudioManager.hpp"
 #include "../../io/GraphicsManager.hpp"
 
 #include "../../global.hpp" // for WINDOW_DEFAULT_W
@@ -110,11 +111,15 @@ int MinionThing::update(GameState* context, float delta)
           V2f spawn_pos(position.x + RAND_BETWEEN(-4,4), position.y - 16 + 16*i);
           context->addThing(new FallingThing(spawn_pos, "imp", anim_imp , 0.15f, 0.0f));
         }
+        AudioManager::getInstance()->play_sound("imp_spawn");
         die();
       }
       // if exploding
       else if(graphic.isSprite(anim_die))
+      {
+        AudioManager::getInstance()->play_sound("minion_die");
         die();
+      }
     }
 
     // if event is "out of bounds"

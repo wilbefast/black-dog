@@ -1,6 +1,3 @@
-"Cardinal" Font by Dieter Steffman
-http://www.steffmann.de/
-
 "Discordance" Music by 'technophobic android'
 http://opengameart.org/content/discordance
 
@@ -13,7 +10,13 @@ http://opengameart.org/content/birdflap
 "25 Spooky Sound Effects" by bart
 http://opengameart.org/content/25-spooky-sound-effects
 
-Other effects by my mouth ;) Mixed using Audacity.
+"Spell Sounds Starter Pack" by  P0ss
+http://opengameart.org/content/spell-sounds-starter-pack
+
+"Dog Snarl Grunt Grumble" by qubodup
+http://opengameart.org/content/dog-snarl-grunt-grumble
+
+Additional effects from my mouth ;) All mixed using Audacity.
 
 Graphics are by me too (William J. Dyce)
 http://wilbefast.com

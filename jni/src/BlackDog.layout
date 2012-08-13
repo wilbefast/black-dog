@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="Android.mk" open="1" top="1" tabpos="4">
+	<File name="Android.mk" open="0" top="0" tabpos="4">
 		<Cursor position="751" topLine="10" />
 	</File>
 	<File name="Application.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2673" topLine="78" />
+		<Cursor position="5067" topLine="142" />
 	</File>
 	<File name="Application.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="587" topLine="42" />
@@ -13,8 +13,8 @@
 	<File name="assets/audio.xml" open="0" top="0" tabpos="0">
 		<Cursor position="133" topLine="0" />
 	</File>
-	<File name="assets/graphics.xml" open="1" top="0" tabpos="3">
-		<Cursor position="944" topLine="7" />
+	<File name="assets/graphics.xml" open="1" top="1" tabpos="4">
+		<Cursor position="311" topLine="7" />
 	</File>
 	<File name="gameplay/Tunnel.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2333" topLine="92" />
@@ -32,10 +32,10 @@
 		<Cursor position="1277" topLine="22" />
 	</File>
 	<File name="gameplay/things/AngelThing.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="12719" topLine="455" />
+		<Cursor position="6303" topLine="218" />
 	</File>
 	<File name="gameplay/things/AngelThing.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="1942" topLine="51" />
+		<Cursor position="1405" topLine="29" />
 	</File>
 	<File name="gameplay/things/DogThing.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="884" topLine="23" />
@@ -55,8 +55,8 @@
 	<File name="gameplay/things/FallingThing.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1090" topLine="25" />
 	</File>
-	<File name="gameplay/things/MinionThing.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1061" topLine="21" />
+	<File name="gameplay/things/MinionThing.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="3742" topLine="99" />
 	</File>
 	<File name="gameplay/things/MinionThing.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="907" topLine="19" />
@@ -230,7 +230,7 @@
 		<Cursor position="0" topLine="53" />
 	</File>
 	<File name="platform.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="64" topLine="33" />
+		<Cursor position="2025" topLine="32" />
 	</File>
 	<File name="scenes/BlackDogState.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="778" topLine="19" />

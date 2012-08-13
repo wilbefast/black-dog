@@ -91,3 +91,10 @@ void AnimationIncarnation::draw()
   sprite->getTexture()->draw(&source, &destination, angle);
 }
 
+/// QUERY
+
+float AnimationIncarnation::getFrameN() const
+{
+  return frame_current;
+}
+

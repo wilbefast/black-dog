@@ -2,9 +2,15 @@
 <audio>
 	<music name="music" />
 	<sound_list>
-    <sound name="flap" />
-    <sound name="scream" />
-    <sound name="swallow" />
-    <sound name="slime" />
+    <sound name="wraith_flap" />
+    <sound name="wraith_die" />
+    <sound name="wraith_hurt" />
+    <sound name="dog_spawn" />
+    <sound name="wraith_boost" />
+    <sound name="orb_die" />
+    <sound name="minion_spawn" />
+    <sound name="minion_die"/>
+    <sound name="imp_spawn" />
+    <sound name="imp_die" />
 	</sound_list>
 </audio>

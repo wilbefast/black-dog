@@ -144,12 +144,12 @@ void DogThing::setState(State new_state)
   switch(new_state)
   {
     case ARRIVE: // dramatic entrance
-      AudioManager::getInstance()->play_sound("slime");
+      AudioManager::getInstance()->play_sound("dog_spawn");
       graphic.setSprite(dog_spawn, 0.1f);
     break;
 
     case LEAVE: // give up trying to grab player
-      AudioManager::getInstance()->play_sound("slime");
+      AudioManager::getInstance()->play_sound("dog_spawn");
       graphic.setSprite(dog_spawn, -0.1f);
     break;
 
@@ -163,6 +163,7 @@ void DogThing::setState(State new_state)
 
     case UNLEASH: // summon evil doggy minion
       graphic.setSprite(dog_unleash, 0.1f);
+      AudioManager::getInstance()->play_sound("minion_spawn");
     break;
 
     case OFFSCREEN:

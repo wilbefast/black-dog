@@ -30,7 +30,7 @@ class ResourceElement : public ThingElement
     /// METHODS
     public:
     ResourceElement(Thing* owner, unsigned int init_max,
-                                  unsigned int init_amount = -1);
+                                  int init_amount = -1);
     bool anyLeft() const;
     bool isFull() const;
     unsigned int getBalance() const;

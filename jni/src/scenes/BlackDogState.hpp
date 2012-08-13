@@ -30,7 +30,7 @@ private:
   static const int STARTING_PROGRESS = WINDOW_DEFAULT_W * 0.15f;
   static const int PROGRESS_THRESHOLD = WINDOW_DEFAULT_W * 0.25f;
   static const float PROGRESS_MAX = WINDOW_DEFAULT_W * 0.8f;
-  static const float BASE_DIFFICULTY = 0.2f;
+  static const float BASE_DIFFICULTY = 0.1f;
 
   /// ATTRIBUTES
 private:

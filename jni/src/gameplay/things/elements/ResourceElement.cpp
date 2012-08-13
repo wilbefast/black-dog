@@ -18,9 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ResourceElement.hpp"
 
 ResourceElement::ResourceElement(Thing* owner, unsigned int init_max,
-                                              unsigned int init_amount) :
+                                                int init_amount) :
 ThingElement(owner),
-current_amount((init_amount < 0) ? init_max : init_amount),
+current_amount((init_amount < 0) ? init_max : (unsigned int)init_amount),
 max_amount(init_max)
 {
 }
