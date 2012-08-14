@@ -33,7 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 GameState::GameState() :
 things(),
-level_bounds(global::viewport)
+level_bounds(global::viewport),
+pause_timer(0)
 {
 
 }
@@ -103,6 +104,11 @@ Thing* GameState::getHero()
     return (*(things.begin()));
 }
 
+void GameState::pause(unsigned int time)
+{
+  pause_timer = time;
+}
+
 /// OVERRIDES SCENE STATE
 
 int GameState::startup()
@@ -126,6 +132,13 @@ int GameState::shutdown()
 
 int GameState::update(float delta)
 {
+  // Pause
+  if(pause_timer)
+  {
+    pause_timer--;
+    return GameState::SKIP_UPDATE;
+  }
+
   // For each game object
   for(ThingIter i = things.begin(); i!= things.end(); )
   {

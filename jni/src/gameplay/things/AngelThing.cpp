@@ -91,12 +91,9 @@ feathers(this, MAX_FEATHERS),
 orbs(this, MAX_ORBS, 0),
 stun_timer(this, STR_UNSTUN),
 feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL),
-orb_use_timer(this, STR_ORB_USED, ORB_USE_INTERVAL),
+orb_use_timer(this, STR_ORB_USED),
 furthest_x(_position.x)
 {
-  // not using orbs by default
-  orb_use_timer.unset();
-
   // set initial sprite
   graphic.setSprite(GraphicsManager::getInstance()->
                     get_animation("wraith_glide"), 0.1f);
@@ -121,6 +118,10 @@ void AngelThing::draw()
 
 int AngelThing::update(GameState* context, float delta)
 {
+  // lose as soon as state is unpaused
+  if(state == &DEAD)
+    return GameState::LOSE_LEVEL;
+
   // collect the result at each step of the way, check for interruptions
   int result = GameState::CONTINUE;
 
@@ -207,6 +208,10 @@ float AngelThing::getFurthestX() const
 
 void AngelThing::setState(State const& new_state, GameState* context)
 {
+  // stop multiple instances of transition sound being played at once
+  if(state == &new_state)
+    return;
+
   // cache animations used by this Thing
   static Animation
     *wraith_fall = GraphicsManager::getInstance()->get_animation("wraith_fall"),
@@ -256,7 +261,10 @@ void AngelThing::setState(State const& new_state, GameState* context)
 
   // DEAD
   else if(new_state == DEAD)
+  {
     AudioManager::getInstance()->play_sound("wraith_die");
+    context->pause(MAX_FPS * 3);
+  }
 
   // overwrite the previous start at the very end!
   state = &new_state;
@@ -322,10 +330,7 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
 
   // death
   else if (event->getType() == DEATH)
-  {
     setState(DEAD, context);
-    return GameState::LOSE_LEVEL;
-  }
 
   // collision
   else if(event->getType() == COLLISION)
@@ -463,19 +468,13 @@ int AngelThing::checkCollision(GameState* context)
   fRect hitbox = body->getOffsetBox();
 
   // check for collisions with the tunnel
-  int collision = obstactle->collidingRect(hitbox), prev_collision = 0;
+  V2i collision = obstactle->collidingRect(hitbox);
   if(collision)
   {
-    // snap out of contact
-    for(unsigned int snap_left = MAX_SNAP; snap_left && collision; snap_left--)
-    {
-      move(V2f(-1, -collision));
-      hitbox = body->getOffsetBox();
-      prev_collision = collision;
-      collision = obstactle->collidingRect(hitbox);
-    }
     // update position and speed
-    movement.setSpeed(V2f(-BOUNCE_BACK, (prev_collision < 0) ? BOUNCE_DOWN : -BOUNCE_UP));
+    move(-collision);
+    movement.setSpeed(V2f( (collision.x > 0) ? -BOUNCE_BACK : 0,
+                           (collision.y < 0) ? BOUNCE_DOWN : -BOUNCE_UP));
     // paralyse for a short duration
     setState(STUNNED, context);
     tryDropOrbs(ORB_PENALTY_WALL, context);

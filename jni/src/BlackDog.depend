@@ -10241,11 +10241,11 @@
 	"Scene.hpp"
 	"Button.hpp"
 
-1340887597 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/Tunnel.cpp
+1344947917 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/Tunnel.cpp
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1340887597 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/Tunnel.hpp
+1344946634 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/Tunnel.hpp
 	"../global.hpp"
 	"../math/V2.hpp"
 	"../math/Rect.hpp"
@@ -10277,7 +10277,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1344905926 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
+1344947852 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../io/AudioManager.hpp"
@@ -10288,7 +10288,7 @@
 	"FallingThing.hpp"
 	"EffectThing.hpp"
 
-1344905931 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.hpp
+1344943638 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.hpp
 	"Thing.hpp"
 	"../../graphics/Animation.hpp"
 	"elements/AnimatedElement.hpp"
@@ -10304,7 +10304,7 @@
 	"../../scenes/GameState.hpp"
 	"events/ThingEvent.hpp"
 
-1340887740 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/GameState.hpp
+1344943980 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/GameState.hpp
 	"SceneState.hpp"
 	"../gameplay/things/Thing.hpp"
 
@@ -10483,7 +10483,7 @@
 1340887740 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Game.hpp
 	"Scene.hpp"
 
-1344781191 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/GameState.cpp
+1344944002 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/GameState.cpp
 	"GameState.hpp"
 	"../warn.hpp"
 	"../assert.hpp"
@@ -10518,7 +10518,7 @@
 	"ThingElement.hpp"
 	"../../../math/numerise.hpp"
 
-1344513516 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.cpp
+1344943187 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/TimerElement.cpp
 	"TimerElement.hpp"
 
 1340319075 /home/william/Documents/Programming/SDL/BLACK_DOG/jni/src/gameplay/things/elements/TimerElement.hpp
@@ -10612,7 +10612,7 @@
 	"elements/AnimatedElement.hpp"
 	"elements/SymetricalMovementElement.hpp"
 
-1344902896 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.cpp
+1344943583 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/DogThing.cpp
 	"DogThing.hpp"
 	"MinionThing.hpp"
 	"../../scenes/BlackDogState.hpp"
@@ -10636,7 +10636,7 @@
 	"../../io/GraphicsManager.hpp"
 	"../../math/V2.hpp"
 
-1344906105 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/PixieThing.hpp
+1344944256 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/PixieThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 	"elements/TimerElement.hpp"

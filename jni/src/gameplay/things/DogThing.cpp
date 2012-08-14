@@ -51,7 +51,7 @@ int DogThing::update(GameState* context, float delta)
   position.y = (position.y*9.0f + hero_position.y)/10.0f;
 
   // death if at the left-hand side of the screen
-  if(hero_position.x < DEATH_THRESHOLD)
+  if(hero_position.x < DEATH_THRESHOLD && state != EAT)
   {
     setState(EAT);
     context->getHero()->addEvent(new ThingEvent("death"));

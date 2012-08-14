@@ -34,6 +34,7 @@ public:
         CONTINUE,
         LOSE_LEVEL,
         WIN_LEVEL,
+        SKIP_UPDATE,
         DELETE_ME
     };
 
@@ -43,6 +44,7 @@ private:
     ThingList things;
     // Level boundary
     fRect level_bounds;
+    unsigned int pause_timer;
 
     /// METHODS
 public:
@@ -55,6 +57,7 @@ public:
     void addThing(Thing*);
     void deleteThing(ThingIter* i);
     Thing* getHero();
+    void pause(unsigned int n_frames);
     // Overrides SceneState
     int startup();
     int shutdown();

@@ -46,6 +46,9 @@ void TimerElement::unset()
 
 void TimerElement::decrement(float delta)
 {
+  if(remaining_time < 0.0f)
+    return;
+
   // decrement timer
   if(remaining_time > delta)
     remaining_time -= delta;

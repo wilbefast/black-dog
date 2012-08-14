@@ -68,34 +68,51 @@ void Tunnel::draw()
 
 /// QUERY
 
-int Tunnel::collidingPoint(V2f position) const
+V2i Tunnel::collidingPoint(V2f position) const
 {
-  if (x_to_height(position.x, above) > position.y)
+  // local variables
+  V2i collision(0, 0);
+
+  // check collisions with roof
+  collision.y = position.y - x_to_height(position.x, above);
+  if (collision.y < 0)
+  {
     // collision above
-    return -1;
+    collision.x = (x_to_slope(position.x, above) < 0.0f) ? 1 : -1;
+    return collision;
+  }
 
-  else if(x_to_height(position.x, below) < position.y)
+  // check collisions with floor
+  collision.y = position.y - x_to_height(position.x, below);
+  if(collision.y > 0)
+  {
     // collision below
-    return 1;
+    collision.x = (x_to_slope(position.x, below) < 0.0f) ? 1 : -1;
+    return collision;
+  }
 
-  else
-    // no collision
-    return 0;
+  // no collision
+  return V2i(0, 0);
 }
 
-int Tunnel::collidingRect(fRect hitbox) const
+V2i Tunnel::collidingRect(fRect hitbox) const
 {
-  if(collidingPoint(V2f(hitbox.x + hitbox.w/2, hitbox.y)))
+  // local variables
+  V2i collision(0, 0);
+
+  // check collisions with roof
+  collision = collidingPoint(V2f(hitbox.x + hitbox.w/2, hitbox.y));
+  if(collision)
     // collision above
-    return -1;
+    return collision;
 
-  else if(collidingPoint(V2f(hitbox.x + hitbox.w/2, hitbox.y + hitbox.h)))
+  // check collisions with roof
+  if(collidingPoint(V2f(hitbox.x + hitbox.w/2, hitbox.y + hitbox.h)))
     // collision below
-    return 1;
+    return collision;
 
-  else
-    // no collision
-    return 0;
+  // no collision
+  return V2i(0, 0);
 }
 
 
@@ -112,18 +129,31 @@ float Tunnel::index_to_x(unsigned int i) const
   return (index_diff - 1) * SEGMENT_L + offset_x;
 }
 
+int Tunnel::x_to_index(float x, const float hmap[]) const
+{
+  return ((int) ((x - offset_x) / SEGMENT_L) + 1 + head_i) % N_PTS;
+}
+
 float Tunnel::x_to_height(float x, const float hmap[]) const
 {
   // array index of point before x
-  int start_i = ((int) ((x - offset_x) / SEGMENT_L) + 1 + head_i) % N_PTS,
+  int start_i = x_to_index(x, hmap),
   // array index of point after x
   end_i = (start_i + 1) % N_PTS;
   // distance between previous point and x
   float dx = x - index_to_x(start_i),
-  // base height for affine function
-  base = hmap[start_i],
   // slope of the line
-  slope = (hmap[end_i] - base) / SEGMENT_L;
+  slope = (hmap[end_i] - hmap[start_i]) / SEGMENT_L;
 
-  return dx * slope + base;
+  return dx * slope + hmap[start_i];
+}
+
+float Tunnel::x_to_slope(float x, const float hmap[]) const
+{
+  // array index of point before x
+  int start_i = x_to_index(x, hmap),
+  // array index of point after x
+  end_i = (start_i + 1) % N_PTS;
+  // return the slope
+  return (hmap[end_i] - hmap[start_i]) / SEGMENT_L;
 }

@@ -36,7 +36,7 @@ private:
                   LEAD = 128,
                   ORB_INTERVAL = 200,
                   BECKON_THRESHOLD = WINDOW_DEFAULT_W * 0.7f,
-                  MAX_X = WINDOW_DEFAULT_W * 0.8f;
+                  MAX_X = WINDOW_DEFAULT_W * 0.9f;
 
   /// ATTRIBUTES
 private:

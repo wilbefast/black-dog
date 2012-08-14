@@ -55,15 +55,18 @@ public:
   void update(float delta);
   virtual void draw();
 	// query
-  int collidingPoint(V2f position) const;
-  int collidingRect(fRect hitbox) const;
+  V2i collidingPoint(V2f position) const;
+  V2i collidingRect(fRect hitbox) const;
 
 
 	/** SUB-ROUTINES **/
 protected:
 	virtual void new_height(unsigned int i);
 	float index_to_x(unsigned int i) const;
+	int x_to_index(float x, const float hmap[]) const;
 	float x_to_height(float x, const float hmap[]) const;
+	float x_to_slope(float x, const float hmap[]) const;
+	float y_to_seg_x(float y, const float hmap[], unsigned int i) const;
 };
 
 #endif // TUNNEL_HPP_INCLUDED
