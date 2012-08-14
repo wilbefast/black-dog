@@ -25,10 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class MinionThing : public Thing
 {
+  /// NESTING
+private:
+  enum State { NORMAL, DYING, TRANSFORMING };
+
   /// ATTRIBUTES
 private:
   AnimatedElement graphic;
   SymetricalMovementElement movement;
+  State state;
 
   /// METHODS
 public:

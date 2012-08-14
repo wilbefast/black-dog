@@ -43,7 +43,7 @@ public:
   bool setSprite(Animation* new_sprite, float new_speed = 0);
   void draw();
   // query
-  float getFrameN() const;
+  float whichFrame() const;
 
   /// SUBROUTINES
 protected:

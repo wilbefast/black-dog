@@ -31,7 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MinionThing::MinionThing(V2i _position) :
 Thing(_position, "minion"),
 graphic(this, V2f(64, 36)),
-movement(this, 2.0f)
+movement(this, 2.0f),
+state(NORMAL)
 {
   // set initial sprite
   graphic.setSprite(GraphicsManager::getInstance()->
@@ -53,13 +54,12 @@ int MinionThing::update(GameState* context, float delta)
 {
   // cache animations
   static Animation
-    *anim_normal = GraphicsManager::getInstance()->get_animation("minion"),
-    *anim_impify = GraphicsManager::getInstance()->get_animation("minion_impify"),
+    *anim_transform = GraphicsManager::getInstance()->get_animation("minion_transform"),
     *anim_die = GraphicsManager::getInstance()->get_animation("minion_die"),
     *anim_imp = GraphicsManager::getInstance()->get_animation("imp");
 
   // if playing normal animation, state is normal
-  if(graphic.isSprite(anim_normal))
+  if(state == NORMAL)
   {
     // cache hero position
     V2f hero_pos = context->getHero()->getPosition();
@@ -75,7 +75,10 @@ int MinionThing::update(GameState* context, float delta)
     // die if too far to the right of the screen
     || position.x > WINDOW_DEFAULT_W - 96.0f)
     {
-      graphic.setSprite(anim_impify, 0.1f);
+      // transform into a trio of imps (cerberus)
+      state = TRANSFORMING;
+      AudioManager::getInstance()->play_sound("imp_spawn");
+      graphic.setSprite(anim_transform, 0.1f);
       movement.setSpeed(V2f(1.0f, 0.0f));
     }
   }
@@ -92,9 +95,12 @@ int MinionThing::update(GameState* context, float delta)
   for(EventIter i = events.begin(); i != events.end(); i++)
   {
     // if event is "collision" and colliding with the hero
-    if((*i)->getType() == collision
+    if(state == NORMAL && (*i)->getType() == collision
     && ((CollisionEvent*)(*i))->getOther() == context->getHero())
     {
+      // explode in a shower of slime
+      state = DYING;
+      AudioManager::getInstance()->play_sound("minion_die");
       graphic.setSprite(anim_die, 0.1f);
       movement.setSpeed(V2f(0.5f, 0.0f));
     }
@@ -103,7 +109,7 @@ int MinionThing::update(GameState* context, float delta)
     else if((*i)->getType() == animation_end)
     {
       // if turning into an imp
-      if(graphic.isSprite(anim_impify))
+      if(state == TRANSFORMING)
       {
         // create the imps
         for(unsigned int i = 0; i < 3; i++)
@@ -111,15 +117,11 @@ int MinionThing::update(GameState* context, float delta)
           V2f spawn_pos(position.x + RAND_BETWEEN(-4,4), position.y - 16 + 16*i);
           context->addThing(new FallingThing(spawn_pos, "imp", anim_imp , 0.15f, 0.0f));
         }
-        AudioManager::getInstance()->play_sound("imp_spawn");
         die();
       }
       // if exploding
-      else if(graphic.isSprite(anim_die))
-      {
-        AudioManager::getInstance()->play_sound("minion_die");
+      else if(state == DYING)
         die();
-      }
     }
 
     // if event is "out of bounds"
@@ -127,5 +129,5 @@ int MinionThing::update(GameState* context, float delta)
       die();
   }
 
-  return Thing::update(context, delta);;
+  return Thing::update(context, delta);
 }

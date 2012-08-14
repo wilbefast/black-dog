@@ -79,8 +79,8 @@ void AnimationIncarnation::loopAnim()
 
 void AnimationIncarnation::draw()
 {
-  // Break immediately if nothing has been initialised
-  if(!sprite)
+  // Break immediately if hidden or nothing has been initialised
+  if(hidden || !sprite)
     return;
 
   // Get the source rectangle by cutting out the appropriate frame
@@ -93,8 +93,7 @@ void AnimationIncarnation::draw()
 
 /// QUERY
 
-float AnimationIncarnation::getFrameN() const
+float AnimationIncarnation::whichFrame() const
 {
   return frame_current;
 }
-

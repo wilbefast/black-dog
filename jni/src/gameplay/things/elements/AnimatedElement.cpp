@@ -37,8 +37,11 @@ AnimatedElement::~AnimatedElement()
 int AnimatedElement::update(GameState* context, float delta)
 {
   // Animate
-  frame_current += frame_speed*delta;
-  loopAnim();
+  if(!hidden)
+  {
+    frame_current += frame_speed*delta;
+    loopAnim();
+  }
 
   // Move destination rectangle to position of object
   destination.setPosition(owner->getPosition() + offset);

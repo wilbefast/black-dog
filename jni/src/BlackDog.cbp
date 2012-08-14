@@ -139,7 +139,6 @@
 		<Unit filename="math/numerise.inl" />
 		<Unit filename="math/wjd_math.hpp" />
 		<Unit filename="platform.hpp" />
-		<Unit filename="resources/numerise.inl" />
 		<Unit filename="scenes/BlackDogState.cpp" />
 		<Unit filename="scenes/BlackDogState.hpp" />
 		<Unit filename="scenes/Button.cpp" />

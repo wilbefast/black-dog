@@ -25,7 +25,8 @@ destination(size),
 offset(_offset),
 size(_size),
 angle(0),
-flags(_flags)
+flags(_flags),
+hidden(false)
 {
 }
 
@@ -71,6 +72,11 @@ bool GraphicIncarnation::setSprite(Graphic* new_sprite)
   return true;
 }
 
+void GraphicIncarnation::setHidden(bool _hidden)
+{
+  hidden = _hidden;
+}
+
 void GraphicIncarnation::setPosition(V2f _position)
 {
   destination.setPosition(_position + offset);
@@ -78,8 +84,8 @@ void GraphicIncarnation::setPosition(V2f _position)
 
 void GraphicIncarnation::draw()
 {
-  // Break immediately if nothing has been initialised
-  if(!sprite)
+  // Break immediately if invisible or nothing has been initialised
+  if(hidden || !sprite)
     return;
 
   // Get the source rectangle by cutting out the appropriate frame

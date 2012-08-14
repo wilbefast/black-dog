@@ -30,7 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 DogThing::DogThing(V2i _position) :
 Thing(_position, "dog"),
-graphic(this, V2f(0,0), V2f(0, 0), GraphicIncarnation::CENTER_Y), // don't center horizontally
+// don't center animation horizontally
+graphic(this, V2f(0,0), V2f(0, 0), GraphicIncarnation::CENTER_Y),
 unleash_timer(this, STR_UNLEASH_TIMER),
 state(OFFSCREEN)
 {
@@ -47,7 +48,7 @@ int DogThing::update(GameState* context, float delta)
   int result = GameState::CONTINUE;
 
   // mirror the hero's vertical position
-  position.y = hero_position.y;
+  position.y = (position.y*9.0f + hero_position.y)/10.0f;
 
   // death if at the left-hand side of the screen
   if(hero_position.x < DEATH_THRESHOLD)
@@ -62,7 +63,8 @@ int DogThing::update(GameState* context, float delta)
     if(hero_position.x < DANGER_THRESHOLD
     // unleash minion dogs if too far to the right of the screen
     ||(!unleash_timer.ticking() && hero_position.x > UNLEASH_THRESHOLD
-        && !context->countThings("minion")))
+        && !context->countThings("minion")
+        && !context->countThings("imp")))
       setState(ARRIVE);
   }
 

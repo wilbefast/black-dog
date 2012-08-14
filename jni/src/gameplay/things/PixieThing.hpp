@@ -26,14 +26,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class PixieThing : public Thing
 {
+  /// NESTING
+private:
+  enum State { TEASE, BECKON_ARRIVE, BECKON_LEAVE, BECKON_IDLE };
+
   /// CONSTANTS
 private:
-  static const int SIZE = 32, LEAD = 128, ORB_INTERVAL = 200, MAX_X = WINDOW_DEFAULT_W - 32;
+  static const int SIZE = 32,
+                  LEAD = 128,
+                  ORB_INTERVAL = 200,
+                  BECKON_THRESHOLD = WINDOW_DEFAULT_W * 0.7f,
+                  MAX_X = WINDOW_DEFAULT_W * 0.8f;
 
   /// ATTRIBUTES
 private:
-  AnimatedElement graphic;
+  AnimatedElement anim_tease, anim_beckon;
   TimerElement orb_timer;
+  State state;
 
   /// METHODS
 public:
@@ -42,6 +51,11 @@ public:
   // overrides Thing
   int update(GameState*, float delta);
   void draw();
+
+  /// SUBROUTINES
+private:
+  int treatEvent(ThingEvent* event, GameState* context);
+  void setState(State _state);
 };
 
 #endif // PIXIETHING_HPP_INCLUDED

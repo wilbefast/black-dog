@@ -132,7 +132,7 @@ int AngelThing::update(GameState* context, float delta)
   // move based on input and physics
   V2f speed = movement.getSpeed(), position = getPosition();
   // apply gravity
-  speed += V2f(0.0f, state->gravity);
+  speed.y += state->gravity;
   // horizontal movement speed is fixed while boosting
   if(state != &BOOSTING)
   {
@@ -373,7 +373,6 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
         // create special effect
         buff.setFrame(0.0f);
         draw_buff = true; // fixme: visibility attribute on graphic element?
-
 
         // consume the orb
         other->die();

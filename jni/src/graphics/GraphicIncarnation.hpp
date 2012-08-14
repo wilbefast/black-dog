@@ -36,6 +36,7 @@ protected:
   V2f offset, size;
   float angle;
   char flags;
+  bool hidden;
 
   /// METHODS
 public:
@@ -49,6 +50,7 @@ public:
   // accessors
   void setAngle(float new_angle);
   bool setSprite(Graphic* new_sprite);
+  void setHidden(bool _hidden);
   // modification
   virtual void setPosition(V2f _position);
   virtual void draw();

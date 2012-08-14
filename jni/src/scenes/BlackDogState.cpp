@@ -103,12 +103,12 @@ const TunnelFG* BlackDogState::getObstacle() const
 void BlackDogState::draw_feather_ui()
 {
   // constants
-  static const int SIZE = 32, SPACING = -6;
+  static const int SIZE = 32, SPACING = 2;
   static Animation* feather_ui
     = GraphicsManager::getInstance()->get_animation("feather_ui");
 
   // cache
-  fRect src, dest = fRect(-SPACING, -SPACING, SIZE, SIZE);
+  fRect src, dest = fRect(SPACING, SPACING, SIZE, SIZE);
   int n_feathers = ((AngelThing*)getHero())->countFeathers();
 
   // iterate through each feather of total possible storage

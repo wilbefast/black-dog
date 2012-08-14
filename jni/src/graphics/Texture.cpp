@@ -101,62 +101,62 @@ int Texture::unload()
 
 void Texture::draw(const fRect* src_ptr, const fRect* dst_ptr, float angle)
 {
-    // Crop the source rectangle if necessary
-    fRect src(area);
-    if(src_ptr)
-        src = src_ptr->getInter(area);
+  // Crop the source rectangle if necessary
+  fRect src(area);
+  if(src_ptr)
+      src = src_ptr->getInter(area);
 
-    // Crop the destination rectangle if necessary
-    fRect dst(global::viewport);
-    if(dst_ptr)
-        dst = (*dst_ptr);
-        //dst = dst_ptr->getInter(global::viewport); // reacts badly with rotations
+  // Crop the destination rectangle if necessary
+  fRect dst(global::viewport);
+  if(dst_ptr)
+    dst = (*dst_ptr);
+    //dst = dst_ptr->getInter(global::viewport); // reacts badly with rotations
 
-    // Set up position, rotation, colour
-    glTranslatef(global::scale.x*(dst.x + dst.w/2),
-                  global::scale.y*(dst.y + dst.h/2), 0.0);
-    glRotatef(angle, 0.0, 0.0, 1.0);
-    glScalef(global::scale.x, global::scale.y, 0.0f);
-    //glColor4f(255.0, 255.0, 255.0, 255.0); // reacts badly with Android
+  // Set up position, rotation, colour
+  glTranslatef(global::scale.x*(dst.x + dst.w/2),
+                global::scale.y*(dst.y + dst.h/2), 0.0);
+  glRotatef(angle, 0.0, 0.0, 1.0);
+  glScalef(global::scale.x, global::scale.y, 0.0f);
+  //glColor4f(255.0, 255.0, 255.0, 255.0); // reacts badly with Android
 
-    // Bind the texture to which subsequent calls refer to
-    glBindTexture(GL_TEXTURE_2D, handle);
+  // Bind the texture to which subsequent calls refer to
+  glBindTexture(GL_TEXTURE_2D, handle);
 
-    // Tell graphics hardware what to expect
+  // Tell graphics hardware what to expect
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-    // Set up the polygon in which we'll draw
-    GLfloat
-    min_x = -dst.w/2,
-    min_y = -dst.h/2,
-    max_x = -min_x,
-    max_y = -min_y;
-    GLfloat polygon[8]  =   {min_x, min_y,      // Top-left
-                            max_x,  min_y,      // Top-right
-                            min_x,  max_y,      // Bottom-left
-                            max_x,  max_y };    // Bottom-right
-    glVertexPointer(2, GL_FLOAT, 0, polygon);
+  // Set up the polygon in which we'll draw
+  GLfloat
+  min_x = -dst.w/2,
+  min_y = -dst.h/2,
+  max_x = -min_x,
+  max_y = -min_y;
+  GLfloat polygon[8]  =   {min_x, min_y,      // Top-left
+                          max_x,  min_y,      // Top-right
+                          min_x,  max_y,      // Bottom-left
+                          max_x,  max_y };    // Bottom-right
+  glVertexPointer(2, GL_FLOAT, 0, polygon);
 
-    // Set up the binding of the skin (texture) to this polygon
-    min_x = src.x/area.w;
-    min_y = src.y/area.h;
-    max_x = (src.x + src.w)/area.w;
-    max_y = (src.y + src.h)/area.h;
-   GLfloat skin[8]     =    {min_x, min_y,      // Top-left
-                            max_x,  min_y,      // Top-right
-                            min_x,  max_y,      // Bottom-left
-                            max_x,  max_y };    // Bottom-right
-    glTexCoordPointer(2, GL_FLOAT, 0, skin);
+  // Set up the binding of the skin (texture) to this polygon
+  min_x = src.x/area.w;
+  min_y = src.y/area.h;
+  max_x = (src.x + src.w)/area.w;
+  max_y = (src.y + src.h)/area.h;
+  GLfloat skin[8]     =    {min_x, min_y,      // Top-left
+                          max_x,  min_y,      // Top-right
+                          min_x,  max_y,      // Bottom-left
+                          max_x,  max_y };    // Bottom-right
+  glTexCoordPointer(2, GL_FLOAT, 0, skin);
 
-    // Draw everything (finally)!
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+  // Draw everything (finally)!
+  glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-    // Stop drawing texture
+  // Stop drawing texture
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
-    // Reset back to normal
-    glLoadIdentity();
-    glBindTexture(GL_TEXTURE_2D, 0);
+  // Reset back to normal
+  glLoadIdentity();
+  glBindTexture(GL_TEXTURE_2D, 0);
 }

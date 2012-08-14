@@ -13,8 +13,8 @@
 	<File name="assets/audio.xml" open="0" top="0" tabpos="0">
 		<Cursor position="133" topLine="0" />
 	</File>
-	<File name="assets/graphics.xml" open="1" top="1" tabpos="4">
-		<Cursor position="311" topLine="7" />
+	<File name="assets/graphics.xml" open="0" top="0" tabpos="4">
+		<Cursor position="1875" topLine="11" />
 	</File>
 	<File name="gameplay/Tunnel.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2333" topLine="92" />
@@ -32,13 +32,13 @@
 		<Cursor position="1277" topLine="22" />
 	</File>
 	<File name="gameplay/things/AngelThing.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="6303" topLine="218" />
+		<Cursor position="1632" topLine="39" />
 	</File>
 	<File name="gameplay/things/AngelThing.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="1405" topLine="29" />
+		<Cursor position="1940" topLine="50" />
 	</File>
 	<File name="gameplay/things/DogThing.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="884" topLine="23" />
+		<Cursor position="1463" topLine="152" />
 	</File>
 	<File name="gameplay/things/DogThing.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="602" topLine="23" />
@@ -55,17 +55,17 @@
 	<File name="gameplay/things/FallingThing.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1090" topLine="25" />
 	</File>
-	<File name="gameplay/things/MinionThing.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="3742" topLine="99" />
+	<File name="gameplay/things/MinionThing.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2997" topLine="87" />
 	</File>
 	<File name="gameplay/things/MinionThing.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="907" topLine="19" />
+		<Cursor position="973" topLine="22" />
 	</File>
-	<File name="gameplay/things/PixieThing.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="912" topLine="1" />
+	<File name="gameplay/things/PixieThing.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="4417" topLine="1" />
 	</File>
-	<File name="gameplay/things/PixieThing.hpp" open="0" top="0" tabpos="2">
-		<Cursor position="1073" topLine="25" />
+	<File name="gameplay/things/PixieThing.hpp" open="1" top="1" tabpos="5">
+		<Cursor position="1313" topLine="28" />
 	</File>
 	<File name="gameplay/things/Thing.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="784" topLine="19" />
@@ -73,8 +73,8 @@
 	<File name="gameplay/things/Thing.hpp" open="0" top="0" tabpos="1">
 		<Cursor position="809" topLine="9" />
 	</File>
-	<File name="gameplay/things/elements/AnimatedElement.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1571" topLine="3" />
+	<File name="gameplay/things/elements/AnimatedElement.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="1274" topLine="18" />
 	</File>
 	<File name="gameplay/things/elements/AnimatedElement.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="968" topLine="20" />
@@ -92,10 +92,10 @@
 		<Cursor position="152" topLine="7" />
 	</File>
 	<File name="gameplay/things/elements/GraphicElement.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="334" topLine="13" />
+		<Cursor position="334" topLine="22" />
 	</File>
 	<File name="gameplay/things/elements/GraphicElement.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="571" topLine="16" />
+		<Cursor position="571" topLine="13" />
 	</File>
 	<File name="gameplay/things/elements/MovementElement.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3681" topLine="62" />
@@ -155,10 +155,10 @@
 		<Cursor position="371" topLine="7" />
 	</File>
 	<File name="graphics/AnimationIncarnation.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1022" topLine="23" />
+		<Cursor position="2603" topLine="29" />
 	</File>
 	<File name="graphics/AnimationIncarnation.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1318" topLine="27" />
+		<Cursor position="1509" topLine="29" />
 	</File>
 	<File name="graphics/Graphic.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="2" />
@@ -167,10 +167,10 @@
 		<Cursor position="103" topLine="0" />
 	</File>
 	<File name="graphics/GraphicIncarnation.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1151" topLine="27" />
+		<Cursor position="2140" topLine="74" />
 	</File>
 	<File name="graphics/GraphicIncarnation.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1421" topLine="35" />
+		<Cursor position="1502" topLine="34" />
 	</File>
 	<File name="graphics/HeightMesh.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="9" />
@@ -185,7 +185,7 @@
 		<Cursor position="0" topLine="5" />
 	</File>
 	<File name="graphics/Texture.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="99" topLine="0" />
+		<Cursor position="2527" topLine="51" />
 	</File>
 	<File name="graphics/Texture.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="187" topLine="0" />
@@ -233,7 +233,7 @@
 		<Cursor position="2025" topLine="32" />
 	</File>
 	<File name="scenes/BlackDogState.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="778" topLine="19" />
+		<Cursor position="2858" topLine="102" />
 	</File>
 	<File name="scenes/BlackDogState.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="903" topLine="18" />
