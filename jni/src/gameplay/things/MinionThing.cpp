@@ -17,11 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "MinionThing.hpp"
-
 #include "FallingThing.hpp"
 
 #include "elements/ColliderElement.hpp"
 #include "events/CollisionEvent.hpp"
+
+#include "../../scenes/BlackDogState.hpp"
 
 #include "../../io/AudioManager.hpp"
 #include "../../io/GraphicsManager.hpp"
@@ -54,8 +55,6 @@ int MinionThing::update(GameState* context, float delta)
 {
   // cache animations
   static Animation
-    *anim_transform = GraphicsManager::getInstance()->get_animation("minion_transform"),
-    *anim_die = GraphicsManager::getInstance()->get_animation("minion_die"),
     *anim_imp = GraphicsManager::getInstance()->get_animation("imp");
 
   // if playing normal animation, state is normal
@@ -70,17 +69,15 @@ int MinionThing::update(GameState* context, float delta)
     else if(hero_pos.y < position.y - 1.0f)
       movement.addSpeedY(-0.01f);
 
+    if(((BlackDogState*)context)->getDifficulty() < 0.0f)
+      setState(DYING);
+
     // die if past player
     if(position.x > hero_pos.x + 96.0f
     // die if too far to the right of the screen
-    || position.x > WINDOW_DEFAULT_W - 96.0f)
-    {
+    || position.x > WINDOW_DEFAULT_W * 0.8f)
       // transform into a trio of imps (cerberus)
-      state = TRANSFORMING;
-      AudioManager::getInstance()->play_sound("imp_spawn");
-      graphic.setSprite(anim_transform, 0.1f);
-      movement.setSpeed(V2f(1.0f, 0.0f));
-    }
+      setState(TRANSFORMING);
   }
 
   // update elements
@@ -97,13 +94,7 @@ int MinionThing::update(GameState* context, float delta)
     // if event is "collision" and colliding with the hero
     if(state == NORMAL && (*i)->getType() == collision
     && ((CollisionEvent*)(*i))->getOther() == context->getHero())
-    {
-      // explode in a shower of slime
-      state = DYING;
-      AudioManager::getInstance()->play_sound("minion_die");
-      graphic.setSprite(anim_die, 0.1f);
-      movement.setSpeed(V2f(0.5f, 0.0f));
-    }
+      setState(DYING);
 
     // if event is "animation end"
     else if((*i)->getType() == animation_end)
@@ -130,4 +121,40 @@ int MinionThing::update(GameState* context, float delta)
   }
 
   return Thing::update(context, delta);
+}
+
+
+/// SUBROUTINES
+
+void MinionThing::setState(State _state)
+{
+  static Animation
+    *anim_transform = GraphicsManager::getInstance()->get_animation("minion_transform"),
+    *anim_die = GraphicsManager::getInstance()->get_animation("minion_die");
+
+  // no repetitions
+  if(state == _state)
+    return;
+
+  switch(_state)
+  {
+    case DYING:
+      AudioManager::getInstance()->play_sound("minion_die");
+      graphic.setSprite(anim_die, 0.1f);
+      movement.setSpeed(V2f(0.5f, 0.0f));
+    break;
+
+    case TRANSFORMING:
+      AudioManager::getInstance()->play_sound("imp_spawn");
+      graphic.setSprite(anim_transform, 0.1f);
+      movement.setSpeed(V2f(1.0f, 0.0f));
+    break;
+
+    default:
+    break;
+  }
+
+
+  // set the new state
+  state = _state;
 }

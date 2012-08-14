@@ -149,7 +149,7 @@ int Application::startSDL()
                            SDL_WINDOWPOS_CENTERED, WINDOW_DEFAULT_W,
                            WINDOW_DEFAULT_H, WINDOW_FLAGS);
   ASSERT_SDL(window, "Opening SDL application window");
-
+SDL_ShowCursor(0);
   // Since the window size can be overriden, check what it is actually
   SDL_GetWindowSize(window, &global::viewport.w, &global::viewport.h);
   global::scale = V2f(global::viewport.w / (float)WINDOW_DEFAULT_W,

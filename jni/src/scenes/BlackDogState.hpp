@@ -48,6 +48,7 @@ public:
   // query
   float getProgress() const;
   const TunnelFG* getObstacle() const;
+  float getDifficulty() const;
   // modification
   void setDifficulty(float _difficulty);
 

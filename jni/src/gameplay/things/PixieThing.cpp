@@ -21,7 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "FallingThing.hpp" // for orbs
 
 #include "../../scenes/BlackDogState.hpp"
+
 #include "../../io/GraphicsManager.hpp"
+#include "../../io/AudioManager.hpp"
 
 #include "../../math/V2.hpp"
 
@@ -158,10 +160,12 @@ void PixieThing::setState(State new_state)
       anim_beckon.setHidden(false);
       anim_tease.setHidden(true);
       anim_beckon.setSprite(monk_spawn, 0.1f);
+      AudioManager::getInstance()->play_sound("monk_spawn");
     break;
 
     case BECKON_LEAVE:
       anim_beckon.setSprite(monk_spawn, -0.1f);
+      AudioManager::getInstance()->play_sound("monk_spawn");
     break;
 
     case BECKON_IDLE:

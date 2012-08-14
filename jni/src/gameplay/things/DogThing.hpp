@@ -30,8 +30,7 @@ private:
   static const int DEATH_THRESHOLD = 32;
   static const int DANGER_THRESHOLD = DEATH_THRESHOLD*4;
   static const int SAFETY_THRESHOLD = DANGER_THRESHOLD*1.1f;
-  static const int UNLEASH_THRESHOLD = WINDOW_DEFAULT_W*0.4f;
-  static const int UNLEASH_INTERVAL = 450;
+  static const int UNLEASH_INTERVAL = 500;
 
   /// NESTING
 private:
@@ -46,7 +45,7 @@ private:
   /// METHODS
 public:
   // creation, destruction
-  DogThing(V2i _position);
+  DogThing(V2i _position, float start_difficulty);
   // overrides Thing
   int update(GameState*, float delta);
   void draw();

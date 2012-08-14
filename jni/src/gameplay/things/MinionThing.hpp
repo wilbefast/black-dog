@@ -42,6 +42,10 @@ public:
   // overrides
   void draw();
   int update(GameState* context, float delta);
+
+  /// SUBROUTINES
+private:
+  void setState(State _state);
 };
 
 #endif // MINIONTHING_HPP_INCLUDED

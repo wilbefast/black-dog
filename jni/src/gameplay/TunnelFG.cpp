@@ -48,7 +48,7 @@ float TunnelFG::x_to_middle(float x) const
 
 void TunnelFG::setDifficulty(float _difficulty)
 {
-  if(_difficulty >= 0.0f && _difficulty <= 1.0f)
+  if(_difficulty <= 1.0f)
     difficulty = _difficulty;
 }
 
@@ -70,6 +70,15 @@ void TunnelFG::draw()
 
 void TunnelFG::new_height(unsigned int i)
 {
+  cout << "difficulty = " << difficulty << endl;
+  // when the player wins the tunnel opens up
+  if(difficulty < 0.0f)
+  {
+    above[i] = 0;
+    below[i] = WINDOW_DEFAULT_H;
+    return;
+  }
+
   // change in height this time around
   float delta = MAX_DELTA * difficulty;
   // lower bound for new point

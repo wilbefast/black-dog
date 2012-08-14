@@ -28,14 +28,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /// CREATION, DESTRUCTION
 
-DogThing::DogThing(V2i _position) :
+DogThing::DogThing(V2i _position, float start_difficulty) :
 Thing(_position, "dog"),
 // don't center animation horizontally
 graphic(this, V2f(0,0), V2f(0, 0), GraphicIncarnation::CENTER_Y),
 unleash_timer(this, STR_UNLEASH_TIMER),
 state(OFFSCREEN)
 {
-  unleash_timer.unset();
 }
 
 
@@ -45,10 +44,15 @@ int DogThing::update(GameState* context, float delta)
 {
   // local variables
   V2f hero_position = context->getHero()->getPosition();
+  float difficulty = ((BlackDogState*)context)->getDifficulty();
   int result = GameState::CONTINUE;
 
   // mirror the hero's vertical position
   position.y = (position.y*9.0f + hero_position.y)/10.0f;
+
+  // destroy the Dog at the end of the game
+  if(difficulty < 0.0f && state == OFFSCREEN)
+      die();
 
   // death if at the left-hand side of the screen
   if(hero_position.x < DEATH_THRESHOLD && state != EAT)
@@ -62,9 +66,7 @@ int DogThing::update(GameState* context, float delta)
     // warn of danger if too far to the left of the screen
     if(hero_position.x < DANGER_THRESHOLD
     // unleash minion dogs if too far to the right of the screen
-    ||(!unleash_timer.ticking() && hero_position.x > UNLEASH_THRESHOLD
-        && !context->countThings("minion")
-        && !context->countThings("imp")))
+    ||(!unleash_timer.ticking() && difficulty > 0.4f))
       setState(ARRIVE);
   }
 
@@ -103,6 +105,8 @@ void DogThing::draw()
 
 int DogThing::treatEvent(ThingEvent* event, GameState* context)
 {
+  // local variables
+  V2f hero_position = context->getHero()->getPosition();
   static str_id ANIMATION_END = numerise("animation_end");
 
   if(event->getType() == ANIMATION_END)
@@ -117,7 +121,8 @@ int DogThing::treatEvent(ThingEvent* event, GameState* context)
       break;
 
       case UNLEASH:
-        unleash_timer.set(UNLEASH_INTERVAL);
+        unleash_timer.set(UNLEASH_INTERVAL *
+          (1.5f - min(1.0f, hero_position.x / (WINDOW_DEFAULT_W * 0.8f))));
         context->addThing(new MinionThing(position));
       case LEAVE:
         setState(OFFSCREEN);

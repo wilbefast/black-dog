@@ -36,7 +36,7 @@ player_progress(STARTING_PROGRESS)
   // add the player character
   addThing(new AngelThing(V2i(player_progress, WINDOW_DEFAULT_H/2)));
   // add the dog
-  addThing(new DogThing(V2i(0, WINDOW_DEFAULT_H/2)));
+  addThing(new DogThing(V2i(0, WINDOW_DEFAULT_H/2), BASE_DIFFICULTY));
   // add the progress-mesure pixie
   addThing(new PixieThing(V2i(WINDOW_DEFAULT_W/2, WINDOW_DEFAULT_H/2)));
 }
@@ -55,7 +55,7 @@ int BlackDogState::update(float delta)
   // Update difficulty based on player progress
   player_progress = ((AngelThing*)getHero())->getFurthestX();
   if(player_progress > PROGRESS_THRESHOLD)
-    obstacle.setDifficulty(player_progress / (WINDOW_DEFAULT_W * 0.8f));
+    obstacle.setDifficulty(getDifficulty());
 
   // Update background parallax tunnel
   parallax.update(delta);
@@ -96,6 +96,13 @@ float BlackDogState::getProgress() const
 const TunnelFG* BlackDogState::getObstacle() const
 {
   return &obstacle;
+}
+
+float BlackDogState::getDifficulty() const
+{
+  return (player_progress > 0.8f * WINDOW_DEFAULT_W)
+          ? -1.0f
+          : player_progress / (WINDOW_DEFAULT_W * 0.8f);
 }
 
 /// SUBROUTINES
