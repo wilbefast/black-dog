@@ -70,7 +70,6 @@ void TunnelFG::draw()
 
 void TunnelFG::new_height(unsigned int i)
 {
-  cout << "difficulty = " << difficulty << endl;
   // when the player wins the tunnel opens up
   if(difficulty < 0.0f)
   {

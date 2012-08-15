@@ -43,7 +43,7 @@ state(NORMAL)
   movement.setSpeedX(2.0f);
 
   // create body
-  body = new ColliderElement(this, V2d(V2d(32, 16)));
+  body = new ColliderElement(this, V2d(V2d(48, 20)));
 }
 
 void MinionThing::draw()

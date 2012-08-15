@@ -51,6 +51,7 @@ public:
   void setAngle(float new_angle);
   bool setSprite(Graphic* new_sprite);
   void setHidden(bool _hidden);
+  void setOffset(V2f _offset);
   // modification
   virtual void setPosition(V2f _position);
   virtual void draw();

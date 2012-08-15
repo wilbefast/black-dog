@@ -96,4 +96,7 @@ void GraphicIncarnation::draw()
   sprite->getTexture()->draw(&source, &destination, angle);
 }
 
-
+void GraphicIncarnation::setOffset(V2f _offset)
+{
+  offset = _offset - size/2;
+}

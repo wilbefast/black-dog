@@ -52,7 +52,7 @@ int DogThing::update(GameState* context, float delta)
 
   // destroy the Dog at the end of the game
   if(difficulty < 0.0f && state == OFFSCREEN)
-      die();
+    return GameState::DELETE_ME;
 
   // death if at the left-hand side of the screen
   if(hero_position.x < DEATH_THRESHOLD && state != EAT)
@@ -66,13 +66,18 @@ int DogThing::update(GameState* context, float delta)
     // warn of danger if too far to the left of the screen
     if(hero_position.x < DANGER_THRESHOLD
     // unleash minion dogs if too far to the right of the screen
-    ||(!unleash_timer.ticking() && difficulty > 0.4f))
+    ||(!unleash_timer.ticking() && difficulty > UNLEASH_DIFFICULTY))
       setState(ARRIVE);
   }
 
   // stop warning if far enough from the left of the screen
   else if(hero_position.x >= SAFETY_THRESHOLD && state == IDLE)
-    setState(LEAVE);
+  {
+    if(unleash_timer.ticking() || difficulty <= UNLEASH_DIFFICULTY)
+      setState(LEAVE);
+    else
+      setState(UNLEASH);
+  }
 
   // animate the sprite
   graphic.update(context, delta);

@@ -42,6 +42,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   gameplay/things/FallingThing.cpp				                    \
 	gameplay/things/MinionThing.cpp				                      \
   gameplay/things/EffectThing.cpp				                      \
+  gameplay/things/EpilogueThing.cpp				                    \
   gameplay/things/Thing.cpp				                            \
   gameplay/Tunnel.cpp					                                \
   gameplay/TunnelBG.cpp					                              \

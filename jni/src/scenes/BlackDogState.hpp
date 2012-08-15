@@ -36,7 +36,8 @@ private:
 private:
   TunnelBG parallax;
   TunnelFG obstacle;
-  float player_progress;
+  float player_progress, difficulty;
+  bool victory;
 
   /// METHODS
 public:

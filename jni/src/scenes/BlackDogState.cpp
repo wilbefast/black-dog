@@ -31,7 +31,9 @@ BlackDogState::BlackDogState() :
 GameState(),
 parallax(),
 obstacle(BASE_DIFFICULTY),
-player_progress(STARTING_PROGRESS)
+player_progress(STARTING_PROGRESS),
+difficulty(BASE_DIFFICULTY),
+victory(false)
 {
   // add the player character
   addThing(new AngelThing(V2i(player_progress, WINDOW_DEFAULT_H/2)));
@@ -52,10 +54,22 @@ int BlackDogState::update(float delta)
   if(result != CONTINUE)
     return result;
 
-  // Update difficulty based on player progress
-  player_progress = ((AngelThing*)getHero())->getFurthestX();
-  if(player_progress > PROGRESS_THRESHOLD)
-    obstacle.setDifficulty(getDifficulty());
+  // end of game
+  if(difficulty < 0.0f)
+  {
+    if(!victory)
+      victory = true;
+  }
+  else
+  {
+    // Update difficulty based on player progress
+    player_progress = ((AngelThing*)getHero())->getFurthestX();
+    difficulty = (player_progress > 0.8f * WINDOW_DEFAULT_W)
+                    ? -1.0f
+                    : player_progress / (WINDOW_DEFAULT_W * 0.8f);
+    if(player_progress > PROGRESS_THRESHOLD)
+      obstacle.setDifficulty(difficulty);
+  }
 
   // Update background parallax tunnel
   parallax.update(delta);
@@ -82,8 +96,11 @@ void BlackDogState::draw()
   GameState::draw();
 
   // Draw user interface
-  draw_feather_ui();
-  draw_orb_ui();
+  if(difficulty > 0.0f)
+  {
+    draw_feather_ui();
+    draw_orb_ui();
+  }
 }
 
 /// QUERY
@@ -100,9 +117,7 @@ const TunnelFG* BlackDogState::getObstacle() const
 
 float BlackDogState::getDifficulty() const
 {
-  return (player_progress > 0.8f * WINDOW_DEFAULT_W)
-          ? -1.0f
-          : player_progress / (WINDOW_DEFAULT_W * 0.8f);
+  return difficulty;
 }
 
 /// SUBROUTINES

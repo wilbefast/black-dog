@@ -27,7 +27,8 @@ draw::Colour TunnelBG::COLOUR_FILL(115, 6, 15);   // dark red
 /// CONSTRUCTION AND DESTRUCTION
 
 TunnelBG::TunnelBG() :
-Tunnel(DEFAULT_SPEED)
+Tunnel(DEFAULT_SPEED),
+open(false)
 {
     // randomise initial values
 		for (int i = 0; i < N_PTS; i++)
@@ -48,6 +49,21 @@ void TunnelBG::draw()
 
 void TunnelBG::new_height(unsigned int i)
 {
-  above[i] = RAND_BETWEEN(MIN_H, (MIN_H+MAX_H)/2);
-  below[i] = RAND_BETWEEN((MIN_H+MAX_H)/2, MAX_H);
+  if(open)
+  {
+    above[i] = 0;
+    below[i] = WINDOW_DEFAULT_H;
+  }
+  else
+  {
+    above[i] = RAND_BETWEEN(MIN_H, (MIN_H+MAX_H)/2);
+    below[i] = RAND_BETWEEN((MIN_H+MAX_H)/2, MAX_H);
+  }
+}
+
+/// MODIFICATION
+
+void TunnelBG::setOpen(bool _open)
+{
+  open = _open;
 }

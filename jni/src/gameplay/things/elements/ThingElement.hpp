@@ -24,18 +24,18 @@ class ThingElement;
 
 class ThingElement
 {
-    /// ATTRIBUTES
-    protected:
-    Thing* owner;
+  /// ATTRIBUTES
+protected:
+  Thing* owner;
 
-    /// METHODS
-    public:
-    // constructors, destructor
-    ThingElement(Thing* init_owner);
-    virtual ~ThingElement();
-    // overriden
-    virtual int update(GameState* context, float delta);
-    virtual void draw();
+  /// METHODS
+public:
+  // constructors, destructor
+  ThingElement(Thing* init_owner);
+  virtual ~ThingElement();
+  // overriden
+  virtual int update(GameState* context, float delta);
+  virtual void draw();
 
 };
 

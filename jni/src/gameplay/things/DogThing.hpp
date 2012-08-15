@@ -31,6 +31,7 @@ private:
   static const int DANGER_THRESHOLD = DEATH_THRESHOLD*4;
   static const int SAFETY_THRESHOLD = DANGER_THRESHOLD*1.1f;
   static const int UNLEASH_INTERVAL = 500;
+  static const float UNLEASH_DIFFICULTY = 0.4f;
 
   /// NESTING
 private:

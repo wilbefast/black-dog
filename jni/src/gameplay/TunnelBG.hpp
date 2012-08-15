@@ -29,14 +29,19 @@ class TunnelBG : public Tunnel
 private:
   static draw::Colour COLOUR_FILL;
   static const int DEFAULT_SPEED = 1;
+  /// ATTRIBUTES
+private:
+  bool open;
   /// METHODS
 public:
   TunnelBG();
+  /// MODIFICATION
+  void setOpen(bool _open);
   /// OVERRIDES
-public:
   void draw();
 private:
   void new_height(unsigned int i);
+
 };
 
 #endif // TUNNELBG_INCLUDED

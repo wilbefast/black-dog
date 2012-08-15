@@ -61,6 +61,10 @@ int PixieThing::update(GameState* context, float delta)
   const TunnelFG* obstacle = ((BlackDogState*)context)->getObstacle();
   int result = GameState::CONTINUE;
 
+  // launch cinematic at the end of the game
+  if(player_pos.x > 0.8f * WINDOW_DEFAULT_W)
+    return GameState::DELETE_ME;
+
   // work out where we want to be (in the middle of the tunnel)
   V2f desired(player_progress + LEAD, 0.0f);
   if(desired.x > MAX_X)

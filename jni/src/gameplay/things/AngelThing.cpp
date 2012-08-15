@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "FallingThing.hpp"
 #include "EffectThing.hpp"
+#include "EpilogueThing.hpp"
 
 #define STR_UNSTUN "unstun"
 #define STR_REFEATHER "refeather"
@@ -39,14 +40,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // resource caching
 
 // numeric values
-const float AngelThing::BOUNCE_BACK = 5.0f;
+const float AngelThing::BOUNCE_BACK_WALL = 7.0f;
+const float AngelThing::BOUNCE_BACK_MINION = 6.0f;
+const float AngelThing::BOUNCE_BACK_IMP = 2.0f;
 const float AngelThing::BOUNCE_DOWN = 2.0f;
 const float AngelThing::BOUNCE_UP = 6.0f;
 const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
 const float AngelThing::SPEED_X_INC = 0.01f;
 const float AngelThing::SPEED_X_MAX = 0.1f;
-const float AngelThing::SPEED_X_BOOST = 0.4f;
+const float AngelThing::SPEED_X_BOOST = 1.0f;//0.4f;
 const float AngelThing::SPEED_Y_BOOST = 2.5f;
 const float AngelThing::DELTA_Y_BOOST = 0.2f;
 
@@ -83,9 +86,8 @@ AngelThing::AngelThing(V2i _position) :
 Thing(_position, "angel"),
 state(&GLIDING),
 graphic(this, V2f(96, 48)),
-buff(this, V2f(16, 16)),
+buff(this, V2f(20, 20)),
 auto_glide(true),
-draw_buff(false),
 movement(this),
 feathers(this, MAX_FEATHERS),
 orbs(this, MAX_ORBS, 0),
@@ -94,11 +96,12 @@ feather_timer(this, STR_REFEATHER, FEATHER_INTERVAL),
 orb_use_timer(this, STR_ORB_USED),
 furthest_x(_position.x)
 {
-  // set initial sprite
+  // set initial sprites
   graphic.setSprite(GraphicsManager::getInstance()->
                     get_animation("wraith_glide"), 0.1f);
   buff.setSprite(GraphicsManager::getInstance()->
                     get_animation("orb_consume"), 0.1f);
+  buff.setHidden(true);
 
   // angel is collideable
   body = new ColliderElement(this, V2d(V2d(HITBOX_W, HITBOX_H)));
@@ -112,8 +115,7 @@ void AngelThing::draw()
   graphic.draw();
 
   // draw effects on top
-  if(draw_buff)
-    buff.draw();
+  buff.draw();
 }
 
 int AngelThing::update(GameState* context, float delta)
@@ -124,6 +126,17 @@ int AngelThing::update(GameState* context, float delta)
 
   // collect the result at each step of the way, check for interruptions
   int result = GameState::CONTINUE;
+
+  // animate the sprites
+  graphic.update(context, delta);
+  buff.update(context, delta);
+
+  // victory
+  if(((BlackDogState*)context)->getDifficulty() < 0.0f)
+  {
+    context->addThing(new EpilogueThing(position));
+    return GameState::DELETE_ME;
+  }
 
   // treat input
   result = treatInput(context);
@@ -165,10 +178,6 @@ int AngelThing::update(GameState* context, float delta)
   result = checkCollision(context);
   if(result != GameState::CONTINUE)
     return result;
-
-  // animate the sprite
-  graphic.update(context, delta);
-  buff.update(context, delta);
 
   // treat events last of all, as they will be cleared by Thing::update
   for(EventIter i = events.begin();
@@ -325,7 +334,7 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
 
     // special effect graphic
     if(event->getSender() == &buff)
-      draw_buff = false;
+      buff.setHidden(true);
   }
 
   // death
@@ -349,8 +358,7 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
       if(state != &STUNNED && state != &BOOSTING)
       {
         setState(STUNNED, context);
-        movement.addSpeedX(-1.0f);
-        movement.setSpeedY(0.0f);
+        movement.setSpeed(V2f(-BOUNCE_BACK_IMP, 0.0f));
         tryDropOrbs(ORB_PENALTY_IMP, context);
       }
       // always kill the other, even if stunned!
@@ -367,8 +375,7 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
       if(other->getType() == minion && state != &BOOSTING)
       {
         setState(STUNNED, context);
-        movement.addSpeedX(-3.0f);
-        movement.setSpeedY(0.0f);
+        movement.setSpeed(V2f(-BOUNCE_BACK_MINION, 0.0f));
         tryDropOrbs(ORB_PENALTY_MINION, context);
       }
 
@@ -377,7 +384,7 @@ int AngelThing::treatEvent(ThingEvent* event, GameState* context)
       {
         // create special effect
         buff.setFrame(0.0f);
-        draw_buff = true; // fixme: visibility attribute on graphic element?
+        buff.setHidden(false);
 
         // consume the orb
         other->die();
@@ -473,7 +480,7 @@ int AngelThing::checkCollision(GameState* context)
   {
     // update position and speed
     move(-collision);
-    movement.setSpeed(V2f( (collision.x > 0) ? -BOUNCE_BACK : 0,
+    movement.setSpeed(V2f( (collision.x > 0) ? -BOUNCE_BACK_WALL : -BOUNCE_BACK_WALL,
                            (collision.y < 0) ? BOUNCE_DOWN : -BOUNCE_UP));
     // paralyse for a short duration
     setState(STUNNED, context);

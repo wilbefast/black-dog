@@ -50,7 +50,7 @@ public:
 public:
   // numeric constants
   static const float THRUST;        // vertical speed of flapping wings
-  static const float BOUNCE_BACK;
+  static const float BOUNCE_BACK_WALL, BOUNCE_BACK_MINION, BOUNCE_BACK_IMP;
   static const float BOUNCE_DOWN;
   static const float BOUNCE_UP;
   static const float SPEED_X_INC;   // horizontal speed towards the right
@@ -60,13 +60,13 @@ public:
   static const float DELTA_Y_BOOST;
   static const float FRICTION;
   static const int MAX_FEATHERS = 5;
-  static const int MAX_ORBS = 5;
+  static const int MAX_ORBS = 1; //5;
   static const int FEATHER_INTERVAL = 58;
-  static const int ORB_USE_INTERVAL = 28;
+  static const int ORB_USE_INTERVAL = 600; //28;
   static const int ORB_PENALTY_WALL = 2;
   static const int ORB_PENALTY_MINION = 3;
   static const int ORB_PENALTY_IMP = 1;
-  static const int STUN_DURATION = 20;
+  static const int STUN_DURATION = 25;
   static const int SPRITE_W = 112;
   static const int SPRITE_H = 54;
   static const int HITBOX_W = 8;
@@ -80,7 +80,7 @@ public:
 private:
   State const* state;
   AnimatedElement graphic, buff;
-  bool auto_glide, draw_buff;
+  bool auto_glide;
   MovementElement movement;
   ResourceElement feathers, orbs;
   TimerElement stun_timer, feather_timer, orb_use_timer;
