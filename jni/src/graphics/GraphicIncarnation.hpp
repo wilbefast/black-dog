@@ -52,6 +52,7 @@ public:
   bool setSprite(Graphic* new_sprite);
   void setHidden(bool _hidden);
   void setOffset(V2f _offset);
+  void setSize(V2f _size);
   // modification
   virtual void setPosition(V2f _position);
   virtual void draw();

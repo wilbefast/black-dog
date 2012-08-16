@@ -49,7 +49,7 @@ const float AngelThing::THRUST = 6.0f;
 const float AngelThing::FRICTION = 0.2f;
 const float AngelThing::SPEED_X_INC = 0.01f;
 const float AngelThing::SPEED_X_MAX = 0.1f;
-const float AngelThing::SPEED_X_BOOST = 1.0f;//0.4f;
+const float AngelThing::SPEED_X_BOOST = 0.4f;
 const float AngelThing::SPEED_Y_BOOST = 2.5f;
 const float AngelThing::DELTA_Y_BOOST = 0.2f;
 

@@ -60,9 +60,9 @@ public:
   static const float DELTA_Y_BOOST;
   static const float FRICTION;
   static const int MAX_FEATHERS = 5;
-  static const int MAX_ORBS = 1; //5;
+  static const int MAX_ORBS = 5;
   static const int FEATHER_INTERVAL = 58;
-  static const int ORB_USE_INTERVAL = 600; //28;
+  static const int ORB_USE_INTERVAL = 28;
   static const int ORB_PENALTY_WALL = 2;
   static const int ORB_PENALTY_MINION = 3;
   static const int ORB_PENALTY_IMP = 1;

@@ -11,6 +11,7 @@ class EpilogueThing : public Thing
   /// ATTRIBUTES
 private:
   AnimatedElement wraith, monk;
+  unsigned int act;
 
   /// METHODS
 public:

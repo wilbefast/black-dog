@@ -120,6 +120,11 @@ float BlackDogState::getDifficulty() const
   return difficulty;
 }
 
+void BlackDogState::openTunnel()
+{
+  parallax.setOpen(true);
+}
+
 /// SUBROUTINES
 
 void BlackDogState::draw_feather_ui()

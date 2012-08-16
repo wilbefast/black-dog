@@ -98,5 +98,13 @@ void GraphicIncarnation::draw()
 
 void GraphicIncarnation::setOffset(V2f _offset)
 {
-  offset = _offset - size/2;
+  if(flags & CENTER_X)
+    offset.x = _offset.x - size.x/2.0f;
+  if(flags & CENTER_Y)
+    offset.y = _offset.y - size.y/2.0f;
+}
+
+void GraphicIncarnation::setSize(V2f _size)
+{
+  size = _size;
 }

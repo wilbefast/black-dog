@@ -52,6 +52,7 @@ public:
   float getDifficulty() const;
   // modification
   void setDifficulty(float _difficulty);
+  void openTunnel();
 
   /// SUBROUTINES
 private:

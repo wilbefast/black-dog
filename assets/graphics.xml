@@ -15,7 +15,7 @@
     <animation name="feather_ui" texture="wraith" x="864" y="96" w="32" h="32" n_frames="2" />
 		<animation name="feather" texture="wraith" x="928" y="96" w="16" h="16" n_frames="3" />
 		<animation name="wraith_transform" texture="wraith" x="0" y="128" w="64" h="128" n_frames="7" />
-		<animation name="wraith_orb" texture="wraith" x="448" y="128" w="32" h="32" n_frames="3" />
+		<animation name="wraith_orb" texture="wraith" x="448" y="128" w="64" h="64" n_frames="3" />
 
     <animation name="orb_die" texture="wraith" x="928" y="112" w="16" h="16" n_frames="4" />
     <animation name="orb_ui" texture="pixie" x="0" y="0" w="32" h="32" n_frames="2" />

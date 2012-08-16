@@ -10289,7 +10289,7 @@
 	"EffectThing.hpp"
 	"EpilogueThing.hpp"
 
-1345051337 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.hpp
+1345133050 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.hpp
 	"Thing.hpp"
 	"../../graphics/Animation.hpp"
 	"elements/AnimatedElement.hpp"
@@ -10456,7 +10456,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1345069122 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.cpp
+1345132647 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.cpp
 	"BlackDogState.hpp"
 	"../io/GraphicsManager.hpp"
 	"../gameplay/things/AngelThing.hpp"
@@ -10465,7 +10465,7 @@
 	"../gameplay/things/FallingThing.hpp"
 	"../global.hpp"
 
-1345050573 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.hpp
+1345132610 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.hpp
 	"GameState.hpp"
 	"../gameplay/TunnelBG.hpp"
 	"../gameplay/TunnelFG.hpp"
@@ -10605,7 +10605,7 @@
 	"GraphicIncarnation.hpp"
 	"Animation.hpp"
 
-1345069788 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.hpp
+1345131298 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.hpp
 	"Graphic.hpp"
 
 1344781204 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
@@ -10647,7 +10647,7 @@
 1344904811 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/AnimationIncarnation.cpp
 	"AnimationIncarnation.hpp"
 
-1345070058 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.cpp
+1345131424 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.cpp
 	"GraphicIncarnation.hpp"
 
 1305426296 source:/home/william/Desktop/BLACK_DOG_link/jni/src/resources/tinyxml/tinystr.cpp
@@ -10805,11 +10805,11 @@
 1344781678 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/SymetricalMovementElement.cpp
 	"SymetricalMovementElement.hpp"
 
-1345070652 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EpilogueThing.cpp
+1345131597 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EpilogueThing.cpp
 	"EpilogueThing.hpp"
 	"../../io/GraphicsManager.hpp"
 
-1345068211 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EpilogueThing.hpp
+1345132128 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EpilogueThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 
