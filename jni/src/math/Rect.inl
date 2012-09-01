@@ -307,7 +307,7 @@ bool Rect<T>::doesInter(Rect<T> const& other) const
 {
     V2d v1 = (other.getPosition()+other.getSize()) - this->getPosition();
     V2d v2 = (this->getPosition()+this->getSize()) - other.getPosition();
-    return(v1.x > 0 && v2.x > 0 && v1.y > 0 && v2.y > 0);
+    return (dot(v1, v2) < 0);
 }
 
 template <typename T>

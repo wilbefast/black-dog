@@ -97,6 +97,9 @@ class V2
 };
 
 template <typename T>
+float dot(V2<T>const v1, V2<T>const v2);
+
+template <typename T>
 std::ostream& operator<<(std::ostream& stream, V2<T> const& v);
 
 typedef V2<int> V2i;

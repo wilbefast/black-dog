@@ -226,6 +226,14 @@ inline void V2<T>::setMagnitude(float new_magnitude)
     (*this) *= (new_magnitude/getNorm());
 }
 
+
+// Scalar product
+template <typename T>
+float dot(V2<T>const v1, V2<T>const v2)
+{
+	return v1.x*v2.x + v1.y*v2.y;
+}
+
 // Outstream operator
 template <typename T>
 inline void V2<T>::print(ostream& stream) const
