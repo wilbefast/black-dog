@@ -31,9 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Application::Application(Scene* first_scene) :
 initialised(false),
+prev_tick(0),
 this_tick(0),
 next_tick(0),
-missed_ticks(0),
 scene(first_scene)
 {
 }
@@ -84,9 +84,10 @@ int Application::run()
   // Update current scene, switch to the next scene if
   // need be (in which case we break from the loop and restart).
   Scene* next = NULL;
-  if(scene->update(&next, 1.0f + missed_ticks/1000.0f * MAX_FPS) != Scene::NO_CHANGE)
+  // FIXME - the multiplication by two is a lazy fix for Black Dog
+  if(scene->update(&next, (this_tick - prev_tick) / 1000.0f * 2 * MAX_FPS)
+      != Scene::NO_CHANGE)
     return setScene(next);
-  missed_ticks = 0;
 
   // Redraw everything, game objects included
   draw();
@@ -139,9 +140,12 @@ int Application::shutdown()
 
 int Application::startSDL()
 {
-  // Initialize SDL.
+  // Initialise SDL
 	ASSERT_SDL(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) >= 0,
 		"Initialising SDL video and audio");
+
+  // Initialise timing
+  prev_tick = this_tick = SDL_GetTicks();
 
 	// Open the window where we will draw. NB: Android will override the
 	// specified height and width no matter what they are!
@@ -206,16 +210,12 @@ void Application::draw()
 void Application::wait()
 {
   // Get the current time-stamp
+  prev_tick = this_tick;
   this_tick = SDL_GetTicks();
 
   // If it's not yet time for the next update, wait a while
 	if (this_tick < next_tick )
-	{
 		SDL_Delay(next_tick - this_tick);
-		missed_ticks = 0;
-	}
-  else
-    missed_ticks = this_tick - next_tick;
 
   // Calculate when the next update should be
 	next_tick = this_tick + (1000/MAX_FPS);

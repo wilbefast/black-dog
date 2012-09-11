@@ -305,26 +305,25 @@ bool Rect<T>::contains(const V2<T>& position) const
 template <typename T>
 bool Rect<T>::doesInter(Rect<T> const& other) const
 {
-    V2d v1 = (other.getPosition()+other.getSize()) - this->getPosition();
-    V2d v2 = (this->getPosition()+this->getSize()) - other.getPosition();
-    return (dot(v1, v2) < 0);
+  V2d v1 = (other.getPosition()+other.getSize()) - this->getPosition();
+  V2d v2 = (this->getPosition()+this->getSize()) - other.getPosition();
+  return (dot(v1, v2) > 0);
 }
 
 template <typename T>
 Rect<T> Rect<T>::getInter(Rect<T> const& other) const
 {
-    // Calculate the boundaries of the intersection
-    T left   = MAX(x,      other.x);
-    T top    = MAX(y,      other.y);
-    T right  = MIN(x + w,  other.x + other.w);
-    T bottom = MIN(y + h,  other.y + other.h);
+  // Calculate the boundaries of the intersection
+  T left   = MAX(x,      other.x);
+  T top    = MAX(y,      other.y);
+  T right  = MIN(x + w,  other.x + other.w);
+  T bottom = MIN(y + h,  other.y + other.h);
 
-    // If the intersection is invalid (negative lengths) return false
-    if((left >= right ) || (top >= bottom))
-        return Rect<T>(); //null rectangle: (0,0,0,0)
-    else //non-negative lengths
-        return Rect<T>(left, top, right - left, bottom - top);
-
+  // If the intersection is invalid (negative lengths) return false
+  if((left >= right ) || (top >= bottom))
+      return Rect<T>(); //null rectangle: (0,0,0,0)
+  else //non-negative lengths
+    return Rect<T>(left, top, right - left, bottom - top);
 }
 
 /// FANCY STUFF

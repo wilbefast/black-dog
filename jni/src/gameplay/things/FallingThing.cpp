@@ -34,6 +34,9 @@ movement(this, max_speed)
   body = new ColliderElement(this, V2d(V2d(32, 32)));
 }
 
+FallingThing::~FallingThing()
+{
+}
 
 /// OVERRIDES THING
 

@@ -49,18 +49,18 @@ bool ColliderElement::isColliding(ColliderElement* other, V2i* side) const
 
 bool ColliderElement::isOutside(fRect* bounds, V2i* side) const
 {
-    // Check if the entire translated hitbox is outside the boundary
-    if(!bounds->doesInter(getOffsetBox()))
-    {
-        // if the side we've crossed is requested...
-        if(side)
-            (*side) = boundarySide(bounds);
+  // Check if the entire translated hitbox is outside the boundary
+  if(!bounds->doesInter(getOffsetBox()))
+  {
+    // if the side we've crossed is requested...
+    if(side)
+      (*side) = boundarySide(bounds);
 
-        // either way return true
-        return true;
-    }
-    else
-        return false;
+    // either way return true
+    return true;
+  }
+  else
+    return false;
 }
 
 bool ColliderElement::isLeaving(fRect* bounds, V2i* side) const

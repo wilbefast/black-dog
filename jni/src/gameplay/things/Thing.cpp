@@ -131,30 +131,29 @@ int Thing::update(GameState* context, float delta)
 
 bool Thing::isColliding(Thing* other, V2i* side)
 {
-    // must have a ColliderElement to collide
-    if(!body || !other->body)
-        return false;
-    else
-        return body->isColliding(other->body, side);
+  // must have a ColliderElement to collide
+  if(!body || !other->body)
+    return false;
+  else
+    return body->isColliding(other->body, side);
 }
 
 bool Thing::isOutside(fRect* bounds, V2i* side)
 {
-    // must have a ColliderElement to be outside boundaries
-    if(!body)
-        return false;
-    else
-        return body->isOutside(bounds, side);
+  // must have a ColliderElement to be outside boundaries
+  if(!body)
+    return false;
+  else
+    return body->isOutside(bounds, side);
 }
 
 bool Thing::isLeaving(fRect* bounds, V2i* side)
 {
-    // must have a ColliderElement to intersect boundaries
-    if(!body)
-        return false;
-    else
-        return body->isLeaving(bounds, side);
-
+  // must have a ColliderElement to intersect boundaries
+  if(!body)
+    return false;
+  else
+    return body->isLeaving(bounds, side);
 }
 
 
