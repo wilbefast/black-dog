@@ -54,6 +54,9 @@ events()
 
 Thing::~Thing()
 {
+  // delete ColliderElement if it was allocated
+  if(body)
+    delete body;
 }
 
 // Main methods

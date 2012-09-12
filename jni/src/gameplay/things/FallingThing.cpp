@@ -31,12 +31,7 @@ movement(this, max_speed)
   graphic.setSprite(loop, loop_speed);
   graphic.setRandFrame();
   movement.setSpeed(V2f(-X_SPEED, gravity));
-  body = new ColliderElement(this, V2d(V2d(32, 32)));
-}
-
-FallingThing::~FallingThing()
-{
-  delete body;
+  body = new ColliderElement(this, V2d(V2d(32, 32))); // freed by ~Thing
 }
 
 /// OVERRIDES THING

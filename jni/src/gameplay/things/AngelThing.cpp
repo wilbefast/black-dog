@@ -105,11 +105,7 @@ furthest_x(_position.x)
 
   // angel is collideable
   body = new ColliderElement(this, V2d(V2d(HITBOX_W, HITBOX_H)));
-}
-
-AngelThing::~AngelThing()
-{
-  delete body;
+    // freed by ~Thing
 }
 
 /// OVERRIDES

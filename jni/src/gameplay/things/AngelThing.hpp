@@ -90,7 +90,6 @@ private:
 public:
   // creation, destruction
   AngelThing(V2i _position);
-  virtual ~AngelThing();
   // overrides
   void draw();
   int update(GameState* context, float delta);

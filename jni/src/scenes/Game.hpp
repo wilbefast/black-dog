@@ -22,15 +22,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Game : public Scene
 {
-    /// METHODS
-    public:
-    // Constructors, destructors
-    Game();
-    ~Game();
-    // Navigation
-    Scene* previous();  // from Scene
-    // Override
-    int startup();
+  /// METHODS
+  public:
+  // Constructors, destructors
+  Game();
+  virtual ~Game();
+  // Navigation
+  Scene* previous();  // from Scene
+  // Override
+  int startup();
 };
 
 #endif // GAME_HPP_INCLUDED

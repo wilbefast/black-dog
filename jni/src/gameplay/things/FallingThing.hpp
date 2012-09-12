@@ -39,7 +39,6 @@ public:
   // creation, destruction
   FallingThing(V2i _position, const char* name, Animation* loop,
               float loop_speed, float gravity = 0.0f, float max_speed = -1);
-  virtual ~FallingThing();
   // overrides Thing
   int update(GameState*, float delta);
   void draw();
