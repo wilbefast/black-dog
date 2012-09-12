@@ -36,6 +36,7 @@ movement(this, max_speed)
 
 FallingThing::~FallingThing()
 {
+  delete body;
 }
 
 /// OVERRIDES THING

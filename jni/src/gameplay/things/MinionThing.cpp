@@ -29,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../../global.hpp" // for WINDOW_DEFAULT_W
 
+/// CREATION & DESTRUCTION
+
 MinionThing::MinionThing(V2i _position) :
 Thing(_position, "minion"),
 graphic(this, V2f(64, 36)),
@@ -45,6 +47,13 @@ state(NORMAL)
   // create body
   body = new ColliderElement(this, V2d(V2d(48, 20)));
 }
+
+MinionThing::~MinionThing()
+{
+  delete body;
+}
+
+/// OVERRIDES
 
 void MinionThing::draw()
 {

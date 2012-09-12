@@ -37,8 +37,9 @@ private:
 
   /// METHODS
 public:
-  // creation
+  // creation, destruction
   MinionThing(V2i _position);
+  virtual ~MinionThing();
   // overrides
   void draw();
   int update(GameState* context, float delta);
