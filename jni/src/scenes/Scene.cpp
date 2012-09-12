@@ -47,9 +47,6 @@ Scene::~Scene()
 
 int Scene::update(Scene** next, float delta)
 {
-  // Either continue (value of next is ignored) or go back to previous
-  (*next) = previous();
-
   // Update buttons based on touch position
   for(ButtonIter i = buttons.begin(); i != buttons.end(); i++)
     if((*i)->press(state->input.last_hover, state->input.clicking))
@@ -61,7 +58,11 @@ int Scene::update(Scene** next, float delta)
 
   // update anything dynamic, go back to previous scene if nessecary
   if(state->update(delta) == SceneState::EXIT)
+  {
+    // Either continue (value of next is ignored) or go back to previous
+    (*next) = previous();
     return Scene::CHANGE;
+  }
 
   //continue
   return Scene::NO_CHANGE;
