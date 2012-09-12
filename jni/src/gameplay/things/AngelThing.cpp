@@ -107,6 +107,11 @@ furthest_x(_position.x)
   body = new ColliderElement(this, V2d(V2d(HITBOX_W, HITBOX_H)));
 }
 
+AngelThing::~AngelThing()
+{
+  delete body;
+}
+
 /// OVERRIDES
 
 void AngelThing::draw()
