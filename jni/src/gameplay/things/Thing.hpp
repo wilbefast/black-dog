@@ -38,11 +38,11 @@ class Thing
 {
     /// ATTRIBUTES
 private:
-  // hashed name of the type of this Thing
-  str_id type;
   // does this Thing need to be cleaned up at the end of its update?
   bool dead;
 protected:
+  // hashed name of the type of this Thing
+  const str_id type;
   // main attributes
   V2f position;
   ColliderElement* body;

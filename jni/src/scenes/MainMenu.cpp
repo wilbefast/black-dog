@@ -41,46 +41,46 @@ MainMenu::~MainMenu()
 
 int MainMenu::startup()
 {
-    // pass up hierarchy
-    ASSERT(Scene::startup() == EXIT_SUCCESS, "MainMenu generic startup");
+  // pass up hierarchy
+  ASSERT(Scene::startup() == EXIT_SUCCESS, "MainMenu generic startup");
 
-    // get the texture from the resource manager
-    texture = GraphicsManager::getInstance()->get_texture("menus");
+  // get the texture from the resource manager
+  texture = GraphicsManager::getInstance()->get_texture("menus");
 
-    /// 1. TITLE IMAGE (TOP THIRD)
-    // set the area of the screen to use (the top third)
-    fRect top_third =
-      fRect(0.0f, 0.0f, WINDOW_DEFAULT_W, WINDOW_DEFAULT_H / 3.0f);
-    // set the area of texture to draw
-    title_src = fRect(0, 0, 512, 128);
-    title_dest = global::viewport;
-    // maintain aspect ratio
-    title_dest.setRatio(title_src.getRatio());
-    // centre the title image within the top area of the screen
-    title_dest.centreWithin(top_third);
+  /// 1. TITLE IMAGE (TOP THIRD)
+  // set the area of the screen to use (the top third)
+  fRect top_third =
+    fRect(0.0f, 0.0f, WINDOW_DEFAULT_W, WINDOW_DEFAULT_H / 3.0f);
+  // set the area of texture to draw
+  title_src = fRect(0, 0, 512, 128);
+  title_dest = global::viewport;
+  // maintain aspect ratio
+  title_dest.setRatio(title_src.getRatio());
+  // centre the title image within the top area of the screen
+  title_dest.centreWithin(top_third);
 
-    /// 2. BUTTONS (BUTTON SIX NINTHS)
-    // set the area of the screen to use (bottom two top thirds)
-    fRect bottom_thirds =
-      squashRect(V2f(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H), V2f(0, top_third.h));
-    fRect top_ninths = bottom_thirds / V2f(1,3);
-    fRect mid_ninths = top_ninths + V2f(0, top_ninths.h);
-    fRect low_ninths = mid_ninths + V2f(0, mid_ninths.h);
-    // the top and bottom buttons are smaller than the middle one
-    top_ninths.stretch_centered(0.7);
-    mid_ninths.stretch_centered(1.2);
-    low_ninths.stretch_centered(0.7);
-    // set the area of texture to draw (on top of eachother)
-    fRect play_src(0, title_src.h, 256, 128);
-    fRect exit_src = play_src + V2f(0, play_src.h);
-    fRect options_src = exit_src + V2f(0, exit_src.h);
-    // add the buttons to the scene
-    buttons.push_back(new Button("play", *texture, top_ninths, play_src));
-    buttons.push_back(new Button("options", *texture, mid_ninths, options_src));
-    buttons.push_back(new Button("exit", *texture, low_ninths, exit_src));
+  /// 2. BUTTONS (BUTTON SIX NINTHS)
+  // set the area of the screen to use (bottom two top thirds)
+  fRect bottom_thirds =
+    squashRect(V2f(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H), V2f(0, top_third.h));
+  fRect top_ninths = bottom_thirds / V2f(1,3);
+  fRect mid_ninths = top_ninths + V2f(0, top_ninths.h);
+  fRect low_ninths = mid_ninths + V2f(0, mid_ninths.h);
+  // the top and bottom buttons are smaller than the middle one
+  top_ninths.stretch_centered(0.7);
+  mid_ninths.stretch_centered(1.2);
+  low_ninths.stretch_centered(0.7);
+  // set the area of texture to draw (on top of eachother)
+  fRect play_src(0, title_src.h, 256, 128);
+  fRect exit_src = play_src + V2f(0, play_src.h);
+  fRect options_src = exit_src + V2f(0, exit_src.h);
+  // add the buttons to the scene
+  buttons.push_back(new Button("play", *texture, top_ninths, play_src));
+  buttons.push_back(new Button("options", *texture, mid_ninths, options_src));
+  buttons.push_back(new Button("exit", *texture, low_ninths, exit_src));
 
-    /// 3. ALL CLEAR!
-    return EXIT_SUCCESS;
+  /// 3. ALL CLEAR!
+  return EXIT_SUCCESS;
 }
 
 int MainMenu::shutdown()
@@ -94,29 +94,29 @@ int MainMenu::shutdown()
 
 int MainMenu::update(Scene** next, float delta)
 {
-    // Pass up hierarchy
-    Scene::update(next, delta);
+  // Pass up hierarchy
+  Scene::update(next, delta);
 
-    // Move to the next screen on click
-    str_id button_tag;
-    if((button_tag = state->releasedOnButton()))
-    {
-        // select world
-        if(button_tag == numerise("play"))
-            (*next) = new Game();
-        // change options
-        else if(button_tag == numerise("options"))
-            return true; /// FIXME
-        // exit the game
-        else if(button_tag == numerise("exit"))
-            (*next) = NULL; // exit
+  // Move to the next screen on click
+  str_id button_tag;
+  if((button_tag = state->releasedOnButton()))
+  {
+    // select world
+    if(button_tag == numerise("play"))
+      (*next) = new Game();
+    // change options
+    else if(button_tag == numerise("options"))
+      return true; /// FIXME
+    // exit the game
+    else if(button_tag == numerise("exit"))
+      (*next) = NULL; // exit
 
-        // change scene
-        return Scene::CHANGE;
-    }
-    else
-        // keep same scene
-        return Scene::NO_CHANGE;
+    // change scene
+    return Scene::CHANGE;
+  }
+  else
+    // keep same scene
+    return Scene::NO_CHANGE;
 }
 
 void MainMenu::draw()

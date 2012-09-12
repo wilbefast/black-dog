@@ -25,26 +25,26 @@ ColliderElement::ColliderElement(Thing* init_owner, V2f size, V2f offset) :
 ThingElement(init_owner),
 hitbox(size)
 {
-    // Center correctly
-    hitbox.setPosition(-hitbox.getSize()/2.0f + offset);
+  // Center correctly
+  hitbox.setPosition(-hitbox.getSize()/2.0f + offset);
 }
 
 // main methods
 
 bool ColliderElement::isColliding(ColliderElement* other, V2i* side) const
 {
-    // Check for collision between the translated hitboxes
-    if(getOffsetBox().doesInter(other->getOffsetBox()))
-    {
-        // if the collision side is requested
-        if(side)
-            (*side) = collisionSide(other);
+  // Check for collision between the translated hitboxes
+  if(getOffsetBox().doesInter(other->getOffsetBox()))
+  {
+    // if the collision side is requested
+    if(side)
+      (*side) = collisionSide(other);
 
-        // either way return true
-        return true;
-    }
-    else
-        return false;
+    // either way return true
+    return true;
+  }
+  else
+    return false;
 }
 
 bool ColliderElement::isOutside(fRect* bounds, V2i* side) const
@@ -65,74 +65,74 @@ bool ColliderElement::isOutside(fRect* bounds, V2i* side) const
 
 bool ColliderElement::isLeaving(fRect* bounds, V2i* side) const
 {
-    fRect this_box = getOffsetBox();
+  fRect this_box = getOffsetBox();
 
-    // round to nearest integer to compare
-    if ((iRect)(bounds->getInter(this_box)) != (iRect)this_box)
-    {
-        // if the side we've crossed is requested...
-        if(side)
-            (*side) = boundarySide(bounds);
+  // round to nearest integer to compare
+  if ((iRect)(bounds->getInter(this_box)) != (iRect)this_box)
+  {
+    // if the side we've crossed is requested...
+    if(side)
+      (*side) = boundarySide(bounds);
 
-        // either way return true
-        return true;
-    }
-    else
-        return false;
+    // either way return true
+    return true;
+  }
+  else
+    return false;
 
 }
 
 bool ColliderElement::doesContain(V2f point) const
 {
-    return getOffsetBox().contains(point);
+  return getOffsetBox().contains(point);
 }
 
 // accessors
 fRect ColliderElement::getOffsetBox() const
 {
-    return hitbox + owner->getPosition();
+  return hitbox + owner->getPosition();
 }
 
 V2i ColliderElement::boundarySide(fRect* bounds) const
 {
-    // local variables
-    fRect this_box = getOffsetBox();
-    V2f top_left = this_box.getPosition() - bounds->getPosition();
-    V2f bottom_right = top_left + this_box.getSize() - bounds->getSize();
+  // local variables
+  fRect this_box = getOffsetBox();
+  V2f top_left = this_box.getPosition() - bounds->getPosition();
+  V2f bottom_right = top_left + this_box.getSize() - bounds->getSize();
 
-    // (0,0) by default, meaning a collision on neither side
-    V2i result(0,0);
+  // (0,0) by default, meaning a collision on neither side
+  V2i result(0,0);
 
-    // horizontal collision
-    if(top_left.x < 0)
-        result.x = -1;
-    if(bottom_right.x > 0)
-        result.x = 1;
+  // horizontal collision
+  if(top_left.x < 0)
+    result.x = -1;
+  if(bottom_right.x > 0)
+    result.x = 1;
 
-    // vertical collision
-    if(top_left.y < 0)
-        result.y = -1;
-    if(bottom_right.y > 0)
-        result.y = 1;
+  // vertical collision
+  if(top_left.y < 0)
+    result.y = -1;
+  if(bottom_right.y > 0)
+    result.y = 1;
 
-    // return the result
-    return result;
+  // return the result
+  return result;
 }
 
 V2i ColliderElement::collisionSide(ColliderElement* other) const
 {
-    // local variables
-    V2f to_target = other->owner->getPosition() - owner->getPosition();
+  // local variables
+  V2f to_target = other->owner->getPosition() - owner->getPosition();
 
-    // (0,0) by default, meaning a collision on neither side
-    V2i result(0,0);
-    if(abs(to_target.x) - abs(to_target.y) > 0.2)
-        result.x = SIGN(to_target.x);
-    else if(abs(to_target.x) - abs(to_target.y) < -0.2)
-        result.y = SIGN(to_target.y);
-    else
-        result = to_target.sign();
+  // (0,0) by default, meaning a collision on neither side
+  V2i result(0,0);
+  if(abs(to_target.x) - abs(to_target.y) > 0.2)
+    result.x = SIGN(to_target.x);
+  else if(abs(to_target.x) - abs(to_target.y) < -0.2)
+    result.y = SIGN(to_target.y);
+  else
+    result = to_target.sign();
 
-    // return the result
-    return result;
+  // return the result
+  return result;
 }

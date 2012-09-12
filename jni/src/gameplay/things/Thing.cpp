@@ -28,8 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Constructors, destructors
 Thing::Thing(V2f init_position, const char* type_name) :
-type(numerise(type_name)),
 dead(false),
+type(numerise(type_name)),
 position(init_position),
 body(NULL),
 events()
@@ -37,8 +37,8 @@ events()
 }
 
 Thing::Thing(V2f init_position, str_id init_type) :
-type(init_type),
 dead(false),
+type(init_type),
 position(init_position),
 body(NULL),
 events()
@@ -60,27 +60,27 @@ Thing::~Thing()
 
 void Thing::addEvent(ThingEvent* new_event)
 {
-    events.push_back(new_event);
+  events.push_back(new_event);
 }
 
 // Accessors
 
 bool Thing::isDead() const
 {
-    return dead;
+  return dead;
 }
 
 const EventList* Thing::getEvents()
 {
-    return &events;
+  return &events;
 }
 
 void Thing::deleteEvents()
 {
-    // Delete the events contained in the list, not the list itself
-    for(EventIter i = events.begin(); i != events.end(); i++)
-        delete (*i);
-    events.clear();
+  // Delete the events contained in the list, not the list itself
+  for(EventIter i = events.begin(); i != events.end(); i++)
+      delete (*i);
+  events.clear();
 }
 
 str_id Thing::getType() const

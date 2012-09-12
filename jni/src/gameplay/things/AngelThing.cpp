@@ -146,7 +146,7 @@ int AngelThing::update(GameState* context, float delta)
   // move based on input and physics
   V2f speed = movement.getSpeed(), position = getPosition();
   // apply gravity
-  speed.y += state->gravity;
+  speed.y += state->gravity * delta;
   // horizontal movement speed is fixed while boosting
   if(state != &BOOSTING)
   {

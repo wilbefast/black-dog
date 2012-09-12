@@ -28,14 +28,14 @@ class SceneState
     public:
     class Input
     {
-        public:
-        // attributes
-        V2u last_touch, last_hover;
-        bool clicking, clicking_previous;
-        Button* last_button;
-        // constructor
-        Input() : clicking(false), clicking_previous(false), last_button(NULL)
-        {}
+      public:
+      // attributes
+      V2u last_touch, last_hover;
+      bool clicking, clicking_previous;
+      Button* last_button;
+      // constructor
+      Input() : clicking(false), clicking_previous(false), last_button(NULL)
+      {}
     };
 
     enum UpdateResult

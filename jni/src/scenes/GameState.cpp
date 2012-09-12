@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 GameState::GameState() :
 things(),
-level_bounds(global::viewport),
+level_bounds(0, 0, WINDOW_DEFAULT_W, WINDOW_DEFAULT_H),
 pause_timer(0)
 {
 
@@ -48,39 +48,39 @@ GameState::~GameState()
 
 int GameState::countThings(const char* name)
 {
-    if(name)
-    {
-        // count the Things of a given type
-        str_id type = numerise(name);
-        int result = 0;
-        for(ThingIter i = things.begin(); i!= things.end(); i++)
-            if (!(*i)->isDead() && (*i)->getType() == type)
-                result++;
+  if(name)
+  {
+    // count the Things of a given type
+    str_id type = numerise(name);
+    int result = 0;
+    for(ThingIter i = things.begin(); i!= things.end(); i++)
+      if (!(*i)->isDead() && (*i)->getType() == type)
+        result++;
 
-        return result;
-    }
-    else
-        // return the total number of things
-        return things.size();
+    return result;
+  }
+  else
+    // return the total number of things
+    return things.size();
 }
 
 void GameState::killThings(const char* name)
 {
-    if(name)
-    {
-        // kill Things of a given type
-        str_id type = numerise(name);
-        for(ThingIter i = things.begin(); i!= things.end(); i++)
-            if (!(*i)->isDead() && (*i)->getType() == type)
-                (*i)->die();
-    }
-    else
-    {
-        // kill all Things of a given type
-        for(ThingIter i = things.begin(); i!= things.end(); i++)
-            if(!(*i)->isDead())
-                (*i)->die();
-    }
+  if(name)
+  {
+    // kill Things of a given type
+    str_id type = numerise(name);
+    for(ThingIter i = things.begin(); i!= things.end(); i++)
+      if (!(*i)->isDead() && (*i)->getType() == type)
+        (*i)->die();
+  }
+  else
+  {
+    // kill all Things of a given type
+    for(ThingIter i = things.begin(); i!= things.end(); i++)
+      if(!(*i)->isDead())
+        (*i)->die();
+  }
 }
 
 void GameState::addThing(Thing* t)
@@ -90,18 +90,18 @@ void GameState::addThing(Thing* t)
 
 void GameState::deleteThing(ThingIter* i)
 {
-    // Copy then advance the original iterator (to safety)
-    ThingIter j = (*i);
-    (*i)++;
-    // Erase and remove the cell it was originally pointing to
-    delete (*j);
-    things.erase(j);
+  // Copy then advance the original iterator (to safety)
+  ThingIter j = (*i);
+  (*i)++;
+  // Erase and remove the cell it was originally pointing to
+  delete (*j);
+  things.erase(j);
 }
 
 Thing* GameState::getHero()
 {
-    // Hero is always the first Thing in the list
-    return (*(things.begin()));
+  // Hero is always the first Thing in the list
+  return (*(things.begin()));
 }
 
 void GameState::pause(unsigned int time)
@@ -113,18 +113,18 @@ void GameState::pause(unsigned int time)
 
 int GameState::startup()
 {
-    // Set the position of the mouse to the centre of the screen
-    input.last_touch = global::viewport.getSize()/2;
+  // Set the position of the mouse to the centre of the screen
+  input.last_touch = global::viewport.getSize()/2;
 
-    // All clear!
-    return EXIT_SUCCESS;
+  // All clear!
+  return EXIT_SUCCESS;
 }
 
 int GameState::shutdown()
 {
   // Destroy all game objects
   for(ThingIter i = things.begin(); i!= things.end(); i++)
-      delete (*i);
+    delete (*i);
 
   // All clear!
   return EXIT_SUCCESS;
@@ -180,5 +180,5 @@ void GameState::draw()
 {
   // Draw all the game objects
   for(ThingIter i = things.begin(); i!= things.end(); i++)
-      (*i)->draw();
+    (*i)->draw();
 }

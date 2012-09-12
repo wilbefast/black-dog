@@ -10128,7 +10128,7 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1347399933 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1347451052 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -10191,7 +10191,7 @@
 
 1340887685 /home/william/Desktop/BLACK_DOG_link/jni/src/resources/numerise.inl
 
-1344198609 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/SceneState.hpp
+1347482079 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/SceneState.hpp
 	"Button.hpp"
 	"../math/V2.hpp"
 
@@ -10277,7 +10277,7 @@
 	"Tunnel.hpp"
 	"../graphics/draw.hpp"
 
-1345133056 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
+1347450720 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/AngelThing.cpp
 	"AngelThing.hpp"
 	"../../global.hpp"
 	"../../io/AudioManager.hpp"
@@ -10297,7 +10297,7 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1344781108 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.hpp
+1347480578 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.hpp
 	"../../math/numerise.hpp"
 	"../../math/V2.hpp"
 	"../../graphics/Texture.hpp"
@@ -10333,7 +10333,7 @@
 1344867178 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ResourceElement.hpp
 	"ThingElement.hpp"
 
-1344781191 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.cpp
+1347481701 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/Thing.cpp
 	"Thing.hpp"
 	"../../math/numerise.hpp"
 	"../../assert.hpp"
@@ -10352,7 +10352,7 @@
 	"AnimatedElement.hpp"
 	"../events/ThingEvent.hpp"
 
-1347401303 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ColliderElement.cpp
+1347480198 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ColliderElement.cpp
 	"ColliderElement.hpp"
 
 1340887613 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/GraphicElement.cpp
@@ -10370,7 +10370,7 @@
 1340887613 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/elements/ThingElement.cpp
 	"ThingElement.hpp"
 
-1347401239 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/events/BoundaryEvent.cpp
+1347481359 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/events/BoundaryEvent.cpp
 	"BoundaryEvent.hpp"
 	"../Thing.hpp"
 
@@ -10428,7 +10428,7 @@
 	"SDL_config.h"
 	"SDL_stdinc.h"
 
-1344074583 source:/home/william/Desktop/BLACK_DOG_link/jni/src/main.cpp
+1347481708 source:/home/william/Desktop/BLACK_DOG_link/jni/src/main.cpp
 	<stdlib.h>
 	<iostream>
 	"assert.hpp"
@@ -10608,7 +10608,7 @@
 1345131298 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.hpp
 	"Graphic.hpp"
 
-1347400743 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
+1347482132 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 	"elements/SymetricalMovementElement.hpp"
@@ -10625,11 +10625,11 @@
 	"elements/AnimatedElement.hpp"
 	"elements/TimerElement.hpp"
 
-1347401108 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.cpp
+1347479707 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/FallingThing.cpp
 	"FallingThing.hpp"
 	"elements/ColliderElement.hpp"
 
-1347400895 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/PixieThing.cpp
+1347451820 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/PixieThing.cpp
 	"PixieThing.hpp"
 	"AngelThing.hpp"
 	"FallingThing.hpp"
