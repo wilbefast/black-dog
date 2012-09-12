@@ -234,6 +234,7 @@ void AudioManager::unload_music()
 
   if(music)
   {
+    // should call SDL_RWclose(music_file)
     Mix_FreeMusic(music);
     music = NULL;
   }
