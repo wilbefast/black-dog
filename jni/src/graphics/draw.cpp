@@ -135,7 +135,7 @@ void draw::height_line(float height[], unsigned int n_pts, float x_spacing,
   glLoadIdentity();
 
   /// Remember to free the memory allocated !
-  delete vertices;
+  delete[] vertices;
 }
 
 void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
