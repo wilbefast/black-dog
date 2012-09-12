@@ -40,42 +40,41 @@ scene(first_scene)
 
 Application::~Application()
 {
-    // Force clean if nessecary
-    if(initialised)
-        shutdown();
+  // Force clean if nessecary
+  if(initialised)
+      shutdown();
 }
 
 /// METHODS (public)
 
 int Application::startup()
 {
-    // Already initialised!
-    if(initialised)
-    {
-        LOG_W("Application startup", "Application already loaded!");
-        return EXIT_SUCCESS;
-    }
-
-    // Set up SDL (create window and context for OpenGL)
-    ASSERT(startSDL() == EXIT_SUCCESS, "Starting SDL");
-
-    // Set up OpenGL/GLES "propre"
-    ASSERT(startGL() == EXIT_SUCCESS, "Starting OpenGL/GLES");
-
-    // Start up resource subsystems
-    ASSERT(GraphicsManager::getInstance()->startup()
-      == EXIT_SUCCESS, "Starting Graphics Manager");
-    // Start the Audio Manager
-    ASSERT(AudioManager::getInstance()->startup()
-      == EXIT_SUCCESS, "Starting Audio Manager");
-    ASSERT(loadResources() == EXIT_SUCCESS, "Loading resources");
-
-    // Load the initial scene
-    ASSERT(scene->startup() == EXIT_SUCCESS, "Loading initial Scene");
-
-    // Initialisation successful!
-    initialised = true;
+  // Already initialised!
+  if(initialised)
+  {
+    LOG_W("Application startup", "Application already loaded!");
     return EXIT_SUCCESS;
+  }
+
+  // Set up SDL (create window and context for OpenGL)
+  ASSERT(startSDL() == EXIT_SUCCESS, "Starting SDL");
+
+  // Set up OpenGL/GLES "propre"
+  ASSERT(startGL() == EXIT_SUCCESS, "Starting OpenGL/GLES");
+
+  // Start up resource subsystems
+  ASSERT(GraphicsManager::getInstance()->startup()
+    == EXIT_SUCCESS, "Starting Graphics Manager");
+  // Start the Audio Manager
+  ASSERT(AudioManager::getInstance()->startup()
+    == EXIT_SUCCESS, "Starting Audio Manager");
+
+  // Load the initial scene
+  ASSERT(scene->startup() == EXIT_SUCCESS, "Loading initial Scene");
+
+  // Initialisation successful!
+  initialised = true;
+  return EXIT_SUCCESS;
 }
 
 // Perform a single application step, return exit flag if encountered
@@ -110,8 +109,8 @@ int Application::shutdown()
   // Check if not initialised
   if(!initialised)
   {
-      LOG_W("Application shutdown", "Application already unloaded!");
-      return EXIT_SUCCESS;
+    LOG_W("Application shutdown", "Application not loaded");
+    return EXIT_SUCCESS;
   }
 
   // Close down the current scene
@@ -329,14 +328,6 @@ int Application::setScene(Scene* new_scene)
     return Application::CONTINUE;
 }
 
-
-/// OVERRIDEN
-
-int Application::loadResources()
-{
-    // override me !
-   return EXIT_SUCCESS;
-}
 
 /// CLASS NAMESPACE FUNCTIONS
 

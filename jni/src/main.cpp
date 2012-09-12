@@ -22,8 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Application.hpp"
 #include "scenes/MainMenu.hpp"
 
-#include "math/Rect.hpp"
-
 using namespace std;
 
 

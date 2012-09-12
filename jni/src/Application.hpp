@@ -74,10 +74,6 @@ private:
     int treatEvents();
     // Switch to a new scene, freeing the old and starting the new
     int setScene(Scene*);
-
-    /// OVERRIDDEN
-protected:
-    virtual int loadResources();
 };
 
 #endif // APPLICATION_HPP_INCLUDED

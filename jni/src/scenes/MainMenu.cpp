@@ -86,7 +86,7 @@ int MainMenu::startup()
 int MainMenu::shutdown()
 {
   // all clear
-  return EXIT_SUCCESS;
+  return Scene::shutdown();
 }
 
 
