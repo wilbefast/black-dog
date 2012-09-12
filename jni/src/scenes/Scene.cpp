@@ -83,7 +83,7 @@ int Scene::shutdown()
     delete (*i);
 
   // Delete anything dynamic
-  ASSERT(state->shutdown() == EXIT_SUCCESS, "Scene shutting down state");
+  ASSERT(state->shutdown() == EXIT_SUCCESS, "Scene shutting down SceneState");
   delete state;
 
   // All clear

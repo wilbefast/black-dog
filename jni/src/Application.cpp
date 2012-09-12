@@ -114,7 +114,7 @@ int Application::shutdown()
   }
 
   // Close down the current scene
-  scene->shutdown();
+  ASSERT(scene->shutdown() == EXIT_SUCCESS, "Application shutting down Scene");
   delete scene;
 
   // Shut down subsystems

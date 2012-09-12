@@ -28,7 +28,7 @@ vertices(NULL)
 
 Mesh2D::~Mesh2D()
 {
-  delete vertices;
+  delete[] vertices;
 }
 
 /// LOOP
