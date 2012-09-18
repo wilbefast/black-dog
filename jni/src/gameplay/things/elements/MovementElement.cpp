@@ -20,8 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../events/ThingEvent.hpp"
 #include "../../../math/wjd_math.hpp"           // for SQR
 
-#include <iostream>
-
 using namespace std;
 
 // Constants

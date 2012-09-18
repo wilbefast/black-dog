@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Button.hpp"
 
 #include "../warn.hpp"
+#include "../io/AudioManager.hpp" // for button-click sounds
 
 /// CONSTRUCTORS, DESTRUCTORS
 
@@ -43,13 +44,13 @@ source_off(init_source),
 source_on(init_source + V2u(init_source.w,0)),
 pressed(false)
 {
-    correctAspect(init_source, init_destination);
+  correctAspect(init_source, init_destination);
 }
 
 void Button::correctAspect(fRect src_area, fRect dest_area)
 {
-    destination.setRatio(src_area.getRatio());
-    destination.centreWithin(dest_area);
+  destination.setRatio(src_area.getRatio());
+  destination.centreWithin(dest_area);
 }
 
 Button::~Button()
@@ -60,28 +61,34 @@ Button::~Button()
 
 void Button::draw()
 {
-    if(pressed || hovered)
-        texture.draw(&source_on, &destination);
-    else
-        texture.draw(&source_off, &destination);
+  if(pressed || hovered)
+    texture.draw(&source_on, &destination);
+  else
+    texture.draw(&source_off, &destination);
 }
 
 /// ACCESSORS
 
 bool Button::contains(V2f position) const
 {
-    return destination.contains(position);
+  return destination.contains(position);
 }
 
 bool Button::press(V2f position, bool clicking)
 {
-    // switch off button if not touching, otherwise turn or or off based on
-    // position on touch.
-    hovered = contains(position);
-    return (pressed = (clicking && hovered));
+  // switch off button if not touching, otherwise turn or or off based on
+  // position on touch.
+  hovered = contains(position);
+  bool new_pressed = (clicking && hovered);
+
+  // play sound when button is pressed
+  if(new_pressed && !pressed)
+    AudioManager::getInstance()->play_sound("ui_interact");
+
+  return (pressed = new_pressed);
 }
 
 str_id Button::getTag() const
 {
-    return tag;
+  return tag;
 }

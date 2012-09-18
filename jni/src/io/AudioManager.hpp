@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define SOUND_FILETYPE "wav"
 #define MUSIC_FILETYPE "ogg"
+#define VOLUME_STEP MIX_MAX_VOLUME/8
 
 typedef std::map<str_id, Mix_Chunk*> SoundMap;
 typedef SoundMap::iterator SoundI;
@@ -48,6 +49,7 @@ public:
   /// ATTRIBUTES
 private:
   bool started;
+  unsigned short volume; // value between 0 and MIX_MAX_VOLUME = 128
   // music
   Mix_Music* music;
   SDL_RWops* music_file;
@@ -68,6 +70,9 @@ public:
   // loading -- overrides ResourceManager
   virtual int parse_root(TiXmlHandle* root_handle);
   virtual int parse_element(TiXmlElement* element);
+  // global volume
+  void volume_up();
+  void volume_down();
   // music
   int load_music(const char* source_file);
   int play_music(bool loop);
@@ -77,6 +82,8 @@ public:
   int load_sound(const char* source_file, const char* name);
   int play_sound(const char* name);
   int play_sound(str_id id);
+private:
+  void set_volume(unsigned short new_volume);
 };
 
 #endif // AUDIOMANAGER_HPP_INCLUDED

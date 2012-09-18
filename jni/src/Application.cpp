@@ -195,14 +195,14 @@ int Application::startGL()
 
 void Application::draw()
 {
-    // Clear the entire screen
-    glClear(GL_COLOR_BUFFER_BIT);
+  // Clear the entire screen
+  glClear(GL_COLOR_BUFFER_BIT);
 
-    // Draw any objects required by the current scene
-    scene->draw();
+  // Draw any objects required by the current scene
+  scene->draw();
 
-    // Flip the buffers to update the screen
-    SDL_GL_SwapWindow(window);
+  // Flip the buffers to update the screen
+  SDL_GL_SwapWindow(window);
 }
 
 // Regulate the number of frames per second, pausing only if need be
@@ -223,109 +223,115 @@ void Application::wait()
 // deal with input messages, return BACK, EXIT or CONTINUE
 int Application::treatEvents()
 {
-    // local variables
-    static V2i cursor(0,0);
-    static bool clicking(false);
+  // local variables
+  static V2i cursor(0,0);
+  static bool clicking(false);
 
-    // static to avoid reallocating it ever time we run the function
-    static SDL_Event event;
+  // static to avoid reallocating it ever time we run the function
+  static SDL_Event event;
 
 
-    // write each event to our static variable
-    while (SDL_PollEvent(&event))
+  // write each event to our static variable
+  while (SDL_PollEvent(&event))
+  {
+    switch (event.type)
     {
-        switch (event.type)
+      // exit if the window is closed (ex: pressing the cross)
+      case SDL_QUIT:
+        return Application::EXIT;
+        break;
+
+      // check for keypresses
+      case SDL_KEYDOWN:
+        switch (event.key.keysym.sym)
         {
-            // exit if the window is closed (ex: pressing the cross)
-            case SDL_QUIT:
-                return Application::EXIT;
-                break;
-
-            // check for keypresses
-            case SDL_KEYDOWN:
-                switch (event.key.keysym.sym)
-                {
-                    case KEY_BACK:
-                        return Application::BACK;
-                    case KEY_EXIT:
-                        return Application::EXIT;
-                    default:
-                        break;
-                }
-                break;
-
-            #if USE_TOUCH
-            // touch events
-            case SDL_FINGERDOWN:
-                cursor = normaliseTouch(event.tfinger.touchId,
-                                         V2i(event.tfinger.x, event.tfinger.y));
-                clicking = true;
-                break;
-
-            case SDL_FINGERUP:
-                clicking = false;
-                break;
-
-            case SDL_FINGERMOTION:
-                cursor = normaliseTouch(event.tfinger.touchId,
-                                        V2i(event.tfinger.x, event.tfinger.y));
-                break;
-            #endif  // USE_TOUCH
-
-            #if USE_MOUSE
-            // mouse events
-            case SDL_MOUSEBUTTONDOWN:
-                if(event.button.button == SDL_BUTTON_RIGHT)
-                    return Application::BACK;
-                clicking = true;
-                break;
-
-            case SDL_MOUSEBUTTONUP:
-                if(event.button.button == SDL_BUTTON_LEFT)
-                    clicking = false;
-                break;
-
-            case SDL_MOUSEMOTION:
-                cursor = V2f(event.motion.x, event.motion.y) / global::scale;
-                break;
-            #endif  // USE_MOUSE
-
-            default:
-                break;
+          case KEY_BACK:
+            return Application::BACK;
+          case KEY_EXIT:
+            return Application::EXIT;
+          case KEY_VOLUME_UP:
+            AudioManager::getInstance()->volume_up();
+            break;
+          case KEY_VOLUME_DOWN:
+            AudioManager::getInstance()->volume_down();
+            break;
+          default:
+            break;
         }
+        break;
+
+      #if USE_TOUCH
+      // touch events
+      case SDL_FINGERDOWN:
+        cursor = normaliseTouch(event.tfinger.touchId,
+                                   V2i(event.tfinger.x, event.tfinger.y));
+        clicking = true;
+        break;
+
+      case SDL_FINGERUP:
+        clicking = false;
+        break;
+
+      case SDL_FINGERMOTION:
+        cursor = normaliseTouch(event.tfinger.touchId,
+                                V2i(event.tfinger.x, event.tfinger.y));
+        break;
+      #endif  // USE_TOUCH
+
+      #if USE_MOUSE
+      // mouse events
+      case SDL_MOUSEBUTTONDOWN:
+        if(event.button.button == SDL_BUTTON_RIGHT)
+          return Application::BACK;
+        clicking = true;
+        break;
+
+      case SDL_MOUSEBUTTONUP:
+        if(event.button.button == SDL_BUTTON_LEFT)
+          clicking = false;
+        break;
+
+      case SDL_MOUSEMOTION:
+        cursor = V2f(event.motion.x, event.motion.y) / global::scale;
+        break;
+      #endif  // USE_MOUSE
+
+      default:
+        break;
     }
+  }
 
-    // Update the scene with the new input
-    scene->getState()->setCursor(cursor, clicking);
+  // Update the scene with the new input
+  scene->getState()->setCursor(cursor, clicking);
 
-    // No exit events encountered, we can continue
-    return Application::CONTINUE;
+  // No exit events encountered, we can continue
+  return Application::CONTINUE;
 }
 
 int Application::setScene(Scene* new_scene)
 {
-    // Check if there is a new scene to set
-    if(!new_scene || (new_scene == scene))
-        return Application::EXIT;
+  // Check if there is a new scene to set
+  if(!new_scene || (new_scene == scene))
+    return Application::EXIT;
 
-    // The new scene exists, but can it be started?
-    if(new_scene->startup() != EXIT_SUCCESS)
-    {
-        // damage control: stay on the same scene
-        new_scene->shutdown();
-        return Application::CONTINUE;
-    }
-
-
-    // Out with the old...
-    scene->shutdown();
-    delete scene;
-
-    // ... in with the new! That is, if possible
-    scene = new_scene;
-
-    // Success!
+  // The new scene exists, but can it be started?
+  if(new_scene->startup() != EXIT_SUCCESS)
+  {
+    // damage control: stay on the same scene
+    new_scene->shutdown();
     return Application::CONTINUE;
+  }
+
+
+  // Out with the old...
+  scene->shutdown();
+  delete scene;
+
+  // ... in with the new! That is, if possible
+  scene = new_scene;
+
+  // Success!
+  return Application::CONTINUE;
 }
 
 
@@ -333,12 +339,12 @@ int Application::setScene(Scene* new_scene)
 
 V2i Application::normaliseTouch(SDL_TouchID device_id, V2i touch)
 {
-    // There's only 1 touch device: memorise itss resolution upon initial call
-    static V2i device_resolution = V2i(SDL_GetTouch(device_id)->xres,
-                                       SDL_GetTouch(device_id)->yres);
+  // There's only 1 touch device: memorise itss resolution upon initial call
+  static V2i device_resolution = V2i(SDL_GetTouch(device_id)->xres,
+                                     SDL_GetTouch(device_id)->yres);
 
-   static V2i default_window_size = V2i(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
+ static V2i default_window_size = V2i(WINDOW_DEFAULT_W, WINDOW_DEFAULT_H);
 
-    // Normalise the touch position
-    return touch * default_window_size / device_resolution;
+  // Normalise the touch position
+  return touch * default_window_size / device_resolution;
 }

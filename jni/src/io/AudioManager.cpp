@@ -22,8 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../math/wjd_math.hpp"
 #include "file.hpp" // for io::MAX_BLOCKS
 
-#include <iostream>
-
 using namespace std;
 
 /// SINGLETON
@@ -41,6 +39,7 @@ AudioManager* AudioManager::getInstance()
 
 AudioManager::AudioManager() :
 started(false),
+volume(MIX_MAX_VOLUME/2),
 music(NULL),
 music_file(NULL),
 #ifdef __ANDROID__
@@ -106,7 +105,6 @@ int AudioManager::parse_root(TiXmlHandle* root_handle)
   ASSERT(parse_element(root_handle->FirstChild("music").Element()) == EXIT_SUCCESS,
               "AudioManager parsing music element");
 
-
   // load sound effects
   ASSERT(parse_list(root_handle, "sound_list") == EXIT_SUCCESS,
               "AudioManager parsing list of sound effects");
@@ -146,6 +144,21 @@ int AudioManager::parse_element(TiXmlElement* element)
   // all clear!
   return EXIT_SUCCESS;
 }
+
+
+/// GLOBAL VOLUME
+
+void AudioManager::volume_up()
+{
+  set_volume((volume < MIX_MAX_VOLUME - VOLUME_STEP) ? volume + VOLUME_STEP
+                                                      : MIX_MAX_VOLUME);
+}
+
+void AudioManager::volume_down()
+{
+  set_volume((volume > VOLUME_STEP) ? volume - VOLUME_STEP : 0);
+}
+
 
 /// MUSIC
 
@@ -283,9 +296,31 @@ int AudioManager::play_sound(str_id id)
   if(i == sounds.end())
     return EXIT_FAILURE;
   // attempt to play the sound if it is
-  if(Mix_PlayChannel(-1, (*i).second, 0) == -1)
+  int channel = Mix_PlayChannel(-1, (*i).second, 0);
+  if(channel == -1)
+  {
     WARN_RTN("AudioManager::play_sound", Mix_GetError(), EXIT_FAILURE);
+  }
+  // if no error has occured, set the channel volume to the global volume
+  else
+    Mix_Volume(channel, volume);
 
   // All clear !
   return EXIT_SUCCESS;
+}
+
+/// SUBROUTINES
+
+void AudioManager::set_volume(unsigned short new_volume)
+{
+  if(new_volume != volume)
+  {
+    // change volume
+    volume = new_volume;
+    // reset music volume
+    if(music)
+      Mix_VolumeMusic(volume);
+    // play notification sound to indicate current volume
+    play_sound("ui_interact");
+  }
 }

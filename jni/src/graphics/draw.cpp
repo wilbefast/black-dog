@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../platform.hpp"            // for OpenGL/GLES functions
 #include "../math/wjd_math.hpp"       // for trigonometry
 
-#include <iostream>
 
 void draw::rectangle(fRect rect, Colour c)
 {

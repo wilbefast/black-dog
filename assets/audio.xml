@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <audio>
-	<music name="music" />
-	<sound_list>
+    <music name="music" />
+    <sound_list>
     <sound name="wraith_flap" />
     <sound name="wraith_die" />
     <sound name="wraith_hurt" />
@@ -13,5 +13,6 @@
     <sound name="imp_spawn" />
     <sound name="imp_die" />
     <sound name="monk_spawn" />
-	</sound_list>
+    <sound name="ui_interact" />
+    </sound_list>
 </audio>
