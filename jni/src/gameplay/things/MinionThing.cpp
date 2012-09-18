@@ -50,7 +50,6 @@ state(NORMAL)
 
 MinionThing::~MinionThing()
 {
-  delete body;
 }
 
 /// OVERRIDES
