@@ -143,3 +143,54 @@ int FontManager::load_ttf(const char* source_file, const char* name,
   // All clear !
   return EXIT_SUCCESS;
 }
+
+/// DRAW TEXT
+
+SDL_Surface* FontManager::text_surface(const char* text, const char* font_name,
+        draw::Colour f_colour, draw::Colour bg_colour, text_quality_t quality)
+{
+  // get the font
+  TTF_Font* font = get_ttf(font_name);
+
+  // convert Colour -> SDL_Color
+  SDL_Color sdl_f_colour
+    = { f_colour.r, f_colour.b, f_colour.g, f_colour.a };
+  SDL_Color sdl_bg_colour
+    = { bg_colour.r, bg_colour.b, bg_colour.g, bg_colour.a };
+
+  // build result surface
+  SDL_Surface* result;
+  switch(quality)
+  {
+    case SOLID:
+      result = TTF_RenderText_Solid(font, text, sdl_f_colour);
+    break;
+    case SHADED:
+      result = TTF_RenderText_Shaded(font, text, sdl_f_colour, sdl_bg_colour);
+    break;
+    case BLENDED:
+      result = TTF_RenderText_Blended(font, text, sdl_f_colour);
+    break;
+  }
+
+  // return the result
+  return result;
+}
+
+/// UTILTIES
+
+TTF_Font* FontManager::get_ttf(str_id id)
+{
+  // search for the resource
+  TTFI i = ttf.find(id);
+  // make sure that it is found
+  if(i == ttf.end())
+    return NULL;
+  else
+    return i->second;
+}
+
+TTF_Font* FontManager::get_ttf(const char* name)
+{
+  return get_ttf(numerise(name));
+}

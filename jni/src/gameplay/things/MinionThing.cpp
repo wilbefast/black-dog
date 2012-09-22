@@ -146,6 +146,10 @@ void MinionThing::setState(State _state)
 
   switch(_state)
   {
+    case NORMAL:
+      // this should never happen
+    break;
+
     case DYING:
       AudioManager::getInstance()->play_sound("minion_die");
       graphic.setSprite(anim_die, 0.1f);
@@ -156,9 +160,6 @@ void MinionThing::setState(State _state)
       AudioManager::getInstance()->play_sound("imp_spawn");
       graphic.setSprite(anim_transform, 0.1f);
       movement.setSpeed(V2f(1.0f, 0.0f));
-    break;
-
-    default:
     break;
   }
 

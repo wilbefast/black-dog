@@ -21,10 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "SDL.h"
 #include "SDL_ttf.h"
 
+#include "ResourceManager.hpp"
+
 #include <map>
 #include "../math/numerise.hpp"         // for str_id
-
-#include "ResourceManager.hpp"
+#include "../graphics/draw.hpp"         // for draw::Colour
 
 // custom assert
 #include "../assert.hpp"
@@ -39,7 +40,12 @@ typedef TTFMap::iterator TTFI;
 class FontManager : public ResourceManager
 {
   /// NESTING
-  enum text_quality { SOLID, SHADED, BLENDED };
+  enum text_quality_t
+  {
+    SOLID,  /* no anti-aliasing = fast */
+    SHADED, /* anti-aliased onto a background = fast */
+    BLENDED /* anti-aliased = slow */
+  };
 
   /// CONSTANTS
 
@@ -67,6 +73,14 @@ public:
   // true-type fonts (TTFs)
   int load_ttf(const char* source_file, const char* name, unsigned int pt_size);
   // draw text
+  SDL_Surface* text_surface(const char* text, const char* font_name,
+                              draw::Colour f_colour = draw::Colour(0, 0, 0),
+                              draw::Colour bg_colour = draw::Colour(255, 255, 255),
+                              text_quality_t quality = BLENDED);
+  // utilties
+private:
+  TTF_Font* get_ttf(str_id name);
+  TTF_Font* get_ttf(const char* name);
 
 };
 

@@ -35,7 +35,7 @@ namespace draw
         Colour(int _r, int _g, int _b, int _a = 255) :
         r(_r/255.0f), g(_g/255.0f), b(_b/255.0f), a(_a/255.0f)
         { }
-        Colour(float _r = 1, float _g = 1, float _b = 1, float _a = 1) :
+        Colour(float _r = 1.0f, float _g = 1.0f, float _b = 1.0f, float _a = 1.0f) :
         r(_r), g(_g), b(_b), a(_a)
         { }
     };

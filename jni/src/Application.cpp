@@ -264,6 +264,7 @@ int Application::treatEvents()
             AudioManager::getInstance()->volume_down();
             break;
           default:
+            // here we DO want a default break, as not all keys are needed
             break;
         }
         break;
@@ -305,6 +306,7 @@ int Application::treatEvents()
       #endif  // USE_MOUSE
 
       default:
+        // not all possible inputs are needed, so we DO want a default break
         break;
     }
   }
