@@ -25,55 +25,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Application
 {
-    /// FUNCTIONS
+  /// FUNCTIONS
 public:
-    static V2i normaliseTouch(SDL_TouchID, V2i touch);
+  static V2i normaliseTouch(SDL_TouchID, V2i touch);
 
-    /// CONSTANTS
-    private:
-    enum
-    {
-        CONTINUE,
-        BACK,
-        EXIT
-    };
+  /// CONSTANTS
+private:
+  enum
+  {
+      CONTINUE,
+      BACK,
+      EXIT
+  };
 
     /// ATTRIBUTES
 private:
-    // We might need to force cleanup upon destruction
-    bool initialised;
-    // Window and OpenGL context
-    SDL_Window* window;
-    SDL_GLContext context;
-    // Timing
-    int prev_tick, this_tick, next_tick;
-    // Object containing all the game-related data
-    Scene* scene;
+  // We might need to force cleanup upon destruction
+  bool initialised;
+  // Window and OpenGL context
+  SDL_Window* window;
+  SDL_GLContext context;
+  // Timing
+  int prev_tick, this_tick, next_tick;
+  // Object containing all the game-related data
+  Scene* scene;
 
     /// CONSTRUCTOR & DESTRUCTOR
 public:
-    Application(Scene* first_scene);
-    ~Application();
+  Application(Scene* first_scene);
+  ~Application();
 
     /// METHODS
 public:
-    int startup();
-    int shutdown();
-    // Perform a single application step, return
-    int run();
-
+  int startup();
+  int shutdown();
+  // Perform a single application step, return
+  int run();
 
     /// SUB-METHODS (called by other methods)
 private:
-    int startSDL();     // Create window and GL context
-    int startGL();      // Configure GL itself
-    void draw();
-    // Regulate the number of frames per second, pausing only if need be
-    void wait();
-    // Deal with input messages, return false if an exit event is encountered
-    int treatEvents();
-    // Switch to a new scene, freeing the old and starting the new
-    int setScene(Scene*);
+  int startSDL();     // Create window and GL context
+  int startGL();      // Configure GL itself
+  void draw();
+  // Regulate the number of frames per second, pausing only if need be
+  void wait();
+  // Deal with input messages, return false if an exit event is encountered
+  int treatEvents();
+  // Switch to a new scene, freeing the old and starting the new
+  int setScene(Scene*);
 };
 
 #endif // APPLICATION_HPP_INCLUDED

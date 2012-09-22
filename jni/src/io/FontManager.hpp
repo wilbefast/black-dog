@@ -15,60 +15,49 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef GRAPHICSMANAGER_HPP_INCLUDED
-#define GRAPHICSMANAGER_HPP_INCLUDED
+#ifndef FONTMANAGER_HPP_INCLUDED
+#define FONTMANAGER_HPP_INCLUDED
+
+#include "SDL.h"
+#include "SDL_ttf.h"
 
 #include <map>
 #include "../math/numerise.hpp"         // for str_id
 
 #include "ResourceManager.hpp"
 
-#include "../graphics/Texture.hpp"
-#include "../graphics/Animation.hpp"
+// custom assert
+#include "../assert.hpp"
+#define ASSERT_TTF(assertion, what)                     \
+    ASSERT_AUX(assertion, what, TTF_GetError())
 
-#define TEXTURE_FILETYPE "png"
+//typedef std::map<str_id, Mix_Chunk*> SoundMap;
+//typedef SoundMap::iterator SoundI;
 
-typedef std::map<str_id, Texture*> TextureMap;
-typedef TextureMap::iterator TextureI;
-typedef std::map<str_id, Animation*> AnimationMap;
-typedef AnimationMap::iterator AnimationI;
-
-class GraphicsManager : public ResourceManager
+class FontManager : public ResourceManager
 {
-    /// CONSTANTS
-private:
+  /// CONSTANTS
 
   /// SINGLETON
 private:
-  static GraphicsManager* instance;
+  static FontManager* instance;
 public:
-  static GraphicsManager* getInstance();
+  static FontManager* getInstance();
 
   /// ATTRIBUTES
 private:
-  TextureMap textures;
-  AnimationMap animations;
 
   /// METHODS
 private:
   // creation & destruction
-  GraphicsManager();
+  FontManager();
 public:
-  ~GraphicsManager();
+  ~FontManager();
   // loading -- overrides ResourceManager
   int load();
   int unload();
   int parse_root(void* root_handle);
   int parse_element(void* element);
-  // textures
-  int load_texture(const char* source_file, const char* name);
-  Texture* get_texture(const char* name);
-  Texture* get_texture(str_id id);
-  // animations
-  int create_animation(const char* texture_name,
-                      iRect frame, int n_frames, const char* name);
-  Animation* get_animation(const char* name);
-  Animation* get_animation(str_id id);
 };
 
-#endif // GRAPHICSMANAGER_HPP_INCLUDED
+#endif // FONTMANAGER_HPP_INCLUDED

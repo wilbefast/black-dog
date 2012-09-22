@@ -10128,17 +10128,19 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1347981625 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1348327837 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
 	"platform.hpp"
 	"assert.hpp"
+	"warn.hpp"
 	"io/file.hpp"
 	"io/AudioManager.hpp"
 	"io/GraphicsManager.hpp"
+	"io/FontManager.hpp"
 
-1347485608 /home/william/Desktop/BLACK_DOG_link/jni/src/Application.hpp
+1348324848 /home/william/Desktop/BLACK_DOG_link/jni/src/Application.hpp
 	"SDL.h"
 	"platform.hpp"
 	"scenes/Scene.hpp"
@@ -10198,7 +10200,7 @@
 1345045292 /home/william/Desktop/BLACK_DOG_link/jni/src/global.hpp
 	"math/Rect.hpp"
 
-1340887489 /home/william/Desktop/BLACK_DOG_link/jni/src/assert.hpp
+1348327692 /home/william/Desktop/BLACK_DOG_link/jni/src/assert.hpp
 	"SDL.h"
 	"platform.hpp"
 
@@ -10693,7 +10695,7 @@
 	"elements/AnimatedElement.hpp"
 	"elements/SymetricalMovementElement.hpp"
 
-1348324269 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.cpp
+1348326099 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
@@ -10701,19 +10703,20 @@
 	"file.hpp"
 	"tinyxml/tinyxml.h"
 
-1348323881 /home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.hpp
+1348327900 /home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
 	<map>
 	"../math/numerise.hpp"
 	"ResourceManager.hpp"
+	"../assert.hpp"
 
 1340887669 /home/william/Desktop/BLACK_DOG_link/jni/src/io/numerise.hpp
 	"numerise.inl"
 
 1340887685 /home/william/Desktop/BLACK_DOG_link/jni/src/io/numerise.inl
 
-1348323746 /home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.hpp
+1348326082 /home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.hpp
 
 1348324176 /home/william/Desktop/BLACK_DOG_link/jni/src/io/file.hpp
 	<string>
@@ -10734,21 +10737,21 @@
 	<assert.h>
 	<string.h>
 
-1348324275 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.cpp
+1348326241 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.cpp
 	"GraphicsManager.hpp"
 	"file.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
 	"tinyxml/tinyxml.h"
 
-1348323892 /home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.hpp
+1348326262 /home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.hpp
 	<map>
 	"../math/numerise.hpp"
 	"ResourceManager.hpp"
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1348323865 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.cpp
+1348326357 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.cpp
 	"ResourceManager.hpp"
 	"file.hpp"
 	"../assert.hpp"
@@ -10812,4 +10815,20 @@
 1345132128 /home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/EpilogueThing.hpp
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
+
+1348327780 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.cpp
+	"FontManager.hpp"
+
+1348327895 /home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.hpp
+	"SDL.h"
+	"SDL_ttf.h"
+	<map>
+	"../math/numerise.hpp"
+	"ResourceManager.hpp"
+	"../assert.hpp"
+
+1242082145 /usr/include/SDL/SDL_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
 

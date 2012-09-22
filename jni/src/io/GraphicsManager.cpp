@@ -37,32 +37,30 @@ GraphicsManager* GraphicsManager::getInstance()
 /// CREATION & DESTRUCTION
 
 GraphicsManager::GraphicsManager() :
-started(false),
+ResourceManager(),
 textures(),
 animations()
 {
 }
 
-int GraphicsManager::startup()
+GraphicsManager::~GraphicsManager()
 {
-  // don't start twice!
-  if(started)
-    WARN_RTN("GraphicsManager::startup","already started!", EXIT_SUCCESS);
+}
 
+/// LOADING
+
+int GraphicsManager::load()
+{
   // load graphics
   ASSERT(load_xml(GET_ASSET("graphics.xml")) == EXIT_SUCCESS,
         "Loading graphical assets based on 'graphics.xml'");
 
   // All good!
-  started = true;
   return EXIT_SUCCESS;
 }
 
-int GraphicsManager::shutdown()
+int GraphicsManager::unload()
 {
-  if(!started)
-    WARN_RTN("GraphicsManager::shutdown","already shutdown!", EXIT_SUCCESS);
-
   // Clean up the animations
   for(AnimationI i = animations.begin(); i != animations.end(); i++)
     delete (*i).second;
@@ -71,23 +69,14 @@ int GraphicsManager::shutdown()
   for(TextureI i = textures.begin(); i != textures.end(); i++)
   {
     if((*i).second->unload() != EXIT_SUCCESS)
-      WARN_RTN("GraphicsManager::shutdown", "Failed to unload texture", EXIT_FAILURE);
+      WARN_RTN("GraphicsManager::shutdown", "Failed to unload texture",
+                                            EXIT_FAILURE);
     delete (*i).second;
   }
 
   // All good!
-  started = false;
   return EXIT_SUCCESS;
 }
-
-
-GraphicsManager::~GraphicsManager()
-{
-  if(started)
-    shutdown();
-}
-
-/// LOADING
 
 int GraphicsManager::parse_root(void* root_handle)
 {

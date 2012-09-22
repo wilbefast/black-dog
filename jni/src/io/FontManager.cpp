@@ -15,31 +15,55 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef RESOURCEMANAGER_HPP_INCLUDED
-#define RESOURCEMANAGER_HPP_INCLUDED
 
-class ResourceManager
+#include "FontManager.hpp"
+
+using namespace std;
+
+/// SINGLETON
+
+FontManager* FontManager::instance = NULL;
+
+FontManager* FontManager::getInstance()
 {
-  /// ATTRIBUTES
-private:
-  bool loaded;
-  /// METHODS
-protected:
-  // creation & destruction
-  ResourceManager();
-  virtual int load() = 0;
-  virtual int unload() = 0;
-  virtual ~ResourceManager();
-public:
-  // ensure coherency of state (ie. don't load if loaded or unload if unloaded)
-  int startup();
-  int shutdown();
-  // loading
-  int load_xml(const char* xml_file);
-protected:
-  virtual int parse_root(void* root_handle) = 0;
-  int parse_list(void* root_handle, const char* list_name);
-  virtual int parse_element(void* element) = 0;
-};
+  if(!instance)
+    instance = new FontManager();
+  return instance;
+}
 
-#endif // RESOURCEMANAGER_HPP_INCLUDED
+/// CREATION & DESTRUCTION
+
+FontManager::FontManager() :
+ResourceManager()
+{
+}
+
+FontManager::~FontManager()
+{
+}
+
+/// LOADING
+
+int FontManager::load()
+{
+  ASSERT_TTF(TTF_Init() != -1, "Initialising SDL_TTF (true-type font)");
+
+  return EXIT_SUCCESS;
+}
+
+int FontManager::unload()
+{
+  return EXIT_SUCCESS;
+}
+
+int FontManager::parse_root(void* root_handle)
+{
+  // all clear!
+  return EXIT_SUCCESS;
+}
+
+int FontManager::parse_element(void* element)
+{
+  // all clear!
+  return EXIT_SUCCESS;
+}

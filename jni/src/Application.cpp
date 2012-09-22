@@ -22,10 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "global.hpp"   // needed for application defaults
 #include "platform.hpp" // needed for LOG
 #include "assert.hpp"   // needed for platform specific ASSERT macros
+#include "warn.hpp"     // needed for WARN
 
 #include "io/file.hpp"              // needed for ASSET_PATH macro
-#include "io/AudioManager.hpp"      // resource subsystem (singleton)
-#include "io/GraphicsManager.hpp"   // resource subsystem (singleton)
+#include "io/AudioManager.hpp"      // audio subsystem (singleton)
+#include "io/GraphicsManager.hpp"   // graphics subsystem (singleton)
+#include "io/FontManager.hpp"       // font subsystem (singleton)
 
 /// CONSTRUCTOR & DESTRUCTOR (public)
 
@@ -42,7 +44,10 @@ Application::~Application()
 {
   // Force clean if nessecary
   if(initialised)
-      shutdown();
+  {
+    WARN("Application::~Application","Destructor forcing shutdown sequence");
+    shutdown();
+  }
 }
 
 /// METHODS (public)
@@ -67,6 +72,9 @@ int Application::startup()
     == EXIT_SUCCESS, "Starting Graphics Manager");
   // Start the Audio Manager
   ASSERT(AudioManager::getInstance()->startup()
+    == EXIT_SUCCESS, "Starting Audio Manager");
+  // Start the Font Manager
+  ASSERT(FontManager::getInstance()->startup()
     == EXIT_SUCCESS, "Starting Audio Manager");
 
   // Load the initial scene

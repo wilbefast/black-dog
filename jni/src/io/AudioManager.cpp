@@ -40,7 +40,7 @@ AudioManager* AudioManager::getInstance()
 /// CREATION & DESTRUCTION
 
 AudioManager::AudioManager() :
-started(false),
+ResourceManager(),
 volume(MIX_MAX_VOLUME/2),
 music(NULL),
 music_file(NULL),
@@ -51,11 +51,14 @@ sounds()
 {
 }
 
-int AudioManager::startup()
+AudioManager::~AudioManager()
 {
-  if(started)
-    WARN_RTN("AudioManager::startup","already started!", EXIT_SUCCESS);
+}
 
+/// LOADING
+
+int AudioManager::load()
+{
   //Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
   ASSERT_MIX(Mix_OpenAudio(DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
            MIX_DEFAULT_CHANNELS, DEFAULT_CHUNK_SIZE) != -1,
@@ -66,15 +69,11 @@ int AudioManager::startup()
         "Loading audio assets based on 'audio.xml'");
 
   // All good!
-  started = true;
   return EXIT_SUCCESS;
 }
 
-int AudioManager::shutdown()
+int AudioManager::unload()
 {
-  if(!started)
-    WARN_RTN("AudioManager::shutdown","already shutdown!", EXIT_SUCCESS);
-
   // Clean up the sound
   for(SoundI i = sounds.begin(); i != sounds.end(); i++)
     Mix_FreeChunk((*i).second);
@@ -88,18 +87,8 @@ int AudioManager::shutdown()
   LOG_I("SDL Mixer shutdown", "Okay");
 
   // All good!
-  started = false;
   return EXIT_SUCCESS;
 }
-
-
-AudioManager::~AudioManager()
-{
-  if(started)
-    shutdown();
-}
-
-/// LOADING
 
 int AudioManager::parse_root(void* root_handle)
 {

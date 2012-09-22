@@ -27,12 +27,48 @@ using namespace std;
 
 /// CREATION, DESTRUCTION
 
-ResourceManager::ResourceManager()
+ResourceManager::ResourceManager() :
+loaded(false)
 {
+}
+
+int ResourceManager::startup()
+{
+  // check that we're not already initialised
+  if(loaded)
+    WARN_RTN("ResourceManager::startup","already started!", EXIT_SUCCESS);
+
+  // if this is that case, load everything
+  ASSERT(load() == EXIT_SUCCESS, "ResourceManager::load()");
+
+  // all clear !
+  loaded = true;
+  return EXIT_SUCCESS;
+}
+
+int ResourceManager::shutdown()
+{
+  // check that we're initialised
+  if(!loaded)
+    WARN_RTN("ResourceManager::shutdown","already shut down!", EXIT_SUCCESS);
+
+  // if so, unload everything
+  ASSERT(unload() == EXIT_SUCCESS, "ResourceManager::unload()");
+
+  // all clear !
+  loaded = true;
+  return EXIT_SUCCESS;
 }
 
 ResourceManager::~ResourceManager()
 {
+  // Force clean if nessecary
+  if(loaded)
+  {
+    WARN("ResourceManager::~ResourceManager",
+          "Destructor forcing shutdown sequence");
+    shutdown();
+  }
 }
 
 /// LOADING
@@ -54,12 +90,6 @@ int ResourceManager::load_xml(const char* xml_file)
   return EXIT_SUCCESS;
 }
 
-int ResourceManager::parse_root(void* root_handle)
-{
-  // override me!
-  return EXIT_SUCCESS;
-}
-
 int ResourceManager::parse_list(void* root_handle, const char* list_name)
 {
   // get the first element of the list
@@ -77,11 +107,5 @@ int ResourceManager::parse_list(void* root_handle, const char* list_name)
     element = element->NextSiblingElement();
   }
 
-  return EXIT_SUCCESS;
-}
-
-int ResourceManager::parse_element(void* element)
-{
-  // override me!
   return EXIT_SUCCESS;
 }

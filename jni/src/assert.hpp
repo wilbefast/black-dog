@@ -45,9 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ASSERT_GL(assertion, what)                      \
     ASSERT_AUX(assertion, what, GL_GetError())
 
-#define ASSERT_MIX(assertion, what)                     \
-    ASSERT_AUX(assertion, what, Mix_GetError())
-
 
 
 #endif // ASSERT_HPP_INCLUDED

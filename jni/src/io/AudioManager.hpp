@@ -26,9 +26,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ResourceManager.hpp"
 
+// custom assertion
+#include "../assert.hpp"
+#define ASSERT_MIX(assertion, what)                     \
+    ASSERT_AUX(assertion, what, Mix_GetError())
+
 #define SOUND_FILETYPE "wav"
 #define MUSIC_FILETYPE "ogg"
-#define VOLUME_STEP MIX_MAX_VOLUME/8
+#define VOLUME_STEP MIX_MAX_VOLUME/14
 
 typedef std::map<str_id, Mix_Chunk*> SoundMap;
 typedef SoundMap::iterator SoundI;
@@ -48,7 +53,6 @@ public:
 
   /// ATTRIBUTES
 private:
-  bool started;
   unsigned short volume; // value between 0 and MIX_MAX_VOLUME = 128
   // music
   Mix_Music* music;
@@ -64,12 +68,12 @@ private:
   // creation & destruction
   AudioManager();
 public:
-  int startup();
-  int shutdown();
   ~AudioManager();
   // loading -- overrides ResourceManager
-  virtual int parse_root(void* root_handle);
-  virtual int parse_element(void* element);
+  int load();
+  int unload();
+  int parse_root(void* root_handle);
+  int parse_element(void* element);
   // global volume
   void volume_up();
   void volume_down();

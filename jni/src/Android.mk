@@ -9,6 +9,7 @@ SDL_PATH := ../SDL
 LOCAL_C_INCLUDES := 						        \
 	$(LOCAL_PATH)/$(SDL_PATH)/include 		\
 	$(LOCAL_PATH)/../SDL_image 				    \
+	$(LOCAL_PATH)/../SDL_ttf 				      \
 	$(LOCAL_PATH)/../SDL_mixer
 
 LOCAL_CFLAGS :=                         \
@@ -23,6 +24,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   io/ResourceManager.cpp                                      \
   io/AudioManager.cpp						                              \
   io/GraphicsManager.cpp						                          \
+  io/FontManager.cpp						                              \
   io/file.cpp						                                      \
   gameplay/things/elements/AnimatedElement.cpp		            \
   gameplay/things/elements/ColliderElement.cpp		            \
