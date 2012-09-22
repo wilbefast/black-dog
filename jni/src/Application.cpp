@@ -75,7 +75,7 @@ int Application::startup()
     == EXIT_SUCCESS, "Starting Audio Manager");
   // Start the Font Manager
   ASSERT(FontManager::getInstance()->startup()
-    == EXIT_SUCCESS, "Starting Audio Manager");
+    == EXIT_SUCCESS, "Starting Font Manager");
 
   // Load the initial scene
   ASSERT(scene->startup() == EXIT_SUCCESS, "Loading initial Scene");

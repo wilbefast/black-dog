@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../assert.hpp"
 #include "../warn.hpp"
+
 #include "../math/wjd_math.hpp"
 #include "file.hpp" // for io::MAX_BLOCKS
 
@@ -118,7 +119,7 @@ int AudioManager::parse_element(void* element)
     // conver the name attribute to a file name
     const char* name = txml_element->Attribute("name");
     if(!name)
-      WARN_RTN("AudioManager::load_xml", "malformed music tag", EXIT_FAILURE);
+      WARN_RTN("AudioManager::load_xml", "malformed music tag (name)", EXIT_FAILURE);
     string filename = io::name_to_path(name, MUSIC_FILETYPE);
     // load and play music from the specified file
     ASSERT(load_music(filename.c_str()) == EXIT_SUCCESS, "Loading initial music track");
@@ -128,12 +129,12 @@ int AudioManager::parse_element(void* element)
   // sound element
   else if(!strcmp(txml_element->Value(), "sound"))
   {
-    // get the name of the texture and deduce its filename
+    // get the name of the sound effect and deduce its filename
     const char* name = txml_element->Attribute("name");
     if(!name)
-      WARN_RTN("AudioManager::load_xml", "malformed sound tag", EXIT_FAILURE);
+      WARN_RTN("AudioManager::load_xml", "malformed sound tag (name)", EXIT_FAILURE);
 
-    // load the texture
+    // load the sound effect
     string filename = io::name_to_path(name, SOUND_FILETYPE);
     load_sound(filename.c_str(), name);
   }

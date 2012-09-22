@@ -31,11 +31,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ASSERT_TTF(assertion, what)                     \
     ASSERT_AUX(assertion, what, TTF_GetError())
 
-//typedef std::map<str_id, Mix_Chunk*> SoundMap;
-//typedef SoundMap::iterator SoundI;
+#define FONT_FILETYPE "ttf"
+
+typedef std::map<str_id, TTF_Font*> TTFMap;
+typedef TTFMap::iterator TTFI;
 
 class FontManager : public ResourceManager
 {
+  /// NESTING
+  enum text_quality { SOLID, SHADED, BLENDED };
+
   /// CONSTANTS
 
   /// SINGLETON
@@ -46,6 +51,7 @@ public:
 
   /// ATTRIBUTES
 private:
+  TTFMap ttf;
 
   /// METHODS
 private:
@@ -58,6 +64,10 @@ public:
   int unload();
   int parse_root(void* root_handle);
   int parse_element(void* element);
+  // true-type fonts (TTFs)
+  int load_ttf(const char* source_file, const char* name, unsigned int pt_size);
+  // draw text
+
 };
 
 #endif // FONTMANAGER_HPP_INCLUDED

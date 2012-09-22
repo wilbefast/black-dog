@@ -56,6 +56,7 @@ int GraphicsManager::load()
         "Loading graphical assets based on 'graphics.xml'");
 
   // All good!
+  LOG_I("GraphicsManager::load()", "Okay");
   return EXIT_SUCCESS;
 }
 
@@ -69,12 +70,13 @@ int GraphicsManager::unload()
   for(TextureI i = textures.begin(); i != textures.end(); i++)
   {
     if((*i).second->unload() != EXIT_SUCCESS)
-      WARN_RTN("GraphicsManager::shutdown", "Failed to unload texture",
+      WARN_RTN("GraphicsManager::unload", "Failed to unload texture",
                                             EXIT_FAILURE);
     delete (*i).second;
   }
 
   // All good!
+  LOG_I("GraphicsManager::unload()", "Okay");
   return EXIT_SUCCESS;
 }
 
