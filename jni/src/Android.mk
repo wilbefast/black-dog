@@ -64,6 +64,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
   scenes/MainMenu.cpp					                                \
   scenes/Scene.cpp					                                  \
   scenes/SceneState.cpp					                              \
+  math/wjd_math.cpp                                           \
   Application.cpp                                             \
   global.cpp                                                  \
   jni_glue.cpp                                                \

@@ -18,8 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "FontManager.hpp"
 
-#include "../warn.hpp"
 #include "file.hpp" // for GET_ASSET
+#include "../warn.hpp"
+#include "../graphics/Texture.hpp"
 
 #include "tinyxml/tinyxml.h"
 
@@ -146,11 +147,42 @@ int FontManager::load_ttf(const char* source_file, const char* name,
 
 /// DRAW TEXT
 
-SDL_Surface* FontManager::text_surface(const char* text, const char* font_name,
+void FontManager::draw_text(const char* text, fRect destination, str_id font_id,
+                draw::Colour f_colour, draw::Colour bg_colour,
+                text_quality_t quality)
+{
+  // bake a surface by writing the text using the font
+  SDL_Surface* surface = text_surface(text, font_id, f_colour, bg_colour,
+                                        quality);
+  if(surface == NULL)
+    return;
+
+  // load this bitmap into GPU memory and draw it!
+  Texture texture;
+  texture.from_surface(surface);
+  texture.draw(NULL, &destination);
+
+  // discard the surface immediately
+  texture.unload();
+}
+
+void FontManager::draw_text(const char* text, fRect destination,
+          const char* font_name, draw::Colour f_colour, draw::Colour bg_colour,
+          text_quality_t quality)
+{
+  draw_text(text, destination, numerise(font_name), f_colour, bg_colour,
+            quality);
+}
+
+/// UTILTIES
+
+SDL_Surface* FontManager::text_surface(const char* text, str_id font_id,
         draw::Colour f_colour, draw::Colour bg_colour, text_quality_t quality)
 {
   // get the font
-  TTF_Font* font = get_ttf(font_name);
+  TTF_Font* font = get_ttf(font_id);
+  if(font == NULL)
+    WARN_RTN("FontManager::text_surface", "font not found",  NULL);
 
   // convert Colour -> SDL_Color
   SDL_Color sdl_f_colour
@@ -177,8 +209,6 @@ SDL_Surface* FontManager::text_surface(const char* text, const char* font_name,
   return result;
 }
 
-/// UTILTIES
-
 TTF_Font* FontManager::get_ttf(str_id id)
 {
   // search for the resource
@@ -188,9 +218,4 @@ TTF_Font* FontManager::get_ttf(str_id id)
     return NULL;
   else
     return i->second;
-}
-
-TTF_Font* FontManager::get_ttf(const char* name)
-{
-  return get_ttf(numerise(name));
 }

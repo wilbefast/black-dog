@@ -142,6 +142,7 @@
 		<Unit filename="math/V2.inl" />
 		<Unit filename="math/numerise.hpp" />
 		<Unit filename="math/numerise.inl" />
+		<Unit filename="math/wjd_math.cpp" />
 		<Unit filename="math/wjd_math.hpp" />
 		<Unit filename="platform.hpp" />
 		<Unit filename="scenes/BlackDogState.cpp" />

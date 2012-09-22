@@ -10128,7 +10128,7 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1348335016 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1348348776 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -10158,7 +10158,8 @@
 	"Button.hpp"
 	"SceneState.hpp"
 
-1340887643 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Texture.hpp
+1348347645 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Texture.hpp
+	"SDL.h"
 	"../platform.hpp"
 	"../math/V2.hpp"
 	"../math/Rect.hpp"
@@ -10170,7 +10171,7 @@
 1345929021 /home/william/Desktop/BLACK_DOG_link/jni/src/math/V2.inl
 	"wjd_math.hpp"
 
-1340887557 /home/william/Desktop/BLACK_DOG_link/jni/src/math/wjd_math.hpp
+1348347882 /home/william/Desktop/BLACK_DOG_link/jni/src/math/wjd_math.hpp
 	<cmath>
 	<stdlib.h>
 
@@ -10260,7 +10261,7 @@
 	"../platform.hpp"
 	"draw.hpp"
 
-1348335369 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/draw.hpp
+1348348462 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/draw.hpp
 	"../math/Rect.hpp"
 	"../math/V2.hpp"
 
@@ -10408,7 +10409,7 @@
 	"Mesh2D.hpp"
 	"../global.hpp"
 
-1348335058 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Texture.cpp
+1348348029 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Texture.cpp
 	"Texture.hpp"
 	"SDL.h"
 	"SDL_image.h"
@@ -10416,8 +10417,9 @@
 	"../platform.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
+	"../math/wjd_math.hpp"
 
-1347982067 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/draw.cpp
+1348348405 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/draw.cpp
 	"draw.hpp"
 	"../global.hpp"
 	"../platform.hpp"
@@ -10816,13 +10818,14 @@
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 
-1348333547 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.cpp
+1348348746 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.cpp
 	"FontManager.hpp"
-	"../warn.hpp"
 	"file.hpp"
+	"../warn.hpp"
+	"../graphics/Texture.hpp"
 	"tinyxml/tinyxml.h"
 
-1348336115 /home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.hpp
+1348348243 /home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.hpp
 	"SDL.h"
 	"SDL_ttf.h"
 	"ResourceManager.hpp"
@@ -10835,4 +10838,7 @@
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
+
+1348347885 source:/home/william/Desktop/BLACK_DOG_link/jni/src/math/wjd_math.cpp
+	"wjd_math.hpp"
 

@@ -48,5 +48,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RAND() (((double)rand())/RAND_MAX)
 #define RAND_BETWEEN(x,y) (RAND()*ABS(x-y)+MIN(x,y))
 #define RAND_SIGN() ((RAND()<0.5)?-1:1)
+#define ISPWR2(n) !(n & (n-1))
+
+int nextpwr2(int n);
 
 #endif // WJD_MATH_HPP_INCLUDED

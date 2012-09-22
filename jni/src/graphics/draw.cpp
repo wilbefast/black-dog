@@ -15,11 +15,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 #include "draw.hpp"
 #include "../global.hpp"              // for scale
 #include "../platform.hpp"            // for OpenGL/GLES functions
 #include "../math/wjd_math.hpp"       // for trigonometry
-
 
 void draw::rectangle(fRect rect, Colour c)
 {
@@ -45,54 +45,54 @@ void draw::rectangle(fRect rect, Colour c)
 
 void draw::line(V2f start, V2f end, Colour c, float thickness)
 {
-    // Specify coordinates to draw
-    GLfloat points[4]  = { (GLfloat)start.x, (GLfloat)start.y,
-                            (GLfloat)end.x,  (GLfloat)end.y};
+  // Specify coordinates to draw
+  GLfloat points[4]  = { (GLfloat)start.x, (GLfloat)start.y,
+                          (GLfloat)end.x,  (GLfloat)end.y};
 
-    // Start up
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glLineWidth(thickness);
-    glColor4f(c.r, c.g, c.b, c.a);
-    glEnable(GL_LINE_SMOOTH);
-    glScalef(global::scale.x, global::scale.y, 0.0f);
+  // Start up
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glLineWidth(thickness);
+  glColor4f(c.r, c.g, c.b, c.a);
+  glEnable(GL_LINE_SMOOTH);
+  glScalef(global::scale.x, global::scale.y, 0.0f);
 
-    // Draw points
-    glVertexPointer(2, GL_FLOAT, 0, points);
-    glDrawArrays(GL_LINES, 0, 2);
+  // Draw points
+  glVertexPointer(2, GL_FLOAT, 0, points);
+  glDrawArrays(GL_LINES, 0, 2);
 
-    // Shut down
-    glDisable(GL_LINE_SMOOTH);
-    glColor4f(1, 1, 1, 1);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glLoadIdentity();
+  // Shut down
+  glDisable(GL_LINE_SMOOTH);
+  glColor4f(1, 1, 1, 1);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glLoadIdentity();
 }
 
 void draw::line_loop(V2f points[], unsigned int n_pts, Colour c, float thickness)
 {
-    // Specify coordinates to draw
-    GLfloat* loop = new GLfloat[2*n_pts];
-    for(unsigned int i = 0; i < n_pts; i++)
-    {
-      loop[2*i] = points[i].x;
-      loop[2*i + 1] = points[i].y;
-    }
+  // Specify coordinates to draw
+  GLfloat* loop = new GLfloat[2*n_pts];
+  for(unsigned int i = 0; i < n_pts; i++)
+  {
+    loop[2*i] = points[i].x;
+    loop[2*i + 1] = points[i].y;
+  }
 
-    // Start up
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glLineWidth(thickness);
-    glColor4f(c.r, c.g, c.b, c.a);
-    glEnable(GL_LINE_SMOOTH);
-    glScalef(global::scale.x, global::scale.y, 0.0f);
+  // Start up
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glLineWidth(thickness);
+  glColor4f(c.r, c.g, c.b, c.a);
+  glEnable(GL_LINE_SMOOTH);
+  glScalef(global::scale.x, global::scale.y, 0.0f);
 
-    // Draw points
-    glVertexPointer(2, GL_FLOAT, 0, loop);
-    glDrawArrays(GL_LINE_STRIP, 0, n_pts);
+  // Draw points
+  glVertexPointer(2, GL_FLOAT, 0, loop);
+  glDrawArrays(GL_LINE_STRIP, 0, n_pts);
 
-    // Shut down
-    glDisable(GL_LINE_SMOOTH);
-    glColor4f(1, 1, 1, 1);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glLoadIdentity();
+  // Shut down
+  glDisable(GL_LINE_SMOOTH);
+  glColor4f(1, 1, 1, 1);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glLoadIdentity();
 }
 
 void draw::height_line(float height[], unsigned int n_pts, float x_spacing,
@@ -231,33 +231,33 @@ void draw::height_fill(float height[], unsigned int n_pts, float x_spacing,
 
 void draw::circle(V2f position, double radius, Colour c, bool fill)
 {
-    // Specify coordinates to draw
-    GLfloat polygon[2*CIRCLE_N_SEGMENTS];
+  // Specify coordinates to draw
+  GLfloat polygon[2*CIRCLE_N_SEGMENTS];
 
-    for(int i = 0; i < CIRCLE_N_SEGMENTS; i++)
-    {
-        double radians = i*(2*PI)/CIRCLE_N_SEGMENTS;
-        polygon[2*i] = position.x + cos(radians)*radius;
-        polygon[2*i + 1] = position.y + sin(radians)*radius;
-    }
+  for(int i = 0; i < CIRCLE_N_SEGMENTS; i++)
+  {
+      double radians = i*(2*PI)/CIRCLE_N_SEGMENTS;
+      polygon[2*i] = position.x + cos(radians)*radius;
+      polygon[2*i + 1] = position.y + sin(radians)*radius;
+  }
 
-    // Start up
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glColor4f(c.r, c.g, c.b, c.a);
-    glEnable(GL_LINE_SMOOTH);
+  // Start up
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glColor4f(c.r, c.g, c.b, c.a);
+  glEnable(GL_LINE_SMOOTH);
 
-    // Draw points
-    glVertexPointer(2, GL_FLOAT, 0, polygon);
-    // Fill circle, or not
-    if(fill)
-        glDrawArrays(GL_TRIANGLE_FAN, 0, CIRCLE_N_SEGMENTS);
-    else
-        glDrawArrays(GL_LINE_LOOP, 0, CIRCLE_N_SEGMENTS);
+  // Draw points
+  glVertexPointer(2, GL_FLOAT, 0, polygon);
+  // Fill circle, or not
+  if(fill)
+      glDrawArrays(GL_TRIANGLE_FAN, 0, CIRCLE_N_SEGMENTS);
+  else
+      glDrawArrays(GL_LINE_LOOP, 0, CIRCLE_N_SEGMENTS);
 
-    // Shut down
-    glDisable(GL_LINE_SMOOTH);
-    glColor4f(1, 1, 1, 1);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glLoadIdentity();
+  // Shut down
+  glDisable(GL_LINE_SMOOTH);
+  glColor4f(1, 1, 1, 1);
+  glDisableClientState(GL_VERTEX_ARRAY);
+  glLoadIdentity();
 }
 

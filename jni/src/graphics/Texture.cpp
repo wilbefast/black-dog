@@ -24,30 +24,58 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../platform.hpp"     // Needed for DIR_CUR, DIR_SEP, OpenGL/GLES
 #include "../assert.hpp"       // Needed for assertions
 #include "../warn.hpp"
+#include "../math/wjd_math.hpp"    // Needed for ISPOWER2
 
-#define ISPWR2(n) !(n & (n-1))
+/// CONSTRUCTORS, DESTRUCTORS
 
-iRect Texture::getArea()
+Texture::Texture() :
+handle(0),
+loaded(false)
 {
-  return area;
 }
 
 int Texture::load(const char* filepath)
 {
-  // Local variables for extracting properties about the image
-  GLuint n_colours = 0;
-  GLenum format = (GLenum) NULL;
+  // Free any previous content
+  if(loaded)
+    unload();
 
   // Load the image using SDL_image
   SDL_Surface* surface = IMG_Load(filepath);
   ASSERT_SDL(surface, "Opening image file");
 
-  // Make sure the image length and width are powers of 2
-  WARN_IF(!ISPWR2(surface->w), "Checking image width", "Not a 2^n");
-  WARN_IF(!ISPWR2(surface->h), "Checking image width", "Not a 2^n");
+  // continue working from this surface
+  int result = this->from_surface(surface);
 
-  // If so, save the size of the surface for later use
-  area = iRect(0, 0, surface->w, surface->h);
+  // Be sure to delete the bitmap from CPU memory before returning the result!
+	SDL_FreeSurface(surface);
+	return result;
+}
+
+int Texture::from_surface(SDL_Surface* surface)
+{
+  // Free any previous content
+  if(loaded)
+    unload();
+
+  // Local variables for extracting properties about the image
+  GLuint n_colours = 0;
+  GLenum format = (GLenum) NULL;
+
+  // Make sure the image length and width are powers of 2
+	area = iRect(0, 0,
+                ISPWR2(surface->w) ? surface->w : nextpwr2(surface->w),
+                ISPWR2(surface->h) ? surface->h : nextpwr2(surface->h));
+  if(area.w != surface->w || area.h != surface->h)
+  {
+    // enlarge the surface if needed
+    SDL_Surface* previous_surface = surface;
+    surface = SDL_CreateRGBSurface(0, area.w, area.h, 32,
+      /* NB - Hexadecimal parameters are: Rmask, Gmask, Bmask and Amask */
+                                0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    // past contents of previous (small) surface onto new (larger) surface
+    SDL_BlitSurface(previous_surface, 0, surface, 0);
+  }
 
 	//get number of channels in the SDL surface
   n_colours = surface->format->BytesPerPixel;
@@ -79,19 +107,19 @@ int Texture::load(const char* filepath)
   glTexImage2D(GL_TEXTURE_2D, 0, format, area.w, area.h, 0,
                   format, GL_UNSIGNED_BYTE, surface->pixels);
 
-  // The original bitmap is no longer needed: delete it!
-	SDL_FreeSurface(surface);
-
 	// Unbind the texture
   glBindTexture(GL_TEXTURE_2D, 0);
 
-
 	// The return result reports the success of the operation
+	loaded = true;
   return EXIT_SUCCESS;
 }
 
 int Texture::unload()
 {
+  if(!loaded)
+    WARN_RTN("Texture::unload()", "Texture is not loaded!", EXIT_SUCCESS);
+
   // Free the texture from video memory
   glDeleteTextures(1, &handle);
 
@@ -99,16 +127,29 @@ int Texture::unload()
   return EXIT_SUCCESS;
 }
 
+Texture::~Texture()
+{
+  // don't force unload here: this may not be the only copy of the handle!
+}
+
+
+/// ACCESSORS
+
+iRect Texture::getArea()
+{
+  return area;
+}
+
 void Texture::draw(const fRect* src_ptr, const fRect* dst_ptr, float angle)
 {
   // Crop the source rectangle if necessary
   fRect src(area);
-  if(src_ptr)
-      src = src_ptr->getInter(area);
+  if(src_ptr) // if no source is given the full texture is used!
+    src = src_ptr->getInter(area);
 
   // Crop the destination rectangle if necessary
   fRect dst(global::viewport);
-  if(dst_ptr)
+  if(dst_ptr) // if no destination is given the full viewport is used!
     dst = (*dst_ptr);
     //dst = dst_ptr->getInter(global::viewport); // reacts badly with rotations
 

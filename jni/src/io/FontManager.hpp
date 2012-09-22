@@ -73,15 +73,26 @@ public:
   // true-type fonts (TTFs)
   int load_ttf(const char* source_file, const char* name, unsigned int pt_size);
   // draw text
-  SDL_Surface* text_surface(const char* text, const char* font_name,
+  void draw_text(const char* text, fRect destination, str_id font_id,
+                  draw::Colour f_colour = draw::Colour(0, 0, 0),
+                  draw::Colour bg_colour = draw::Colour(255, 255, 255),
+                  text_quality_t quality = BLENDED);
+  void draw_text(const char* text, fRect destination, const char* font_name,
+                  draw::Colour f_colour = draw::Colour(0, 0, 0),
+                  draw::Colour bg_colour = draw::Colour(255, 255, 255),
+                  text_quality_t quality = BLENDED);
+  // utilties
+private:
+  SDL_Surface* text_surface(const char* text, str_id font_id,
                               draw::Colour f_colour = draw::Colour(0, 0, 0),
                               draw::Colour bg_colour = draw::Colour(255, 255, 255),
                               text_quality_t quality = BLENDED);
-  // utilties
-private:
+  inline SDL_Surface* text_surface(const char* text, const char* font_name,
+                              draw::Colour f_colour = draw::Colour(0, 0, 0),
+                              draw::Colour bg_colour = draw::Colour(255, 255, 255),
+                              text_quality_t quality = BLENDED);
   TTF_Font* get_ttf(str_id name);
   TTF_Font* get_ttf(const char* name);
-
 };
 
 #endif // FONTMANAGER_HPP_INCLUDED

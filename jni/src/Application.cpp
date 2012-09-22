@@ -98,6 +98,7 @@ int Application::run()
 
   // Redraw everything, game objects included
   draw();
+  FontManager::getInstance()->draw_text("hello world", fRect(32, 32, 200, 200), "Cardinal_18");
 
   // Regulate the number of frames per second, pausing if nessecary
   wait();
