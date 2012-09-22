@@ -25,6 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class BlackDogState : public GameState
 {
+  /// NESTING
+private:
+  enum TutorialMode
+  {
+    TUT_FLAPPING,
+    TUT_FEATHERS,
+    TUT_ORBS
+  };
+
   /// CONSTANTS
 private:
   static const int STARTING_PROGRESS = WINDOW_DEFAULT_W * 0.15f;
@@ -38,11 +47,12 @@ private:
   TunnelFG obstacle;
   float player_progress, difficulty;
   bool victory;
+  int tutorial;
 
   /// METHODS
 public:
   // Creation, destruction
-  BlackDogState();
+  BlackDogState(bool tutorial);
   // Overrides GameState
   int update(float delta);
   void draw();

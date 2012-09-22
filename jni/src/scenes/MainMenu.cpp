@@ -76,7 +76,7 @@ int MainMenu::startup()
   fRect options_src = exit_src + V2f(0, exit_src.h);
   // add the buttons to the scene
   buttons.push_back(new Button("play", *texture, top_ninths, play_src));
-  buttons.push_back(new Button("options", *texture, mid_ninths, options_src));
+  buttons.push_back(new Button("tutorial", *texture, mid_ninths, options_src));
   buttons.push_back(new Button("exit", *texture, low_ninths, exit_src));
 
   /// 3. ALL CLEAR!
@@ -103,10 +103,10 @@ int MainMenu::update(Scene** next, float delta)
   {
     // select world
     if(button_tag == numerise("play"))
-      (*next) = new Game();
+      (*next) = new Game(false); // go straight to the game
     // change options
-    else if(button_tag == numerise("options"))
-      return true; /// FIXME
+    else if(button_tag == numerise("tutorial"))
+      (*next) = new Game(true); // play tutorial before starting game proper
     // exit the game
     else if(button_tag == numerise("exit"))
       (*next) = NULL; // exit

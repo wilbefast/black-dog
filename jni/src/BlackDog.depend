@@ -10452,7 +10452,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 
-1345132647 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.cpp
+1348167457 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.cpp
 	"BlackDogState.hpp"
 	"../io/GraphicsManager.hpp"
 	"../gameplay/things/AngelThing.hpp"
@@ -10461,7 +10461,7 @@
 	"../gameplay/things/FallingThing.hpp"
 	"../global.hpp"
 
-1345132610 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.hpp
+1348167473 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/BlackDogState.hpp
 	"GameState.hpp"
 	"../gameplay/TunnelBG.hpp"
 	"../gameplay/TunnelFG.hpp"
@@ -10471,14 +10471,14 @@
 	"../warn.hpp"
 	"../io/AudioManager.hpp"
 
-1347487549 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Game.cpp
+1348167202 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Game.cpp
 	"Game.hpp"
 	"../io/file.hpp"
 	"../assert.hpp"
 	"MainMenu.hpp"
 	"BlackDogState.hpp"
 
-1347487565 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Game.hpp
+1348167175 /home/william/Desktop/BLACK_DOG_link/jni/src/scenes/Game.hpp
 	"Scene.hpp"
 
 1347482055 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/GameState.cpp
@@ -10492,7 +10492,7 @@
 	"../gameplay/things/events/CollisionEvent.hpp"
 	"../gameplay/things/events/BoundaryEvent.hpp"
 
-1347486924 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/MainMenu.cpp
+1348167061 source:/home/william/Desktop/BLACK_DOG_link/jni/src/scenes/MainMenu.cpp
 	"MainMenu.hpp"
 	"../graphics/draw.hpp"
 	"../global.hpp"
@@ -10678,7 +10678,7 @@
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 
-1347487437 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.cpp
+1347987230 source:/home/william/Desktop/BLACK_DOG_link/jni/src/gameplay/things/MinionThing.cpp
 	"MinionThing.hpp"
 	"FallingThing.hpp"
 	"elements/ColliderElement.hpp"
@@ -10693,14 +10693,15 @@
 	"elements/AnimatedElement.hpp"
 	"elements/SymetricalMovementElement.hpp"
 
-1347983953 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.cpp
+1348324269 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.cpp
 	"AudioManager.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
 	"../math/wjd_math.hpp"
 	"file.hpp"
+	"tinyxml/tinyxml.h"
 
-1347983828 /home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.hpp
+1348323881 /home/william/Desktop/BLACK_DOG_link/jni/src/io/AudioManager.hpp
 	"SDL.h"
 	"SDL_mixer.h"
 	<map>
@@ -10712,13 +10713,11 @@
 
 1340887685 /home/william/Desktop/BLACK_DOG_link/jni/src/io/numerise.inl
 
-1344731123 /home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.hpp
-	"tinyxml/tinyxml.h"
+1348323746 /home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.hpp
 
-1344074035 /home/william/Desktop/BLACK_DOG_link/jni/src/io/file.hpp
+1348324176 /home/william/Desktop/BLACK_DOG_link/jni/src/io/file.hpp
 	<string>
 	"../platform.hpp"
-	"tinyxml/tinyxml.h"
 
 1305426296 /home/william/Desktop/BLACK_DOG_link/jni/src/io/tinyxml/tinyxml.h
 	<ctype.h>
@@ -10735,30 +10734,33 @@
 	<assert.h>
 	<string.h>
 
-1344732659 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.cpp
+1348324275 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.cpp
 	"GraphicsManager.hpp"
 	"file.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
+	"tinyxml/tinyxml.h"
 
-1344781100 /home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.hpp
+1348323892 /home/william/Desktop/BLACK_DOG_link/jni/src/io/GraphicsManager.hpp
 	<map>
 	"../math/numerise.hpp"
 	"ResourceManager.hpp"
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1344731446 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.cpp
+1348323865 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/ResourceManager.cpp
 	"ResourceManager.hpp"
 	"file.hpp"
 	"../assert.hpp"
 	"../warn.hpp"
+	"tinyxml/tinyxml.h"
 
-1347485338 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/file.cpp
+1348324306 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/file.cpp
 	"file.hpp"
 	"SDL.h"
 	"../assert.hpp"
 	"../warn.hpp"
+	"tinyxml/tinyxml.h"
 
 1305426296 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/tinyxml/tinystr.cpp
 	"tinystr.h"

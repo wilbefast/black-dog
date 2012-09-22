@@ -27,13 +27,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /// CREATION, DESTRUCTION
 
-BlackDogState::BlackDogState() :
+BlackDogState::BlackDogState(bool _tutorial) :
 GameState(),
 parallax(),
 obstacle(BASE_DIFFICULTY),
 player_progress(STARTING_PROGRESS),
 difficulty(BASE_DIFFICULTY),
-victory(false)
+victory(false),
+tutorial(_tutorial ? TUT_FLAPPING : 0)
 {
   // add the player character
   addThing(new AngelThing(V2i(player_progress, WINDOW_DEFAULT_H/2)));

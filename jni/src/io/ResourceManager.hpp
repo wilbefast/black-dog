@@ -18,8 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef RESOURCEMANAGER_HPP_INCLUDED
 #define RESOURCEMANAGER_HPP_INCLUDED
 
-#include "tinyxml/tinyxml.h"
-
 class ResourceManager
 {
   /// METHODS
@@ -31,9 +29,9 @@ public:
   // loading
   int load_xml(const char* xml_file);
 protected:
-  virtual int parse_root(TiXmlHandle* root_handle);
-  int parse_list(TiXmlHandle* root_handle, const char* list_name);
-  virtual int parse_element(TiXmlElement* element);
+  virtual int parse_root(void* root_handle);
+  int parse_list(void* root_handle, const char* list_name);
+  virtual int parse_element(void* element);
 };
 
 #endif // RESOURCEMANAGER_HPP_INCLUDED

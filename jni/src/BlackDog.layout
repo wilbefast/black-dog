@@ -5,10 +5,10 @@
 		<Cursor position="1734" topLine="25" />
 	</File>
 	<File name="Application.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="4246" topLine="129" />
+		<Cursor position="7556" topLine="192" />
 	</File>
 	<File name="Application.hpp" open="0" top="0" tabpos="5">
-		<Cursor position="801" topLine="6" />
+		<Cursor position="801" topLine="45" />
 	</File>
 	<File name="assets/audio.xml" open="0" top="0" tabpos="0">
 		<Cursor position="446" topLine="0" />
@@ -64,8 +64,8 @@
 	<File name="gameplay/things/FallingThing.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1292" topLine="22" />
 	</File>
-	<File name="gameplay/things/MinionThing.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1506" topLine="33" />
+	<File name="gameplay/things/MinionThing.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1491" topLine="27" />
 	</File>
 	<File name="gameplay/things/MinionThing.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1218" topLine="26" />
@@ -107,7 +107,7 @@
 		<Cursor position="571" topLine="13" />
 	</File>
 	<File name="gameplay/things/elements/MovementElement.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="3681" topLine="62" />
+		<Cursor position="859" topLine="10" />
 	</File>
 	<File name="gameplay/things/elements/MovementElement.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="1942" topLine="42" />
@@ -152,7 +152,7 @@
 		<Cursor position="765" topLine="30" />
 	</File>
 	<File name="gameplay/things/events/ThingEvent.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="883" topLine="12" />
+		<Cursor position="799" topLine="8" />
 	</File>
 	<File name="global.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="890" topLine="10" />
@@ -200,16 +200,16 @@
 		<Cursor position="187" topLine="18" />
 	</File>
 	<File name="graphics/draw.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4102" topLine="88" />
+		<Cursor position="929" topLine="238" />
 	</File>
 	<File name="graphics/draw.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="2082" topLine="36" />
 	</File>
-	<File name="io/AudioManager.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="6542" topLine="227" />
+	<File name="io/AudioManager.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="1256" topLine="28" />
 	</File>
-	<File name="io/AudioManager.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="953" topLine="13" />
+	<File name="io/AudioManager.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="2449" topLine="62" />
 	</File>
 	<File name="io/GraphicsManager.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2157" topLine="43" />
@@ -229,41 +229,44 @@
 	<File name="io/file.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="16" />
 	</File>
+	<File name="io/tinyxml/tinyxml.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="968" topLine="16" />
+	</File>
 	<File name="io/tinyxml/tinyxml_dump.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1839" topLine="54" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1430" topLine="23" />
+		<Cursor position="752" topLine="6" />
 	</File>
 	<File name="math/Rect.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="79" />
+		<Cursor position="1521" topLine="25" />
 	</File>
 	<File name="math/Rect.inl" open="0" top="0" tabpos="0">
 		<Cursor position="6099" topLine="303" />
 	</File>
 	<File name="math/V2.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="53" />
+		<Cursor position="1515" topLine="25" />
 	</File>
 	<File name="platform.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="1239" topLine="19" />
+		<Cursor position="2454" topLine="59" />
 	</File>
-	<File name="scenes/BlackDogState.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="3059" topLine="46" />
+	<File name="scenes/BlackDogState.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="1412" topLine="25" />
 	</File>
-	<File name="scenes/BlackDogState.hpp" open="0" top="0" tabpos="2">
-		<Cursor position="1656" topLine="38" />
+	<File name="scenes/BlackDogState.hpp" open="1" top="1" tabpos="5">
+		<Cursor position="972" topLine="19" />
 	</File>
-	<File name="scenes/Button.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1436" topLine="45" />
+	<File name="scenes/Button.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2334" topLine="63" />
 	</File>
 	<File name="scenes/Button.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="872" topLine="11" />
 	</File>
-	<File name="scenes/Game.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="961" topLine="22" />
+	<File name="scenes/Game.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1030" topLine="22" />
 	</File>
-	<File name="scenes/Game.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="548" topLine="11" />
+	<File name="scenes/Game.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="837" topLine="11" />
 	</File>
 	<File name="scenes/GameState.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3312" topLine="120" />
@@ -271,8 +274,8 @@
 	<File name="scenes/GameState.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="947" topLine="18" />
 	</File>
-	<File name="scenes/MainMenu.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2898" topLine="82" />
+	<File name="scenes/MainMenu.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="3230" topLine="93" />
 	</File>
 	<File name="scenes/MainMenu.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1044" topLine="20" />

@@ -23,9 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class Game : public Scene
 {
   /// METHODS
-  public:
+public:
   // Constructors, destructors
-  Game();
+  Game(bool tutorial = false);
   virtual ~Game();
   // Navigation
   Scene* previous();  // from Scene

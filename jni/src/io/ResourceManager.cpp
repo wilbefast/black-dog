@@ -21,6 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../assert.hpp"
 #include "../warn.hpp"
 
+#include "tinyxml/tinyxml.h"
+
 using namespace std;
 
 /// CREATION, DESTRUCTION
@@ -52,17 +54,17 @@ int ResourceManager::load_xml(const char* xml_file)
   return EXIT_SUCCESS;
 }
 
-int ResourceManager::parse_root(TiXmlHandle* root_handle)
+int ResourceManager::parse_root(void* root_handle)
 {
   // override me!
   return EXIT_SUCCESS;
 }
 
-int ResourceManager::parse_list(TiXmlHandle* root_handle, const char* list_name)
+int ResourceManager::parse_list(void* root_handle, const char* list_name)
 {
   // get the first element of the list
   TiXmlElement* element =
-    root_handle->FirstChild(list_name).FirstChild().Element();
+    ((TiXmlHandle*)root_handle)->FirstChild(list_name).FirstChild().Element();
 
   // treat each element in turn
   while(element)
@@ -78,7 +80,7 @@ int ResourceManager::parse_list(TiXmlHandle* root_handle, const char* list_name)
   return EXIT_SUCCESS;
 }
 
-int ResourceManager::parse_element(TiXmlElement* element)
+int ResourceManager::parse_element(void* element)
 {
   // override me!
   return EXIT_SUCCESS;

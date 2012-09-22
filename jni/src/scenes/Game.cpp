@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /// CREATION & DESTRUCTION
 
-Game::Game() :
-Scene(new BlackDogState())
+Game::Game(bool tutorial) :
+Scene(new BlackDogState(tutorial))
 {
 }
 

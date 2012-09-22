@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../math/wjd_math.hpp"
 #include "file.hpp" // for io::MAX_BLOCKS
 
+#include "tinyxml/tinyxml.h"
+
 using namespace std;
 
 /// SINGLETON
@@ -99,27 +101,33 @@ AudioManager::~AudioManager()
 
 /// LOADING
 
-int AudioManager::parse_root(TiXmlHandle* root_handle)
+int AudioManager::parse_root(void* root_handle)
 {
+  // cast handle to TinyXML handle
+  TiXmlHandle* txml_root = (TiXmlHandle*)root_handle;
+
   // load music
-  ASSERT(parse_element(root_handle->FirstChild("music").Element()) == EXIT_SUCCESS,
+  ASSERT(parse_element(txml_root->FirstChild("music").Element()) == EXIT_SUCCESS,
               "AudioManager parsing music element");
 
   // load sound effects
-  ASSERT(parse_list(root_handle, "sound_list") == EXIT_SUCCESS,
+  ASSERT(parse_list(txml_root, "sound_list") == EXIT_SUCCESS,
               "AudioManager parsing list of sound effects");
 
   // all clear!
   return EXIT_SUCCESS;
 }
 
-int AudioManager::parse_element(TiXmlElement* element)
+int AudioManager::parse_element(void* element)
 {
+  // cast element to TinyXML element
+  TiXmlElement* txml_element = (TiXmlElement*)element;
+
   // music element
-  if(!strcmp(element->Value(), "music"))
+  if(!strcmp(txml_element->Value(), "music"))
   {
     // conver the name attribute to a file name
-    const char* name = element->Attribute("name");
+    const char* name = txml_element->Attribute("name");
     if(!name)
       WARN_RTN("AudioManager::load_xml", "malformed music tag", EXIT_FAILURE);
     string filename = io::name_to_path(name, MUSIC_FILETYPE);
@@ -129,10 +137,10 @@ int AudioManager::parse_element(TiXmlElement* element)
   }
 
   // sound element
-  else if(!strcmp(element->Value(), "sound"))
+  else if(!strcmp(txml_element->Value(), "sound"))
   {
     // get the name of the texture and deduce its filename
-    const char* name = element->Attribute("name");
+    const char* name = txml_element->Attribute("name");
     if(!name)
       WARN_RTN("AudioManager::load_xml", "malformed sound tag", EXIT_FAILURE);
 

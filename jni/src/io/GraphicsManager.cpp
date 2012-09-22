@@ -21,6 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../assert.hpp"
 #include "../warn.hpp"
 
+#include "tinyxml/tinyxml.h"
+
 /// SINGLETON
 
 GraphicsManager* GraphicsManager::instance = NULL;
@@ -87,7 +89,7 @@ GraphicsManager::~GraphicsManager()
 
 /// LOADING
 
-int GraphicsManager::parse_root(TiXmlHandle* root_handle)
+int GraphicsManager::parse_root(void* root_handle)
 {
   // load textures
   ASSERT(parse_list(root_handle, "texture_list") == EXIT_SUCCESS,
@@ -101,13 +103,16 @@ int GraphicsManager::parse_root(TiXmlHandle* root_handle)
   return EXIT_SUCCESS;
 }
 
-int GraphicsManager::parse_element(TiXmlElement* element)
+int GraphicsManager::parse_element(void* element)
 {
+  // cast element to TinyXML element
+  TiXmlElement* txml_element = (TiXmlElement*)element;
+
   // texture element
-  if(!strcmp(element->Value(), "texture"))
+  if(!strcmp(txml_element->Value(), "texture"))
   {
     // get the name of the texture and deduce its filename
-    const char* name = element->Attribute("name");
+    const char* name = txml_element->Attribute("name");
     if(!name)
       WARN_RTN("GraphicsManager::load_xml", "malformed texture tag", EXIT_FAILURE);
 
@@ -116,23 +121,23 @@ int GraphicsManager::parse_element(TiXmlElement* element)
     load_texture(filename.c_str(), name);
 
     // continue to the next sprite
-    element = element->NextSiblingElement();
+    txml_element = txml_element->NextSiblingElement();
   }
 
   // animation element
-  else if(!strcmp(element->Value(), "animation"))
+  else if(!strcmp(txml_element->Value(), "animation"))
   {
     // strip information from tag
-    const char *name = element->Attribute("name"),
-               *texture = element->Attribute("texture");
+    const char *name = txml_element->Attribute("name"),
+               *texture = txml_element->Attribute("texture");
     iRect frame;
     int n_frames;
     bool success = (name && texture
-      && (element->QueryIntAttribute("x", &frame.x) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("y", &frame.y) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("w", &frame.w) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("h", &frame.h) == TIXML_SUCCESS)
-      && (element->QueryIntAttribute("n_frames", &n_frames) == TIXML_SUCCESS));
+      && (txml_element->QueryIntAttribute("x", &frame.x) == TIXML_SUCCESS)
+      && (txml_element->QueryIntAttribute("y", &frame.y) == TIXML_SUCCESS)
+      && (txml_element->QueryIntAttribute("w", &frame.w) == TIXML_SUCCESS)
+      && (txml_element->QueryIntAttribute("h", &frame.h) == TIXML_SUCCESS)
+      && (txml_element->QueryIntAttribute("n_frames", &n_frames) == TIXML_SUCCESS));
 
     if(!success)
       WARN_RTN("GraphicsManager::load_xml", "malformed animation tag", EXIT_FAILURE);

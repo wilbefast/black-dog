@@ -68,8 +68,8 @@ public:
   int shutdown();
   ~AudioManager();
   // loading -- overrides ResourceManager
-  virtual int parse_root(TiXmlHandle* root_handle);
-  virtual int parse_element(TiXmlElement* element);
+  virtual int parse_root(void* root_handle);
+  virtual int parse_element(void* element);
   // global volume
   void volume_up();
   void volume_down();

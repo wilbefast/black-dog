@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../assert.hpp"
 #include "../warn.hpp"
 
+#include "tinyxml/tinyxml.h"
+
 using namespace io;
 
 std::string io::path_to_name(const char* file_path)
@@ -69,8 +71,11 @@ int io::read_text(const char* file_path, char** destination)
   return EXIT_SUCCESS;
 }
 
-int io::read_xml(const char* file_path, TiXmlDocument* doc)
+int io::read_xml(const char* file_path, void* document)
 {
+  // cast document to TinyXML document
+  TiXmlDocument* txml_document = (TiXmlDocument*)document;
+
   #if BUFFER_XML
     // Open with SDL_RWops, read contents to a buffer
     char* file_contents = NULL;
@@ -78,15 +83,15 @@ int io::read_xml(const char* file_path, TiXmlDocument* doc)
             "Reading XML file to buffer");
 
     // Pass the buffer to the TinyXML document
-    ASSERT_AUX(doc->Parse(file_contents), "Parsing XML buffer",
-               doc->ErrorDesc());
+    ASSERT_AUX(txml_document->Parse(file_contents), "Parsing XML buffer",
+               txml_document->ErrorDesc());
     // Delete the buffer
     delete[] file_contents;
   #else
     // Open normally, without an intermediate buffer
     doc->SetValue(file_name);
-    ASSERT_AUX(doc->LoadFile(), "Loading XML file directly",
-                doc->ErrorDesc());
+    ASSERT_AUX(txml_document->LoadFile(), "Loading XML file directly",
+                txml_document->ErrorDesc());
   #endif
 
   // All clear
