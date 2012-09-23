@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define FONTMANAGER_HPP_INCLUDED
 
 #include "SDL.h"
-#include "SDL_ttf.h"
+//#include "SDL_ttf.h"
+#include "/usr/local/include/SDL2/SDL_ttf.h"
 
 #include "ResourceManager.hpp"
 
@@ -80,7 +81,7 @@ public:
   void draw_text(const char* text, fRect destination, const char* font_name,
                   draw::Colour f_colour = draw::Colour(0, 0, 0),
                   draw::Colour bg_colour = draw::Colour(255, 255, 255),
-                  text_quality_t quality = BLENDED);
+                  text_quality_t quality = SOLID);
   // utilties
 private:
   SDL_Surface* text_surface(const char* text, str_id font_id,
@@ -92,7 +93,6 @@ private:
                               draw::Colour bg_colour = draw::Colour(255, 255, 255),
                               text_quality_t quality = BLENDED);
   TTF_Font* get_ttf(str_id name);
-  TTF_Font* get_ttf(const char* name);
 };
 
 #endif // FONTMANAGER_HPP_INCLUDED

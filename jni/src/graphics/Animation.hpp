@@ -22,21 +22,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Animation : public Graphic
 {
-    /// ATTRIBUTES
-    private:
-    iRect strip; // the whole area occupied by the animation
-    int numFrames;
+  /// ATTRIBUTES
+  private:
+  iRect strip; // the whole area occupied by the animation
+  int numFrames;
 
-    /// METHODS
-    public:
-    // constructors, destructors
-    Animation();
-    // main methods
-    void init(Texture* init_texture, iRect init_frame, int number_frames = 1);
-    // accessors
-    iRect getFrame(float subimage = 0) const;   // masks Graphic::getFrame()
-    int getNumFrames() const;
-
+  /// METHODS
+  public:
+  // constructors, destructors
+  Animation();
+  // main methods
+  void init(Texture* init_texture, iRect init_frame, int number_frames = 1);
+  // accessors
+  iRect getFrame(float subimage = 0) const;   // masks Graphic::getFrame()
+  int getNumFrames() const;
 };
 
 #endif // ANIMATION_HPP_INCLUDED

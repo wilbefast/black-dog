@@ -52,6 +52,8 @@ int Texture::load(const char* filepath)
 	return result;
 }
 
+
+#include <iostream>
 int Texture::from_surface(SDL_Surface* surface)
 {
   // Free any previous content

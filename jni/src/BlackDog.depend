@@ -10128,7 +10128,7 @@
 	"elements/ResourceElement.hpp"
 	"elements/TimerElement.hpp"
 
-1348348776 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
+1348399113 source:/home/william/Desktop/BLACK_DOG_link/jni/src/Application.cpp
 	"Application.hpp"
 	"SDL_image.h"
 	"global.hpp"
@@ -10222,7 +10222,7 @@
 	"../graphics/Texture.hpp"
 	"../graphics/Animation.hpp"
 
-1340887642 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Animation.hpp
+1348354817 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Animation.hpp
 	"Graphic.hpp"
 
 1340887643 /home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Graphic.hpp
@@ -10409,7 +10409,7 @@
 	"Mesh2D.hpp"
 	"../global.hpp"
 
-1348348029 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Texture.cpp
+1348398437 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/Texture.cpp
 	"Texture.hpp"
 	"SDL.h"
 	"SDL_image.h"
@@ -10418,6 +10418,7 @@
 	"../assert.hpp"
 	"../warn.hpp"
 	"../math/wjd_math.hpp"
+	<iostream>
 
 1348348405 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/draw.cpp
 	"draw.hpp"
@@ -10430,7 +10431,7 @@
 	"SDL_config.h"
 	"SDL_stdinc.h"
 
-1347982066 source:/home/william/Desktop/BLACK_DOG_link/jni/src/main.cpp
+1348396130 source:/home/william/Desktop/BLACK_DOG_link/jni/src/main.cpp
 	<stdlib.h>
 	"assert.hpp"
 	"Application.hpp"
@@ -10645,7 +10646,7 @@
 	"elements/TimerElement.hpp"
 	"../../global.hpp"
 
-1344904811 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/AnimationIncarnation.cpp
+1348354969 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/AnimationIncarnation.cpp
 	"AnimationIncarnation.hpp"
 
 1345131424 source:/home/william/Desktop/BLACK_DOG_link/jni/src/graphics/GraphicIncarnation.cpp
@@ -10818,16 +10819,16 @@
 	"Thing.hpp"
 	"elements/AnimatedElement.hpp"
 
-1348348746 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.cpp
+1348394588 source:/home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.cpp
 	"FontManager.hpp"
 	"file.hpp"
 	"../warn.hpp"
 	"../graphics/Texture.hpp"
 	"tinyxml/tinyxml.h"
 
-1348348243 /home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.hpp
+1348397705 /home/william/Desktop/BLACK_DOG_link/jni/src/io/FontManager.hpp
 	"SDL.h"
-	"SDL_ttf.h"
+	"/usr/local/include/SDL2/SDL_ttf.h"
 	"ResourceManager.hpp"
 	<map>
 	"../math/numerise.hpp"
@@ -10841,4 +10842,292 @@
 
 1348347885 source:/home/william/Desktop/BLACK_DOG_link/jni/src/math/wjd_math.cpp
 	"wjd_math.hpp"
+
+1348397509 /usr/local/include/SDL2/SDL_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1348396065 /usr/local/include/SDL2/SDL_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/begin_code.h
+
+1348396065 /usr/local/include/SDL2/close_code.h
+
+1348396065 /usr/local/include/SDL2/SDL_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<intrin.h>
+	<libkern/OSAtomic.h>
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_pixels.h
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1348396065 /usr/local/include/SDL2/SDL_scancode.h
+	"SDL_stdinc.h"
+
+1348396065 /usr/local/include/SDL2/SDL_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1348396065 /usr/local/include/SDL2/SDL_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_system.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1348396065 /usr/local/include/SDL2/SDL_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
 

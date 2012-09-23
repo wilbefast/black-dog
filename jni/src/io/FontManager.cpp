@@ -54,7 +54,7 @@ FontManager::~FontManager()
 int FontManager::load()
 {
   // start SDL_ttf
-  ASSERT_TTF(TTF_Init() != -1, "Initialising SDL_TTF (true-type font)");
+  ASSERT_TTF(TTF_Init() == 0, "Initialising SDL_TTF (true-type font)");
 
   // load fonts
   ASSERT(load_xml(GET_ASSET("fonts.xml")) == EXIT_SUCCESS,
@@ -135,7 +135,7 @@ int FontManager::load_ttf(const char* source_file, const char* name,
   // load ttf file
   TTF_Font* new_font = TTF_OpenFont(source_file, pt_size);
   // check that the font was loaded successfully
-  ASSERT_TTF(new_font, source_file);
+  ASSERT_TTF(new_font != NULL, source_file);
 
   // save under requested name
   str_id hash = numerise(name);
@@ -160,9 +160,9 @@ void FontManager::draw_text(const char* text, fRect destination, str_id font_id,
   // load this bitmap into GPU memory and draw it!
   Texture texture;
   texture.from_surface(surface);
-  texture.draw(NULL, &destination);
 
-  // discard the surface immediately
+  // draw and then discard the surface immediately
+  texture.draw(NULL, &destination);
   texture.unload();
 }
 
@@ -195,7 +195,7 @@ SDL_Surface* FontManager::text_surface(const char* text, str_id font_id,
   switch(quality)
   {
     case SOLID:
-      result = TTF_RenderText_Solid(font, text, sdl_f_colour);
+      result = TTF_RenderText_Blended(font, text, sdl_f_colour);
     break;
     case SHADED:
       result = TTF_RenderText_Shaded(font, text, sdl_f_colour, sdl_bg_colour);

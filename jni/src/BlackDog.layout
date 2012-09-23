@@ -4,8 +4,8 @@
 	<File name="Android.mk" open="0" top="0" tabpos="4">
 		<Cursor position="1734" topLine="25" />
 	</File>
-	<File name="Application.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="7556" topLine="192" />
+	<File name="Application.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="6337" topLine="72" />
 	</File>
 	<File name="Application.hpp" open="0" top="0" tabpos="5">
 		<Cursor position="801" topLine="45" />
@@ -154,8 +154,8 @@
 	<File name="gameplay/things/events/ThingEvent.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="799" topLine="8" />
 	</File>
-	<File name="global.hpp" open="0" top="0" tabpos="4">
-		<Cursor position="890" topLine="10" />
+	<File name="global.hpp" open="1" top="0" tabpos="3">
+		<Cursor position="869" topLine="12" />
 	</File>
 	<File name="graphics/Animation.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="844" topLine="9" />
@@ -193,11 +193,11 @@
 	<File name="graphics/Mesh2D.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="5" />
 	</File>
-	<File name="graphics/Texture.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2527" topLine="51" />
+	<File name="graphics/Texture.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2570" topLine="64" />
 	</File>
 	<File name="graphics/Texture.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="187" topLine="18" />
+		<Cursor position="187" topLine="25" />
 	</File>
 	<File name="graphics/draw.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="929" topLine="238" />
@@ -210,6 +210,12 @@
 	</File>
 	<File name="io/AudioManager.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="2449" topLine="62" />
+	</File>
+	<File name="io/FontManager.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="3551" topLine="196" />
+	</File>
+	<File name="io/FontManager.hpp" open="0" top="0" tabpos="4">
+		<Cursor position="321" topLine="12" />
 	</File>
 	<File name="io/GraphicsManager.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2157" topLine="43" />
@@ -236,7 +242,7 @@
 		<Cursor position="1839" topLine="54" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="752" topLine="6" />
+		<Cursor position="733" topLine="0" />
 	</File>
 	<File name="math/Rect.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="1521" topLine="25" />
@@ -250,11 +256,11 @@
 	<File name="platform.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="2454" topLine="59" />
 	</File>
-	<File name="scenes/BlackDogState.cpp" open="1" top="0" tabpos="4">
+	<File name="scenes/BlackDogState.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1412" topLine="25" />
 	</File>
-	<File name="scenes/BlackDogState.hpp" open="1" top="1" tabpos="5">
-		<Cursor position="972" topLine="19" />
+	<File name="scenes/BlackDogState.hpp" open="0" top="0" tabpos="5">
+		<Cursor position="1138" topLine="19" />
 	</File>
 	<File name="scenes/Button.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2334" topLine="63" />
@@ -262,10 +268,10 @@
 	<File name="scenes/Button.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="872" topLine="11" />
 	</File>
-	<File name="scenes/Game.cpp" open="1" top="0" tabpos="3">
+	<File name="scenes/Game.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1030" topLine="22" />
 	</File>
-	<File name="scenes/Game.hpp" open="1" top="0" tabpos="2">
+	<File name="scenes/Game.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="837" topLine="11" />
 	</File>
 	<File name="scenes/GameState.cpp" open="0" top="0" tabpos="1">
@@ -274,7 +280,7 @@
 	<File name="scenes/GameState.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="947" topLine="18" />
 	</File>
-	<File name="scenes/MainMenu.cpp" open="1" top="0" tabpos="1">
+	<File name="scenes/MainMenu.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3230" topLine="93" />
 	</File>
 	<File name="scenes/MainMenu.hpp" open="0" top="0" tabpos="0">

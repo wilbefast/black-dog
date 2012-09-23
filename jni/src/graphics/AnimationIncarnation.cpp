@@ -76,7 +76,6 @@ void AnimationIncarnation::loopAnim()
   }
 }
 
-
 void AnimationIncarnation::draw()
 {
   // Break immediately if hidden or nothing has been initialised
